@@ -166,6 +166,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 <div class="hero-content" style="position: absolute; left: 0; right: 0; top: 60vh; z-index: 2; padding: 0 clamp(16px, 4vw, 64px); color: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; gap: 28px">
 <h1 style="margin: 0; max-width: 980px; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(36px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -0.01em; text-transform: uppercase">Emportez la <span class="heat-text">chaleur</span> de chez vous, <span class="heat-text heat-text-rev">dehors.</span></h1>
+<p style="margin: -12px 0 0; max-width: 520px; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.5; color: rgba(255,255,255,0.86)">Vêtements et accessoires chauffants.</p>
 <a href="#collection" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 10px; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center">Je découvre</a>
 </div>
 </section>
@@ -426,7 +427,7 @@ a{color:#14212B}a:hover{color:#B5650F}
   var probe=document.createElement('div'); probe.className='vh-probe'; probe.setAttribute('aria-hidden','true'); document.body.appendChild(probe);
   function layout(){
     var vh=probe.offsetHeight||window.innerHeight, th=content.offsetHeight, hh=h.offsetHeight;
-    var startTop=Math.max(vh-72-th, hh+80), stopTop=hh+32;
+    var startTop=Math.max(vh-Math.round(vh*0.16)-th, hh+80), stopTop=hh+32;
     content.style.top=startTop+'px';
     var travel=Math.max(startTop-stopTop,0);
     hero.style.height=(Math.max(vh,460)+travel)+'px';
