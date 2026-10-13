@@ -39,7 +39,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 .bandeau-msg.is-active{opacity:1;transform:none}
 .bandeau-msg.is-leaving{opacity:0;transform:translateY(-10px)}
 @media (prefers-reduced-motion: reduce){.bandeau-msg{transition:none}}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;transform:translateZ(0)}
+.vh-probe{position:fixed;top:0;left:0;width:1px;height:100vh;height:100svh;visibility:hidden;pointer-events:none}
 .hero-sticky{position:sticky;top:0;height:100vh;height:100svh;min-height:460px;overflow:hidden}
 .site-header.is-fixed{position:fixed;top:0 !important}
 
@@ -111,7 +112,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: #F8F6F1; font-size: 17px; line-height: 1.6">
 
 <!-- Bandeau -->
-<div id="bandeau" style="position: absolute; top: 0; left: 0; right: 0; z-index: 21; background: rgba(0,0,0,0.5); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: #FFFFFF; font-size: 14px; text-align: center; padding: 14px 24px">
+<div id="bandeau" style="position: absolute; top: 0; left: 0; right: 0; z-index: 21; background: rgba(0,0,0,0.5); color: #FFFFFF; font-size: 14px; text-align: center; padding: 14px 24px">
 <div class="bandeau-track" aria-live="polite">
 <!-- Messages du bandeau : ajoute ou retire une ligne <span class="bandeau-msg">…</span> -->
 <span class="bandeau-msg is-active">Livraison suivie en France</span>
@@ -123,7 +124,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <header class="site-header" style="padding: 0 clamp(16px, 4vw, 64px)">
 <div class="header-row" style="min-height: 84px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 36px">
-<a href="#top" style="text-decoration: none; color: #14212B; font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-transform: uppercase">Otreau</a>
+<a href="#top" style="text-decoration: none; color: #14212B; font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em">Otreau</a>
 <nav class="main-nav" aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 17px">
 <a href="#collection" style="text-decoration: none; color: #14212B">Gilets</a>
 <a href="#collection" style="text-decoration: none; color: #14212B">Vestes</a>
@@ -143,7 +144,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <!-- Menu mobile -->
 <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
 <div style="display: flex; align-items: center; justify-content: space-between; min-height: 64px">
-<span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; text-transform: uppercase">Otreau</span>
+<span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">Otreau</span>
 <button type="button" class="menu-close" aria-label="Fermer le menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
 </div>
 <nav aria-label="Navigation mobile" class="mobile-links">
@@ -422,8 +423,9 @@ a{color:#14212B}a:hover{color:#B5650F}
 (function(){
   var b=document.getElementById('bandeau'), h=document.querySelector('.site-header');
   var hero=document.querySelector('.hero'), content=document.querySelector('.hero-content'), pinEnd=0;
+  var probe=document.createElement('div'); probe.className='vh-probe'; probe.setAttribute('aria-hidden','true'); document.body.appendChild(probe);
   function layout(){
-    var vh=window.innerHeight, th=content.offsetHeight, hh=h.offsetHeight;
+    var vh=probe.offsetHeight||window.innerHeight, th=content.offsetHeight, hh=h.offsetHeight;
     var startTop=Math.max(vh-72-th, hh+80), stopTop=hh+32;
     content.style.top=startTop+'px';
     var travel=Math.max(startTop-stopTop,0);
@@ -434,8 +436,8 @@ a{color:#14212B}a:hover{color:#B5650F}
     if(y<=bh){h.classList.remove('is-fixed','is-solid');h.style.top=bh+'px'}
     else if(y<pinEnd){h.classList.add('is-fixed');h.classList.remove('is-solid')}
     else{h.classList.add('is-fixed','is-solid')}}
-  window.addEventListener('resize',layout); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout); window.addEventListener('load',layout); layout();
-  window.addEventListener('scroll',place,{passive:true});
+  var lastW=window.innerWidth; window.addEventListener('resize',function(){if(window.innerWidth!==lastW){lastW=window.innerWidth;layout()}}); window.addEventListener('orientationchange',function(){setTimeout(layout,250)}); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout); window.addEventListener('load',layout); layout();
+  var ticking=false; window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){place();ticking=false})}},{passive:true});
 })();
 </script>
 <script>
