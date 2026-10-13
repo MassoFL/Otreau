@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Accueil — vêtements chauffants</title>
+<title>Otreau — Emportez la chaleur de chez vous, dehors.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500&amp;family=Instrument+Serif:ital@1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
@@ -85,6 +85,9 @@ a{color:#14212B}a:hover{color:#B5650F}
 .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .note-card{background:#FBF8F2;border-radius:6px;padding:24px;border:1.5px dashed rgba(140,122,91,.6);display:flex;flex-direction:column;gap:8px}
 .note-card .num{font-family:'DM Mono',monospace;font-size:13px;color:#B5650F;letter-spacing:.1em}
+.product-grid{width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+@media (max-width:1024px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.product-grid{grid-template-columns:minmax(0,1fr)}}
 </style>
 </head>
 <body>
@@ -103,7 +106,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <header class="site-header" style="padding: 0 clamp(16px, 4vw, 64px)">
 <div style="min-height: 84px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 36px">
-<a href="#top" style="text-decoration: none; color: #14212B; font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-transform: uppercase">[marque]</a>
+<a href="#top" style="text-decoration: none; color: #14212B; font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-transform: uppercase">Otreau</a>
 <nav aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 17px">
 <a href="#collection" style="text-decoration: none; color: #14212B">Gilets</a>
 <a href="#collection" style="text-decoration: none; color: #14212B">Vestes</a>
@@ -144,23 +147,41 @@ a{color:#14212B}a:hover{color:#B5650F}
 <button type="button" class="type-btn" aria-pressed="false">Gants</button>
 </div>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px">
+<div class="product-grid">
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
-<div style="padding: 36px 32px 40px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Le Gilet</h3>
-<p style="margin: 0; font-size: 18px; line-height: 1.5; color: #14212B; max-width: 380px">Sous une veste ou un manteau, du trajet du matin à l’atelier.</p>
-<span style="margin-top: auto; padding-top: 24px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 300px; min-height: 56px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<video src="assets/gilet.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Le Gilet</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">Sous une veste ou un manteau, du trajet du matin à l’atelier.</p>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
 </a>
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/doudoune.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 5 / 6; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
-<div style="padding: 36px 32px 40px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La Doudoune</h3>
-<p style="margin: 0; font-size: 18px; line-height: 1.5; color: #14212B; max-width: 380px">La protection complète pour les longues journées immobiles dehors.</p>
-<span style="margin-top: auto; padding-top: 24px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 300px; min-height: 56px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<video src="assets/doudoune.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La Doudoune</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">La protection complète pour les longues journées immobiles dehors.</p>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+</div>
+</a>
+
+<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<div aria-hidden="true" style="width: 100%; aspect-ratio: 4 / 5; background: #EFEFEF; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La Veste parka</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte de la veste parka.]</p>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+</div>
+</a>
+
+<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<div aria-hidden="true" style="width: 100%; aspect-ratio: 4 / 5; background: #EFEFEF; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Les Gants</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte des gants.]</p>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
 </a>
 
@@ -342,7 +363,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <footer style="padding: 40px 24px 48px; font-size: 14px; color: #55616B">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
-<span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 16px; color: #14212B; letter-spacing: -0.03em">[marque]</span>
+<span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 16px; color: #14212B; letter-spacing: -0.03em">Otreau</span>
 <nav aria-label="Liens utiles" style="display: flex; flex-wrap: wrap; gap: 8px 28px"><a href="#confiance" style="color: #55616B; text-decoration: none">Guide des tailles</a><a href="#fonctionnement" style="color: #55616B; text-decoration: none">Batterie &amp; démarrage</a><a href="#confiance" style="color: #55616B; text-decoration: none">Livraison &amp; retours</a><a href="#confiance" style="color: #55616B; text-decoration: none">Contact</a></nav>
 </div>
 </footer>
