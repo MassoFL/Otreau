@@ -88,6 +88,23 @@ a{color:#14212B}a:hover{color:#B5650F}
 .product-grid{width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
 @media (max-width:1024px){.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.product-grid{grid-template-columns:minmax(0,1fr)}}
+/* ===== Navigation mobile ===== */
+.menu-btn,.menu-close{width:44px;height:44px;padding:0;border:0;background:transparent;color:#FFFFFF;cursor:pointer;display:none;align-items:center;justify-content:center}
+.site-header.is-solid .menu-btn{color:#14212B}
+.menu-close{display:flex}
+.mobile-menu{position:fixed;inset:0;z-index:60;background:#0B1218;color:#FFFFFF;display:flex;flex-direction:column;padding:8px clamp(16px,4vw,64px) 32px;overflow-y:auto;visibility:hidden;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
+.mobile-menu.is-open{visibility:visible;opacity:1;transform:none;transition:opacity .3s ease,transform .3s ease}
+.mobile-links{display:flex;flex-direction:column;margin-top:24px}
+.mobile-links a{color:#FFFFFF;text-decoration:none;font-family:Manrope,sans-serif;font-weight:300;font-size:26px;text-transform:uppercase;letter-spacing:.01em;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.mobile-links a:hover{color:#F5A623}
+.mobile-account{margin-top:auto;padding-top:32px;display:flex;align-items:center;gap:12px;color:#C9D1D6 !important;text-decoration:none;font-size:16px}
+@media (max-width:860px){
+  .main-nav{display:none !important}
+  .menu-btn{display:flex}
+  .site-header .account-link{display:none !important}
+  .header-row{flex-wrap:nowrap !important;min-height:64px !important}
+}
+@media (prefers-reduced-motion: reduce){.mobile-menu,.mobile-menu.is-open{transition:none}}
 </style>
 </head>
 <body>
@@ -104,10 +121,10 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <!-- Header -->
 <header class="site-header" style="padding: 0 clamp(16px, 4vw, 64px)">
-<div style="min-height: 84px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
+<div class="header-row" style="min-height: 84px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 36px">
 <a href="#top" style="text-decoration: none; color: #14212B; font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em; text-transform: uppercase">Otreau</a>
-<nav aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 17px">
+<nav class="main-nav" aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 17px">
 <a href="#collection" style="text-decoration: none; color: #14212B">Gilets</a>
 <a href="#collection" style="text-decoration: none; color: #14212B">Vestes</a>
 <a href="#fonctionnement" style="text-decoration: none; color: #14212B">Comment ça marche</a>
@@ -115,12 +132,30 @@ a{color:#14212B}a:hover{color:#B5650F}
 </nav>
 </div>
 <div style="display: flex; align-items: center; gap: 4px">
-<a href="#top" aria-label="Mon compte" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #14212B"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="10" r="3.2"></circle><path d="M6.5 18.5c1.4-2.2 3.3-3.2 5.5-3.2s4.1 1 5.5 3.2"></path></svg></a>
+<a href="#top" class="account-link" aria-label="Mon compte" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #14212B"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="10" r="3.2"></circle><path d="M6.5 18.5c1.4-2.2 3.3-3.2 5.5-3.2s4.1 1 5.5 3.2"></path></svg></a>
 <a href="#top" aria-label="Rechercher" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #14212B"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg></a>
 <a href="#top" aria-label="Panier" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #14212B"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18l-2 11H5z"></path><path d="M8 9l4-6 4 6"></path></svg></a>
+<button type="button" class="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
 </div>
 </div>
 </header>
+
+<!-- Menu mobile -->
+<div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
+<div style="display: flex; align-items: center; justify-content: space-between; min-height: 64px">
+<span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; text-transform: uppercase">Otreau</span>
+<button type="button" class="menu-close" aria-label="Fermer le menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<nav aria-label="Navigation mobile" class="mobile-links">
+<a href="#collection">Gilets</a>
+<a href="#collection">Vestes</a>
+<a href="#batterie">Batterie &amp; autonomie</a>
+<a href="#tailles">Tailles &amp; mesures</a>
+<a href="#fonctionnement">Comment ça marche</a>
+<a href="#confiance">Nos engagements</a>
+</nav>
+<a href="#top" class="mobile-account"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="10" r="3.2"></circle><path d="M6.5 18.5c1.4-2.2 3.3-3.2 5.5-3.2s4.1 1 5.5 3.2"></path></svg>Mon compte</a>
+</div>
 
 <!-- Hero -->
 <section id="top" class="hero" aria-label="Vidéo d'ambiance" style="position: relative; height: 200vh; background-color: #14212B; margin-bottom: 128px">
@@ -478,6 +513,16 @@ var SIZE_GUIDE = {
   function ticks(){tape.querySelectorAll('span').forEach(function(n){n.remove()});
     for(var x=100,n=10;x<tape.offsetWidth;x+=100,n+=10){var sp=document.createElement('span');sp.style.left=x+'px';sp.textContent=n;tape.appendChild(sp)}}
   ticks(); window.addEventListener('resize',ticks);
+})();
+</script>
+<script>
+(function(){
+  var btn=document.querySelector('.menu-btn'), menu=document.getElementById('mobile-menu'), close=menu.querySelector('.menu-close');
+  function open(){menu.classList.add('is-open');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';close.focus()}
+  function shut(){menu.classList.remove('is-open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';btn.focus({preventScroll:true})}
+  btn.addEventListener('click',open); close.addEventListener('click',shut);
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('is-open');btn.setAttribute('aria-expanded','false');document.body.style.overflow=''})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('is-open'))shut()});
 })();
 </script>
 </body>
