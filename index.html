@@ -28,7 +28,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .hero-dot{width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .hero-dot span{display:block;width:14px;height:14px;border-radius:50%;border:2px solid #fff;background:transparent;transition:background .3s ease}
 .hero-dot[aria-current="true"] span{background:#fff}
-.type-btn{min-height:46px;border-radius:10px;border:1.5px solid #C9C2B4;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;background:transparent;color:#14212B;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.type-btn{min-height:46px;border-radius:0;border:1.5px solid #C9C2B4;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;background:transparent;color:#14212B;transition:background .2s ease,color .2s ease,border-color .2s ease}
 .type-btn[aria-pressed="true"]{background:#14212B;color:#fff;border-color:#14212B}
 
 .site-header{position:absolute;left:0;right:0;top:50px;z-index:20;background:transparent;border-bottom:1px solid rgba(255,255,255,.2);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease}
@@ -42,7 +42,9 @@ a{color:#14212B}a:hover{color:#B5650F}
 @media (prefers-reduced-motion: reduce){.bandeau-msg{transition:none}}
 .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;transform:translateZ(0)}
 .vh-probe{position:fixed;top:0;left:0;width:1px;height:100vh;height:100svh;visibility:hidden;pointer-events:none}
-.hero-sticky{position:sticky;top:0;height:100vh;height:100svh;min-height:460px;overflow:hidden}
+.hero-sticky{position:fixed;top:0;left:0;right:0;height:100vh;height:100svh;min-height:460px;overflow:hidden;z-index:0}
+.page-after-hero{position:relative;z-index:1;background:#F8F6F1;display:flow-root}
+.bandeau-curtain{position:sticky;top:var(--hh,84px);z-index:15;height:50px;margin:-50px 0 56px;box-sizing:border-box;background:rgba(0,0,0,0);color:#FFFFFF;font-size:14px;text-align:center;padding:14px 24px}
 .site-header.is-fixed{position:fixed;top:0 !important}
 
 /* ===== Tailles & mesures (atelier) ===== */
@@ -54,7 +56,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .tape{position:relative;height:44px;margin:0 -24px 96px;background:#F2C230;box-shadow:0 2px 0 rgba(20,33,43,.15);background-image:repeating-linear-gradient(90deg,#14212B 0 1px,transparent 1px 10px),repeating-linear-gradient(90deg,#14212B 0 1.5px,transparent 1.5px 50px),repeating-linear-gradient(90deg,#14212B 0 2px,transparent 2px 100px);background-size:100% 9px,100% 15px,100% 22px;background-repeat:no-repeat;background-position:0 0,0 0,0 0}
 .tape span{position:absolute;top:21px;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:#14212B}
 .atelier-kicker{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#8A6A3B}
-.tag-btn{position:relative;min-height:48px;padding:0 26px 0 42px;background:#FBF8F2;color:#14212B;border:1.5px dashed #8C7A5B;border-radius:6px 16px 16px 6px;font-family:'DM Mono',monospace;font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.tag-btn{position:relative;min-height:48px;padding:0 26px 0 42px;background:#FBF8F2;color:#14212B;border:1.5px dashed #8C7A5B;border-radius:0;font-family:'DM Mono',monospace;font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
 .tag-btn::before{content:"";position:absolute;left:15px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;border:1.5px solid currentColor;background:#E9DFCC}
 .tag-btn[aria-pressed="true"]{background:#14212B;color:#FFFFFF;border:1.5px solid #14212B}
 .patron{position:relative;background:#FBF8F2;border-radius:6px;padding:clamp(24px,4vw,48px);box-shadow:0 1px 0 rgba(20,33,43,.08),0 18px 40px -18px rgba(20,33,43,.35)}
@@ -92,6 +94,9 @@ a{color:#14212B}a:hover{color:#B5650F}
 @media (max-width:560px){.product-grid{grid-template-columns:minmax(0,1fr)}}
 /* ===== Navigation mobile ===== */
 .menu-btn,.menu-close{width:44px;height:44px;padding:0;border:0;background:transparent;color:#FFFFFF;cursor:pointer;display:none;align-items:center;justify-content:center}
+.menu-btn{display:flex;margin-left:-10px}
+.menu-btn svg path{transition:d .3s ease}
+.menu-btn[aria-expanded="true"] svg path{d:path("M6 6L18 18M18 6L6 18")}
 .site-header.is-solid .menu-btn{color:#14212B}
 .menu-close{display:flex}
 .mobile-menu{position:fixed;inset:0;z-index:60;background:#0B1218;color:#FFFFFF;display:flex;flex-direction:column;padding:8px clamp(16px,4vw,64px) 32px;overflow-y:auto;visibility:hidden;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
@@ -100,11 +105,20 @@ a{color:#14212B}a:hover{color:#B5650F}
 .mobile-links a{color:#FFFFFF;text-decoration:none;font-family:Manrope,sans-serif;font-weight:300;font-size:26px;text-transform:uppercase;letter-spacing:.01em;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12)}
 .mobile-links a:hover{color:#F5A623}
 .mobile-account{margin-top:auto;padding-top:32px;display:flex;align-items:center;gap:12px;color:#C9D1D6 !important;text-decoration:none;font-size:16px}
+.main-nav{display:none !important}
+/* Menu déroulant (ordinateur) */
+@media (min-width:861px){
+  .mobile-menu{inset:auto;left:clamp(16px,4vw,64px);top:0;width:380px;max-height:calc(100vh - 120px);padding:12px 32px 28px;border-radius:0 0 18px 18px;box-shadow:0 24px 50px -12px rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.08);border-top:0}
+  .mobile-menu .menu-top{display:none !important}
+  .mobile-links{margin-top:0}
+  .mobile-links a{font-size:18px;padding:16px 0}
+  .mobile-links a:last-child{border-bottom:0}
+  .mobile-account{padding-top:20px;margin-top:8px;border-top:1px solid rgba(255,255,255,.12)}
+}
+@media (max-width:860px){.menu-btn-label{display:none}.menu-btn{padding:0;width:44px}}
 @media (max-width:1200px){
-  .main-nav{display:none !important}
-  .menu-btn{display:flex}
   .site-header .account-link{display:none !important}
-  .header-row{flex-wrap:nowrap !important;min-height:64px !important}
+  .header-row{flex-wrap:nowrap !important;min-height:56px !important}
 }
 @media (prefers-reduced-motion: reduce){.mobile-menu,.mobile-menu.is-open{transition:none}}
 /* ===== Bouton principal : remplissage dégradé chaud ===== */
@@ -115,13 +129,13 @@ a{color:#14212B}a:hover{color:#B5650F}
 .cta-heat:hover::before,.cta-heat:focus-visible::before{transform:scaleX(1)}
 @media (prefers-reduced-motion: reduce){.cta-heat::before{transition:none}}
 /* ===== Header : logo centré ===== */
-.header-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;min-height:84px}
+.header-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;min-height:62px}
 .header-left{justify-self:start;min-width:0}
-.brand-logo{justify-self:center;font-size:26px !important;white-space:nowrap}
+.brand-logo{justify-self:center;font-size:23px !important;white-space:nowrap}
 .header-icons{justify-self:end}
 .main-nav{flex-wrap:nowrap !important;white-space:nowrap}
 @media (max-width:1380px){.main-nav{gap:8px 24px !important;font-size:16px !important}}
-@media (max-width:1200px){.header-row{min-height:64px}.brand-logo{font-size:22px !important}.header-left{margin-left:-10px}}
+@media (max-width:1200px){.header-row{min-height:56px}.brand-logo{font-size:21px !important}.header-left{margin-left:-10px}}
 </style>
 </head>
 <body>
@@ -140,7 +154,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <header class="site-header" style="padding: 0 clamp(16px, 4vw, 64px)">
 <div class="header-row">
 <div class="header-left" style="display: flex; align-items: center; gap: 8px">
-<button type="button" class="menu-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+<button type="button" class="menu-btn" aria-expanded="false" aria-controls="mobile-menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
 <nav class="main-nav" aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 17px">
 <a href="#collection" style="text-decoration: none; color: #14212B">Gilets</a>
 <a href="#collection" style="text-decoration: none; color: #14212B">Vestes</a>
@@ -150,7 +164,6 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 <a href="#top" class="brand-logo" aria-label="Otreau, accueil" style="text-decoration: none; color: #14212B; font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em">Otreau</a>
 <div class="header-icons" style="display: flex; align-items: center; justify-content: flex-end; gap: 4px">
-<a href="#top" class="account-link" aria-label="Mon compte" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #14212B"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="10" r="3.2"></circle><path d="M6.5 18.5c1.4-2.2 3.3-3.2 5.5-3.2s4.1 1 5.5 3.2"></path></svg></a>
 <a href="#top" aria-label="Rechercher" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #14212B"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg></a>
 <a href="#top" aria-label="Panier" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #14212B"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18l-2 11H5z"></path><path d="M8 9l4-6 4 6"></path></svg></a>
 </div>
@@ -159,7 +172,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <!-- Menu mobile -->
 <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
-<div style="display: flex; align-items: center; justify-content: space-between; min-height: 64px">
+<div class="menu-top" style="display: flex; align-items: center; justify-content: space-between; min-height: 64px">
 <span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">Otreau</span>
 <button type="button" class="menu-close" aria-label="Fermer le menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
 </div>
@@ -171,11 +184,10 @@ a{color:#14212B}a:hover{color:#B5650F}
 <a href="#fonctionnement">Comment ça marche</a>
 <a href="#confiance">Nos engagements</a>
 </nav>
-<a href="#top" class="mobile-account"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="10" r="3.2"></circle><path d="M6.5 18.5c1.4-2.2 3.3-3.2 5.5-3.2s4.1 1 5.5 3.2"></path></svg>Mon compte</a>
 </div>
 
 <!-- Hero -->
-<section id="top" class="hero" aria-label="Vidéo d'ambiance" style="position: relative; height: 200vh; background-color: #14212B; margin-bottom: 128px">
+<section id="top" class="hero" aria-label="Vidéo d'ambiance" style="position: relative; height: 200vh; background-color: #14212B">
 <div class="hero-sticky">
 <video class="hero-video" src="assets/hero-video.mp4" poster="assets/hero-video-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
 <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 10%, rgba(0,0,0,0.3) 22%, rgba(0,0,0,0.08) 32%, rgba(0,0,0,0) 40%), linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 15%, rgba(0,0,0,0.4) 35%, rgba(0,0,0,0.12) 55%, rgba(0,0,0,0) 70%)"></div>
@@ -183,10 +195,13 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="hero-content" style="position: absolute; left: 0; right: 0; top: 60vh; z-index: 2; padding: 0 clamp(16px, 4vw, 64px); color: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; gap: 28px">
 <h1 style="margin: 0; max-width: 980px; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(36px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -0.01em; text-transform: uppercase">Emportez la <span class="heat-text">chaleur</span> de chez vous, <span class="heat-text heat-text-rev">dehors.</span></h1>
 <p style="margin: -12px 0 0; max-width: 520px; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.5; color: rgba(255,255,255,0.86)">Vêtements et accessoires chauffants.</p>
-<a href="#collection" class="cta-heat" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 10px; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span>Je découvre</span></a>
+<a href="#collection" class="cta-heat" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span>Je découvre</span></a>
 </div>
 </section>
 
+<div class="page-after-hero">
+<!-- Bandeau qui accompagne le contenu quand il recouvre la vidéo (messages copiés depuis le bandeau du haut) -->
+<div class="bandeau-curtain" aria-hidden="true"><div class="bandeau-track bandeau-copy"></div></div>
 <!-- Collection -->
 <section id="collection" style="padding: 0 24px 128px">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
@@ -202,51 +217,51 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 <div class="product-grid">
 
-<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/gilet.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Le Gilet</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">Sous une veste ou un manteau, du trajet du matin à l’atelier.</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
 </a>
 
-<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/doudoune.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La Doudoune</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">La protection complète pour les longues journées immobiles dehors.</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
 </a>
 
-<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <div aria-hidden="true" style="width: 100%; aspect-ratio: 4 / 5; background: #EFEFEF; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La Veste parka</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte de la veste parka.]</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
 </a>
 
-<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <div aria-hidden="true" style="width: 100%; aspect-ratio: 4 / 5; background: #EFEFEF; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Les Gants</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte des gants.]</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 12px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
 </a>
 
 </div>
 <div style="display: flex; justify-content: center; margin-top: 16px">
-<a href="#collection" style="text-decoration: none; color: #14212B; border: 1.5px solid #14212B; border-radius: 12px; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; padding: 0 40px; min-height: 56px; display: inline-flex; align-items: center; gap: 12px">Voir toute la collection<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a href="#collection" style="text-decoration: none; color: #14212B; border: 1.5px solid #14212B; border-radius: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; padding: 0 40px; min-height: 56px; display: inline-flex; align-items: center; gap: 12px">Voir toute la collection<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
 </div>
 </section>
 
 <!-- Batterie & autonomie -->
-<section id="batterie" style="background: #000000; color: #FFFFFF; padding: 120px 24px; margin-bottom: 0">
+<section id="batterie" style="background: #000000; color: #FFFFFF; padding: 64px 24px 120px; margin-bottom: 0">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
 <h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Batterie &amp; autonomie</h2>
@@ -410,7 +425,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <section style="padding: 0 24px 24px">
 <div style="max-width: 1392px; margin: 0 auto; background: #182A35; color: #F8F6F1; border-radius: 32px; padding: clamp(64px, 9vw, 128px) 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 32px">
 <h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: clamp(36px, 5vw, 68px); line-height: 1.02; letter-spacing: -0.045em; max-width: 820px">Le froid ne devrait pas <span style="font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; color: #E9A15F">changer vos plans.</span></h2>
-<a href="#collection" style="text-decoration: none; background: #F5A623; color: #14212B; font-family: Manrope, sans-serif; font-weight: 700; font-size: 15px; padding: 0 30px; min-height: 56px; border-radius: 999px; display: inline-flex; align-items: center">Trouver ma couche de chaleur</a>
+<a href="#collection" style="text-decoration: none; background: #F5A623; color: #14212B; font-family: Manrope, sans-serif; font-weight: 700; font-size: 15px; padding: 0 30px; min-height: 56px; border-radius: 0; display: inline-flex; align-items: center">Trouver ma couche de chaleur</a>
 </div>
 </section>
 
@@ -420,6 +435,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <nav aria-label="Liens utiles" style="display: flex; flex-wrap: wrap; gap: 8px 28px"><a href="#confiance" style="color: #55616B; text-decoration: none">Guide des tailles</a><a href="#fonctionnement" style="color: #55616B; text-decoration: none">Batterie &amp; démarrage</a><a href="#confiance" style="color: #55616B; text-decoration: none">Livraison &amp; retours</a><a href="#confiance" style="color: #55616B; text-decoration: none">Contact</a></nav>
 </div>
 </footer>
+</div>
 
 </div>
 <script>
@@ -443,6 +459,7 @@ a{color:#14212B}a:hover{color:#B5650F}
   var probe=document.createElement('div'); probe.className='vh-probe'; probe.setAttribute('aria-hidden','true'); document.body.appendChild(probe);
   function layout(){
     var vh=probe.offsetHeight||window.innerHeight, th=content.offsetHeight, hh=h.offsetHeight;
+    document.documentElement.style.setProperty('--hh',hh+'px');
     var startTop=Math.max(vh-Math.round(vh*0.28)-th, hh+80), stopTop=hh+32;
     content.style.top=startTop+'px';
     var travel=Math.max(startTop-stopTop,0);
@@ -453,8 +470,19 @@ a{color:#14212B}a:hover{color:#B5650F}
     if(y<=bh){h.classList.remove('is-fixed','is-solid');h.style.top=bh+'px'}
     else if(y<pinEnd){h.classList.add('is-fixed');h.classList.remove('is-solid')}
     else{h.classList.add('is-fixed','is-solid')}}
-  var lastW=window.innerWidth; window.addEventListener('resize',function(){if(window.innerWidth!==lastW){lastW=window.innerWidth;layout()}}); window.addEventListener('orientationchange',function(){setTimeout(layout,250)}); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout); window.addEventListener('load',layout); layout();
-  var ticking=false; window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){place();ticking=false})}},{passive:true});
+  var vid=document.querySelector('.hero-video'), after=document.querySelector('.page-after-hero');
+  function videoState(){ if(!vid||!after) return; var covered=after.getBoundingClientRect().top<=0; if(covered&&!vid.paused) vid.pause(); else if(!covered&&vid.paused){var p=vid.play(); if(p&&p.catch)p.catch(function(){});} }
+  var curtainBand=document.querySelector('.bandeau-curtain');
+  function bandFade(){ if(!curtainBand) return;
+    var vhh=window.innerHeight, hh=h.offsetHeight, bh=curtainBand.offsetHeight;
+    var natural=curtainBand.parentNode.getBoundingClientRect().top-bh;      // bord haut du contenu qui monte
+    var lift=Math.max(0, natural-(vhh-bh));                               // tant que le contenu est sous l'écran, on garde le bandeau collé en bas de la vidéo
+    curtainBand.style.transform=lift?'translateY('+(-lift)+'px)':'';
+    var top=curtainBand.getBoundingClientRect().top;
+    var t=(vhh-bh-top)/Math.max(vhh-bh-hh,1); t=Math.min(Math.max(t,0),1);
+    curtainBand.style.backgroundColor='rgba(0,0,0,'+t.toFixed(3)+')'; curtainBand.firstElementChild.style.opacity=t.toFixed(3); }
+  var lastW=window.innerWidth; window.addEventListener('resize',function(){if(window.innerWidth!==lastW){lastW=window.innerWidth;layout()}bandFade()}); window.addEventListener('orientationchange',function(){setTimeout(layout,250)}); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout); window.addEventListener('load',layout); layout(); bandFade();
+  var ticking=false; window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){place();videoState();bandFade();ticking=false})}},{passive:true});
 })();
 </script>
 <script>
@@ -543,12 +571,20 @@ var SIZE_GUIDE = {
 </script>
 <script>
 (function(){
-  var btn=document.querySelector('.menu-btn'), menu=document.getElementById('mobile-menu'), close=menu.querySelector('.menu-close');
-  function open(){menu.classList.add('is-open');btn.setAttribute('aria-expanded','true');document.body.style.overflow='hidden';close.focus()}
-  function shut(){menu.classList.remove('is-open');btn.setAttribute('aria-expanded','false');document.body.style.overflow='';btn.focus({preventScroll:true})}
-  btn.addEventListener('click',open); close.addEventListener('click',shut);
-  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){menu.classList.remove('is-open');btn.setAttribute('aria-expanded','false');document.body.style.overflow=''})});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('is-open'))shut()});
+  var btn=document.querySelector('.menu-btn'), menu=document.getElementById('mobile-menu'), close=menu.querySelector('.menu-close'), hdr=document.querySelector('.site-header');
+  var desk=window.matchMedia('(min-width:861px)');
+  function isOpen(){return menu.classList.contains('is-open')}
+  function placeMenu(){menu.style.top=desk.matches?Math.round(hdr.getBoundingClientRect().bottom)+'px':''}
+  function open(){placeMenu();menu.classList.add('is-open');btn.setAttribute('aria-expanded','true');btn.setAttribute('aria-label','Fermer le menu');if(!desk.matches){document.body.style.overflow='hidden';close.focus()}}
+  function shut(focusBtn){menu.classList.remove('is-open');btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','Ouvrir le menu');document.body.style.overflow='';if(focusBtn)btn.focus({preventScroll:true})}
+  btn.setAttribute('aria-label','Ouvrir le menu');
+  btn.addEventListener('click',function(e){e.stopPropagation();if(isOpen())shut(false);else open()});
+  close.addEventListener('click',function(){shut(true)});
+  menu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){shut(false)})});
+  document.addEventListener('click',function(e){if(isOpen()&&desk.matches&&!menu.contains(e.target))shut(false)});
+  window.addEventListener('scroll',function(){if(isOpen()&&desk.matches)placeMenu()},{passive:true});
+  window.addEventListener('resize',function(){if(isOpen())placeMenu()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen())shut(true)});
 })();
 </script>
 </body>
