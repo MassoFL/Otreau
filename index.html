@@ -729,7 +729,7 @@ var SIZE_GUIDE = {
 };
 (function(){
   var head=document.getElementById('size-head'), body=document.getElementById('size-body'), label=document.getElementById('patron-label');
-  var flats=document.querySelectorAll('.flat'), current='gilet';
+  var flats=document.querySelectorAll('.flat'), wheelOpts=document.querySelectorAll('.wheel-list li'), current=wheelOpts[Math.floor(wheelOpts.length/2)].dataset.product;
   function activeFlat(){return document.querySelector('.flat[data-product="'+SIZE_GUIDE[current].flat+'"]')}
   function highlight(k){var f=activeFlat();
     f.classList.toggle('has-active',!!k);
@@ -770,7 +770,8 @@ var SIZE_GUIDE = {
     var n=Math.max(0,Math.min(opts.length-1,Math.round(list.scrollTop/ITEM)));
     if(n!==idx){idx=n;opts.forEach(function(li,i){li.setAttribute('aria-selected',i===n?'true':'false')})}
   }
-  function choose(){var k=opts[idx].dataset.product; if(k!==current){current=k;render()}}
+  var hinting=false;
+  function choose(){if(hinting)return;var k=opts[idx].dataset.product; if(k!==current){current=k;render()}}
   list.addEventListener('scroll',function(){
     if(!raf)raf=requestAnimationFrame(paint);
     clearTimeout(settle); settle=setTimeout(choose,140);
@@ -781,7 +782,27 @@ var SIZE_GUIDE = {
     if(e.key==='ArrowDown'){e.preventDefault();go(idx+1,true)}
     else if(e.key==='ArrowUp'){e.preventDefault();go(idx-1,true)}
   });
-  paint();
+  // Départ sur l'article du milieu
+  idx=Math.floor(opts.length/2);
+  opts.forEach(function(li,i){li.setAttribute('aria-selected',i===idx?'true':'false')});
+  go(idx,false); paint();
+  // Petit défilement automatique la première fois que la section apparaît, pour montrer que la roue se fait défiler
+  var touched=false;
+  ['pointerdown','wheel','touchstart','keydown'].forEach(function(ev){list.addEventListener(ev,function(){touched=true;hinting=false},{passive:true})});
+  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    var hio=new IntersectionObserver(function(es){
+      if(!es[0].isIntersecting) return; hio.disconnect();
+      var start=idx; hinting=true;
+      setTimeout(function(){ if(touched) return; go(start+1,true);
+        setTimeout(function(){ if(touched) return; go(start-1,true);
+          setTimeout(function(){ if(touched) return; go(start,true);
+            setTimeout(function(){ hinting=false; choose(); },700);
+          },800);
+        },800);
+      },500);
+    },{threshold:0.9});
+    hio.observe(list.parentNode);
+  }
   // graduations du mètre ruban
   var tape=document.querySelector('.tape'), strip=tape.querySelector('.tape-strip'), section=document.getElementById('tailles');
   function ticks(){strip.querySelectorAll('span').forEach(function(n){n.remove()});
