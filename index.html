@@ -610,7 +610,7 @@ a{color:#14212B}a:hover{color:#B5650F}
   function layout(){
     var vh=probe.offsetHeight||window.innerHeight, th=content.offsetHeight, hh=h.offsetHeight;
     document.documentElement.style.setProperty('--hh',hh+'px');
-    var startTop=Math.max(vh-Math.round(vh*0.28)-th, hh+80), stopTop=hh+32;
+    var startTop=Math.max(vh-Math.round(vh*0.36)-th, hh+80), stopTop=hh+32;
     content.style.top=startTop+'px';
     var travel=Math.max(startTop-stopTop,0);
     hero.style.height=(Math.max(vh,460)+travel)+'px';
