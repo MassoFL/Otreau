@@ -126,9 +126,9 @@ a{color:#14212B}a:hover{color:#B5650F}
 @media (prefers-reduced-motion: reduce){.mobile-menu,.mobile-menu.is-open{transition:none}}
 /* ===== Bouton principal : remplissage dégradé chaud ===== */
 .cta-heat{position:relative;overflow:hidden;isolation:isolate;transition:border-color .45s ease,color .3s ease,box-shadow .45s ease}
-.cta-heat::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,#FFD27A 0%,#F5A623 35%,#E8641F 70%,#C2361F 100%);transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.65,0,.35,1)}
+.cta-heat::before{content:"";position:absolute;inset:-2px;z-index:-1;background:linear-gradient(100deg,#3E9BEA 0%,#7CC4FA 22%,#B9E0FF 40%,#FFD27A 58%,#F5A623 76%,#E8641F 100%);transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.65,0,.35,1)}
 .cta-heat span{position:relative}
-.cta-heat:hover,.cta-heat:focus-visible{border-color:#F5A623 !important;color:#FFFFFF !important;box-shadow:0 8px 30px -8px rgba(232,100,31,.55)}
+.cta-heat:hover,.cta-heat:focus-visible{border-color:transparent !important;color:#FFFFFF !important;text-shadow:0 1px 3px rgba(0,0,0,.35);box-shadow:-10px 8px 30px -10px rgba(62,155,234,.55),10px 8px 30px -10px rgba(232,100,31,.55)}
 .cta-heat:hover::before,.cta-heat:focus-visible::before{transform:scaleX(1)}
 @media (prefers-reduced-motion: reduce){.cta-heat::before{transition:none}}
 /* ===== Header : logo centré ===== */
@@ -255,6 +255,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 }
 .hero-title{font-weight:400;filter:drop-shadow(0 1px 1px rgba(0,0,0,.9)) drop-shadow(0 2px 10px rgba(0,0,0,.8)) drop-shadow(0 8px 36px rgba(0,0,0,.75)) drop-shadow(0 0 60px rgba(0,0,0,.5))}
 @media (max-width:760px){.hero-title{font-weight:500}}
+.hero-sub{filter:drop-shadow(0 1px 1px rgba(0,0,0,.9)) drop-shadow(0 2px 8px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(0,0,0,.6))}
 </style>
 </head>
 <body>
@@ -313,7 +314,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 <div class="hero-content" style="position: absolute; left: 0; right: 0; top: 60vh; z-index: 2; padding: 0 clamp(16px, 4vw, 64px); color: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; gap: 28px">
 <h1 class="hero-title" style="margin: 0; max-width: 980px; font-family: Manrope, sans-serif; font-size: clamp(36px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -0.01em; text-transform: uppercase">Emportez la <span class="heat-text">chaleur</span> de chez vous, <span class="heat-text heat-text-rev">dehors.</span></h1>
-<p style="margin: -12px 0 0; max-width: 520px; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.5; color: rgba(255,255,255,0.86)">Vêtements et accessoires chauffants.</p>
+<p class="hero-sub" style="margin: -12px 0 0; max-width: 520px; font-size: clamp(19px, 1.7vw, 23px); line-height: 1.45; font-weight: 500; letter-spacing: 0.01em; color: #FFFFFF">Vêtements et accessoires chauffants.</p>
 <a href="#collection" class="cta-heat" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span>Je découvre</span></a>
 </div>
 </section>
