@@ -266,6 +266,8 @@ a{color:#14212B}a:hover{color:#B5650F}
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
   animation:glow-spin 3.2s linear infinite}
 .cta-glow::before{inset:-2px}
+.cta-glow{font-weight:400}
+@media (max-width:760px){.cta-glow{font-weight:500}}
 .cta-glow span{filter:drop-shadow(0 1px 1px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,.95)) drop-shadow(0 3px 14px rgba(0,0,0,.9)) drop-shadow(0 0 32px rgba(0,0,0,.75))}
 @keyframes glow-spin{to{--glow-a:360deg}}
 .cta-glow:hover::after,.cta-glow:focus-visible::after{opacity:0;transition:opacity .3s}
@@ -329,7 +331,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="hero-content" style="position: absolute; left: 0; right: 0; top: 60vh; z-index: 2; padding: 0 clamp(16px, 4vw, 64px); color: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; gap: 28px">
 <h1 class="hero-title" style="margin: 0; max-width: 980px; font-family: Manrope, sans-serif; font-size: clamp(36px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -0.01em; text-transform: uppercase">Emportez la <span class="heat-text">chaleur</span> de chez vous, <span class="heat-text heat-text-rev">dehors.</span></h1>
 <p class="hero-sub" style="margin: -12px 0 0; max-width: 520px; font-size: clamp(19px, 1.7vw, 23px); line-height: 1.45; font-weight: 500; letter-spacing: 0.01em; color: #FFFFFF">Vêtements et accessoires<br class="br-mobile"> chauffants.</p>
-<a href="#collection" class="cta-heat cta-glow" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span>Je découvre</span></a>
+<a href="#collection" class="cta-heat cta-glow" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 0; font-family: Manrope, sans-serif; font-size: 18px; text-transform: uppercase; letter-spacing: 0.02em; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span>Découvrir</span></a>
 </div>
 </section>
 
