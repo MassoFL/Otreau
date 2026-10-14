@@ -274,7 +274,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="product-grid">
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet-2.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
+<video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; ">Gilet’Otreau</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">Sous une veste ou un manteau, du trajet du matin à l’atelier.</p>
@@ -283,7 +283,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </a>
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/doudoune-2.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
+<video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; ">Doudoune’Otreau</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">La protection complète pour les longues journées immobiles dehors.</p>
@@ -292,7 +292,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </a>
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/veste-otreau.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
+<video src="assets/veste-otreau.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; ">Veste’Otreau</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte de la veste parka.]</p>
@@ -498,10 +498,21 @@ a{color:#14212B}a:hover{color:#B5650F}
   dots.forEach(function(d){d.addEventListener('click',function(){show(+d.dataset.i);start()})});
   if(slides.length) start();
   document.querySelectorAll('.type-btn').forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')==='true';document.querySelectorAll('.type-btn').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed',on?'false':'true')})});
-  document.querySelectorAll('.hover-video').forEach(function(v){
-    v.addEventListener('mouseenter',function(){var p=v.play();if(p&&p.catch)p.catch(function(){})});
-    v.addEventListener('mouseleave',function(){v.pause();v.currentTime=0});
-  });
+  // Vidéos produits : survol sur ordinateur, lecture automatique en boucle à l'écran sur mobile/tablette
+  var touchOnly=window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  var pv=document.querySelectorAll('.hover-video');
+  function pplay(v){v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});}
+  if(touchOnly&&'IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting&&e.intersectionRatio>=0.5) pplay(e.target); else e.target.pause();
+    })},{threshold:[0,0.5,1]});
+    pv.forEach(function(v){io.observe(v)});
+  } else {
+    pv.forEach(function(v){
+      v.addEventListener('mouseenter',function(){pplay(v)});
+      v.addEventListener('mouseleave',function(){v.pause();v.currentTime=0.1});
+    });
+  }
 })();
 </script>
 <script>
