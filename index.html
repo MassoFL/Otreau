@@ -40,7 +40,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 .bandeau-msg.is-active{opacity:1;transform:none}
 .bandeau-msg.is-leaving{opacity:0;transform:translateY(-10px)}
 @media (prefers-reduced-motion: reduce){.bandeau-msg{transition:none}}
-.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;transform:translateZ(0)}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;transform:translateZ(0);opacity:0;transition:opacity 1.2s ease}
+.hero-video.is-active{opacity:1}
 .vh-probe{position:fixed;top:0;left:0;width:1px;height:100vh;height:100svh;visibility:hidden;pointer-events:none}
 .hero-sticky{position:fixed;top:0;left:0;right:0;height:100vh;height:100svh;min-height:460px;overflow:hidden;z-index:0}
 .page-after-hero{position:relative;z-index:1;background:#F8F6F1;display:flow-root}
@@ -52,12 +53,13 @@ a{color:#14212B}a:hover{color:#B5650F}
 .stamp strong{font-family:'DM Mono',monospace;font-weight:500;font-size:16px;letter-spacing:.08em;text-transform:uppercase}
 .stamp span{font-size:15px;color:#14212B}
 .stamp svg{flex:none}
-.atelier{position:relative;background-color:#E9DFCC;background-image:linear-gradient(rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(rgba(20,33,43,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.035) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px;color:#14212B;padding:0 24px 120px;overflow:hidden}
-.tape{position:relative;height:44px;margin:0 -24px 48px;background:#000000;box-shadow:0 2px 0 rgba(0,0,0,.25);overflow:hidden}
+.atelier{position:relative;background-color:#E9DFCC;background-image:linear-gradient(rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(rgba(20,33,43,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.035) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px;color:#14212B;padding:80px 24px 120px;overflow:hidden}
+.tape{position:absolute;z-index:3;top:118px;right:-150px;width:680px;height:44px;margin:0;transform:rotate(38deg);transform-origin:center;background:#000000;box-shadow:0 6px 18px rgba(0,0,0,.28);overflow:hidden;pointer-events:none}
+@media (max-width:760px){.tape{width:300px;top:22px;right:-120px;height:28px}.tape span{top:13px;font-size:9px}}
 .tape-strip{position:absolute;top:0;left:0;height:100%;width:calc(100% + 1200px);will-change:transform;background-image:repeating-linear-gradient(90deg,#FFFFFF 0 1px,transparent 1px 10px),repeating-linear-gradient(90deg,#FFFFFF 0 1.5px,transparent 1.5px 50px),repeating-linear-gradient(90deg,#FFFFFF 0 2px,transparent 2px 100px);background-size:100% 9px,100% 15px,100% 22px;background-repeat:no-repeat;background-position:0 0,0 0,0 0}
 .tape span{position:absolute;top:21px;transform:translateX(-50%);font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:#FFFFFF}
 .atelier-kicker{font-family:'DM Mono',monospace;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#8A6A3B}
-.tag-btn{position:relative;min-height:48px;padding:0 26px 0 42px;background:#FBF8F2;color:#14212B;border:1.5px dashed #8C7A5B;border-radius:0;font-family:'DM Mono',monospace;font-size:14px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.tag-btn{position:relative;min-height:48px;padding:0 26px 0 42px;background:#FBF8F2;color:#14212B;border:1.5px dashed #8C7A5B;border-radius:0;font-family:'DM Mono',monospace;font-size:14px;font-weight:500;letter-spacing:.02em;cursor:pointer;transition:background .2s ease,color .2s ease,border-color .2s ease}
 .tag-btn::before{content:"";position:absolute;left:15px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;border:1.5px solid currentColor;background:#E9DFCC}
 .tag-btn[aria-pressed="true"]{background:#14212B;color:#FFFFFF;border:1.5px solid #14212B}
 .patron{position:relative;background:#FBF8F2;border-radius:6px;padding:clamp(24px,4vw,48px);box-shadow:0 1px 0 rgba(20,33,43,.08),0 18px 40px -18px rgba(20,33,43,.35)}
@@ -144,6 +146,52 @@ a{color:#14212B}a:hover{color:#B5650F}
 .size-table tbody th{font-family:'DM Mono',monospace !important;font-size:15px !important;font-weight:500}
 .size-table td.is-active,.size-table th.is-active{background:rgba(245,166,35,.16)}
 .size-table th.is-active .key{background:#E8641F}
+/* ===== FAQ ===== */
+.faq-list{border-top:1px solid #D9D3C7}
+.faq-item{border-bottom:1px solid #D9D3C7}
+.faq-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 4px;font-family:Manrope,sans-serif;font-weight:600;font-size:18px;color:#14212B}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary:hover{color:#B5650F}
+.faq-icon{position:relative;flex:none;width:18px;height:18px}
+.faq-icon::before,.faq-icon::after{content:"";position:absolute;left:0;top:50%;width:18px;height:1.8px;margin-top:-.9px;background:currentColor;transition:transform .3s ease}
+.faq-icon::after{transform:rotate(90deg)}
+.faq-item[open] .faq-icon::after{transform:rotate(0deg)}
+.faq-answer{padding:0 4px 26px;max-width:720px;font-size:16px;line-height:1.65;color:#55616B}
+/* ===== CTA final avec photo produits ===== */
+.cta-final{position:relative;max-width:1392px;margin:0 auto;border-radius:32px;overflow:hidden;min-height:clamp(420px,44vw,640px);display:flex;align-items:center;justify-content:center;padding:64px 24px;background:#EDEDED url(assets/cta-produits-2.jpg) center/cover no-repeat;color:#14212B;text-align:center}
+.cta-final::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 22% 38% at 50% 48%,rgba(250,250,250,.7) 0%,rgba(250,250,250,.25) 70%,rgba(250,250,250,0) 100%);pointer-events:none}
+.cta-final-inner{position:relative;display:flex;flex-direction:column;align-items:center;gap:32px}
+@media (max-width:760px){.cta-final{background-position:30% center}.cta-final::before{background:rgba(250,250,250,.72)}.cta-final h2{max-width:none !important}}
+/* ===== Footer ===== */
+.site-footer{background:#FFFFFF;border-top:1px solid #E4DFD5;color:#14212B;padding:72px clamp(16px,4vw,64px) 40px;margin-top:24px}
+.f-wrap{max-width:1320px;margin:0 auto}
+.f-top{display:flex;flex-wrap:wrap;gap:56px 64px}
+.f-brand{flex:1 1 360px;max-width:520px;display:flex;flex-direction:column;gap:24px}
+.f-logo{font-family:Manrope,sans-serif;font-weight:800;font-size:30px;letter-spacing:-0.02em;color:#14212B;text-decoration:none}
+.f-brand p{margin:0;font-size:16px;line-height:1.7;color:#3D4A54}
+.f-social{display:flex;gap:16px}
+.f-social a{color:#14212B;width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin-left:-8px}
+.f-social a:hover{color:#B5650F}
+.f-selects{display:flex;flex-wrap:wrap;gap:16px;margin-top:8px}
+.f-select{position:relative}
+.f-select select{appearance:none;-webkit-appearance:none;min-height:52px;padding:0 48px 0 22px;border:1.5px solid #C9C2B4;border-radius:0;background:#FFFFFF;font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:#14212B;cursor:pointer}
+.f-select::after{content:"";position:absolute;right:20px;top:50%;width:8px;height:8px;margin-top:-6px;border-right:1.8px solid #14212B;border-bottom:1.8px solid #14212B;transform:rotate(45deg);pointer-events:none}
+.f-cols{flex:2 1 600px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}
+.f-col h3{margin:0 0 20px;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+.f-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.f-col a{color:#3D4A54;text-decoration:none;font-size:16px}
+.f-col a:hover{color:#B5650F}
+.f-bottom{margin-top:56px;padding-top:28px;border-top:1px solid #E4DFD5;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.f-pay{display:flex;flex-wrap:wrap;gap:8px}
+.pay{display:inline-flex;align-items:center;height:28px;padding:0 10px;border:1px solid #D9D3C7;font-size:12px;font-weight:600;color:#3D4A54;background:#FBF9F5}
+.f-copy{margin:0;font-family:Manrope,sans-serif;font-weight:700;font-size:15px;text-align:center}
+.f-legal{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 24px}
+.f-legal a{color:#14212B;text-decoration:none;font-family:Manrope,sans-serif;font-weight:700;font-size:14px}
+.f-legal a:hover{color:#B5650F}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:860px){.f-cols{grid-template-columns:repeat(2,minmax(0,1fr))}.f-bottom{grid-template-columns:1fr;text-align:left}.f-copy{text-align:left}.f-legal{justify-content:flex-start}}
+@media (max-width:480px){.f-cols{grid-template-columns:minmax(0,1fr)}}
+#patron-label{text-transform:none;letter-spacing:.06em}
 </style>
 </head>
 <body>
@@ -166,8 +214,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <nav class="main-nav" aria-label="Navigation principale" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; font-size: 17px">
 <a href="#collection" style="text-decoration: none; color: #14212B">Gilets</a>
 <a href="#collection" style="text-decoration: none; color: #14212B">Vestes</a>
-<a href="#fonctionnement" style="text-decoration: none; color: #14212B">Comment ça marche</a>
-<a href="#confiance" style="text-decoration: none; color: #14212B">Nos engagements</a>
+<a href="#faq" style="text-decoration: none; color: #14212B">FAQ</a>
 </nav>
 </div>
 <a href="#top" class="brand-logo" aria-label="Otreau, accueil" style="text-decoration: none; color: #14212B; font-family: Manrope, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.02em">Otreau</a>
@@ -189,15 +236,16 @@ a{color:#14212B}a:hover{color:#B5650F}
 <a href="#collection">Vestes</a>
 <a href="#batterie">Batterie &amp; autonomie</a>
 <a href="#tailles">Tailles &amp; mesures</a>
-<a href="#fonctionnement">Comment ça marche</a>
-<a href="#confiance">Nos engagements</a>
+<a href="#faq">FAQ</a>
 </nav>
 </div>
 
 <!-- Hero -->
 <section id="top" class="hero" aria-label="Vidéo d'ambiance" style="position: relative; height: 200vh; background-color: #14212B">
 <div class="hero-sticky">
-<video class="hero-video" src="assets/hero-video.mp4" poster="assets/hero-video-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+<!-- Vidéos d'accueil : elles s'enchaînent en fondu. Pour en ajouter une, copiez une ligne <video> et changez src / poster. -->
+<video class="hero-video is-active" data-speed="0.7" src="assets/hero-video-2.mp4" poster="assets/hero-video-2-poster.jpg" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
+<!-- <video class="hero-video" src="assets/hero-video.mp4" poster="assets/hero-video-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video> -->
 <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 10%, rgba(0,0,0,0.3) 22%, rgba(0,0,0,0.08) 32%, rgba(0,0,0,0) 40%), linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 15%, rgba(0,0,0,0.4) 35%, rgba(0,0,0,0.12) 55%, rgba(0,0,0,0) 70%)"></div>
 </div>
 <div class="hero-content" style="position: absolute; left: 0; right: 0; top: 60vh; z-index: 2; padding: 0 clamp(16px, 4vw, 64px); color: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; gap: 28px">
@@ -214,7 +262,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <section id="collection" style="padding: 0 24px 128px">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
-<h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Collections</h2>
+<h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em">La collection’Otreau</h2>
 <div role="group" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
 <button type="button" class="type-btn" aria-pressed="false">Doudoune</button>
 <button type="button" class="type-btn" aria-pressed="false">Veste parka</button>
@@ -226,27 +274,27 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="product-grid">
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
+<video src="assets/gilet-2.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Le Gilet</h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; ">Gilet’Otreau</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">Sous une veste ou un manteau, du trajet du matin à l’atelier.</p>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
 </a>
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/doudoune.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
+<video src="assets/doudoune-2.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La Doudoune</h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; ">Doudoune’Otreau</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">La protection complète pour les longues journées immobiles dehors.</p>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
 </a>
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<div aria-hidden="true" style="width: 100%; aspect-ratio: 4 / 5; background: #EFEFEF; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
+<video src="assets/veste-otreau.mp4" muted loop playsinline preload="auto" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La Veste parka</h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; ">Veste’Otreau</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte de la veste parka.]</p>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
@@ -255,7 +303,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <div aria-hidden="true" style="width: 100%; aspect-ratio: 4 / 5; background: #EFEFEF; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Les Gants</h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: 0.01em; ">Gants’Otreau</h3>
 <p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte des gants.]</p>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 </div>
@@ -332,8 +380,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 <p style="margin: 0; font-size: 18px; color: #55616B; max-width: 560px">Un guide qui rend <span style="color: #14212B; text-decoration: underline; text-decoration-color: #D9792B; text-decoration-thickness: 2px; text-underline-offset: 5px">impossible de se tromper de taille.</span></p>
 </div>
 <div role="group" aria-label="Choisir un produit" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px">
-<button type="button" class="tag-btn" data-product="gilet" aria-pressed="true">Le Gilet</button>
-<button type="button" class="tag-btn" data-product="doudoune" aria-pressed="false">La Doudoune</button>
+<button type="button" class="tag-btn" data-product="gilet" aria-pressed="true">Gilet’Otreau</button>
+<button type="button" class="tag-btn" data-product="doudoune" aria-pressed="false">Doudoune’Otreau</button>
 </div>
 <div class="patron">
 <span class="patron-pin" style="left: 28px" aria-hidden="true"></span>
@@ -384,62 +432,59 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 </section>
 
-<!-- Comment ça marche -->
-<section id="fonctionnement" style="background: #14212B; color: #F8F6F1; padding: 120px 24px">
-<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
-<h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.04em; max-width: 620px">Au chaud en trois gestes.</h2>
-<p style="margin: 0; color: #A9B4BB; max-width: 360px">Moins de 20 secondes, la première fois comme les suivantes.</p>
+<!-- FAQ -->
+<section id="faq" style="padding: 64px 24px 128px">
+<div style="max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
+<h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Questions fréquentes</h2>
+<p style="margin: 0; font-size: 18px; color: #55616B; max-width: 520px">Tout ce qu’on nous demande avant d’acheter.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 48px">
-<div style="display: flex; flex-direction: column; gap: 20px; border-top: 1px solid #33495A; padding-top: 28px">
-<span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 14px; color: #F5A623">01</span>
-<svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#F8F6F1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="13" height="10" rx="2"></rect><path d="M16 12h2a3 3 0 0 0 3-3V6"></path></svg>
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.01em">Branchez la batterie</h3>
-<p style="margin: 0; color: #A9B4BB">Reliez le câble USB, puis glissez la batterie dans sa poche intérieure.</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 20px; border-top: 1px solid #33495A; padding-top: 28px">
-<span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 14px; color: #F5A623">02</span>
-<svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#F8F6F1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v7"></path><path d="M7.5 7a7 7 0 1 0 9 0"></path></svg>
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.01em">Maintenez le bouton</h3>
-<p style="margin: 0; color: #A9B4BB">Un appui long, jusqu’à ce que le voyant s’allume. Un appui court ne suffit pas.</p>
-</div>
-<div style="display: flex; flex-direction: column; gap: 20px; border-top: 1px solid #33495A; padding-top: 28px">
-<span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 14px; color: #F5A623">03</span>
-<svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#F8F6F1" stroke-width="1.4" stroke-linecap="round"><path d="M6 18v-3M12 18V10M18 18V5"></path></svg>
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.01em">Choisissez le niveau</h3>
-<p style="margin: 0; color: #A9B4BB">Appuis courts pour passer d’un niveau à l’autre. Chaud quand il faut, léger le reste du temps.</p>
-</div>
-</div>
-<p style="margin: 0; padding: 24px 28px; border-radius: 16px; background: #182A35; color: #D5DBDF; font-size: 15px">Pour une chaleur optimale, portez le vêtement près du corps, sous une couche coupe-vent.</p>
-</div>
-</section>
-
-<!-- Engagements -->
-<section id="confiance" style="padding: 128px 24px">
-<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
-<h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: clamp(32px, 4vw, 52px); line-height: 1.05; letter-spacing: -0.04em; max-width: 680px">Ce qu’on vous dit avant l’achat.</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0 40px">
-<div style="border-top: 1px solid #D9D3C7; padding: 28px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #2F6B57"></span>Batterie</h3><p style="margin: 0; color: #55616B; font-size: 16px">Incluse ou non : écrit en clair sur chaque produit, avec le modèle compatible.</p></div>
-<div style="border-top: 1px solid #D9D3C7; padding: 28px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #2F6B57"></span>Autonomie testée</h3><p style="margin: 0; color: #55616B; font-size: 16px">Mesurée niveau par niveau, avec la batterie utilisée pour le test.</p></div>
-<div style="border-top: 1px solid #D9D3C7; padding: 28px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #2F6B57"></span>Guide des tailles</h3><p style="margin: 0; color: #55616B; font-size: 16px">Mensurations précises et photos portées par de vraies personnes.</p></div>
-<div style="border-top: 1px solid #D9D3C7; padding: 28px 0; display: flex; flex-direction: column; gap: 8px"><h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px; display: flex; align-items: center; gap: 10px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #2F6B57"></span>Garantie &amp; retours</h3><p style="margin: 0; color: #55616B; font-size: 16px">Un élément défectueux est remplacé. Un retour se fait simplement.</p></div>
+<div class="faq-list">
+<details class="faq-item"><summary>La batterie est-elle incluse ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">[Oui / Non] : c’est indiqué clairement sur chaque fiche produit, avec le modèle de batterie compatible. [Si non incluse : précisez où se la procurer.]</div></details>
+<details class="faq-item"><summary>Comment allumer le vêtement ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Branchez le câble USB à la batterie et glissez-la dans la poche intérieure. Maintenez ensuite le bouton appuyé quelques secondes, jusqu’à ce que le voyant s’allume : un appui court ne suffit pas. Des appuis courts permettent ensuite de changer de niveau.</div></details>
+<details class="faq-item"><summary>Quelle est l’autonomie réelle ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Elle dépend du niveau de chauffe choisi et de la batterie utilisée. Retrouvez nos mesures, niveau par niveau, dans la section Batterie &amp; autonomie et sur chaque fiche produit.</div></details>
+<details class="faq-item"><summary>Où se trouvent les zones chauffantes ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Elles varient selon le modèle : [dos, torse, nuque…]. Chaque fiche produit montre un schéma des zones à leur taille réelle.</div></details>
+<details class="faq-item"><summary>Comment choisir ma taille ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Comparez les mesures de notre guide à un vêtement qui vous va bien, posé à plat. Pour une chaleur optimale, le vêtement se porte près du corps, sous une veste.</div></details>
+<details class="faq-item"><summary>Est-ce que ça chauffe vraiment dehors, même avec du vent ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Oui, à condition de porter le vêtement près du corps et sous une couche coupe-vent : la chaleur reste là où vous en avez besoin.</div></details>
+<details class="faq-item"><summary>Peut-on laver le vêtement ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">[Vos consignes, par exemple : retirez la batterie, lavage à la main ou en machine en cycle délicat à 30 °C, séchage à plat.]</div></details>
+<details class="faq-item"><summary>Quelle est la garantie ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">[Durée de garantie]. Un câble, un connecteur ou un élément chauffant défectueux est réparé ou remplacé.</div></details>
+<details class="faq-item"><summary>Quels sont les délais de livraison et de retour ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Livraison suivie en France sous [X] jours ouvrés. Vous disposez de [X] jours pour changer de taille ou retourner un article.</div></details>
 </div>
 </div>
 </section>
 
 <!-- CTA final -->
-<section style="padding: 0 24px 24px">
-<div style="max-width: 1392px; margin: 0 auto; background: #182A35; color: #F8F6F1; border-radius: 32px; padding: clamp(64px, 9vw, 128px) 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 32px">
-<h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: clamp(36px, 5vw, 68px); line-height: 1.02; letter-spacing: -0.045em; max-width: 820px">Le froid ne devrait pas <span style="font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: -0.02em; color: #E9A15F">changer vos plans.</span></h2>
-<a href="#collection" style="text-decoration: none; background: #F5A623; color: #14212B; font-family: Manrope, sans-serif; font-weight: 700; font-size: 15px; padding: 0 30px; min-height: 56px; border-radius: 0; display: inline-flex; align-items: center">Trouver ma couche de chaleur</a>
+<section style="padding: 0 24px 24px" aria-label="Découvrir la collection">
+<div class="cta-final">
+<div class="cta-final-inner">
+<h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(26px, 3vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase; max-width: 30vw; min-width: 280px">Le froid ne devrait pas <span style="font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; text-transform: none; letter-spacing: -0.01em; color: #B5650F">changer vos plans.</span></h2>
+<a href="#collection" class="cta-heat" style="text-decoration: none; background: #14212B; color: #FFFFFF; border: 2px solid #14212B; font-family: Manrope, sans-serif; font-weight: 700; font-size: 15px; padding: 0 clamp(18px, 2.2vw, 36px); min-height: 52px; border-radius: 0; display: inline-flex; align-items: center"><span>Trouver ma couche de chaleur</span></a>
+</div>
 </div>
 </section>
 
-<footer style="padding: 40px 24px 48px; font-size: 14px; color: #55616B">
-<div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px">
-<span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 16px; color: #14212B; letter-spacing: -0.03em">Otreau</span>
-<nav aria-label="Liens utiles" style="display: flex; flex-wrap: wrap; gap: 8px 28px"><a href="#confiance" style="color: #55616B; text-decoration: none">Guide des tailles</a><a href="#fonctionnement" style="color: #55616B; text-decoration: none">Batterie &amp; démarrage</a><a href="#confiance" style="color: #55616B; text-decoration: none">Livraison &amp; retours</a><a href="#confiance" style="color: #55616B; text-decoration: none">Contact</a></nav>
+<footer class="site-footer">
+<div class="f-wrap">
+<div class="f-top">
+<div class="f-brand">
+<a href="#top" class="f-logo">Otreau</a>
+<p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
+<div class="f-social">
+<a href="#top" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
+<a href="#top" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
+</div>
+<div class="f-selects">
+<label class="f-select"><span class="sr-only">Pays et devise</span><select><option>France (EUR €)</option><option>Belgique (EUR €)</option><option>Suisse (CHF)</option></select></label>
+<label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
+</div>
+</div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="#collection">Gilets chauffants</a></li><li><a href="#collection">Doudounes chauffantes</a></li><li><a href="#collection">Vestes parka chauffantes</a></li><li><a href="#collection">Gants chauffants</a></li><li><a href="#collection">Chaussettes chauffantes</a></li><li><a href="#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="#faq">Livraison</a></li><li><a href="#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="#faq">Nous contacter</a></li><li><a href="#faq">Droit de rétractation</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#tailles">Guide des tailles</a></li><li><a href="#batterie">Batterie &amp; autonomie</a></li><li><a href="#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="#top">Notre marque</a></li><li><a href="#top">Le blog</a></li></ul></div></div>
+</div>
+<div class="f-bottom">
+<div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>
+<p class="f-copy">© 2026 Otreau</p>
+<nav class="f-legal" aria-label="Informations légales"><a href="#top">CGV</a><a href="#top">Mentions légales</a><a href="#top">Confidentialité</a></nav>
+</div>
 </div>
 </footer>
 </div>
@@ -477,8 +522,22 @@ a{color:#14212B}a:hover{color:#B5650F}
     if(y<=bh){h.classList.remove('is-fixed','is-solid');h.style.top=bh+'px'}
     else if(y<pinEnd){h.classList.add('is-fixed');h.classList.remove('is-solid')}
     else{h.classList.add('is-fixed','is-solid')}}
-  var vid=document.querySelector('.hero-video'), after=document.querySelector('.page-after-hero');
-  function videoState(){ if(!vid||!after) return; var covered=after.getBoundingClientRect().top<=0; if(covered&&!vid.paused) vid.pause(); else if(!covered&&vid.paused){var p=vid.play(); if(p&&p.catch)p.catch(function(){});} }
+  var vids=[].slice.call(document.querySelectorAll('.hero-video')), cur=0, after=document.querySelector('.page-after-hero'), heroCovered=false, switching=false;
+  function playV(v){var p=v.play(); if(p&&p.catch)p.catch(function(){});}
+  function nextVideo(){ if(vids.length<2||switching) return; switching=true;
+    var a=vids[cur]; cur=(cur+1)%vids.length; var b=vids[cur];
+    b.currentTime=0; if(!heroCovered) playV(b);
+    b.classList.add('is-active'); a.classList.remove('is-active');
+    setTimeout(function(){a.pause(); switching=false;},1300); }
+  vids.forEach(function(v,i){
+    var sp=parseFloat(v.dataset.speed||'1'); v.defaultPlaybackRate=sp; v.playbackRate=sp; v.addEventListener('play',function(){v.playbackRate=sp});
+    if(vids.length<2){v.loop=true; return;}
+    v.addEventListener('timeupdate',function(){ if(i===cur && v.duration && v.duration-v.currentTime<1.3) nextVideo(); });
+    v.addEventListener('ended',function(){ if(i===cur) nextVideo(); });
+  });
+  var vid=vids[0];
+  function videoState(){ if(!vids.length||!after) return; heroCovered=after.getBoundingClientRect().top<=0; var v=vids[cur];
+    if(heroCovered&&!v.paused) v.pause(); else if(!heroCovered&&v.paused) playV(v); }
   var curtainBand=document.querySelector('.bandeau-curtain');
   function bandFade(){ if(!curtainBand) return;
     var vhh=window.innerHeight, hh=h.offsetHeight, bh=curtainBand.offsetHeight;
@@ -515,7 +574,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 /* ===== Guide des tailles : remplacez les null par vos mesures en cm ===== */
 var SIZE_GUIDE = {
   gilet: {
-    name: 'Le Gilet',
+    name: 'Gilet’Otreau',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rows: [
       { k: 'A', label: 'Largeur poitrine', values: [null, null, null, null, null] },
@@ -524,7 +583,7 @@ var SIZE_GUIDE = {
     ]
   },
   doudoune: {
-    name: 'La Doudoune',
+    name: 'Doudoune’Otreau',
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     rows: [
       { k: 'A', label: 'Largeur poitrine', values: [null, null, null, null, null] },
