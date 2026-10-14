@@ -244,7 +244,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 /* ===== Collection mobile : une ligne par catégorie, défilement horizontal ===== */
 .cat-rows{display:none}
 @media (max-width:760px){
-  .product-grid,.show-all-wrap{display:none !important}
+  .product-grid,.show-all-wrap,.type-filters{display:none !important}
   .cat-rows{display:flex;flex-direction:column;gap:36px;margin:0 -24px}
   .cat-row h3.cat-title{margin:0 24px 14px;font-family:Manrope,sans-serif;font-weight:300;font-size:20px;letter-spacing:.01em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:baseline}
   .cat-title small{font-family:'DM Sans',sans-serif;font-size:13px;text-transform:none;color:#8A949B;letter-spacing:0}
@@ -324,7 +324,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
 <h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em">La collection’Otreau</h2>
-<div role="group" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
+<div role="group" class="type-filters" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
 <button type="button" class="type-btn" aria-pressed="false">Doudoune</button>
 <button type="button" class="type-btn" aria-pressed="false">Veste parka</button>
 <button type="button" class="type-btn" aria-pressed="false">Gilet</button>
