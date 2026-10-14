@@ -238,6 +238,10 @@ a{color:#14212B}a:hover{color:#B5650F}
 .spec-body .spec-row strong{font-size:14px}
 .spec-body .spec-note{margin:14px 0 0;padding-top:0;border-top:0;font-size:12px}
 .spec-text{margin:0 0 10px;font-size:14px;line-height:1.6;color:#C9CED2}
+.pd-size{margin:96px 0 0;padding:64px clamp(16px,4vw,48px);background-color:#E9DFCC;background-image:linear-gradient(rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(rgba(20,33,43,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.035) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+.pd-size .flat{max-width:380px}
+html{scroll-behavior:smooth}
+#guide-tailles{scroll-margin-top:120px}
 </style>
 <style>
 /* ===== Page produit ===== */
@@ -388,7 +392,7 @@ body{background:#F8F6F1}
 </div>
 
 <div class="pd-field">
-<div class="pd-label">Taille <a href="index.html#tailles" class="pd-link">Guide des tailles</a></div>
+<div class="pd-label">Taille <a href="#guide-tailles" class="pd-link">Guide des tailles</a></div>
 <div class="pd-opts" role="group" aria-label="Taille"><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XS</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">S</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="true">M</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">L</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">2XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">3XL</button></div>
 </div>
 
@@ -430,6 +434,40 @@ body{background:#F8F6F1}
 <details class="pd-acc"><summary><span>Usages recommandés</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>[Ex. : trajets à vélo ou à moto, travail en extérieur, promenades, marchés, sports d’hiver.]</p></div></details>
 <details class="pd-acc"><summary><span>Composition &amp; entretien</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Composition</span><strong>[…]</strong></div><p>Retirez toujours la batterie avant le lavage. [Vos consignes : lavage à la main ou en machine, température, séchage.]</p></div></details>
 <details class="pd-acc"><summary><span>Batterie</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Capacité</span><strong>20 000 mAh</strong></div><div class="pd-row"><span>Charge rapide</span><strong>PD 22,5 W</strong></div><div class="pd-row"><span>Câbles intégrés</span><strong>USB-C · Lightning · USB-A</strong></div><div class="pd-row"><span>Poids</span><strong>190 g</strong></div><p><a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p></div></details>
+</section>
+
+<section class="pd-size" id="guide-tailles" aria-labelledby="pd-size-title">
+<h2 class="pd-h2 pd-center" id="pd-size-title">Guide des tailles</h2>
+<p class="pd-center pd-muted" style="margin:-8px 0 28px">Les mesures de la VESTE’Otreau, posée à plat, en centimètres.</p>
+<div class="patron">
+<span class="patron-pin" style="left: 28px" aria-hidden="true"></span>
+<span class="patron-pin" style="right: 28px" aria-hidden="true"></span>
+<div style="position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
+<div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<span class="atelier-kicker" style="text-transform:none;letter-spacing:.06em">Patron · VESTE’Otreau</span>
+<svg class="flat" data-product="doudoune" viewBox="0 0 360 380" role="img" aria-label="Schéma de la veste à plat avec les mesures A, B, C et D">
+<g transform="translate(10,30)">
+<path class="garment" d="M170 54 L138 40 Q124 36 112 42 L74 62 L28 214 L58 224 L88 148 L80 300 Q124 318 170 318 Q216 318 260 300 L252 148 L282 224 L312 214 L266 62 L228 42 Q216 36 202 40 Z"></path>
+<path class="garment" d="M138 40 Q170 66 202 40 L202 22 Q170 48 138 22 Z"></path>
+<path class="seam" d="M170 56 L170 316"></path>
+<path class="seam" d="M88 200 L252 200 M86 250 L254 250 M90 150 L250 150"></path>
+<g class="dim" data-k="C"><line class="ext" x1="112" y1="42" x2="112" y2="-6"></line><line class="ext" x1="228" y1="42" x2="228" y2="-6"></line><line x1="112" y1="0" x2="228" y2="0"></line><path d="M118 -4 L112 0 L118 4 M222 -4 L228 0 L222 4"></path><circle cx="170" cy="0" r="13"></circle><text x="170" y="0">C</text></g>
+<g class="dim" data-k="A"><line x1="89" y1="168" x2="251" y2="168"></line><path d="M95 164 L89 168 L95 172 M245 164 L251 168 L245 172"></path><circle cx="130" cy="168" r="13"></circle><text x="130" y="168">A</text></g>
+<g class="dim" data-k="B"><line x1="210" y1="44" x2="210" y2="312"></line><path d="M206 50 L210 44 L214 50 M206 306 L210 312 L214 306"></path><circle cx="210" cy="275" r="13"></circle><text x="210" y="275">B</text></g>
+<g class="dim" data-k="D"><line class="ext" x1="266" y1="62" x2="281" y2="56"></line><line class="ext" x1="312" y1="214" x2="327" y2="208"></line><line x1="279" y1="57" x2="325" y2="209"></line><path d="M276 64 L279 57 L284 62 M320 203 L325 209 L327 201"></path><circle cx="302" cy="133" r="13"></circle><text x="302" y="133">D</text></g>
+</g>
+</svg>
+</div>
+<div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
+<table class="size-table" id="pd-size-table">
+<caption>Survolez une colonne pour voir la mesure sur le patron.</caption>
+<thead><tr id="pd-size-head"></tr></thead>
+<tbody id="pd-size-body"></tbody>
+</table>
+</div>
+</div>
+</div>
+<p class="pd-center pd-muted" style="margin-top:20px;font-size:14px">Entre deux tailles ? [Votre conseil, par exemple : prenez la taille au-dessus si vous portez une couche épaisse dessous.]</p>
 </section>
 
 <section class="pd-how">
@@ -551,6 +589,30 @@ body{background:#F8F6F1}
   function pl(v){v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){})}
   if(touch&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.intersectionRatio>=.5)pl(e.target);else e.target.pause()})},{threshold:[0,.5]});pv.forEach(function(v){io.observe(v)})}
   else pv.forEach(function(v){var c=v.closest('.pd-x')||v;c.addEventListener('mouseenter',function(){pl(v)});c.addEventListener('mouseleave',function(){v.pause();v.currentTime=.1})});
+})();
+</script>
+<script>
+/* ===== Guide des tailles de la VESTE'Otreau : remplacez les null par vos mesures en cm ===== */
+var PRODUCT_SIZES = {
+  sizes: ['XS', 'S', 'M', 'L', 'XL', '2XL', '3XL'],
+  rows: [
+    { k: 'A', label: 'Largeur poitrine', values: [null, null, null, null, null, null, null] },
+    { k: 'B', label: 'Longueur dos',     values: [null, null, null, null, null, null, null] },
+    { k: 'C', label: 'Largeur épaules',  values: [null, null, null, null, null, null, null] },
+    { k: 'D', label: 'Longueur manche',  values: [null, null, null, null, null, null, null] }
+  ]
+};
+(function(){
+  var g=PRODUCT_SIZES, head=document.getElementById('pd-size-head'), body=document.getElementById('pd-size-body'), flat=document.querySelector('#guide-tailles .flat');
+  head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){return '<th scope="col" data-k="'+r.k+'" tabindex="0"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
+  body.innerHTML=g.sizes.map(function(z,i){return '<tr><th scope="row">'+z+'</th>'+g.rows.map(function(r){var v=r.values[i];return v==null?'<td class="empty" data-k="'+r.k+'">—</td>':'<td data-k="'+r.k+'">'+v+'</td>'}).join('')+'</tr>'}).join('');
+  function hl(k){flat.classList.toggle('has-active',!!k);
+    flat.querySelectorAll('.dim').forEach(function(d){d.classList.toggle('is-active',d.dataset.k===k)});
+    document.querySelectorAll('#pd-size-table [data-k]').forEach(function(c){c.classList.toggle('is-active',c.dataset.k===k)});}
+  document.querySelectorAll('#pd-size-table [data-k], #guide-tailles .dim').forEach(function(c){
+    c.addEventListener('mouseenter',function(){hl(c.dataset.k)});c.addEventListener('mouseleave',function(){hl(null)});
+    c.addEventListener('focus',function(){hl(c.dataset.k)});c.addEventListener('blur',function(){hl(null)});
+  });
 })();
 </script>
 </body>

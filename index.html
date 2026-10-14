@@ -219,7 +219,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 @media (max-width:860px){.spec-card,.batt-col{flex:1 1 100%}.batt-media{width:min(360px,100%) !important}}
 .spec-heat-2{margin-top:12px}
 /* Fiche batterie en accordéon, version compacte */
-.spec-acc{border-bottom:1px solid #2A2A2A}
+.spec-acc{border-bottom:1px solid #2A2A2A;width:min(360px,100%);transition:width .35s ease}
+.spec-acc[open]{width:100%}
 .spec-acc:first-child{border-top:1px solid #2A2A2A}
 .spec-acc summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:16px 0;color:#FFFFFF}
 .spec-acc summary::-webkit-details-marker{display:none}
