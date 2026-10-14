@@ -196,6 +196,23 @@ a{color:#14212B}a:hover{color:#B5650F}
 .product-grid.show-all .product-extra{display:flex !important}
 #show-all svg{transition:transform .3s ease}
 #show-all[aria-expanded="true"] svg{transform:rotate(-90deg)}
+/* ===== Fiche batterie (propriétés + intensité) ===== */
+.spec-card{flex:1 1 460px;min-width:0;background:#111111;border:1px solid #2A2A2A;color:#FFFFFF;padding:clamp(24px,3.4vw,40px);display:flex;flex-direction:column}
+.spec-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid #2A2A2A}
+.spec-row:first-child{padding-top:4px}
+.spec-row span{font-size:17px;color:#8C969D;text-transform:uppercase;letter-spacing:.02em}
+.spec-row strong{font-family:Manrope,sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;text-align:right}
+.spec-heat{display:flex;align-items:flex-end;gap:16px;margin:32px 0 22px}
+.spec-heat h3{margin:0;font-family:Manrope,sans-serif;font-weight:700;font-size:22px}
+.lvls{display:flex;flex-direction:column;gap:20px}
+.lvl{display:grid;grid-template-columns:minmax(120px,42%) 1fr;align-items:center;gap:16px}
+.lvl-bar{height:24px;border-radius:999px;background:#262626;overflow:hidden}
+.lvl-bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#5A3A20 0%,#F5A623 45%,#E8641F 75%,#C2361F 100%)}
+.lvl p{margin:0;font-size:16px;line-height:1.4;color:#C9CED2}
+.lvl p strong{color:#FFFFFF}
+.lvl strong{font-family:Manrope,sans-serif;font-weight:700}
+.spec-note{margin:28px 0 0;padding-top:18px;border-top:1px solid #2A2A2A;font-size:13px;color:#8C969D}
+@media (max-width:560px){.lvl{grid-template-columns:1fr;gap:8px}}
 </style>
 </head>
 <body>
@@ -337,44 +354,37 @@ a{color:#14212B}a:hover{color:#B5650F}
 <p style="margin: 0; font-size: 18px; color: #A9B4BB; max-width: 520px">Tout ce qu’il faut savoir avant l’achat. Pas de surprise à la livraison.</p>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 20px">
-<div style="flex: 1 1 460px; min-width: 0; background: #14212B; color: #F8F6F1; border-radius: 28px; border: 1px solid #22394A; padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; gap: 32px">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.01em">Autonomie testée, niveau par niveau</h3>
-<svg aria-hidden="true" width="64" height="32" viewBox="0 0 64 32" fill="none"><rect x="1.5" y="1.5" width="54" height="29" rx="6" stroke="#F8F6F1" stroke-width="2"></rect><rect x="57" y="10" width="5" height="12" rx="2" fill="#F8F6F1"></rect><rect x="7" y="7" width="12" height="18" rx="2" fill="#F5A623"></rect><rect x="22" y="7" width="12" height="18" rx="2" fill="#F5A623"></rect><rect x="37" y="7" width="12" height="18" rx="2" fill="#F5A623"></rect></svg>
+<div class="spec-card">
+<div class="spec-row"><span>Puissance</span><strong>[5V · X mAh]</strong></div>
+<div class="spec-row"><span>Poids de la batterie</span><strong>[X g]</strong></div>
+<div class="spec-heat">
+<svg aria-hidden="true" width="40" height="34" viewBox="0 0 40 34" fill="none" stroke="#E8641F" stroke-width="1.8"><path d="M1 33h38"></path><rect x="6" y="22" width="7" height="11"></rect><rect x="16" y="13" width="7" height="20"></rect><rect x="26" y="3" width="7" height="30"></rect></svg>
+<h3>Intensité de chauffe</h3>
 </div>
-<div style="display: flex; flex-direction: column; gap: 24px; color: #F8F6F1">
-<div style="display: flex; flex-direction: column; gap: 10px">
-<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 16px">Niveau bas</span><span style="font-family: Manrope, sans-serif; font-weight: 300; font-size: 28px; letter-spacing: -0.01em">[X] h</span></div>
-<div style="height: 10px; border-radius: 999px; background: #26404F"><div style="width: 100%; height: 10px; border-radius: 999px; background: #FFD27A"></div></div>
+<div class="lvls">
+<div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Intensité faible</strong> : [X h à X h] d’autonomie</p></div>
+<div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Intensité moyenne</strong> : [X h à X h] d’autonomie</p></div>
+<div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Intensité élevée</strong> : [X h à X h] d’autonomie</p></div>
 </div>
-<div style="display: flex; flex-direction: column; gap: 10px">
-<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 16px">Niveau moyen</span><span style="font-family: Manrope, sans-serif; font-weight: 300; font-size: 28px; letter-spacing: -0.01em">[X] h</span></div>
-<div style="height: 10px; border-radius: 999px; background: #26404F"><div style="width: 62%; height: 10px; border-radius: 999px; background: #F5A623"></div></div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 10px">
-<div style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-family: Manrope, sans-serif; font-weight: 600; font-size: 16px">Niveau haut</span><span style="font-family: Manrope, sans-serif; font-weight: 300; font-size: 28px; letter-spacing: -0.01em">[X] h</span></div>
-<div style="height: 10px; border-radius: 999px; background: #26404F"><div style="width: 36%; height: 10px; border-radius: 999px; background: #E8641F"></div></div>
-</div>
-</div>
-<p style="margin: 0; font-size: 14px; color: #A9B4BB; border-top: 1px solid #2F4757; padding-top: 20px">Mesures réalisées avec la batterie [modèle, capacité], à [température]. Les durées réelles varient selon le froid et le vent.</p>
+<p class="spec-note">Autonomie mesurée avec la batterie [modèle], à [température]. Elle varie selon le froid et le vent.</p>
 </div>
 <div style="flex: 1 1 420px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px">
-<div style="background: #111111; border: 1px solid #2A2A2A; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<div style="background: #111111; border: 1px solid #2A2A2A; border-radius: 0; padding: 28px; display: flex; flex-direction: column; gap: 10px">
 <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="15" height="10" rx="2"></rect><path d="M21 11v2"></path><path d="M8 12l2 2 3-4"></path></svg>
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Batterie [incluse / non incluse]</h3>
 <p style="margin: 0; font-size: 15px; color: #A9B4BB">Écrit en clair sur chaque fiche produit, jamais en petit.</p>
 </div>
-<div style="background: #111111; border: 1px solid #2A2A2A; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<div style="background: #111111; border: 1px solid #2A2A2A; border-radius: 0; padding: 28px; display: flex; flex-direction: column; gap: 10px">
 <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 14h6l-1 7 8-11h-6z"></path></svg>
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Recharge en [X] h</h3>
 <p style="margin: 0; font-size: 15px; color: #A9B4BB">Via [type de port], avec un chargeur classique.</p>
 </div>
-<div style="background: #111111; border: 1px solid #2A2A2A; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<div style="background: #111111; border: 1px solid #2A2A2A; border-radius: 0; padding: 28px; display: flex; flex-direction: column; gap: 10px">
 <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M10 7h4"></path></svg>
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Légère et compacte</h3>
 <p style="margin: 0; font-size: 15px; color: #A9B4BB">[Poids] g. Elle se glisse dans la poche intérieure prévue.</p>
 </div>
-<div style="background: #111111; border: 1px solid #2A2A2A; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 10px">
+<div style="background: #111111; border: 1px solid #2A2A2A; border-radius: 0; padding: 28px; display: flex; flex-direction: column; gap: 10px">
 <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5A623" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Compatibilité claire</h3>
 <p style="margin: 0; font-size: 15px; color: #A9B4BB">Fonctionne avec les batteries [référence], indiquées sur chaque fiche.</p>
