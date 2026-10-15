@@ -346,6 +346,10 @@ body{background:#F8F6F1}
 /* Éléments cliquables : bouts en demi-cercle */
 .cta-heat,.cta-heat::before,.cta-glow::after,select,#show-all,.pd-opt,.pd-qty,.pd-add,.pd-x-btn{border-radius:999px !important}
 .pd-qty{overflow:hidden}
+.pd-info .pd-opts[aria-label="Taille"]{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding:2px 2px 4px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.pd-info .pd-opts[aria-label="Taille"]::-webkit-scrollbar{display:none}
+.pd-info .pd-opts[aria-label="Taille"] > *{flex:0 0 auto}
+.pd-info .pd-opts[aria-label="Taille"] > :first-child{margin-left:auto}.pd-info .pd-opts[aria-label="Taille"] > :last-child{margin-right:auto}
 </style>
 </head>
 <body>

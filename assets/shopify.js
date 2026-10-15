@@ -182,15 +182,27 @@
     '.oc-btn[disabled]{opacity:.5;cursor:default}' +
     '.oc-busy{opacity:.55;pointer-events:none}' +
     '.oc-msg{margin:8px 0 0;font-size:13px;color:#C2361F}' +
-    '.pc-slides{position:relative;width:100%;aspect-ratio:4/5;background:var(--section-bg,#F8F6F1);overflow:hidden}' +
-    '.pc-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}' +
-    '.pc-slides img.is-on{opacity:1}' +
-    '.pc-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px;opacity:0;transition:opacity .3s}' +
-    'a:hover .pc-dots,.pc-slides:hover .pc-dots{opacity:1}' +
+    '.pc-car{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--section-bg,#F8F6F1)}' +
+    '.pc-car > video,.pc-car > .pc-car-base{position:absolute;inset:0;width:100% !important;height:100% !important;aspect-ratio:auto !important;object-fit:cover;display:block}' +
+    '.pc-car-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease;pointer-events:none}' +
+    '.pc-car-slide.is-on{opacity:1}' +
+    '.pc-arrow{position:absolute;top:50%;z-index:2;width:32px;height:32px;margin-top:-16px;border:0;border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 2px 8px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s,background .2s}' +
+    '.pc-arrow svg{width:15px;height:15px;fill:none;stroke:#14212B;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}' +
+    '.pc-arrow:hover{background:#fff}' +
+    '.pc-arrow-prev{left:10px}.pc-arrow-next{right:10px}' +
+    'a:hover .pc-arrow,.pc-car:focus-within .pc-arrow{opacity:1}' +
+    '@media (hover:none){.pc-arrow{opacity:.9}}' +
+    '.pc-dots{position:absolute;left:0;right:0;bottom:12px;z-index:2;display:flex;justify-content:center;gap:6px;opacity:0;transition:opacity .3s}' +
+    'a:hover .pc-dots{opacity:1}' +
     '@media (hover:none){.pc-dots{opacity:1}}' +
     '.pc-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 2px rgba(0,0,0,.3);transition:background .3s,transform .3s}' +
     '.pc-dots span.is-on{background:#fff;transform:scale(1.25)}' +
     '.pd-main.has-media{background:transparent}' +
+    '.pd-pack-items div.is-off{opacity:1 !important}' +
+    '.pd-pack-items div.is-off > svg,.pd-pack-items div.is-off > span{opacity:.35}' +
+    '.pd-pack-add{display:none;margin-top:4px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:#14212B;color:#fff;font:700 12.5px Manrope,sans-serif;cursor:pointer;white-space:nowrap}' +
+    '.pd-pack-add:hover{background:#2A3A46}' +
+    '.pd-pack-items div.is-off .pd-pack-add{display:inline-flex;align-items:center}' +
     '.pd-arrow{position:absolute;top:50%;z-index:2;width:40px;height:40px;margin-top:-20px;border:0;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 2px 10px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.85;transition:opacity .2s,background .2s}' +
     '.pd-arrow:hover{opacity:1;background:#fff}' +
     '.pd-arrow svg{width:18px;height:18px;fill:none;stroke:#14212B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
@@ -282,24 +294,23 @@
       var p = map[el.dataset.handle]; if (!p) return;
       var h3 = el.querySelector('h3');
       if (h3 && p.title) h3.innerHTML = titleHtml(p.title);
-      var all = mediaList(p), media = all[0], vid = el.querySelector('video'), ph = vid || el.querySelector('.pc-media-ph') || (h3 && h3.parentNode.previousElementSibling);
-      if (media && ph) {
-        if (media.type === 'video' && vid) {
-          vid.src = media.src; if (media.poster) vid.poster = sized(media.poster, 800); vid.removeAttribute('aria-label'); vid.setAttribute('aria-label', media.alt);
-        } else if (media.type === 'image' && all.filter(function (x) { return x.type === 'image'; }).length > 1) {
-          ph.replaceWith(cardSlides(all.filter(function (x) { return x.type === 'image'; })));
-        } else if (media.type === 'image') {
-          var img = document.createElement('img');
-          img.src = sized(media.src, 900); img.alt = media.alt; img.loading = 'lazy';
-          img.setAttribute('style', 'width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; background: var(--section-bg, #F8F6F1); display: block');
-          ph.replaceWith(img);
-        } else if (media.type === 'video') {
-          var v2 = document.createElement('video');
-          v2.src = media.src; v2.muted = true; v2.loop = true; v2.autoplay = true; v2.playsInline = true; if (media.poster) v2.poster = sized(media.poster, 800);
-          v2.setAttribute('style', 'width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: transparent; display: block');
-          ph.replaceWith(v2);
+      // Accueil : la vidéo du site (dossier assets) reste toujours en premier,
+      // puis les photos Shopify, accessibles avec les petites flèches.
+      // Règle : la vidéo Shopify du produit sert UNIQUEMENT ici (accueil), en premier ;
+      // à défaut, on garde la vidéo du dossier assets.
+      var list = mediaList(p), shopVid = list.filter(function (x) { return x.type === 'video'; })[0];
+      var imgs = list.filter(function (x) { return x.type === 'image'; });
+      var vid = el.querySelector('video'), ph = vid || (h3 && h3.parentNode.previousElementSibling);
+      if (shopVid && ph) {
+        if (!vid) {
+          vid = document.createElement('video'); vid.muted = true; vid.playsInline = true; vid.loop = true; vid.autoplay = true; vid.preload = 'metadata';
+          vid.setAttribute('style', 'width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: transparent; display: block');
+          ph.replaceWith(vid); ph = vid;
         }
+        vid.src = shopVid.src; if (shopVid.poster) vid.poster = sized(shopVid.poster, 800);
+        vid.setAttribute('aria-label', shopVid.alt);
       }
+      if (imgs.length && ph) cardCarousel(ph, imgs, !!vid);
       var price = el.querySelector('.pc-price');
       if (!price && h3) { price = document.createElement('p'); price.className = 'pc-price'; h3.insertAdjacentElement('afterend', price); }
       if (price) {
@@ -343,7 +354,8 @@
         if (s && norm(s.textContent) === 'description') d.querySelector('.pd-acc-body').innerHTML = p.descriptionHtml;
       });
     }
-    var gallery = buildGallery(mediaList(p));
+    // Règle : pas de vidéo sur la page produit (la vidéo est réservée à la page d'accueil)
+    var gallery = buildGallery(mediaList(p).filter(function (x) { return x.type !== 'video'; }));
 
     // Associe chaque groupe d'options de la page à une option Shopify (Taille, Batterie, Couleur…)
     var groups = [];
@@ -374,6 +386,19 @@
       if (norm(g.name) === 'couleur') { var c = document.getElementById('pd-color'); if (c) c.textContent = value; }
       if (norm(g.name) === 'batterie') { var pk = document.getElementById('pd-pack-batt'); if (pk) pk.classList.toggle('is-off', norm(value).indexOf('sans') === 0); }
       refresh(); say('');
+    }
+    // Contenu du pack : bouton « Inclure la batterie » quand le client a choisi « Sans batterie »
+    var battGroup = groups.filter(function (g) { return norm(g.name) === 'batterie'; })[0];
+    var packBatt = document.getElementById('pd-pack-batt');
+    if (battGroup && packBatt) {
+      var withValue = [].slice.call(battGroup.box.querySelectorAll('[data-value]')).map(function (b) { return b.dataset.value; })
+        .filter(function (v) { return norm(v).indexOf('sans') !== 0; })[0];
+      if (withValue) {
+        var inc = document.createElement('button'); inc.type = 'button'; inc.className = 'pd-pack-add';
+        inc.textContent = '+ Inclure la batterie';
+        inc.addEventListener('click', function () { pick(battGroup, withValue); });
+        packBatt.appendChild(inc);
+      }
     }
     groups.forEach(function (g) {
       g.box.addEventListener('click', function (e) { var b = e.target.closest('[data-value]'); if (b) pick(g, b.dataset.value); });
@@ -444,36 +469,65 @@
     });
   }
 
-  // Cartes : diaporama des photos au survol (ordinateur) / quand la carte est à l'écran (mobile)
-  var touchOnly = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-  var slidesIO = ('IntersectionObserver' in window) ? new IntersectionObserver(function (es) {
-    es.forEach(function (e) { if (e.target._slides) e.target._slides[e.isIntersecting && e.intersectionRatio >= 0.5 ? 'start' : 'stop'](); });
-  }, { threshold: [0, 0.5] }) : null;
-  function cardSlides(imgs) {
-    var box = document.createElement('div'); box.className = 'pc-slides';
-    box.innerHTML = imgs.map(function (it, i) {
-      return '<img src="' + esc(sized(it.src, 900)) + '" alt="' + esc(i ? '' : it.alt) + '"' + (i ? ' loading="lazy" aria-hidden="true"' : '') + (i ? '' : ' class="is-on"') + '>';
-    }).join('') + '<div class="pc-dots" aria-hidden="true">' + imgs.map(function (_, i) { return '<span' + (i ? '' : ' class="is-on"') + '></span>'; }).join('') + '</div>';
-    var pics = box.querySelectorAll('img'), dots = box.querySelectorAll('.pc-dots span'), cur = 0, timer = 0;
+  // Cartes : vidéo (ou 1re photo) puis photos, avec flèches précédent / suivant
+  function cardCarousel(first, imgs, hasVideo) {
+    var box = document.createElement('div'); box.className = 'pc-car';
+    first.replaceWith(box);
+    var slides = [];
+    if (hasVideo) { box.appendChild(first); slides.push(first); }
+    imgs.forEach(function (it, k) {
+      var im = document.createElement('img'); im.src = sized(it.src, 900); im.alt = (k || hasVideo) ? '' : it.alt;
+      if (k || hasVideo) { im.loading = 'lazy'; im.className = 'pc-car-slide'; }
+      else im.className = 'pc-car-base';
+      box.appendChild(im); slides.push(im);
+    });
+    if (slides.length < 2) return;
+    var cur = 0, dots = document.createElement('div'); dots.className = 'pc-dots'; dots.setAttribute('aria-hidden', 'true');
+    slides.forEach(function (_, k) { var d = document.createElement('span'); if (!k) d.className = 'is-on'; dots.appendChild(d); });
     function show(i) {
-      cur = i;
-      pics.forEach(function (im, j) { im.classList.toggle('is-on', j === i); });
-      dots.forEach(function (d, j) { d.classList.toggle('is-on', j === i); });
+      cur = (i + slides.length) % slides.length;
+      slides.forEach(function (sl, k) { if (k) sl.classList.toggle('is-on', k === cur); });
+      [].slice.call(dots.children).forEach(function (d, k) { d.classList.toggle('is-on', k === cur); });
+      if (hasVideo) { if (cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } else first.pause(); }
     }
-    box._slides = {
-      start: function () { if (timer) return; show((cur + 1) % pics.length); timer = setInterval(function () { show((cur + 1) % pics.length); }, 1100); },
-      stop: function () { clearInterval(timer); timer = 0; show(0); }
-    };
-    if (touchOnly) { if (slidesIO) slidesIO.observe(box); }
-    else {
-      // le survol de toute la carte lance le défilement
-      setTimeout(function () {
-        var card = box.closest('a') || box;
-        card.addEventListener('mouseenter', box._slides.start);
-        card.addEventListener('mouseleave', box._slides.stop);
-      }, 0);
+    ['prev', 'next'].forEach(function (dir) {
+      var a = document.createElement('button'); a.type = 'button'; a.className = 'pc-arrow pc-arrow-' + dir;
+      a.setAttribute('aria-label', dir === 'prev' ? 'Visuel précédent' : 'Visuel suivant');
+      a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + (dir === 'prev' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7') + '"/></svg>';
+      a.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); manual(); show(cur + (dir === 'prev' ? -1 : 1)); });
+      box.appendChild(a);
+    });
+    box.appendChild(dots);
+
+    // Défilement automatique tant que l'utilisateur ne touche à rien :
+    // la vidéo joue jusqu'au bout, puis chaque photo ~2,5 s, puis retour à la vidéo… en boucle.
+    var PHOTO_MS = 2500, timer = 0, auto = true, running = false;
+    function schedule() {
+      clearTimeout(timer); if (!auto || !running) return;
+      if (hasVideo && cur === 0) {
+        first.loop = false;
+        var d = first.duration;
+        // filet de sécurité si l'évènement « ended » n'arrive pas
+        timer = setTimeout(advance, (isFinite(d) && d > 0 ? (d - first.currentTime) * 1000 + 600 : 12000));
+      } else timer = setTimeout(advance, PHOTO_MS);
     }
-    return box;
+    function advance() { if (!auto || !running) return; show(cur + 1); if (hasVideo && cur === 0) { try { first.currentTime = 0; } catch (e) {} } schedule(); }
+    function manual() { auto = false; clearTimeout(timer); if (hasVideo) first.loop = true; }
+    if (hasVideo) {
+      first.addEventListener('ended', function () { if (auto && running && cur === 0) advance(); });
+      // le survol ne doit pas bloquer la boucle : on relance la vidéo si elle est à l'écran
+      var card = box.closest('a') || box;
+      card.addEventListener('mouseleave', function () {
+        if (auto && running && cur === 0) setTimeout(function () { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); }, 0);
+      });
+    }
+    function start() { running = true; auto = true; if (hasVideo && cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } schedule(); }
+    function stop() { running = false; clearTimeout(timer); if (hasVideo) first.pause(); }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting && e.intersectionRatio >= 0.5) start(); else stop(); });
+      }, { threshold: [0, 0.5] }).observe(box);
+    } else start();
   }
 
   // Galerie de la page produit reconstruite avec les photos/vidéos Shopify
