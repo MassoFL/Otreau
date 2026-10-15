@@ -298,6 +298,7 @@ body{background:#F8F6F1}
 .pd .lvl p{font-size:14px;color:#3D4A54}.pd .lvl p strong{color:#14212B}
 .pd-pack{margin-top:30px}
 .pd-h2{margin:0 0 20px;font-family:Manrope,sans-serif;font-weight:300;font-size:clamp(24px,2.4vw,32px);text-transform:uppercase;letter-spacing:.01em}
+.pd-h2.pd-center{font-size:clamp(30px,3.4vw,44px);line-height:1.1;margin-bottom:32px}
 .pd-center{text-align:center}
 .pd-pack-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .pd-pack-items div{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:18px 10px;background:#FFFFFF;border:1px solid #E4DFD5;font-size:13px;font-weight:600}
@@ -382,9 +383,8 @@ body{background:#F8F6F1}
 </div>
 </div>
 
-<div class="pd-info">
-<h1 class="pd-title">VESTE’Otreau</h1>
-<p class="pd-reviews">☆☆☆☆☆ <span>Pas encore d’avis</span></p>
+<div class="pd-info" data-shopify-handle="veste-otreau">
+<h1 class="pd-title"><span style="font-weight: 600">VESTE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h1>
 <p class="pd-price" id="pd-price">[XXX,XX] €</p>
 
 <div class="pd-field">
@@ -495,10 +495,6 @@ body{background:#F8F6F1}
 </div>
 </section>
 
-<section class="pd-reviews-sec">
-<h2 class="pd-h2 pd-center">Avis clients</h2>
-<p class="pd-center pd-muted">Aucun avis sur ce produit pour le moment.</p>
-</section>
 </main>
 <footer class="site-footer">
 <div class="f-wrap">
@@ -616,5 +612,6 @@ var PRODUCT_SIZES = {
   });
 })();
 </script>
+<script src="assets/shopify.js"></script>
 </body>
 </html>
