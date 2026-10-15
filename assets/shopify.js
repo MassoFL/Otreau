@@ -38,7 +38,7 @@
   /* ---------- produits ---------- */
   var PRODUCT_FIELDS = 'id handle title availableForSale ' +
     'priceRange { minVariantPrice { amount currencyCode } } ' +
-    'options { name optionValues { name } } ' +
+    'options { name optionValues { name swatch { color image { previewImage { url } } } } } ' +
     'variants(first: 100) { nodes { id title availableForSale price { amount currencyCode } compareAtPrice { amount currencyCode } selectedOptions { name value } image { url altText } } } ' +
     'descriptionHtml featuredImage { url altText } ' +
     'media(first: 20) { nodes { mediaContentType alt previewImage { url } ' +
@@ -53,7 +53,7 @@
     }
     return run(PRODUCT_FIELDS).then(function (d) {
       var map = {};
-      d.products.nodes.forEach(function (p) { map[p.handle] = p; });
+      d.products.nodes.forEach(function (p) { sortSizes(p); map[p.handle] = p; });
       return map;
     });
   }
@@ -80,6 +80,27 @@
     });
     if (!out.length && p.featuredImage) out.push({ type: 'image', src: p.featuredImage.url, alt: p.featuredImage.altText || p.title });
     return out;
+  }
+  // Pastilles de couleur : couleur/image définie dans Shopify, sinon couleurs courantes
+  var COLORS = { blanc: '#F4F3EF', ecru: '#EDE6D6', beige: '#D8C7A8', camel: '#B8875A', marron: '#6B4A35', noir: '#1A1A1A',
+    gris: '#9AA0A6', 'gris clair': '#C9CDD1', 'gris fonce': '#4A4F55', anthracite: '#3A3D42', bleu: '#2F5D9E', 'bleu marine': '#1F2A44', marine: '#1F2A44',
+    vert: '#4E6B4A', kaki: '#6B6B3E', 'vert kaki': '#6B6B3E', rouge: '#B3312C', bordeaux: '#6D1F2A', rose: '#E7A9B8', orange: '#E8641F', jaune: '#E9C46A', violet: '#6A4C93' };
+  function swatchStyle(v) {
+    var sw = v.swatch || {};
+    if (sw.image && sw.image.previewImage) return 'background:url(' + JSON.stringify(sw.image.previewImage.url) + ') center/cover';
+    var c = sw.color || COLORS[norm(v.name)];
+    return c ? 'background:' + c : '';
+  }
+  // tailles toujours dans l'ordre XS → 3XL, quel que soit l'ordre saisi dans Shopify
+  var SIZE_ORDER = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '2XL', 'XXXL', '3XL', '4XL'];
+  function sortSizes(p) {
+    (p.options || []).forEach(function (o) {
+      if (norm(o.name) !== 'taille') return;
+      o.optionValues.sort(function (a, b) {
+        var ia = SIZE_ORDER.indexOf(String(a.name).toUpperCase()), ib = SIZE_ORDER.indexOf(String(b.name).toUpperCase());
+        if (ia < 0 && ib < 0) return 0; if (ia < 0) return 1; if (ib < 0) return -1; return ia - ib;
+      });
+    });
   }
   function optionOf(p, name) {
     var n = norm(name);
@@ -146,7 +167,7 @@
     '.oc-body{flex:1;overflow-y:auto;padding:8px 24px}' +
     '.oc-empty{padding:48px 0;text-align:center;color:#55616B;display:flex;flex-direction:column;align-items:center;gap:20px}' +
     '.oc-line{display:grid;grid-template-columns:76px 1fr auto;gap:14px;padding:18px 0;border-bottom:1px solid #E4DFD5}' +
-    '.oc-img{width:76px;height:92px;background:#EFEFEF;object-fit:cover;display:block}' +
+    '.oc-img{width:76px;height:92px;background:transparent;object-fit:cover;display:block}' +
     '.oc-name{font:600 15px/1.25 Manrope,sans-serif;margin:0 0 4px}' +
     '.oc-var{font-size:13px;color:#8A949B;margin:0 0 10px}' +
     '.oc-qty{display:inline-flex;align-items:center;border:1px solid #C9C2B4;border-radius:999px;background:#fff}' +
@@ -161,6 +182,24 @@
     '.oc-btn[disabled]{opacity:.5;cursor:default}' +
     '.oc-busy{opacity:.55;pointer-events:none}' +
     '.oc-msg{margin:8px 0 0;font-size:13px;color:#C2361F}' +
+    '.pc-slides{position:relative;width:100%;aspect-ratio:4/5;background:var(--section-bg,#F8F6F1);overflow:hidden}' +
+    '.pc-slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}' +
+    '.pc-slides img.is-on{opacity:1}' +
+    '.pc-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px;opacity:0;transition:opacity .3s}' +
+    'a:hover .pc-dots,.pc-slides:hover .pc-dots{opacity:1}' +
+    '@media (hover:none){.pc-dots{opacity:1}}' +
+    '.pc-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 2px rgba(0,0,0,.3);transition:background .3s,transform .3s}' +
+    '.pc-dots span.is-on{background:#fff;transform:scale(1.25)}' +
+    '.pd-main.has-media{background:transparent}' +
+    '.pd-thumbs{display:flex !important;flex-wrap:nowrap;gap:8px;overflow:hidden}' +
+    '.pd-thumbs .pd-thumb{position:relative;flex:0 0 auto;width:68px;height:68px;aspect-ratio:auto}' +
+    '.pd-thumb-more{font:700 20px/1 Manrope,sans-serif;letter-spacing:.05em;color:#14212B;background:transparent !important;border:1.5px solid #E4DFD5 !important}' +
+    '.pd-thumb-more:hover{border-color:#14212B !important}' +
+    '.pd-thumb-play{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:rgba(0,0,0,.55)}' +
+    '.pd-thumb-play::after{content:"";position:absolute;left:8px;top:6px;border-left:8px solid #fff;border-top:5px solid transparent;border-bottom:5px solid transparent}' +
+    '@media (max-width:480px){.pd-thumbs .pd-thumb{width:56px;height:56px}}' +
+    '.pd-thumb.has-img{background:transparent;border-color:#E4DFD5}' +
+    '.pd-thumb.has-img.is-active{border-color:#14212B}' +
     '.is-out{position:relative;opacity:.45;text-decoration:line-through}' +
     'body.oc-lock{overflow:hidden}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
@@ -239,19 +278,21 @@
       var p = map[el.dataset.handle]; if (!p) return;
       var h3 = el.querySelector('h3');
       if (h3 && p.title) h3.innerHTML = titleHtml(p.title);
-      var media = mediaList(p)[0], vid = el.querySelector('video'), ph = vid || el.querySelector('.pc-media-ph') || (h3 && h3.parentNode.previousElementSibling);
+      var all = mediaList(p), media = all[0], vid = el.querySelector('video'), ph = vid || el.querySelector('.pc-media-ph') || (h3 && h3.parentNode.previousElementSibling);
       if (media && ph) {
         if (media.type === 'video' && vid) {
           vid.src = media.src; if (media.poster) vid.poster = sized(media.poster, 800); vid.removeAttribute('aria-label'); vid.setAttribute('aria-label', media.alt);
+        } else if (media.type === 'image' && all.filter(function (x) { return x.type === 'image'; }).length > 1) {
+          ph.replaceWith(cardSlides(all.filter(function (x) { return x.type === 'image'; })));
         } else if (media.type === 'image') {
           var img = document.createElement('img');
           img.src = sized(media.src, 900); img.alt = media.alt; img.loading = 'lazy';
-          img.setAttribute('style', 'width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; background: #EFEFEF; display: block');
+          img.setAttribute('style', 'width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; background: var(--section-bg, #F8F6F1); display: block');
           ph.replaceWith(img);
         } else if (media.type === 'video') {
           var v2 = document.createElement('video');
           v2.src = media.src; v2.muted = true; v2.loop = true; v2.autoplay = true; v2.playsInline = true; if (media.poster) v2.poster = sized(media.poster, 800);
-          v2.setAttribute('style', 'width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: #EFEFEF; display: block');
+          v2.setAttribute('style', 'width: 100%; aspect-ratio: 4 / 5; object-fit: cover; background: transparent; display: block');
           ph.replaceWith(v2);
         }
       }
@@ -262,9 +303,10 @@
         price.textContent = (multi ? 'Dès ' : '') + money(p.priceRange.minVariantPrice);
       }
       var sizes = el.querySelector('.pc-sizes'), opt = optionOf(p, 'Taille');
+      if (sizes && !opt) sizes.hidden = true;   // produit sans option Taille dans Shopify
       if (sizes && opt) {
         sizes.innerHTML = opt.optionValues.map(function (v) {
-          var ok = valueAvailable(p, opt.name, v.name);
+          var ok = !p.availableForSale || valueAvailable(p, opt.name, v.name);
           return '<li' + (ok ? '' : ' class="is-out" title="Épuisé"') + '>' + esc(v.name) + '</li>';
         }).join('');
       }
@@ -308,8 +350,12 @@
       box.innerHTML = '';
       opt.optionValues.forEach(function (v, i) {
         var tpl = old.filter(function (b) { return norm(b.dataset.name || b.textContent) === norm(v.name); })[0];
-        var b;
+        var b, sw = isSwatch && swatchStyle(v);
         if (isSwatch && tpl) { b = tpl.cloneNode(true); }
+        else if (sw) {
+          b = document.createElement('button'); b.type = 'button'; b.className = 'pd-swatch';
+          b.setAttribute('aria-label', v.name); b.title = v.name; b.dataset.name = v.name; b.setAttribute('style', sw);
+        }
         else { b = document.createElement('button'); b.type = 'button'; b.className = 'pd-opt'; b.textContent = v.name; }
         b.dataset.value = v.name; b.removeAttribute('data-group');
         b.setAttribute('aria-pressed', 'false');
@@ -349,7 +395,7 @@
               return !other || !other.selected || other.selected === o.value;
             });
           });
-          b.classList.toggle('is-out', !ok);
+          b.classList.toggle('is-out', !ok && p.availableForSale);
         });
       });
       var v = current();
@@ -394,6 +440,38 @@
     });
   }
 
+  // Cartes : diaporama des photos au survol (ordinateur) / quand la carte est à l'écran (mobile)
+  var touchOnly = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  var slidesIO = ('IntersectionObserver' in window) ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.target._slides) e.target._slides[e.isIntersecting && e.intersectionRatio >= 0.5 ? 'start' : 'stop'](); });
+  }, { threshold: [0, 0.5] }) : null;
+  function cardSlides(imgs) {
+    var box = document.createElement('div'); box.className = 'pc-slides';
+    box.innerHTML = imgs.map(function (it, i) {
+      return '<img src="' + esc(sized(it.src, 900)) + '" alt="' + esc(i ? '' : it.alt) + '"' + (i ? ' loading="lazy" aria-hidden="true"' : '') + (i ? '' : ' class="is-on"') + '>';
+    }).join('') + '<div class="pc-dots" aria-hidden="true">' + imgs.map(function (_, i) { return '<span' + (i ? '' : ' class="is-on"') + '></span>'; }).join('') + '</div>';
+    var pics = box.querySelectorAll('img'), dots = box.querySelectorAll('.pc-dots span'), cur = 0, timer = 0;
+    function show(i) {
+      cur = i;
+      pics.forEach(function (im, j) { im.classList.toggle('is-on', j === i); });
+      dots.forEach(function (d, j) { d.classList.toggle('is-on', j === i); });
+    }
+    box._slides = {
+      start: function () { if (timer) return; show((cur + 1) % pics.length); timer = setInterval(function () { show((cur + 1) % pics.length); }, 1100); },
+      stop: function () { clearInterval(timer); timer = 0; show(0); }
+    };
+    if (touchOnly) { if (slidesIO) slidesIO.observe(box); }
+    else {
+      // le survol de toute la carte lance le défilement
+      setTimeout(function () {
+        var card = box.closest('a') || box;
+        card.addEventListener('mouseenter', box._slides.start);
+        card.addEventListener('mouseleave', box._slides.stop);
+      }, 0);
+    }
+    return box;
+  }
+
   // Galerie de la page produit reconstruite avec les photos/vidéos Shopify
   function buildGallery(items) {
     var main = document.querySelector('.pd-main'), thumbsBox = document.querySelector('.pd-thumbs');
@@ -412,20 +490,37 @@
         node = document.createElement('img'); node.src = sized(it.src, 1400); node.alt = it.alt;
         node.setAttribute('style', 'width:100%;height:100%;object-fit:cover;display:block');
       }
+      main.classList.add('has-media');
       main.insertBefore(node, count);
       if (it.type === 'video') { var pr = node.play(); if (pr && pr.catch) pr.catch(function () {}); }
       if (count) { count.textContent = (i + 1) + ' / ' + items.length; count.hidden = items.length < 2; }
-      [].slice.call(thumbsBox.children).forEach(function (b, j) { b.classList.toggle('is-active', j === i); });
+      cur = i; if (i < start || i >= start + PER) { start = Math.floor(i / PER) * PER; drawThumbs(); }
+      [].slice.call(thumbsBox.querySelectorAll('[data-i]')).forEach(function (b) { b.classList.toggle('is-active', +b.dataset.i === i); });
     }
-    thumbsBox.innerHTML = '';
-    items.forEach(function (it, i) {
-      var b = document.createElement('button'); b.type = 'button'; b.className = 'pd-thumb';
-      b.setAttribute('aria-label', (it.type === 'video' ? 'Vidéo : ' : 'Photo : ') + it.alt);
-      var src = it.type === 'video' ? it.poster : it.src;
-      b.innerHTML = src ? '<img src="' + esc(sized(src, 300)) + '" alt="" style="width:100%;height:100%;object-fit:cover;display:block">' : '<span>Vidéo</span>';
-      b.addEventListener('click', function () { render(i); });
-      thumbsBox.appendChild(b);
-    });
+    // une seule ligne de miniatures ; s'il y en a trop, une case « … » affiche les suivantes
+    var MAX = 5, PER = items.length > MAX ? MAX - 1 : MAX, start = 0, cur = 0;
+    function drawThumbs() {
+      thumbsBox.innerHTML = '';
+      items.slice(start, start + PER).forEach(function (it, k) {
+        var i = start + k;
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'pd-thumb'; b.dataset.i = i;
+        b.setAttribute('aria-label', (it.type === 'video' ? 'Vidéo : ' : 'Photo : ') + it.alt);
+        var src = it.type === 'video' ? it.poster : it.src;
+        if (src) b.classList.add('has-img');
+        b.innerHTML = (src ? '<img src="' + esc(sized(src, 200)) + '" alt="" style="width:100%;height:100%;object-fit:cover;display:block">' : '<span>Vidéo</span>') +
+          (it.type === 'video' ? '<span class="pd-thumb-play" aria-hidden="true"></span>' : '');
+        b.classList.toggle('is-active', i === cur);
+        b.addEventListener('click', function () { render(i); });
+        thumbsBox.appendChild(b);
+      });
+      if (items.length > MAX) {
+        var more = document.createElement('button'); more.type = 'button'; more.className = 'pd-thumb pd-thumb-more';
+        more.setAttribute('aria-label', 'Voir les autres visuels'); more.textContent = '…';
+        more.addEventListener('click', function () { start = start + PER >= items.length ? 0 : start + PER; drawThumbs(); });
+        thumbsBox.appendChild(more);
+      }
+    }
+    drawThumbs();
     thumbsBox.hidden = items.length < 2;
     render(0);
     return {

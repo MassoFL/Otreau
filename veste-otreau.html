@@ -243,6 +243,18 @@ a{color:#14212B}a:hover{color:#B5650F}
 html{scroll-behavior:smooth}
 #guide-tailles{scroll-margin-top:120px}
 .tm{font-size:.42em;font-weight:600;letter-spacing:0;vertical-align:baseline;position:relative;top:-1em;margin-left:.1em;line-height:0}
+
+/* Colonne d'achat centrée */
+.pd-info{text-align:center}
+.pd-info .pd-label{justify-content:center;gap:14px}
+.pd-info .pd-label span{margin:0 0 0 -8px}
+.pd-info .pd-opts{justify-content:center}
+.pd-info .pd-buy{justify-content:center}
+.pd-info .oc-msg{text-align:center}
+.pd-info .pd-acc summary{text-align:left}
+.pd-info .pd-acc-body{text-align:left}
+.pd-info .pd-pack .pd-h2{text-align:center}
+.pd-size-link{display:inline-block;margin-top:12px}
 </style>
 <style>
 /* ===== Page produit ===== */
@@ -256,6 +268,10 @@ body{background:#F8F6F1}
 .pd-top{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
 .pd-gallery{position:sticky;top:90px;display:flex;flex-direction:column;gap:12px}
 .pd-main{position:relative;aspect-ratio:4/5;background:#EFEFEF;overflow:hidden}
+/* la photo principale tient toujours dans l'écran (sous le menu, miniatures comprises) */
+.pd-main{width:min(100%, calc((100vh - 200px) * 0.8));width:min(100%, calc((100svh - 200px) * 0.8));min-width:min(100%, 260px);margin:0 auto}
+.pd-gallery{align-items:center}
+.pd-thumbs{align-self:stretch;justify-content:center}
 .pd-main video{width:100%;height:100%;object-fit:cover;display:block}
 .pd-main .pd-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#8A949B;font-size:15px;background:#EFEFEF}
 .pd-count{position:absolute;right:14px;bottom:14px;background:rgba(255,255,255,.85);padding:4px 10px;font-size:12px}
@@ -271,10 +287,12 @@ body{background:#F8F6F1}
 .pd-label span{font-weight:500;text-transform:none;letter-spacing:0;margin:0 auto 0 6px}
 .pd-link{color:#14212B;font-family:'DM Sans',sans-serif;font-weight:500;font-size:14px;letter-spacing:0;text-transform:none;text-decoration:underline;text-underline-offset:4px}
 .pd-opts{display:flex;flex-wrap:wrap;gap:8px}
+.pd-opts:has(.pd-swatch){gap:16px;padding:5px}
 .pd-opt{min-width:52px;min-height:44px;padding:0 16px;border:1.5px solid #C9C2B4;background:#FFFFFF;color:#14212B;font-family:Manrope,sans-serif;font-weight:700;font-size:14px;cursor:pointer;border-radius:0}
 .pd-opt[aria-pressed="true"]{background:#14212B;border-color:#14212B;color:#FFFFFF}
-.pd-swatch{width:44px;height:44px;border:2px solid #FFFFFF;outline:1.5px solid #C9C2B4;cursor:pointer;border-radius:0}
-.pd-swatch[aria-pressed="true"]{outline:2px solid #14212B}
+.pd-swatch{width:36px;height:36px;padding:0;border:0;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);outline:1.5px solid transparent;outline-offset:3px;cursor:pointer;transition:outline-color .2s}
+.pd-swatch:hover{outline-color:#C9C2B4}
+.pd-swatch[aria-pressed="true"]{outline:2px solid #14212B;outline-offset:3px}
 .pd-buy{display:flex;gap:12px;margin:30px 0 28px}
 .pd-qty{display:flex;border:1.5px solid #C9C2B4;background:#FFFFFF}
 .pd-qty button{width:44px;border:0;background:transparent;font-size:20px;cursor:pointer;color:#14212B}
@@ -324,6 +342,10 @@ body{background:#F8F6F1}
 .pd-reviews-sec{margin:96px 0 40px}
 .pd-muted{color:#55616B}
 @media (max-width:900px){.pd-top{grid-template-columns:1fr}.pd-gallery{position:static}.pd-highlights,.pd-steps,.pd-cross-grid{grid-template-columns:1fr}.pd-pack-items{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* Éléments cliquables : bouts en demi-cercle */
+.cta-heat,.cta-heat::before,.cta-glow::after,select,#show-all,.pd-opt,.pd-qty,.pd-add,.pd-x-btn{border-radius:999px !important}
+.pd-qty{overflow:hidden}
 </style>
 </head>
 <body>
@@ -388,13 +410,13 @@ body{background:#F8F6F1}
 <p class="pd-price" id="pd-price">[XXX,XX] €</p>
 
 <div class="pd-field">
-<div class="pd-label">Batterie 20 000 mAh</div>
 <div class="pd-opts" role="group" aria-label="Batterie"><button type="button" class="pd-opt" data-group="batterie" aria-pressed="true">Incluse</button><button type="button" class="pd-opt" data-group="batterie" aria-pressed="false">Sans batterie</button></div>
 </div>
 
 <div class="pd-field">
-<div class="pd-label">Taille <a href="#guide-tailles" class="pd-link">Guide des tailles</a></div>
+<div class="pd-label">Taille</div>
 <div class="pd-opts" role="group" aria-label="Taille"><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XS</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">S</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="true">M</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">L</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">2XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">3XL</button></div>
+<a href="#guide-tailles" class="pd-link pd-size-link">Guide des tailles</a>
 </div>
 
 <div class="pd-field">
