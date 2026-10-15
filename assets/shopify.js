@@ -464,8 +464,12 @@
 
     // présélection : la 1re valeur disponible pour les options autres que la taille
     groups.forEach(function (g) {
-      if (norm(g.name) === 'taille' && g.count > 1) return;
       var cands = [].slice.call(g.box.querySelectorAll('[data-value]'));
+      // taille : celle du milieu est sélectionnée par défaut (la plus proche disponible)
+      if (norm(g.name) === 'taille' && cands.length > 1) {
+        var mid = Math.floor(cands.length / 2), pos = cands.slice();
+        cands.sort(function (a, b) { return Math.abs(pos.indexOf(a) - mid) - Math.abs(pos.indexOf(b) - mid); });
+      }
       // batterie : « avec batterie » sélectionnée par défaut
       if (norm(g.name) === 'batterie') cands.sort(function (a, b) { return (norm(a.dataset.value).indexOf('sans') === 0) - (norm(b.dataset.value).indexOf('sans') === 0); });
       var first = cands.filter(function (b) { return valueAvailable(p, g.name, b.dataset.value); })[0] || cands[0];
