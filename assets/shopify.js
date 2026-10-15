@@ -191,6 +191,10 @@
     '.pc-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 2px rgba(0,0,0,.3);transition:background .3s,transform .3s}' +
     '.pc-dots span.is-on{background:#fff;transform:scale(1.25)}' +
     '.pd-main.has-media{background:transparent}' +
+    '.pd-arrow{position:absolute;top:50%;z-index:2;width:40px;height:40px;margin-top:-20px;border:0;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 2px 10px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:.85;transition:opacity .2s,background .2s}' +
+    '.pd-arrow:hover{opacity:1;background:#fff}' +
+    '.pd-arrow svg{width:18px;height:18px;fill:none;stroke:#14212B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
+    '.pd-arrow-prev{left:12px}.pd-arrow-next{right:12px}' +
     '.pd-thumbs{display:flex !important;flex-wrap:nowrap;gap:8px;overflow:hidden}' +
     '.pd-thumbs .pd-thumb{position:relative;flex:0 0 auto;width:68px;height:68px;aspect-ratio:auto}' +
     '.pd-thumb-more{font:700 20px/1 Manrope,sans-serif;letter-spacing:.05em;color:#14212B;background:transparent !important;border:1.5px solid #E4DFD5 !important}' +
@@ -479,7 +483,7 @@
     var count = document.getElementById('pd-count');
     function render(i) {
       var it = items[i];
-      [].slice.call(main.children).forEach(function (c) { if (c !== count) c.remove(); });
+      [].slice.call(main.children).forEach(function (c) { if (c !== count && !c.classList.contains('pd-arrow')) c.remove(); });
       var node;
       if (it.type === 'video') {
         node = document.createElement('video');
@@ -491,7 +495,7 @@
         node.setAttribute('style', 'width:100%;height:100%;object-fit:cover;display:block');
       }
       main.classList.add('has-media');
-      main.insertBefore(node, count);
+      main.insertBefore(node, main.firstChild);
       if (it.type === 'video') { var pr = node.play(); if (pr && pr.catch) pr.catch(function () {}); }
       if (count) { count.textContent = (i + 1) + ' / ' + items.length; count.hidden = items.length < 2; }
       cur = i; if (i < start || i >= start + PER) { start = Math.floor(i / PER) * PER; drawThumbs(); }
@@ -521,6 +525,22 @@
       }
     }
     drawThumbs();
+    // flèches précédent / suivant (+ balayage au doigt sur mobile)
+    if (items.length > 1) {
+      ['prev', 'next'].forEach(function (dir) {
+        var a = document.createElement('button'); a.type = 'button'; a.className = 'pd-arrow pd-arrow-' + dir;
+        a.setAttribute('aria-label', dir === 'prev' ? 'Visuel précédent' : 'Visuel suivant');
+        a.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + (dir === 'prev' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7') + '"/></svg>';
+        a.addEventListener('click', function () { render((cur + (dir === 'prev' ? -1 : 1) + items.length) % items.length); });
+        main.appendChild(a);
+      });
+      var x0 = null;
+      main.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      main.addEventListener('touchend', function (e) {
+        if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) render((cur + (dx > 0 ? -1 : 1) + items.length) % items.length);
+      }, { passive: true });
+    }
     thumbsBox.hidden = items.length < 2;
     render(0);
     return {
