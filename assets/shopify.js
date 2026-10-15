@@ -102,6 +102,14 @@
       });
     });
   }
+  // variantes « avec batterie » (toutes si le produit n'a pas d'option Batterie)
+  function withBattery(p) {
+    var opt = optionOf(p, 'Batterie'); if (!opt) return p.variants.nodes;
+    var out = p.variants.nodes.filter(function (v) {
+      return v.selectedOptions.some(function (o) { return norm(o.name) === 'batterie' && norm(o.value).indexOf('sans') !== 0; });
+    });
+    return out.length ? out : p.variants.nodes;
+  }
   function optionOf(p, name) {
     var n = norm(name);
     return (p.options || []).filter(function (o) { return norm(o.name) === n; })[0];
@@ -200,6 +208,11 @@
     '.pc-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 2px rgba(0,0,0,.3);transition:background .3s,transform .3s}' +
     '.pc-dots span.is-on{background:#fff;transform:scale(1.25)}' +
     '.pd-main.has-media{background:transparent}' +
+    '.pd-info .pd-size-row{position:relative;justify-content:flex-start !important;gap:10px !important;padding:10px calc(50% - 30px) !important;scroll-snap-type:x mandatory;' +
+      '-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 78%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 22%,#000 78%,transparent 100%)}' +
+    '.pd-info .pd-size-row > *{margin:0 !important;scroll-snap-align:center;transition:transform .25s ease,opacity .25s ease,background .2s,color .2s}' +
+    '.pd-info .pd-size-row.has-pick > :not([aria-pressed="true"]){transform:scale(.9);opacity:.7}' +
+    '.pd-info .pd-size-row > [aria-pressed="true"]{transform:scale(1.22);opacity:1;z-index:1}' +
     '.pd-pack-items div.is-off{opacity:1 !important}' +
     '.pd-pack-items div.is-off > svg,.pd-pack-items div.is-off > span{opacity:.35}' +
     '.pd-pack-add{display:none;margin-top:4px;min-height:34px;padding:0 14px;border:0;border-radius:999px;background:#14212B;color:#fff;font:700 12.5px Manrope,sans-serif;cursor:pointer;white-space:nowrap}' +
@@ -316,8 +329,10 @@
       var price = el.querySelector('.pc-price');
       if (!price && h3) { price = document.createElement('p'); price.className = 'pc-price'; h3.insertAdjacentElement('afterend', price); }
       if (price) {
-        var multi = p.variants.nodes.some(function (v) { return v.price.amount !== p.priceRange.minVariantPrice.amount; });
-        price.textContent = (multi ? 'Dès ' : '') + money(p.priceRange.minVariantPrice);
+        // prix affiché = version AVEC batterie
+        var pv = withBattery(p), lo = pv.reduce(function (a, b) { return parseFloat(b.price.amount) < parseFloat(a.price.amount) ? b : a; });
+        var multi = pv.some(function (v) { return v.price.amount !== lo.price.amount; });
+        price.textContent = (multi ? 'Dès ' : '') + money(lo.price);
       }
       var sizes = el.querySelector('.pc-sizes'), opt = optionOf(p, 'Taille');
       if (sizes && !opt) sizes.hidden = true;   // produit sans option Taille dans Shopify
@@ -386,6 +401,7 @@
       g.selected = value;
       g.box.querySelectorAll('[data-value]').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.value === value ? 'true' : 'false'); });
       if (norm(g.name) === 'couleur') { var c = document.getElementById('pd-color'); if (c) c.textContent = value; }
+      if (norm(g.name) === 'taille') { g.box.classList.add('has-pick'); centerSize(g.box, g.box.querySelector('[aria-pressed="true"]'), true); }
       if (norm(g.name) === 'batterie') { var pk = document.getElementById('pd-pack-batt'); if (pk) pk.classList.toggle('is-off', norm(value).indexOf('sans') === 0); }
       refresh(); say('');
     }
@@ -449,11 +465,22 @@
     // présélection : la 1re valeur disponible pour les options autres que la taille
     groups.forEach(function (g) {
       if (norm(g.name) === 'taille' && g.count > 1) return;
-      var first = [].slice.call(g.box.querySelectorAll('[data-value]')).filter(function (b) { return valueAvailable(p, g.name, b.dataset.value); })[0]
-        || g.box.querySelector('[data-value]');
+      var cands = [].slice.call(g.box.querySelectorAll('[data-value]'));
+      // batterie : « avec batterie » sélectionnée par défaut
+      if (norm(g.name) === 'batterie') cands.sort(function (a, b) { return (norm(a.dataset.value).indexOf('sans') === 0) - (norm(b.dataset.value).indexOf('sans') === 0); });
+      var first = cands.filter(function (b) { return valueAvailable(p, g.name, b.dataset.value); })[0] || cands[0];
       if (first) { g.selected = first.dataset.value; }
     });
     groups.forEach(function (g) { if (g.selected) pick(g, g.selected); });
+    // Tailles : rangée centrée sur la taille du milieu (ou la taille choisie), les autres dépassent sur les côtés
+    groups.forEach(function (g) {
+      if (norm(g.name) !== 'taille') return;
+      g.box.classList.add('pd-size-row');
+      var btns = g.box.querySelectorAll('[data-value]');
+      var target = g.box.querySelector('[aria-pressed="true"]') || btns[Math.floor(btns.length / 2)];
+      requestAnimationFrame(function () { centerSize(g.box, target, false); });
+      window.addEventListener('resize', function () { centerSize(g.box, g.box.querySelector('[aria-pressed="true"]') || target, false); });
+    });
     refresh();
 
     addBtn.addEventListener('click', function () {
@@ -530,6 +557,12 @@
         es.forEach(function (e) { if (e.isIntersecting && e.intersectionRatio >= 0.5) start(); else stop(); });
       }, { threshold: [0, 0.5] }).observe(box);
     } else start();
+  }
+
+  function centerSize(row, btn, smooth) {
+    if (!row || !btn) return;
+    var left = btn.offsetLeft - row.offsetLeft - (row.clientWidth - btn.offsetWidth) / 2;
+    row.scrollTo({ left: left, behavior: smooth ? 'smooth' : 'auto' });
   }
 
   // Galerie de la page produit reconstruite avec les photos/vidéos Shopify
