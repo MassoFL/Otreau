@@ -57,11 +57,14 @@
       return map;
     });
   }
-  // « VESTE’Otreau » → type en gras, « ’Otreau » fin et gris (même style que le site)
+  // Titre Shopify « Veste » ou « Gilet fin » → « VESTE’Otreau » / « GILET FIN’Otreau »
+  // (type en majuscules + ’Otreau ajouté à la fin ; un « Otreau » déjà présent n'est pas doublé)
+  function baseTitle(t) {
+    return String(t || '').replace(/[\s’'-]*otreau\s*$/i, '').trim().toLocaleUpperCase('fr-FR');
+  }
+  function plainTitle(t) { return baseTitle(t) + '’Otreau'; }
   function titleHtml(t) {
-    var m = String(t || '').match(/^(.*?)([’'].*)$/);
-    if (!m) return '<span style="font-weight: 600">' + esc(t) + '</span>';
-    return '<span style="font-weight: 600">' + esc(m[1]) + '</span><span style="font-weight: 300; color: #8A949B">' + esc(m[2].replace("'", '’')) + '</span>';
+    return '<span style="font-weight: 600">' + esc(baseTitle(t)) + '</span><span style="font-weight: 300; color: #8A949B">’Otreau</span>';
   }
   function sized(url, w) { return url ? url + (url.indexOf('?') > -1 ? '&' : '?') + 'width=' + w : url; }
   // médias Shopify → liste simple {type, src, poster, alt}
@@ -200,7 +203,7 @@
       var variant = m.title && m.title !== 'Default Title' ? m.title : '';
       return '<div class="oc-line" data-line="' + esc(l.id) + '">' +
         (img ? '<img class="oc-img" src="' + esc(img + (img.indexOf('?') > -1 ? '&' : '?') + 'width=200') + '" alt="">' : '<div class="oc-img"></div>') +
-        '<div><p class="oc-name">' + esc(m.product.title) + '</p>' + (variant ? '<p class="oc-var">' + esc(variant) + '</p>' : '') +
+        '<div><p class="oc-name">' + titleHtml(m.product.title) + '</p>' + (variant ? '<p class="oc-var">' + esc(variant) + '</p>' : '') +
         '<div class="oc-qty"><button type="button" data-d="-1" aria-label="Retirer un">−</button><span>' + l.quantity + '</span><button type="button" data-d="1" aria-label="Ajouter un">+</button></div></div>' +
         '<div><div class="oc-price">' + money(l.cost.totalAmount) + '</div><button type="button" class="oc-rm">Retirer</button></div></div>';
     }).join('') + (err ? '<p class="oc-msg">' + esc(err) + '</p>' : '');
@@ -285,9 +288,9 @@
 
     // Titre, description et galerie depuis Shopify
     var h1 = document.querySelector('.pd-title');
-    if (h1 && p.title) { h1.innerHTML = titleHtml(p.title); document.title = p.title + ' · Otreau'; }
+    if (h1 && p.title) { h1.innerHTML = titleHtml(p.title); document.title = plainTitle(p.title) + ' · Otreau'; }
     var crumb = document.querySelector('.pd-crumb [aria-current="page"]');
-    if (crumb && p.title) crumb.textContent = p.title;
+    if (crumb && p.title) crumb.textContent = plainTitle(p.title);
     if (p.descriptionHtml && p.descriptionHtml.trim()) {
       [].slice.call(document.querySelectorAll('.pd-acc')).forEach(function (d) {
         var s = d.querySelector('summary span');
