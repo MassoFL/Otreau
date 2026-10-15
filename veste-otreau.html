@@ -350,6 +350,9 @@ body{background:#F8F6F1}
 .pd-info .pd-opts[aria-label="Taille"]::-webkit-scrollbar{display:none}
 .pd-info .pd-opts[aria-label="Taille"] > *{flex:0 0 auto}
 .pd-info .pd-opts[aria-label="Taille"] > :first-child{margin-left:auto}.pd-info .pd-opts[aria-label="Taille"] > :last-child{margin-right:auto}
+.pd-top > *{min-width:0}
+@media (max-width:900px){.pd-top{grid-template-columns:minmax(0,1fr) !important}}
+.pd-info .pd-opts,.pd-thumbs{max-width:100%}
 </style>
 </head>
 <body>

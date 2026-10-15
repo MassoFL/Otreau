@@ -159,8 +159,8 @@
     '.oc-badge[hidden]{display:none}' +
     '.oc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .3s;z-index:200}' +
     '.oc-overlay.is-open{opacity:1;pointer-events:auto}' +
-    '.oc-drawer{font-family:\'DM Sans\',system-ui,-apple-system,sans-serif;position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#F8F6F1;color:#14212B;z-index:201;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.65,0,.35,1);box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}' +
-    '.oc-drawer.is-open{transform:none}' +
+    '.oc-drawer{font-family:\'DM Sans\',system-ui,-apple-system,sans-serif;position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:#F8F6F1;color:#14212B;z-index:201;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s cubic-bezier(.65,0,.35,1),visibility 0s .35s;visibility:hidden}' +
+    '.oc-drawer.is-open{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.65,0,.35,1);box-shadow:-20px 0 60px -30px rgba(0,0,0,.4)}' +
     '.oc-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid #E4DFD5}' +
     '.oc-head h2{margin:0;font:300 22px/1.1 Manrope,sans-serif;text-transform:uppercase;letter-spacing:.01em}' +
     '.oc-close{width:40px;height:40px;border:0;background:transparent;font-size:26px;line-height:1;cursor:pointer;color:#14212B}' +
@@ -184,6 +184,8 @@
     '.oc-msg{margin:8px 0 0;font-size:13px;color:#C2361F}' +
     '.pc-car{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;background:var(--section-bg,#F8F6F1)}' +
     '.pc-car > video,.pc-car > .pc-car-base{position:absolute;inset:0;width:100% !important;height:100% !important;aspect-ratio:auto !important;object-fit:cover;display:block}' +
+    '.pc-car > video,.pc-car > .pc-car-base{transition:opacity .35s ease}' +
+    '.pc-car > .is-off{opacity:0 !important}' +
     '.pc-car-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease;pointer-events:none}' +
     '.pc-car-slide.is-on{opacity:1}' +
     '.pc-arrow{position:absolute;top:50%;z-index:2;width:32px;height:32px;margin-top:-16px;border:0;border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 2px 8px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s,background .2s}' +
@@ -486,7 +488,7 @@
     slides.forEach(function (_, k) { var d = document.createElement('span'); if (!k) d.className = 'is-on'; dots.appendChild(d); });
     function show(i) {
       cur = (i + slides.length) % slides.length;
-      slides.forEach(function (sl, k) { if (k) sl.classList.toggle('is-on', k === cur); });
+      slides.forEach(function (sl, k) { if (k) sl.classList.toggle('is-on', k === cur); else sl.classList.toggle('is-off', cur !== 0); });
       [].slice.call(dots.children).forEach(function (d, k) { d.classList.toggle('is-on', k === cur); });
       if (hasVideo) { if (cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } else first.pause(); }
     }
