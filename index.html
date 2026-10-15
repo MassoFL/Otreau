@@ -28,7 +28,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .hero-dot{width:44px;height:44px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .hero-dot span{display:block;width:14px;height:14px;border-radius:50%;border:2px solid #fff;background:transparent;transition:background .3s ease}
 .hero-dot[aria-current="true"] span{background:#fff}
-.type-btn{min-height:46px;border-radius:0;border:1.5px solid #C9C2B4;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;background:transparent;color:#14212B;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.type-btn{min-height:46px;border-radius:999px;border:1.5px solid #C9C2B4;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;background:transparent;color:#14212B;transition:background .2s ease,color .2s ease,border-color .2s ease}
 .type-btn[aria-pressed="true"]{background:#14212B;color:#fff;border-color:#14212B}
 
 .site-header{position:absolute;left:0;right:0;top:50px;z-index:20;background:transparent;border-bottom:1px solid rgba(255,255,255,.2);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease}
@@ -278,12 +278,58 @@ a{color:#14212B}a:hover{color:#B5650F}
   animation:glow-spin 3.2s linear infinite}
 .cta-glow::before{inset:-2px}
 .cta-glow{font-weight:400}
-@media (max-width:760px){.cta-glow{font-weight:500}}
+@media (max-width:760px){.cta-glow{font-weight:500;padding:0 28px !important;font-size:17px !important;white-space:nowrap}}
 .cta-glow span{filter:drop-shadow(0 1px 1px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,.95)) drop-shadow(0 3px 14px rgba(0,0,0,.9)) drop-shadow(0 0 32px rgba(0,0,0,.75))}
 @keyframes glow-spin{to{--glow-a:360deg}}
 .cta-glow:hover::after,.cta-glow:focus-visible::after{opacity:0;transition:opacity .3s}
 @media (prefers-reduced-motion: reduce){.cta-glow::after{animation:none}}
 .tm{font-size:.42em;font-weight:600;letter-spacing:0;vertical-align:baseline;position:relative;top:-1em;margin-left:.1em;line-height:0}
+/* Pictos des cartes produit */
+.pc-feats{list-style:none;margin:4px 0 0;padding:0;width:100%;max-width:220px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.pc-feats li{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;line-height:1.2;color:#B3BAC0;text-align:center}
+.pc-feats svg{width:19px;height:19px;fill:none;stroke:#B3BAC0;stroke-width:1.5;stroke-linecap:round}
+.pc-sizes{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.pc-sizes li{width:36px;height:36px;padding:0;border-radius:50%;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;border:1px solid #E4DFD5;font-family:Manrope,sans-serif;font-size:12px;font-weight:600;color:#55616B}
+.pc-feats{margin-top:16px !important}
+/* Batterie v2 : chiffres clés + intensité + équipements */
+.batt-v2{gap:34px;padding-right:0}
+.bv-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #2A2A2A;border-bottom:1px solid #2A2A2A}
+.bv-stat{display:flex;flex-direction:column;gap:6px;padding:20px 0 18px 18px;border-left:1px solid #2A2A2A}
+.bv-stat:first-child{border-left:0;padding-left:0}
+.bv-num{font-family:Manrope,sans-serif;font-weight:300;font-size:clamp(28px,3.2vw,46px);line-height:1;letter-spacing:-.02em;color:#FFFFFF;white-space:nowrap}
+.bv-num small{font-size:.4em;font-weight:500;letter-spacing:0;margin-left:4px;color:#7CC4FA}
+.bv-lab{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8C969D}
+.bv-block{display:flex;flex-direction:column;gap:16px}
+.bv-h{margin:0;font-family:Manrope,sans-serif;font-weight:300;font-size:18px;line-height:1.1;letter-spacing:.01em;text-transform:uppercase}
+.bv-lvls{display:flex;flex-direction:column;gap:12px}
+.bv-lvl{display:grid;grid-template-columns:80px 1fr 56px;align-items:center;gap:14px}
+.bv-lvl .lvl-bar{height:12px}
+.bv-lvl-name{font-size:14px;color:#C9CED2}
+.bv-lvl-h{font-family:Manrope,sans-serif;font-weight:700;font-size:14px;color:#7CC4FA;text-align:right}
+.bv-note{margin:0;font-size:12px;color:#8C969D}
+.bv-feats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:18px 24px}
+.bv-feats li{display:flex;align-items:flex-start;gap:12px}
+.bv-feats svg{flex:none;width:24px;height:24px;fill:none;stroke:#3E9BEA;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;margin-top:1px}
+.bv-feats div{display:flex;flex-direction:column;gap:3px}
+.bv-feats strong{font-family:Manrope,sans-serif;font-weight:600;font-size:15px;color:#FFFFFF}
+.bv-feats span{font-size:13px;line-height:1.4;color:#8C969D}
+.bv-more .spec-acc{width:100%}
+.bv-more .spec-acc summary{padding:13px 0}
+.bv-more .spec-acc summary h3{font-size:15px}
+.bv-more .spec-acc summary svg{width:20px;height:17px}
+@media (max-width:480px){.bv-feats{grid-template-columns:1fr}.bv-stat{padding-left:12px}.bv-lvl{grid-template-columns:70px 1fr 48px;gap:10px}}
+/* Bouton « Comment faire les mesures » */
+.howto{display:flex;flex-direction:column;align-items:center;margin-top:-16px}
+.howto-btn{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 26px;background:#FBF8F2;color:#14212B;border:1.5px dashed #8C7A5B;border-radius:999px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.howto-btn:hover{background:#14212B;color:#FFFFFF;border-color:#14212B;border-style:solid}
+.howto-ico{position:relative;width:12px;height:12px}
+.howto-ico::before,.howto-ico::after{content:"";position:absolute;left:0;top:50%;width:12px;height:1.5px;margin-top:-.75px;background:currentColor;transition:transform .3s}
+.howto-ico::after{transform:rotate(90deg)}
+.howto-btn[aria-expanded="true"] .howto-ico::after{transform:rotate(0deg)}
+.howto-panel{display:grid;grid-template-rows:0fr;width:100%;transition:grid-template-rows .45s ease}
+.howto-panel.is-open{grid-template-rows:1fr}
+.howto-inner{overflow:hidden;min-height:0}
+.howto-inner > div{padding-top:24px}
 </style>
 </head>
 <body>
@@ -343,7 +389,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="hero-content" style="position: absolute; left: 0; right: 0; top: 60vh; z-index: 2; padding: 0 clamp(16px, 4vw, 64px); color: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; gap: 28px">
 <h1 class="hero-title" style="margin: 0; max-width: 980px; font-family: Manrope, sans-serif; font-size: clamp(36px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -0.01em; text-transform: uppercase">Emportez la <span class="heat-text">chaleur</span> de chez vous, <span class="heat-text heat-text-rev">dehors.</span></h1>
 <p class="hero-sub" style="margin: -12px 0 0; max-width: 520px; font-size: clamp(19px, 1.7vw, 23px); line-height: 1.45; font-weight: 500; letter-spacing: 0.01em; color: #FFFFFF">Vêtements et accessoires<br class="br-mobile"> chauffants.</p>
-<a href="#collection" class="cta-heat cta-glow" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 0; font-family: Manrope, sans-serif; font-size: 18px; text-transform: uppercase; letter-spacing: 0.02em; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span>Découvrir</span></a>
+<a href="#collection" class="cta-heat cta-glow" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 0; font-family: Manrope, sans-serif; font-size: 18px; text-transform: uppercase; letter-spacing: 0.02em; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span>Collection Hiver ’26</span></a>
 </div>
 </section>
 
@@ -354,7 +400,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <section id="collection" style="padding: 0 24px 128px">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
-<h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em">La collection’Otreau</h2>
+<h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em"><span style="font-weight: 600">La collection</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h2>
 <div role="group" class="type-filters" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
 <button type="button" class="type-btn" aria-pressed="false">Doudoune</button>
 <button type="button" class="type-btn" aria-pressed="false">Veste parka</button>
@@ -368,54 +414,84 @@ a{color:#14212B}a:hover{color:#B5650F}
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; ">GILET’Otreau</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">Sous une veste ou un manteau, du trajet du matin à l’atelier.</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
 </div>
 </a>
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet fin chauffant en rotation" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; ">GILET FIN’Otreau</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">Une couche fine et souple, à glisser sous n’importe quelle veste.</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET FIN</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
 </div>
 </a>
 
 <a href="#collection" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; ">DOUDOUNE’Otreau</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">La protection complète pour les longues journées immobiles dehors.</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">DOUDOUNE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
 </div>
 </a>
 
 <a href="veste-otreau.html" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/veste-otreau.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; ">VESTE’Otreau</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte de la veste parka.]</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">VESTE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
 </div>
 </a>
 
 <a href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/gilet-polaire-rose.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet polaire chauffant rose en rotation" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: #EFEFEF; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; ">GILET POLAIRE’Otreau</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">Tout doux, tout chaud : la polaire chauffante en rose poudré.</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET POLAIRE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
 </div>
 </a>
 
 <a href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: #FFFFFF; border: 1px solid #E4DFD5; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <div aria-hidden="true" style="width: 100%; aspect-ratio: 4 / 5; background: #EFEFEF; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; ">GANTS’Otreau</h3>
-<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #55616B; max-width: 340px">[Description courte des gants.]</p>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GANTS</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
 </div>
 </a>
 
@@ -435,28 +511,39 @@ a{color:#14212B}a:hover{color:#B5650F}
 <p style="margin: 0; font-size: 18px; color: #A9B4BB; max-width: 520px">Une batterie qui <span style="color: #FFFFFF; text-decoration: underline; text-decoration-color: #3E9BEA; text-decoration-thickness: 2px; text-underline-offset: 5px">se charge vite et dure longtemps.</span></p>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 40px clamp(32px, 5vw, 72px); align-items: center">
-<div class="spec-card">
+<div class="spec-card batt-v2">
+<div class="bv-stats">
+<div class="bv-stat"><span class="bv-num">20 000<small>mAh</small></span><span class="bv-lab">Capacité</span></div>
+<div class="bv-stat"><span class="bv-num">22,5<small>W</small></span><span class="bv-lab">Charge rapide PD</span></div>
+<div class="bv-stat"><span class="bv-num">190<small>g</small></span><span class="bv-lab">Poids</span></div>
+</div>
+<div class="bv-block">
+<h3 class="bv-h">Intensité de chauffe</h3>
+<div class="bv-lvls">
+<div class="bv-lvl"><span class="bv-lvl-name">Faible</span><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><span class="bv-lvl-h">[X h]</span></div>
+<div class="bv-lvl"><span class="bv-lvl-name">Moyenne</span><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><span class="bv-lvl-h">[X h]</span></div>
+<div class="bv-lvl"><span class="bv-lvl-name">Élevée</span><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><span class="bv-lvl-h">[X h]</span></div>
+</div>
+<p class="bv-note">Autonomie mesurée avec la batterie fournie, à [température]. Elle varie selon le froid et le vent.</p>
+</div>
+<div class="bv-block">
+<h3 class="bv-h">Tout est intégré</h3>
+<ul class="bv-feats">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v5M11 3v5"/><rect x="5" y="8" width="8" height="5" rx="1"/><path d="M9 13v3a4 4 0 0 0 4 4h6"/></svg><div><strong>Câbles intégrés</strong><span>USB-C · Lightning · USB-A</span></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M7 13V9M10 13V10M13 13v-2"/></svg><div><strong>Écran numérique</strong><span>La charge restante, en un coup d’œil</span></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg><div><strong>Charge bidirectionnelle</strong><span>Recharge aussi votre téléphone</span></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.6 1 2.5h6c0-.9.2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg><div><strong>Lampe LED</strong><span>Pratique quand la nuit tombe</span></div></li>
+</ul>
+</div>
+<div class="bv-more">
 <details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#3E9BEA" stroke-width="2" stroke-linecap="round"><path d="M6 6h28M6 13h28M6 20h20M6 27h14"></path></svg><h3>Description</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
 <p class="spec-text">Batterie externe 20 000 mAh conçue pour alimenter vos vêtements Otreau toute la journée. Charge rapide PD 22,5 W et bidirectionnelle, câbles USB-C, Lightning et USB-A intégrés, écran numérique pour suivre la charge restante et lampe LED intégrée. Elle peut aussi recharger votre téléphone en déplacement.</p>
-</div></details>
-<details class="spec-acc" open><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#3E9BEA" stroke-width="2"><path d="M1 33h38"></path><rect x="6" y="22" width="7" height="11"></rect><rect x="16" y="13" width="7" height="20"></rect><rect x="26" y="3" width="7" height="30"></rect></svg><h3>Intensité de chauffe</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
-<div class="lvls">
-<div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Intensité faible</strong> : [X h à X h] d’autonomie</p></div>
-<div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Intensité moyenne</strong> : [X h à X h] d’autonomie</p></div>
-<div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Intensité élevée</strong> : [X h à X h] d’autonomie</p></div>
-</div>
-<p class="spec-note">Autonomie mesurée avec la batterie 20 000 mAh fournie, à [température]. Elle varie selon le froid et le vent.</p>
-</div></details>
-<details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#3E9BEA" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="32" height="26"></rect><path d="M10 12h8M10 17h14M10 22h11M26 12h4"></path></svg><h3>Caractéristiques</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
-<div class="spec-row"><span>Capacité</span><strong>20 000 mAh</strong></div>
-<div class="spec-row"><span>Charge rapide</span><strong>PD 22,5 W</strong></div>
-<div class="spec-row"><span>Câbles intégrés</span><strong>USB-C · Lightning · USB-A</strong></div>
-<div class="spec-row"><span>Poids de la batterie</span><strong>190 g</strong></div>
 </div></details>
 <details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#3E9BEA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 3c6 7 10 12 10 18a10 10 0 0 1-20 0c0-6 4-11 10-18z"></path><path d="M15 22a5 5 0 0 0 5 5"></path></svg><h3>Composition &amp; entretien</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
 <div class="spec-row"><span>Composition</span><strong>[Lithium-polymère · coque …]</strong></div>
 <p class="spec-text">Rangez la batterie à température ambiante et évitez de la laisser en plein soleil ou près d’une source de chaleur. Retirez-la toujours du vêtement avant lavage. Pour la préserver, rechargez-la au moins une fois tous les [3 mois] si vous ne l’utilisez pas.</p>
 </div></details>
+</div>
 </div>
 <div class="batt-col"><div class="batt-media">
 <video src="assets/batterie.mp4#t=0.1" autoplay muted loop playsinline preload="metadata" aria-label="Batterie externe 20 000 mAh Otreau en rotation, écran de charge allumé"></video>
@@ -520,10 +607,15 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 </div>
 </div>
+<div class="howto">
+<button type="button" class="howto-btn" id="howto-btn" aria-expanded="false" aria-controls="howto-panel"><span>Comment faire les mesures</span><span class="howto-ico" aria-hidden="true"></span></button>
+<div class="howto-panel" id="howto-panel"><div class="howto-inner">
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px">
 <div class="note-card"><span class="num">01 · Votre référence</span><h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Partez d’un vêtement que vous aimez</h3><p style="margin: 0; font-size: 15px; color: #55616B">Posez à plat une veste qui vous va bien et mesurez-la de la même façon que sur le patron.</p></div>
 <div class="note-card"><span class="num">02 · La méthode</span><h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Mesurez bien à plat</h3><p style="margin: 0; font-size: 15px; color: #55616B">Fermeture remontée, sans tirer sur le tissu. La largeur de poitrine se prend juste sous les emmanchures.</p></div>
 <div class="note-card"><span class="num">03 · Entre deux tailles ?</span><h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 18px">Pensez à ce que vous portez dessous</h3><p style="margin: 0; font-size: 15px; color: #55616B">[Votre conseil, par exemple : prenez la taille au-dessus si vous portez une couche épaisse dessous.]</p></div>
+</div>
+</div></div>
 </div>
 </div>
 </section>
@@ -586,6 +678,10 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 
 </div>
+<script>
+(function(){var b=document.getElementById('howto-btn'),p=document.getElementById('howto-panel');if(!b||!p)return;
+b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',o?'true':'false');p.classList.toggle('is-open',o)});})();
+</script>
 <script>
 /* Collection mobile : regroupe les cartes par catégorie (une ligne défilante par catégorie) */
 (function(){
