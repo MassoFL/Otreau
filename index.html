@@ -8,6 +8,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500&amp;family=Instrument+Serif:ital@1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#F8F6F1}
+/* ===== La marque (accueil) ===== */
+.lm{padding:96px 24px 32px}
+.lm-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.lm-pic img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;border-radius:24px;box-shadow:0 30px 60px -36px rgba(20,33,43,.45)}
+.lm-txt{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.lm-txt h2{margin:0;font-family:Manrope,sans-serif;font-weight:300;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase}
+.lm-txt p{margin:0;font-size:17px;line-height:1.7;color:#3D4A54}
+.lm-txt .lm-lead{font-size:clamp(19px,1.7vw,22px);line-height:1.5;color:#14212B}
+.lm-points{list-style:none;margin:6px 0 4px;padding:0;display:flex;flex-direction:column;gap:12px}
+.lm-points li{display:flex;align-items:center;gap:12px;font-family:Manrope,sans-serif;font-weight:600;font-size:15.5px;color:#14212B}
+.lm-points svg{flex:none;width:22px;height:22px;fill:none;stroke:#1F6342;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lm-btn{display:inline-flex;align-items:center;gap:12px;min-height:54px;padding:0 32px;margin-top:6px;border:1.5px solid #14212B;border-radius:999px;color:#14212B;font:700 16px Manrope,sans-serif;text-decoration:none;transition:background .2s,color .2s}
+.lm-btn:hover{background:#14212B;color:#FFFFFF}
+.lm-btn span{transition:transform .2s}.lm-btn:hover span{transform:translateX(3px)}
+@media (max-width:860px){.lm{padding:72px 24px 16px}.lm-wrap{grid-template-columns:minmax(0,1fr)}.lm-txt{align-items:center;text-align:center}.lm-points li{justify-content:center}}
+.wave-sep{display:block;line-height:0;position:absolute;left:0;right:0;bottom:-1px;z-index:1;pointer-events:none}
+.wave-sep svg{display:block;width:100%;height:clamp(58px,8.5vw,130px)}
+.wave-sep.wave-top{top:-1px;bottom:auto;z-index:4}
+.wave-sep.wave-top svg{overflow:visible}
+#tailles.atelier{padding-bottom:calc(72px + clamp(58px,8.5vw,130px))}
+#tailles.atelier{padding-top:calc(72px + 1.2 * clamp(58px,8.5vw,130px))}
+
+#batterie{margin-top:-1px;position:relative;z-index:1}
+
 *{box-sizing:border-box}
 a{color:#14212B}a:hover{color:#B5650F}
 /* Version chaude : #FFE7AE, #FFC44D, #F5A623, #E8641F, #C2361F | Version bleue : #EAF6FF, #B9E0FF, #7CC4FA, #3E9BEA, #2D74D6 */
@@ -372,6 +396,26 @@ a{color:#14212B}a:hover{color:#B5650F}
 /* Batterie : chiffres clés centrés */
 .bv-stat{align-items:center;text-align:center;padding-left:12px !important;padding-right:12px}
 .bv-stat:first-child{padding-left:12px !important}
+/* Sélecteur d'article : flèches */
+.wheel{gap:2px !important}
+.wheel-arrow{width:34px;height:26px;border:0;background:transparent;color:#14212B;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:999px;transition:background .2s,opacity .2s}
+.wheel-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wheel-arrow:hover{background:rgba(20,33,43,.08)}
+.wheel-arrow:disabled{opacity:.25;cursor:default;background:transparent}
+</style>
+<style id="footer-dark">
+/* Pied de page : fond marbre noir, textes clairs pour la lisibilité */
+.site-footer{background:#050505 url(assets/footer-bg.jpg) center / cover no-repeat !important;border-top:0 !important;color:#E9ECEE !important;margin-top:0 !important}
+.site-footer .f-logo,.site-footer .f-col h3,.site-footer .f-copy{color:#FFFFFF !important}
+.site-footer .f-brand p,.site-footer .f-contact{color:#A9B4BB !important}
+.site-footer .f-contact a,.site-footer .f-col a,.site-footer .f-legal a,.site-footer .f-social a{color:#D5DADD !important}
+.site-footer .f-contact a:hover,.site-footer .f-col a:hover,.site-footer .f-legal a:hover,.site-footer .f-social a:hover{color:#FFFFFF !important}
+.site-footer .f-bottom{border-top-color:rgba(255,255,255,.14) !important}
+.site-footer .f-select select{background:rgba(255,255,255,.06) !important;border-color:rgba(255,255,255,.28) !important;color:#FFFFFF !important;border-radius:999px !important}
+.site-footer .f-select select option{color:#14212B}
+.site-footer .f-select::after{border-color:#FFFFFF !important}
+.site-footer .f-contact a,.site-footer .f-col a,.site-footer .f-legal a{text-decoration:underline !important;text-decoration-color:rgba(255,255,255,.28) !important;text-decoration-thickness:1px !important;text-underline-offset:4px;transition:color .2s,text-decoration-color .2s}
+.site-footer .f-contact a:hover,.site-footer .f-col a:hover,.site-footer .f-legal a:hover{text-decoration-color:rgba(255,255,255,.85) !important}
 </style>
 </head>
 <body>
@@ -427,6 +471,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <a href="#tailles">Tailles &amp; mesures</a>
 <a href="suivi-commande.html">Suivre ma commande</a>
 <a href="a-propos.html">À propos</a>
+<a href="blog.html">Blog</a>
 <a href="contact.html">Contact</a>
 <a href="#faq">FAQ</a>
 </nav>
@@ -451,7 +496,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <!-- Bandeau qui accompagne le contenu quand il recouvre la vidéo (messages copiés depuis le bandeau du haut) -->
 <div class="bandeau-curtain" aria-hidden="true"><div class="bandeau-track bandeau-copy"></div></div>
 <!-- Collection -->
-<section id="collection" style="padding: 0 24px 128px">
+<section id="collection" style="padding: 56px 24px 128px; margin-top: -56px; position: relative; background: #F8F6F1 url(assets/collection-bg.jpg) center / cover no-repeat">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
 <h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em"><span style="font-weight: 600">La sélection</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h2>
@@ -556,8 +601,25 @@ a{color:#14212B}a:hover{color:#B5650F}
 <a href="#collection" id="show-all" aria-expanded="false" style="text-decoration: none; color: #14212B; border: 1.5px solid #14212B; border-radius: 0; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; padding: 0 40px; min-height: 56px; display: inline-flex; align-items: center; gap: 12px"><span class="show-all-label">Voir toute la collection</span><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 </div>
 </div>
+<!-- Transition en vague vers la section batterie -->
+<div class="wave-sep" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+<defs>
+<linearGradient id="wv-sheen" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".35" stop-color="#D4D4D4" stop-opacity=".55"/><stop offset=".6" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#CFCFCF" stop-opacity=".65"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wv-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".04"/><stop offset=".22" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset=".8" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".06"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wv-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1A1A1A"/><stop offset=".35" stop-color="#000000"/></linearGradient>
+<filter id="wv-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#E6E3DC" stroke-width="18" filter="url(#wv-soft)" opacity=".7" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z" fill="url(#wv-fill)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="url(#wv-sheen)" stroke-width="2.2" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92" fill="none" stroke="url(#wv-glint)" stroke-width="1" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="10.5s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92;M0,102 C238,74 458,138 700,196 C900,244 1138,176 1440,106;M0,108 C250,80 470,126 720,190 C920,240 1150,184 1440,100;M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92"/></path>
+<path d="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128" fill="none" stroke="url(#wv-glint)" stroke-width=".8" opacity=".6" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="17s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128;M0,130 C250,102 470,148 720,212 C920,262 1150,206 1440,122;M0,140 C262,116 500,136 742,202 C942,252 1162,216 1440,114;M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128"/></path>
+</svg></div>
 </section>
 
+<script>document.addEventListener("DOMContentLoaded",function(){try{if(matchMedia("(prefers-reduced-motion: reduce)").matches){document.querySelectorAll(".wave-sep svg").forEach(function(w){w.pauseAnimations&&w.pauseAnimations()});}}catch(e){}});</script>
 <!-- Batterie & autonomie -->
 <section id="batterie" style="background: #000000; color: #FFFFFF; padding: 64px 24px 120px; margin-bottom: 0">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
@@ -599,6 +661,24 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <!-- Tailles & mesures -->
 <section id="tailles" class="atelier" aria-labelledby="tailles-titre">
+<!-- Transition en vague depuis la section batterie -->
+<div class="wave-sep wave-top" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+<defs>
+<linearGradient id="wv2-sheen" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".35" stop-color="#D4D4D4" stop-opacity=".55"/><stop offset=".6" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#CFCFCF" stop-opacity=".65"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wv2-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".04"/><stop offset=".22" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset=".8" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".06"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wv2-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1A1A1A"/><stop offset=".35" stop-color="#000000"/></linearGradient>
+<filter id="wv2-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<g transform="translate(1440,270) scale(-1,-1)">
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#E6E3DC" stroke-width="18" filter="url(#wv2-soft)" opacity=".7" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,300 L0,300 Z" fill="url(#wv2-fill)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,300 L0,300 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,300 L0,300 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,300 L0,300 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,300 L0,300 Z"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="url(#wv2-sheen)" stroke-width="2.2" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92" fill="none" stroke="url(#wv2-glint)" stroke-width="1" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="10.5s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92;M0,102 C238,74 458,138 700,196 C900,244 1138,176 1440,106;M0,108 C250,80 470,126 720,190 C920,240 1150,184 1440,100;M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92"/></path>
+<path d="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128" fill="none" stroke="url(#wv2-glint)" stroke-width=".8" opacity=".6" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="17s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128;M0,130 C250,102 470,148 720,212 C920,262 1150,206 1440,122;M0,140 C262,116 500,136 742,202 C942,252 1162,216 1440,114;M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128"/></path>
+</g>
+</svg></div>
 <div class="tape" aria-hidden="true"><div class="tape-strip"></div></div>
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
@@ -606,10 +686,12 @@ a{color:#14212B}a:hover{color:#B5650F}
 <p style="margin: 0; font-size: 18px; color: #55616B; max-width: 560px">Un guide qui rend <span style="color: #14212B; text-decoration: underline; text-decoration-color: #D9792B; text-decoration-thickness: 2px; text-underline-offset: 5px">impossible de se tromper de taille.</span></p>
 </div>
 <div class="wheel" id="wheel">
+<button type="button" class="wheel-arrow" data-dir="-1" aria-label="Article précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
 <div class="wheel-box">
 <div class="wheel-band" aria-hidden="true"></div>
 <ul class="wheel-list" role="listbox" tabindex="0" aria-label="Choisir un article"><li role="option" data-product="gilet" aria-selected="true">GILET’Otreau</li><li role="option" data-product="gilet-fin" aria-selected="false">GILET FIN’Otreau</li><li role="option" data-product="gilet-polaire" aria-selected="false">GILET POLAIRE’Otreau</li><li role="option" data-product="doudoune" aria-selected="false">DOUDOUNE’Otreau</li><li role="option" data-product="veste" aria-selected="false">VESTE’Otreau</li></ul>
 </div>
+<button type="button" class="wheel-arrow" data-dir="1" aria-label="Article suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
 </div>
 <div class="patron">
 <span class="patron-pin" style="left: 28px" aria-hidden="true"></span>
@@ -663,6 +745,40 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div></div>
 </div>
 </div>
+<!-- Transition en vague vers la FAQ -->
+<div class="wave-sep wave-light" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+<defs>
+<linearGradient id="wv3-sheen" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".35" stop-color="#D4D4D4" stop-opacity=".55"/><stop offset=".6" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#CFCFCF" stop-opacity=".65"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wv3-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#A89B84" stop-opacity=".04"/><stop offset=".22" stop-color="#A89B84" stop-opacity=".5"/><stop offset=".5" stop-color="#A89B84" stop-opacity=".1"/><stop offset=".8" stop-color="#A89B84" stop-opacity=".55"/><stop offset="1" stop-color="#A89B84" stop-opacity=".06"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wv3-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#F8F6F1"/></linearGradient>
+<filter id="wv3-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#14212B" stroke-width="16" filter="url(#wv3-soft)" opacity=".13" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z" fill="url(#wv3-fill)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="url(#wv3-sheen)" stroke-width="2.2" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92" fill="none" stroke="url(#wv3-glint)" stroke-width="1" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="10.5s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92;M0,102 C238,74 458,138 700,196 C900,244 1138,176 1440,106;M0,108 C250,80 470,126 720,190 C920,240 1150,184 1440,100;M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92"/></path>
+<path d="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128" fill="none" stroke="url(#wv3-glint)" stroke-width=".8" opacity=".6" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="17s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128;M0,130 C250,102 470,148 720,212 C920,262 1150,206 1440,122;M0,140 C262,116 500,136 742,202 C942,252 1162,216 1440,114;M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128"/></path>
+</svg></div>
+</section>
+
+<!-- La marque : présentation courte (la page complète reste « À propos ») -->
+<section id="la-marque" class="lm" aria-labelledby="lm-titre">
+<div class="lm-wrap">
+<div class="lm-pic"><img src="assets/hero-6.jpg" alt="Un groupe d’amis autour d’un feu au bord d’un lac gelé, à la tombée de la nuit" loading="lazy"></div>
+<div class="lm-txt">
+<h2 id="lm-titre">La marque</h2>
+<p class="lm-lead">Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver.</p>
+<p>Une batterie que l’on glisse dans une poche, un bouton, et une chaleur qui se règle selon le moment : pour que le froid ne décide plus de la durée de vos journées.</p>
+<ul class="lm-points">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c2 3 5 5.5 5 9.5A5 5 0 0 1 7 12.5C7 9.8 8.6 8 10 6.5c.3 2 1.2 3 2.2 3.5C12.6 7.6 12 5 12 3z"/></svg><span>Une chaleur réglable, discrète et fiable</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></svg><span>Une équipe qui vous répond elle-même</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg><span>Retours sous 30 jours</span></li>
+</ul>
+<a class="lm-btn" href="a-propos.html">Découvrir notre histoire<span aria-hidden="true">→</span></a>
+</div>
+</div>
 </section>
 
 <!-- FAQ -->
@@ -713,7 +829,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="#collection">Gilets chauffants</a></li><li><a href="#collection">Doudounes chauffantes</a></li><li><a href="#collection">Vestes parka chauffantes</a></li><li><a href="#collection">Gants chauffants</a></li><li><a href="#collection">Chaussettes chauffantes</a></li><li><a href="#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#tailles">Guide des tailles</a></li><li><a href="#batterie">Batterie &amp; autonomie</a></li><li><a href="#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="#top">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="#collection">Gilets chauffants</a></li><li><a href="#collection">Doudounes chauffantes</a></li><li><a href="#collection">Vestes parka chauffantes</a></li><li><a href="#collection">Gants chauffants</a></li><li><a href="#collection">Chaussettes chauffantes</a></li><li><a href="#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#tailles">Guide des tailles</a></li><li><a href="#batterie">Batterie &amp; autonomie</a></li><li><a href="#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-hidden="true"></div>
@@ -920,6 +1036,13 @@ var SIZE_GUIDE = {
     clearTimeout(settle); settle=setTimeout(choose,140);
   },{passive:true});
   function go(i,smooth){i=Math.max(0,Math.min(opts.length-1,i));list.scrollTo({top:i*ITEM,behavior:smooth?'smooth':'auto'})}
+  // petites flèches haut / bas pour parcourir les articles
+  var arrows=document.querySelectorAll('.wheel-arrow');
+  var tgt=null,tgtT=0;
+  arrows.forEach(function(b){b.addEventListener('click',function(){touched=true;hinting=false;tgt=Math.max(0,Math.min(opts.length-1,(tgt==null?idx:tgt)+parseInt(b.dataset.dir,10)));go(tgt,true);clearTimeout(tgtT);tgtT=setTimeout(function(){tgt=null},700)})});
+  function arrowState(){arrows.forEach(function(b){var d=parseInt(b.dataset.dir,10);b.disabled=(d<0&&idx<=0)||(d>0&&idx>=opts.length-1)})}
+  list.addEventListener('scroll',function(){requestAnimationFrame(arrowState)},{passive:true});
+  setTimeout(arrowState,50);
   opts.forEach(function(li,i){li.addEventListener('click',function(){go(i,true)})});
   list.addEventListener('keydown',function(e){
     if(e.key==='ArrowDown'){e.preventDefault();go(idx+1,true)}

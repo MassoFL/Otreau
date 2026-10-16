@@ -390,15 +390,39 @@ body{background:#F8F6F1}
 .pd-add.cta-heat:hover,.pd-add.cta-heat:focus-visible{border-color:#14482F !important;box-shadow:0 8px 30px -10px rgba(20,72,47,.6) !important;text-shadow:none}
 /* Services sous « Ajouter au panier » */
 .pd-trust{margin:4px 0 28px}
-.pd-trust-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pd-trust-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .pd-trust-tab{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 6px;border:0;border-radius:16px;background:transparent;cursor:pointer;font-family:Manrope,sans-serif;font-weight:600;font-size:12.5px;line-height:1.25;color:#55616B;transition:background .2s,color .2s}
 .pd-trust-tab svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .pd-trust-tab:hover{color:#14212B;background:rgba(20,33,43,.05)}
-.pd-trust-tab[aria-selected="true"]{color:#3E9BEA;background:#FFFFFF;box-shadow:0 0 0 1px #E4DFD5}
-.pd-trust-tab[aria-selected="true"] svg{stroke:#3E9BEA}
+.pd-trust-tab[aria-selected="true"]{color:#1F6342;background:#FFFFFF;box-shadow:0 0 0 1px #E4DFD5}
+.pd-trust-tab[aria-selected="true"] svg{stroke:#1F6342}
 .pd-trust-panel{margin-top:10px;padding:16px 20px;background:#FFFFFF;border:1px solid #E4DFD5;border-radius:16px;text-align:center;font-size:14.5px;line-height:1.6;color:#3D4A54;animation:pdTrustIn .25s ease}
 .pd-trust-panel p{margin:0 0 6px}.pd-trust-panel p:last-child{margin:0}
 .pd-trust-panel a{color:#14212B;text-underline-offset:3px}
+/* Lumière verte qui fait le tour du bouton « Ajouter au panier » (version subtile du hero) */
+@property --glow-a{syntax:'<angle>';inherits:false;initial-value:0deg}
+/* le bouton ne coupe plus ce qui dépasse : la lumière se pose exactement sur le contour */
+.pd-add.cta-glow-green{overflow:visible}
+.pd-add.cta-glow-green::before{transform:none !important;clip-path:inset(0 100% 0 0 round 999px);transition:clip-path .5s cubic-bezier(.65,0,.35,1)}
+.pd-add.cta-glow-green:hover::before,.pd-add.cta-glow-green:focus-visible::before{clip-path:inset(0 0 0 0 round 999px)}
+.pd-add.cta-glow-green::after{content:"";position:absolute;inset:-2.5px;padding:2.5px;z-index:1;pointer-events:none;border-radius:999px;opacity:1;filter:drop-shadow(0 0 4px rgba(120,215,180,.8)) drop-shadow(0 0 10px rgba(79,168,240,.45));
+  background:conic-gradient(from var(--glow-a),transparent 0 55%,#3A9A68 65%,#6BD69E 75%,#E4FFF0 84%,#DDF1FF 89%,#5DB4FF 95%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:glow-spin 4.5s linear infinite}
+@keyframes glow-spin{to{--glow-a:360deg}}
+.pd-add.cta-glow-green:hover::after,.pd-add.cta-glow-green:focus-visible::after{opacity:0;transition:opacity .3s}
+@media (prefers-reduced-motion: reduce){.pd-add.cta-glow-green::after{animation:none}}
+/* Icônes sous « Ajouter au panier » : effet 3D sur l’icône sélectionnée uniquement */
+.pd-trust-tabs{gap:8px}
+.pd-trust-tab{border:1px solid transparent;transition:transform .2s ease,box-shadow .2s ease,background .2s,color .2s}
+.pd-trust-tab[aria-selected="true"]{background:linear-gradient(160deg,#FFFFFF 0%,#EFEDE8 100%);border-color:#E4DFD5;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),inset 0 -2px 0 rgba(20,33,43,.06),0 2px 4px rgba(20,33,43,.08),0 12px 22px -8px rgba(20,33,43,.24);transform:translateY(-2px)}
+/* Contenu du pack : même style que les icônes sous « Ajouter au panier » */
+/* effet gravé : le conteneur est creusé dans la page */
+.pd-pack-items div{gap:8px;padding:16px 8px;background:linear-gradient(160deg,#E9E6DF 0%,#F4F2EE 100%);border:1px solid rgba(20,33,43,.06);border-radius:16px;font-family:Manrope,sans-serif;font-weight:600;font-size:12.5px;line-height:1.25;color:#14212B;box-shadow:inset 0 2px 5px rgba(20,33,43,.16),inset 0 1px 1px rgba(20,33,43,.10),inset 0 -1px 0 rgba(255,255,255,.85),0 1px 0 rgba(255,255,255,.9);text-shadow:0 1px 0 rgba(255,255,255,.85)}
+.pd-pack-items div > svg{filter:drop-shadow(0 1px 0 rgba(255,255,255,.85))}
+.pd-pack-items div > svg{width:24px;height:24px}
+
 @keyframes pdTrustIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 /* Batterie + lavage côte à côte, séparés par un trait */
 .pd-faq-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;margin-bottom:26px}
@@ -432,6 +456,52 @@ body{background:#F8F6F1}
 .f-bottom .f-legal{order:-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px !important;width:100%}
 .f-bottom .f-copy{text-align:center !important}
 @media (max-width:760px){.f-bottom .f-legal{justify-content:center}}
+/* Taille : titre et tailles sur une seule ligne */
+.pd-size-field{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:0 4px}
+.pd-size-field .pd-label{margin:0;flex:0 0 auto}
+/* fenêtre = taille choisie + 2 tailles de chaque côté (cercle 46px, écart 10px) */
+.pd-size-field .pd-opts{flex:0 0 280px;width:280px;min-width:0;box-sizing:border-box}
+.pd-info .pd-size-field .pd-size-row{gap:10px !important;padding:10px calc(140px - 23px) !important;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%) !important;mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%) !important}
+@media (max-width:560px){.pd-size-field .pd-opts{flex-basis:236px;width:236px}.pd-info .pd-size-field .pd-size-row{gap:8px !important;padding:10px calc(118px - 20px) !important}.pd-size-field .pd-opts > .pd-opt{width:40px !important;height:40px !important;min-width:40px !important;min-height:40px !important;font-size:12px !important}}
+@media (max-width:380px){.pd-size-field .pd-opts{flex-basis:210px;width:210px}.pd-info .pd-size-field .pd-size-row{gap:6px !important;padding:10px calc(105px - 18px) !important}.pd-size-field .pd-opts > .pd-opt{width:36px !important;height:36px !important;min-width:36px !important;min-height:36px !important;font-size:11.5px !important}}
+.pd-size-field .pd-size-link{flex:0 0 100%;text-align:center;margin-top:6px}
+/* « Couleur : » et « Taille : » en gris foncé (la valeur de couleur reste noire) */
+.pd-color-field .pd-label,.pd-size-field .pd-label{color:#8A949B}
+.pd-color-field #pd-color{color:#14212B}
+/* Détails produit : deux petites flèches aux extrémités de la barre (bas = fermé, haut = ouvert) */
+.pd-details .pd-acc summary .faq-icon{display:none}
+.pd-details .pd-acc summary{justify-content:space-between !important;padding-left:14px;padding-right:14px}
+.pd-details .pd-acc summary::before,.pd-details .pd-acc summary::after{content:"";flex:none;width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-3px) rotate(45deg);opacity:.55;transition:transform .3s ease,opacity .2s}
+.pd-details .pd-acc[open] summary::before,.pd-details .pd-acc[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.pd-details .pd-acc summary:hover::before,.pd-details .pd-acc summary:hover::after{opacity:1}
+/* Tailles dans des cercles */
+.pd-size-field .pd-opts > .pd-opt{width:46px;height:46px;min-width:46px;min-height:46px;padding:0;border-radius:50% !important;display:inline-flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:-.01em}
+/* Taille choisie : léger dégradé vert */
+.pd-info .pd-size-row > [aria-pressed="true"]{background:linear-gradient(135deg,#14212B 0%,#173A2C 55%,#1F5A3E 100%) !important;border-color:#173A2C !important;color:#FFFFFF !important}
+/* Choix batterie sélectionné : même dégradé vert */
+.pd-batt-field .pd-opt[aria-pressed="true"]{background:linear-gradient(135deg,#14212B 0%,#173A2C 55%,#1F5A3E 100%) !important;border-color:#173A2C !important;color:#FFFFFF !important}
+/* « Sans batterie » sélectionné : dégradé jaune discret */
+.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="Sans"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="sans"],.pd-batt-field .pd-opt[aria-pressed="true"]:nth-child(2):not([data-value]){background:linear-gradient(135deg,#1A2228 0%,#5A4A1E 50%,#9A7B2E 100%) !important;border-color:#5A4A1E !important;color:#FFFFFF !important}
+/* Couleur sur une seule ligne : libellé + pastilles */
+.pd-color-field{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px 14px}
+.pd-color-field .pd-label{display:contents}
+.pd-color-field .pd-opts{order:2}
+.pd-color-field #pd-color{order:3;margin:0 !important;min-width:70px;text-align:left}
+.pd-color-field .pd-opts{padding:5px !important;gap:12px !important}
+</style>
+<style id="footer-dark">
+/* Pied de page : fond marbre noir, textes clairs pour la lisibilité */
+.site-footer{background:#050505 url(assets/footer-bg.jpg) center / cover no-repeat !important;border-top:0 !important;color:#E9ECEE !important;margin-top:0 !important}
+.site-footer .f-logo,.site-footer .f-col h3,.site-footer .f-copy{color:#FFFFFF !important}
+.site-footer .f-brand p,.site-footer .f-contact{color:#A9B4BB !important}
+.site-footer .f-contact a,.site-footer .f-col a,.site-footer .f-legal a,.site-footer .f-social a{color:#D5DADD !important}
+.site-footer .f-contact a:hover,.site-footer .f-col a:hover,.site-footer .f-legal a:hover,.site-footer .f-social a:hover{color:#FFFFFF !important}
+.site-footer .f-bottom{border-top-color:rgba(255,255,255,.14) !important}
+.site-footer .f-select select{background:rgba(255,255,255,.06) !important;border-color:rgba(255,255,255,.28) !important;color:#FFFFFF !important;border-radius:999px !important}
+.site-footer .f-select select option{color:#14212B}
+.site-footer .f-select::after{border-color:#FFFFFF !important}
+.site-footer .f-contact a,.site-footer .f-col a,.site-footer .f-legal a{text-decoration:underline !important;text-decoration-color:rgba(255,255,255,.28) !important;text-decoration-thickness:1px !important;text-underline-offset:4px;transition:color .2s,text-decoration-color .2s}
+.site-footer .f-contact a:hover,.site-footer .f-col a:hover,.site-footer .f-legal a:hover{text-decoration-color:rgba(255,255,255,.85) !important}
 </style>
 </head>
 <body>
@@ -482,6 +552,7 @@ body{background:#F8F6F1}
 <a href="index.html#tailles">Tailles &amp; mesures</a>
 <a href="suivi-commande.html">Suivre ma commande</a>
 <a href="a-propos.html">À propos</a>
+<a href="blog.html">Blog</a>
 <a href="contact.html">Contact</a>
 <a href="index.html#faq">FAQ</a>
 </nav>
@@ -510,13 +581,13 @@ body{background:#F8F6F1}
 <div class="pd-opts" role="group" aria-label="Batterie"><button type="button" class="pd-opt" data-group="batterie" aria-pressed="true">Avec batterie</button><button type="button" class="pd-opt" data-group="batterie" aria-pressed="false">Sans batterie</button></div>
 </div>
 
-<div class="pd-field">
+<div class="pd-field pd-color-field">
 <div class="pd-label">Couleur : <span id="pd-color">Gris clair</span></div>
 <div class="pd-opts" role="group" aria-label="Couleur"><button type="button" class="pd-swatch" data-group="couleur" data-name="Gris clair" aria-label="Gris clair" aria-pressed="true" style="background:#C9CDD1"></button><button type="button" class="pd-swatch" data-group="couleur" data-name="Noir" aria-label="Noir" aria-pressed="false" style="background:#14161A"></button></div>
 </div>
 
-<div class="pd-field">
-<div class="pd-label">Taille</div>
+<div class="pd-field pd-size-field">
+<div class="pd-label">Taille :</div>
 <div class="pd-opts" role="group" aria-label="Taille"><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XS</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">S</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="true">M</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">L</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">2XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">3XL</button></div>
 <a href="#guide-tailles" class="pd-link pd-size-link">Guide des tailles</a>
 </div>
@@ -535,7 +606,7 @@ body{background:#F8F6F1}
 
 <div class="pd-buy">
 <div class="pd-qty"><button type="button" aria-label="Retirer un" data-q="-1">−</button><input type="number" min="1" value="1" aria-label="Quantité" id="pd-qty"><button type="button" aria-label="Ajouter un" data-q="1">+</button></div>
-<button type="button" class="pd-add cta-heat"><span>Ajouter au panier</span></button>
+<button type="button" class="pd-add cta-heat cta-glow-green"><span>Ajouter au panier</span></button>
 </div>
 
 <div class="pd-trust">
@@ -543,11 +614,13 @@ body{background:#F8F6F1}
 <button type="button" class="pd-trust-tab" role="tab" aria-selected="false" aria-controls="pd-trust-panel" data-panel="service"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19c0 1.5-2 2.5-5 2.5"/></svg><span>Service client</span></button>
 <button type="button" class="pd-trust-tab" role="tab" aria-selected="true" aria-controls="pd-trust-panel" data-panel="livraison"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h12v9H3zM15 10h3.5l2.5 3v3h-6"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg><span>Livraison</span></button>
 <button type="button" class="pd-trust-tab" role="tab" aria-selected="false" aria-controls="pd-trust-panel" data-panel="retour"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg><span>Retour</span></button>
+<button type="button" class="pd-trust-tab" role="tab" aria-selected="false" aria-controls="pd-trust-panel" data-panel="paiement"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/><path d="M12 15v2"/></svg><span>Paiement sécurisé</span></button>
 </div>
 <div class="pd-trust-panel" id="pd-trust-panel" role="tabpanel">
 <div data-content="service" hidden><p><strong>Une question ? Notre service client vous répond du lundi au vendredi, de 10h00 à 18h00.</strong></p><p>Écrivez-nous depuis la <a href="contact.html">page Contact</a> ou appelez le <a href="tel:+33753862668">+33 7 53 86 26 68</a> : nous nous efforçons de répondre sous 24 heures.</p></div>
 <div data-content="livraison"><p><strong>Livraison en France en 7 à 10 jours ouvrés</strong> (du lundi au vendredi) : 1 à 2 jours de traitement, puis 6 à 8 jours d’acheminement. <strong>Frais de livraison : 3,20 € TTC.</strong></p><p>Vous recevez un e-mail de suivi dès l’expédition et pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. <a href="livraison.html">Voir la politique d’expédition</a></p></div>
 <div data-content="retour" hidden><p><strong>Vous disposez de 30 jours</strong> après réception pour retourner ou échanger votre article.</p><p>Contactez-nous pour lancer votre retour ; les frais d’expédition du retour sont à la charge du client. <a href="politique-de-retour.html">Voir la politique de retour</a></p></div>
+<div data-content="paiement" hidden><p><strong>Paiement 100&nbsp;% sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
 </div>
 </div>
 
@@ -648,7 +721,7 @@ body{background:#F8F6F1}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-hidden="true"></div>
@@ -775,5 +848,27 @@ var PRODUCT_SIZES = {
 })();
 </script>
 <script src="assets/shopify.js"></script>
+<script>
+/* Taille : la taille choisie tombe pile sous le milieu des pastilles de couleur */
+(function(){
+  var field=document.querySelector('.pd-size-field'); if(!field) return;
+  var label=field.querySelector('.pd-label'), row=field.querySelector('.pd-opts');
+  function align(){
+    var colors=document.querySelector('.pd-color-field .pd-opts');
+    var parts=[label,row];
+    parts.forEach(function(el){el.style.position='relative';el.style.left='0px'});
+    if(!colors||!colors.offsetWidth) return;
+    var c=colors.getBoundingClientRect(), r=row.getBoundingClientRect(), f=field.getBoundingClientRect(), l=label.getBoundingClientRect();
+    var d=(c.left+c.width/2)-(r.left+r.width/2);
+    d=Math.max(f.left-l.left, Math.min(f.right-r.right, d)); /* reste dans la colonne */
+    parts.forEach(function(el){el.style.left=Math.round(d)+'px'});
+  }
+  var t=0; function soon(){cancelAnimationFrame(t);t=requestAnimationFrame(align)}
+  if(window.ResizeObserver){var ro=new ResizeObserver(soon);ro.observe(document.querySelector('.pd-info')||field);
+    var cf=document.querySelector('.pd-color-field'); if(cf){ro.observe(cf);[].forEach.call(cf.children,function(x){ro.observe(x)})}}
+  var mo=new MutationObserver(soon); var cfield=document.querySelector('.pd-color-field'); if(cfield) mo.observe(cfield,{childList:true,subtree:true,characterData:true});
+  window.addEventListener('resize',soon); window.addEventListener('load',soon); soon(); setTimeout(soon,800); setTimeout(soon,2000);
+})();
+</script>
 </body>
 </html>
