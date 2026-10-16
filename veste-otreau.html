@@ -361,6 +361,20 @@ body{background:#F8F6F1}
 .pd-details .lvls{max-width:520px;margin-left:auto;margin-right:auto}
 .pd-details .lvl p{text-align:left}
 @media (max-width:760px){.pd-details{margin-top:44px !important}}
+/* Menu : « Toutes les collections » dépliable */
+.menu-group{border-bottom:1px solid rgba(255,255,255,.12)}
+.menu-group > summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:#FFFFFF;font-family:Manrope,sans-serif;font-weight:300;font-size:26px;text-transform:uppercase;letter-spacing:.01em;padding:18px 0}
+.menu-group > summary::-webkit-details-marker{display:none}
+.menu-group > summary:hover{color:#F5A623}
+.menu-group > summary .mg-ico{position:relative;width:14px;height:14px;flex:none}
+.menu-group > summary .mg-ico::before,.menu-group > summary .mg-ico::after{content:"";position:absolute;left:0;top:50%;width:14px;height:1.5px;margin-top:-.75px;background:currentColor;transition:transform .25s}
+.menu-group > summary .mg-ico::after{transform:rotate(90deg)}
+.menu-group[open] > summary .mg-ico::after{transform:rotate(0)}
+.menu-sub{display:flex;flex-direction:column;padding:0 0 12px 14px}
+.mobile-links .menu-sub a{font-size:17px;font-weight:400;text-transform:none;letter-spacing:0;padding:10px 0;border-bottom:0;color:rgba(255,255,255,.82)}
+.mobile-links .menu-sub a:hover{color:#F5A623}
+.mobile-links .menu-sub a.mg-all{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px;margin-top:4px}
+@media (min-width:861px){.menu-group > summary{font-size:18px;padding:16px 0}.mobile-links .menu-sub a{font-size:15px;padding:8px 0}}
 </style>
 </head>
 <body>
@@ -396,11 +410,23 @@ body{background:#F8F6F1}
 <button type="button" class="menu-close" aria-label="Fermer le menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
 </div>
 <nav aria-label="Navigation mobile" class="mobile-links">
-<a href="index.html#collection">Gilets</a>
-<a href="index.html#collection">Vestes</a>
+<details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
+<div class="menu-sub">
+<a href="veste-otreau.html">Veste</a>
+<a href="index.html#collection">Doudoune</a>
+<a href="index.html#collection">Gilet</a>
+<a href="index.html#collection">Gilet fin</a>
+<a href="index.html#collection">Gilet polaire</a>
+<a href="index.html#collection">Gants</a>
+<a href="index.html#toutes-collections" class="mg-all">Voir toute la collection</a>
+</div>
+</details>
 <a href="index.html#batterie">Batterie &amp; autonomie</a>
 <a href="index.html#tailles">Tailles &amp; mesures</a>
 <a href="index.html#faq">FAQ</a>
+<a href="suivi-commande.html">Suivre ma commande</a>
+<a href="a-propos.html">À propos</a>
+<a href="contact.html">Contact</a>
 </nav>
 </div>
 <main class="pd">
@@ -543,7 +569,7 @@ body{background:#F8F6F1}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="index.html#faq">Livraison</a></li><li><a href="index.html#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="index.html#faq">Nous contacter</a></li><li><a href="index.html#faq">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="index.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="index.html#faq">Livraison</a></li><li><a href="index.html#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="index.html#faq">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>

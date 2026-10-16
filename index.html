@@ -339,6 +339,20 @@ a{color:#14212B}a:hover{color:#B5650F}
 .pc-sizes::-webkit-scrollbar{display:none}
 .pc-sizes li{flex:0 0 auto;scroll-snap-align:start}
 .pc-sizes li:first-child{margin-left:auto}.pc-sizes li:last-child{margin-right:auto}
+/* Menu : « Toutes les collections » dépliable */
+.menu-group{border-bottom:1px solid rgba(255,255,255,.12)}
+.menu-group > summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;color:#FFFFFF;font-family:Manrope,sans-serif;font-weight:300;font-size:26px;text-transform:uppercase;letter-spacing:.01em;padding:18px 0}
+.menu-group > summary::-webkit-details-marker{display:none}
+.menu-group > summary:hover{color:#F5A623}
+.menu-group > summary .mg-ico{position:relative;width:14px;height:14px;flex:none}
+.menu-group > summary .mg-ico::before,.menu-group > summary .mg-ico::after{content:"";position:absolute;left:0;top:50%;width:14px;height:1.5px;margin-top:-.75px;background:currentColor;transition:transform .25s}
+.menu-group > summary .mg-ico::after{transform:rotate(90deg)}
+.menu-group[open] > summary .mg-ico::after{transform:rotate(0)}
+.menu-sub{display:flex;flex-direction:column;padding:0 0 12px 14px}
+.mobile-links .menu-sub a{font-size:17px;font-weight:400;text-transform:none;letter-spacing:0;padding:10px 0;border-bottom:0;color:rgba(255,255,255,.82)}
+.mobile-links .menu-sub a:hover{color:#F5A623}
+.mobile-links .menu-sub a.mg-all{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px;margin-top:4px}
+@media (min-width:861px){.menu-group > summary{font-size:18px;padding:16px 0}.mobile-links .menu-sub a{font-size:15px;padding:8px 0}}
 </style>
 </head>
 <body>
@@ -379,11 +393,23 @@ a{color:#14212B}a:hover{color:#B5650F}
 <button type="button" class="menu-close" aria-label="Fermer le menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
 </div>
 <nav aria-label="Navigation mobile" class="mobile-links">
-<a href="#collection">Gilets</a>
-<a href="#collection">Vestes</a>
+<details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
+<div class="menu-sub">
+<a href="veste-otreau.html">Veste</a>
+<a href="#collection">Doudoune</a>
+<a href="#collection">Gilet</a>
+<a href="#collection">Gilet fin</a>
+<a href="#collection">Gilet polaire</a>
+<a href="#collection">Gants</a>
+<a href="#toutes-collections" class="mg-all">Voir toute la collection</a>
+</div>
+</details>
 <a href="#batterie">Batterie &amp; autonomie</a>
 <a href="#tailles">Tailles &amp; mesures</a>
 <a href="#faq">FAQ</a>
+<a href="suivi-commande.html">Suivre ma commande</a>
+<a href="a-propos.html">À propos</a>
+<a href="contact.html">Contact</a>
 </nav>
 </div>
 
@@ -676,7 +702,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="#collection">Gilets chauffants</a></li><li><a href="#collection">Doudounes chauffantes</a></li><li><a href="#collection">Vestes parka chauffantes</a></li><li><a href="#collection">Gants chauffants</a></li><li><a href="#collection">Chaussettes chauffantes</a></li><li><a href="#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="#faq">Livraison</a></li><li><a href="#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="#faq">Nous contacter</a></li><li><a href="#faq">Droit de rétractation</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#tailles">Guide des tailles</a></li><li><a href="#batterie">Batterie &amp; autonomie</a></li><li><a href="#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="#top">Notre marque</a></li><li><a href="#top">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="#collection">Gilets chauffants</a></li><li><a href="#collection">Doudounes chauffantes</a></li><li><a href="#collection">Vestes parka chauffantes</a></li><li><a href="#collection">Gants chauffants</a></li><li><a href="#collection">Chaussettes chauffantes</a></li><li><a href="#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="#faq">Livraison</a></li><li><a href="#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="#faq">Droit de rétractation</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#tailles">Guide des tailles</a></li><li><a href="#batterie">Batterie &amp; autonomie</a></li><li><a href="#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="#top">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>
@@ -948,6 +974,15 @@ var SIZE_GUIDE = {
     if(open){var first=grid.querySelector('.product-extra video'); }
     else grid.scrollIntoView({behavior:'smooth',block:'start'});
   });
+  // « Toutes les collections » (menu) : déplie toute la collection et y descend
+  function openAll(){
+    if(!grid.classList.contains('show-all')) btn.click();
+    var sec=document.getElementById('collection');
+    setTimeout(function(){var hh=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hh'))||64;window.scrollTo({top:sec.getBoundingClientRect().top+window.pageYOffset-hh-24,behavior:'smooth'})},60);
+  }
+  if(location.hash==='#toutes-collections') openAll();
+  window.addEventListener('hashchange',function(){ if(location.hash==='#toutes-collections') openAll(); });
+  document.querySelectorAll('a[href="#toutes-collections"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openAll();if(history.replaceState)history.replaceState(null,'','#toutes-collections')})});
 })();
 </script>
 <script src="assets/shopify.js"></script>
