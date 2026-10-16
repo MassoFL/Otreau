@@ -408,12 +408,13 @@ body{background:#F8F6F1}
 .menu-sub{display:flex;flex-direction:column;padding:0 0 12px 14px}
 .mobile-links .menu-sub a{font-size:17px;font-weight:400;text-transform:none;letter-spacing:0;padding:10px 0;border-bottom:0;color:rgba(255,255,255,.82)}
 .mobile-links .menu-sub a:hover{color:#F5A623}
-.mobile-links .menu-sub a.mg-all{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px;margin-top:4px}
+.mobile-links .menu-sub a.mg-all{display:flex;justify-content:space-between;align-items:center;color:#FFFFFF;text-decoration:none;margin-top:4px}
+.mobile-links .menu-sub a.mg-all:hover{color:#F5A623}
 @media (min-width:861px){.menu-group > summary{font-size:18px;padding:16px 0}.mobile-links .menu-sub a{font-size:15px;padding:8px 0}}
 /* Vidéo en fond de la page Contact */
 .ct-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#0B1218}
 .ct-bg video{width:100%;height:100%;object-fit:cover;display:block}
-.ct-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,20,.55),rgba(8,14,20,.35) 40%,rgba(8,14,20,.55))}
+.ct-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,20,.68),rgba(8,14,20,.5) 40%,rgba(8,14,20,.68))}
 body{background:transparent !important}
 html{background:#0B1218}
 .ct .pd-crumb,.ct .pd-crumb a{color:rgba(255,255,255,.75) !important}
@@ -422,15 +423,39 @@ html{background:#0B1218}
 .ct-card,.ct-form{box-shadow:0 20px 50px -25px rgba(0,0,0,.6)}
 .ct-help{background:rgba(255,255,255,.92);border-color:rgba(255,255,255,.4)}
 .site-footer{position:relative;margin-top:0 !important}
+/* Contact : éléments en verre dépoli sur la vidéo */
+.ct-card,.ct-form,.ct-help{background:rgba(255,255,255,.10) !important;-webkit-backdrop-filter:blur(18px) saturate(120%);backdrop-filter:blur(18px) saturate(120%);border:1px solid rgba(255,255,255,.18) !important;border-radius:20px;box-shadow:0 20px 50px -25px rgba(0,0,0,.6);color:#FFFFFF}
+.ct-help{border-style:solid !important}
+.ct-card h2,.ct-help h2{color:#FFFFFF}
+.ct-card p,.ct-note{color:rgba(255,255,255,.75) !important}
+.ct-card a,.ct-help a{color:#FFFFFF !important}
+.ct-card svg{stroke:#FFFFFF !important}
+.ct-field label{color:#FFFFFF !important}
+.ct-field label small{color:rgba(255,255,255,.6) !important}
+.ct-field input,.ct-field select,.ct-field textarea{background-color:rgba(255,255,255,.08) !important;border-color:rgba(255,255,255,.25) !important;color:#FFFFFF !important}
+.ct-field input:focus,.ct-field select:focus,.ct-field textarea:focus{background-color:rgba(255,255,255,.14) !important;border-color:#FFFFFF !important}
+.ct-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23FFFFFF' stroke-width='1.6'/%3E%3C/svg%3E") !important}
+.ct-field select option{color:#14212B}
+.ct-submit{background:#FFFFFF !important;color:#14212B !important}
+.ct-submit:hover{background:#E9EEF1 !important}
+.ct-msg{color:#FFFFFF !important}.ct-msg.is-err{color:#FFB4A6 !important}
+.f-contact{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:15px;color:#3D4A54}
+.f-contact a{color:#14212B;text-decoration:none}
+.f-contact a:hover{text-decoration:underline}
+.f-legal{flex-wrap:wrap;gap:8px 18px !important}
+.ct-list{list-style:none;margin:6px 0 8px;padding:0;display:flex;flex-direction:column;gap:6px;font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.8)}
+.ct-list strong{color:#FFFFFF;font-weight:600}
+.ct-list em{display:block;font-size:12.5px;opacity:.8}
+.ct-list a{color:#FFFFFF}
 </style>
 </head>
 <body>
-<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: #F8F6F1; font-size: 17px; line-height: 1.6">
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: transparent; font-size: 17px; line-height: 1.6">
 <div id="bandeau" style="position: absolute; top: 0; left: 0; right: 0; z-index: 21; background: rgba(0,0,0,0.5); color: #FFFFFF; font-size: 14px; text-align: center; padding: 14px 24px">
 <div class="bandeau-track" aria-live="polite">
 <!-- Messages du bandeau : ajoute ou retire une ligne <span class="bandeau-msg">…</span> -->
 <span class="bandeau-msg is-active">Livraison suivie en France</span>
-<span class="bandeau-msg">Retours simples</span>
+<span class="bandeau-msg">Retours sous 30 jours</span>
 </div>
 </div>
 <header class="site-header" style="padding: 0 clamp(16px, 4vw, 64px)">
@@ -459,21 +484,21 @@ html{background:#0B1218}
 <nav aria-label="Navigation mobile" class="mobile-links">
 <details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
 <div class="menu-sub">
-<a href="veste-otreau.html">Veste</a>
-<a href="index.html#collection">Doudoune</a>
-<a href="index.html#collection">Gilet</a>
-<a href="index.html#collection">Gilet fin</a>
-<a href="index.html#collection">Gilet polaire</a>
-<a href="index.html#collection">Gants</a>
-<a href="index.html#toutes-collections" class="mg-all">Voir toute la collection</a>
+<a href="veste-otreau.html" data-shop-handle="veste-otreau">Veste</a>
+<a href="index.html#collection" data-shop-handle="doudoune-otreau">Doudoune</a>
+<a href="index.html#collection" data-shop-handle="gilet-otreau">Gilet</a>
+<a href="index.html#collection" data-shop-handle="gilet-fin-otreau">Gilet fin</a>
+<a href="index.html#collection" data-shop-handle="gilet-polaire-otreau">Gilet polaire</a>
+<a href="index.html#collection" data-shop-handle="gants-otreau">Gants</a>
+<a href="index.html#toutes-collections" class="mg-all">Voir tous<span aria-hidden="true">→</span></a>
 </div>
 </details>
 <a href="index.html#batterie">Batterie &amp; autonomie</a>
 <a href="index.html#tailles">Tailles &amp; mesures</a>
-<a href="index.html#faq">FAQ</a>
 <a href="suivi-commande.html">Suivre ma commande</a>
 <a href="a-propos.html">À propos</a>
 <a href="contact.html">Contact</a>
+<a href="index.html#faq">FAQ</a>
 </nav>
 </div>
 <div class="ct-bg" aria-hidden="true"><video src="assets/contact-bg.mp4" poster="assets/contact-bg-poster.jpg" autoplay muted loop playsinline preload="auto"></video></div>
@@ -482,14 +507,26 @@ html{background:#0B1218}
 
 <header class="ct-head">
 <h1>Contact</h1>
-<p>Une question sur une taille, une commande, la batterie ou un retour ? Écrivez-nous, nous vous répondons sous [X] jours ouvrés.</p>
+<p>Une question sur une taille, une commande, la batterie ou un retour ? Écrivez-nous, nous nous efforçons de vous répondre sous 24 heures.</p>
 </header>
 
 <div class="ct-grid">
 <aside class="ct-info" aria-label="Nos coordonnées">
-<div class="ct-card"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></svg><div><h2>E-mail</h2><p><a href="#" id="ct-mail">[votre adresse e-mail]</a></p></div></div>
-<div class="ct-card"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><h2>Délai de réponse</h2><p>Sous [X] jours ouvrés, du [lundi au vendredi].</p></div></div>
-<div class="ct-card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h12v9H3zM15 10h3.5l2.5 3v3h-6"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg><div><h2>Une commande en cours ?</h2><p>Indiquez votre numéro de commande dans le formulaire, cela nous permet de vous répondre plus vite.</p></div></div>
+<div class="ct-card"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3.5 6l8.5 7 8.5-7"/></svg><div><h2>Informations de contact</h2>
+<ul class="ct-list">
+<li><strong>Nom de l’entreprise :</strong> Massoali OÜ</li>
+<li><strong>Nom du magasin :</strong> Otreau</li>
+<li><strong>Numéro d’immatriculation :</strong> 17573378 (registre du commerce estonien)</li>
+<li><strong>Adresse professionnelle :</strong> Ahtri tn 12, 15551 Tallinn, Estonie <em>(Veuillez noter : il ne s’agit pas d’une adresse de retour ou de visite)</em></li>
+<li><strong>Email :</strong> [votre adresse e-mail]</li>
+<li><strong>Téléphone :</strong> <a href="tel:+33753862668">+33 7 53 86 26 68</a></li>
+</ul></div></div>
+<div class="ct-card"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><h2>Horaires d’ouverture</h2>
+<ul class="ct-list">
+<li><strong>Lundi – Vendredi :</strong> 10h00 – 18h00 (GMT+1)</li>
+<li><strong>Samedi – Dimanche :</strong> Fermé</li>
+</ul>
+<p>Nous nous efforçons de répondre à votre e-mail dans un délai de 24 heures.</p></div></div>
 <div class="ct-help">
 <h2>Avant d’écrire</h2>
 <ul>
@@ -530,6 +567,7 @@ html{background:#0B1218}
 <div class="f-brand">
 <a href="index.html" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
 <p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
+<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li>[votre adresse e-mail]</li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="index.html" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
 <a href="index.html" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
@@ -539,12 +577,12 @@ html{background:#0B1218}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="index.html#faq">Livraison</a></li><li><a href="index.html#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="index.html#faq">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>
 <p class="f-copy">© 2026 Otreau</p>
-<nav class="f-legal" aria-label="Informations légales"><a href="index.html">CGV</a><a href="index.html">Mentions légales</a><a href="index.html">Confidentialité</a></nav>
+<nav class="f-legal" aria-label="Informations légales"><a href="politique-de-retour.html">Politique de retour</a><a href="politique-de-confidentialite.html">Politique de confidentialité</a><a href="conditions-generales.html">Conditions générales</a><a href="livraison.html">Livraison</a><a href="mentions-legales.html">Mentions légales</a></nav>
 </div>
 </div>
 </footer>
@@ -591,11 +629,12 @@ html{background:#0B1218}
   var CONTACT_EMAIL = '[votre adresse e-mail]';
   var ok = /^[^\s@\[\]]+@[^\s@]+\.[^\s@]+$/.test(CONTACT_EMAIL);
   var link = document.getElementById('ct-mail');
-  link.textContent = CONTACT_EMAIL; if (ok) link.href = 'mailto:' + CONTACT_EMAIL; else link.removeAttribute('href');
+  if (link) { link.textContent = CONTACT_EMAIL; if (ok) link.href = 'mailto:' + CONTACT_EMAIL; else link.removeAttribute('href'); }
   var form = document.getElementById('ct-form'), msg = document.getElementById('ct-msg');
   // ?sujet=suivi (depuis « Suivre ma commande ») : sujet présélectionné
   var q = new URLSearchParams(location.search).get('sujet');
   if (q === 'suivi') { form.elements.subject.value = 'Suivi de commande'; }
+  if (q === 'retour') { form.elements.subject.value = 'Retour ou échange'; }
   function say(t, err){ msg.textContent = t; msg.hidden = !t; msg.classList.toggle('is-err', !!err); }
   form.addEventListener('submit', function(e){
     e.preventDefault();

@@ -267,9 +267,9 @@ body{background:#F8F6F1}
 .pd-crumb a{color:#55616B;text-decoration:none}.pd-crumb a:hover{color:#14212B}
 .pd-top{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,4vw,64px);align-items:start}
 .pd-gallery{position:sticky;top:90px;display:flex;flex-direction:column;gap:12px}
-.pd-main{position:relative;aspect-ratio:4/5;background:#EFEFEF;overflow:hidden}
+.pd-main{position:relative;aspect-ratio:1/1;background:#EFEFEF;overflow:hidden}
 /* la photo principale tient toujours dans l'écran (sous le menu, miniatures comprises) */
-.pd-main{width:min(100%, calc((100vh - 200px) * 0.8));width:min(100%, calc((100svh - 200px) * 0.8));min-width:min(100%, 260px);margin:0 auto}
+.pd-main{width:min(100%, calc((100vh - 200px) * 1));width:min(100%, calc((100svh - 200px) * 1));min-width:min(100%, 260px);margin:0 auto}
 .pd-gallery{align-items:center}
 .pd-thumbs{align-self:stretch;justify-content:center}
 .pd-main video{width:100%;height:100%;object-fit:cover;display:block}
@@ -334,7 +334,7 @@ body{background:#F8F6F1}
 .pd-step p{margin:0;color:#55616B;font-size:15px;line-height:1.6}
 .pd-cross-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .pd-x{display:flex;flex-direction:column;background:#FFFFFF;border:1px solid #E4DFD5;text-decoration:none;color:#14212B}
-.pd-x video{width:100%;aspect-ratio:4/5;object-fit:cover;background:#EFEFEF;display:block}
+.pd-x video{width:100%;aspect-ratio:1/1;object-fit:cover;background:#EFEFEF;display:block}
 .pd-x-info{padding:20px;text-align:center;display:flex;flex-direction:column;gap:6px;align-items:center}
 .pd-x-info h3{margin:0;font-family:Manrope,sans-serif;font-weight:300;font-size:22px;letter-spacing:-.01em}
 .pd-x-info p{margin:0;color:#55616B;font-size:14px}
@@ -373,8 +373,59 @@ body{background:#F8F6F1}
 .menu-sub{display:flex;flex-direction:column;padding:0 0 12px 14px}
 .mobile-links .menu-sub a{font-size:17px;font-weight:400;text-transform:none;letter-spacing:0;padding:10px 0;border-bottom:0;color:rgba(255,255,255,.82)}
 .mobile-links .menu-sub a:hover{color:#F5A623}
-.mobile-links .menu-sub a.mg-all{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px;margin-top:4px}
+.mobile-links .menu-sub a.mg-all{display:flex;justify-content:space-between;align-items:center;color:#FFFFFF;text-decoration:none;margin-top:4px}
+.mobile-links .menu-sub a.mg-all:hover{color:#F5A623}
 @media (min-width:861px){.menu-group > summary{font-size:18px;padding:16px 0}.mobile-links .menu-sub a{font-size:15px;padding:8px 0}}
+/* Options présentées comme réponses aux objections */
+.pd-faq-field{margin-bottom:26px}
+.pd-q{margin:0 0 4px;font-family:Manrope,sans-serif;font-weight:700;font-size:16px;color:#14212B}
+.pd-a{margin:0 0 12px;font-size:15px;line-height:1.55;color:#55616B}
+.pd-wash{display:flex;justify-content:center;align-items:baseline;flex-wrap:wrap;gap:4px 10px}
+.pd-wash .pd-q{margin:0}
+.pd-wash .pd-a{margin:0}
+.pd-pack-items{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+@media (max-width:560px){.pd-pack-items{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}
+/* Ajouter au panier : dégradé vert foncé au survol */
+.pd-add.cta-heat::before{background:linear-gradient(100deg,#0B2E22 0%,#14482F 45%,#1F6342 80%,#2B7A52 100%) !important}
+.pd-add.cta-heat:hover,.pd-add.cta-heat:focus-visible{border-color:#14482F !important;box-shadow:0 8px 30px -10px rgba(20,72,47,.6) !important;text-shadow:none}
+/* Services sous « Ajouter au panier » */
+.pd-trust{margin:4px 0 28px}
+.pd-trust-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.pd-trust-tab{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 6px;border:0;border-radius:16px;background:transparent;cursor:pointer;font-family:Manrope,sans-serif;font-weight:600;font-size:12.5px;line-height:1.25;color:#55616B;transition:background .2s,color .2s}
+.pd-trust-tab svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pd-trust-tab:hover{color:#14212B;background:rgba(20,33,43,.05)}
+.pd-trust-tab[aria-selected="true"]{color:#3E9BEA;background:#FFFFFF;box-shadow:0 0 0 1px #E4DFD5}
+.pd-trust-tab[aria-selected="true"] svg{stroke:#3E9BEA}
+.pd-trust-panel{margin-top:10px;padding:16px 20px;background:#FFFFFF;border:1px solid #E4DFD5;border-radius:16px;text-align:center;font-size:14.5px;line-height:1.6;color:#3D4A54;animation:pdTrustIn .25s ease}
+.pd-trust-panel p{margin:0 0 6px}.pd-trust-panel p:last-child{margin:0}
+.pd-trust-panel a{color:#14212B;text-underline-offset:3px}
+@keyframes pdTrustIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+/* Batterie + lavage côte à côte, séparés par un trait */
+.pd-faq-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;margin-bottom:26px}
+.pd-faq-row > .pd-faq-field{margin:0;padding:0 14px}
+.pd-faq-row > .pd-faq-field + .pd-faq-field{border-left:1px solid #D9D3C7}
+.pd-faq-row .pd-wash{display:block}
+.pd-faq-row .pd-wash .pd-q{margin:0 0 4px}
+.pd-faq-row .pd-opts{gap:6px !important}
+.pd-faq-row .pd-opt{padding:0 14px;min-width:0}
+@media (max-width:560px){.pd-faq-row > .pd-faq-field{padding:0 8px}.pd-faq-row .pd-q{font-size:14px;line-height:1.3}.pd-faq-row .pd-a{font-size:13px;line-height:1.4;margin-bottom:10px}.pd-faq-row .pd-opt{padding:0 9px;font-size:12px;min-height:34px;letter-spacing:-.01em}.pd-faq-row .pd-opts{gap:4px !important;flex-wrap:nowrap !important}.pd-faq-row > .pd-faq-field:first-child{padding-left:0}}
+.pd-batt-field{margin:-10px 0 24px}
+.pd-batt-field .pd-opts{justify-content:center}
+.pd-faq-row .pd-a{margin-bottom:0 !important}
+/* Questions : réponses sur une ligne */
+.pd-faq-row{grid-template-columns:max-content max-content !important;justify-content:center}
+.pd-faq-row .pd-q,.pd-faq-row .pd-a{white-space:nowrap}
+.pd-faq-row > .pd-faq-field{padding:0 18px !important}
+@media (max-width:560px),(min-width:901px) and (max-width:1220px){
+  .pd-faq-row{grid-template-columns:minmax(0,1fr) !important;row-gap:12px}
+  .pd-faq-row > .pd-faq-field{padding:0 !important}
+  .pd-faq-row > .pd-faq-field + .pd-faq-field{border-left:0;border-top:1px solid #D9D3C7;padding-top:12px !important}
+  .pd-faq-row .pd-q{font-size:15px}.pd-faq-row .pd-a{font-size:14px}
+}
+.f-contact{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:15px;color:#3D4A54}
+.f-contact a{color:#14212B;text-decoration:none}
+.f-contact a:hover{text-decoration:underline}
+.f-legal{flex-wrap:wrap;gap:8px 18px !important}
 </style>
 </head>
 <body>
@@ -383,7 +434,7 @@ body{background:#F8F6F1}
 <div class="bandeau-track" aria-live="polite">
 <!-- Messages du bandeau : ajoute ou retire une ligne <span class="bandeau-msg">…</span> -->
 <span class="bandeau-msg is-active">Livraison suivie en France</span>
-<span class="bandeau-msg">Retours simples</span>
+<span class="bandeau-msg">Retours sous 30 jours</span>
 </div>
 </div>
 <header class="site-header" style="padding: 0 clamp(16px, 4vw, 64px)">
@@ -412,25 +463,25 @@ body{background:#F8F6F1}
 <nav aria-label="Navigation mobile" class="mobile-links">
 <details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
 <div class="menu-sub">
-<a href="veste-otreau.html">Veste</a>
-<a href="index.html#collection">Doudoune</a>
-<a href="index.html#collection">Gilet</a>
-<a href="index.html#collection">Gilet fin</a>
-<a href="index.html#collection">Gilet polaire</a>
-<a href="index.html#collection">Gants</a>
-<a href="index.html#toutes-collections" class="mg-all">Voir toute la collection</a>
+<a href="veste-otreau.html" data-shop-handle="veste-otreau">Veste</a>
+<a href="index.html#collection" data-shop-handle="doudoune-otreau">Doudoune</a>
+<a href="index.html#collection" data-shop-handle="gilet-otreau">Gilet</a>
+<a href="index.html#collection" data-shop-handle="gilet-fin-otreau">Gilet fin</a>
+<a href="index.html#collection" data-shop-handle="gilet-polaire-otreau">Gilet polaire</a>
+<a href="index.html#collection" data-shop-handle="gants-otreau">Gants</a>
+<a href="index.html#toutes-collections" class="mg-all">Voir tous<span aria-hidden="true">→</span></a>
 </div>
 </details>
 <a href="index.html#batterie">Batterie &amp; autonomie</a>
 <a href="index.html#tailles">Tailles &amp; mesures</a>
-<a href="index.html#faq">FAQ</a>
 <a href="suivi-commande.html">Suivre ma commande</a>
 <a href="a-propos.html">À propos</a>
 <a href="contact.html">Contact</a>
+<a href="index.html#faq">FAQ</a>
 </nav>
 </div>
 <main class="pd">
-<nav class="pd-crumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">›</span><a href="index.html#collection">La collection’Otreau</a><span aria-hidden="true">›</span><span aria-current="page">Veste’Otreau</span></nav>
+<nav class="pd-crumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">›</span><a href="index.html#collection">La sélection’Otreau</a><span aria-hidden="true">›</span><span aria-current="page">Veste’Otreau</span></nav>
 
 <section class="pd-top">
 <div class="pd-gallery">
@@ -449,9 +500,13 @@ body{background:#F8F6F1}
 <div class="pd-info" data-shopify-handle="veste-otreau">
 <h1 class="pd-title"><span style="font-weight: 600">VESTE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h1>
 <p class="pd-price" id="pd-price">[XXX,XX] €</p>
+<div class="pd-field pd-batt-field">
+<div class="pd-opts" role="group" aria-label="Batterie"><button type="button" class="pd-opt" data-group="batterie" aria-pressed="true">Avec batterie</button><button type="button" class="pd-opt" data-group="batterie" aria-pressed="false">Sans batterie</button></div>
+</div>
 
 <div class="pd-field">
-<div class="pd-opts" role="group" aria-label="Batterie"><button type="button" class="pd-opt" data-group="batterie" aria-pressed="true">Incluse</button><button type="button" class="pd-opt" data-group="batterie" aria-pressed="false">Sans batterie</button></div>
+<div class="pd-label">Couleur : <span id="pd-color">Gris clair</span></div>
+<div class="pd-opts" role="group" aria-label="Couleur"><button type="button" class="pd-swatch" data-group="couleur" data-name="Gris clair" aria-label="Gris clair" aria-pressed="true" style="background:#C9CDD1"></button><button type="button" class="pd-swatch" data-group="couleur" data-name="Noir" aria-label="Noir" aria-pressed="false" style="background:#14161A"></button></div>
 </div>
 
 <div class="pd-field">
@@ -460,9 +515,16 @@ body{background:#F8F6F1}
 <a href="#guide-tailles" class="pd-link pd-size-link">Guide des tailles</a>
 </div>
 
-<div class="pd-field">
-<div class="pd-label">Couleur : <span id="pd-color">Gris clair</span></div>
-<div class="pd-opts" role="group" aria-label="Couleur"><button type="button" class="pd-swatch" data-group="couleur" data-name="Gris clair" aria-label="Gris clair" aria-pressed="true" style="background:#C9CDD1"></button><button type="button" class="pd-swatch" data-group="couleur" data-name="Noir" aria-label="Noir" aria-pressed="false" style="background:#14161A"></button></div>
+<div class="pd-faq-row">
+<div class="pd-field pd-faq-field">
+<p class="pd-q">La batterie est-elle incluse&nbsp;?</p>
+<p class="pd-a">Vous avez le choix de l’inclure ou&nbsp;pas</p>
+</div>
+
+<div class="pd-field pd-faq-field pd-wash">
+<p class="pd-q" id="pd-wash-q">Puis-je laver la veste&nbsp;?</p>
+<p class="pd-a">Oui, manuel fourni</p>
+</div>
 </div>
 
 <div class="pd-buy">
@@ -470,16 +532,26 @@ body{background:#F8F6F1}
 <button type="button" class="pd-add cta-heat"><span>Ajouter au panier</span></button>
 </div>
 
-<div class="pd-accs">
-<details class="pd-acc"><summary><span>Livraison</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p><strong>Livraison suivie en France</strong> sous [X] jours ouvrés. [Offerte à partir de X €.]</p><p>[Détaillez ici vos options : point relais, domicile, express, pays livrés.]</p></div></details>
-<details class="pd-acc"><summary><span>Retours</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Vous disposez de [X] jours pour changer de taille ou retourner votre article. [Expliquez la démarche et qui paie le retour.]</p></div></details>
+<div class="pd-trust">
+<div class="pd-trust-tabs" role="tablist" aria-label="Services">
+<button type="button" class="pd-trust-tab" role="tab" aria-selected="false" aria-controls="pd-trust-panel" data-panel="service"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/><path d="M19 19c0 1.5-2 2.5-5 2.5"/></svg><span>Service client</span></button>
+<button type="button" class="pd-trust-tab" role="tab" aria-selected="true" aria-controls="pd-trust-panel" data-panel="livraison"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h12v9H3zM15 10h3.5l2.5 3v3h-6"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg><span>Livraison</span></button>
+<button type="button" class="pd-trust-tab" role="tab" aria-selected="false" aria-controls="pd-trust-panel" data-panel="retour"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg><span>Retour</span></button>
 </div>
+<div class="pd-trust-panel" id="pd-trust-panel" role="tabpanel">
+<div data-content="service" hidden><p><strong>Une question ? Notre service client vous répond du lundi au vendredi, de 10h00 à 18h00.</strong></p><p>Écrivez-nous depuis la <a href="contact.html">page Contact</a> ou appelez le <a href="tel:+33753862668">+33 7 53 86 26 68</a> : nous nous efforçons de répondre sous 24 heures.</p></div>
+<div data-content="livraison"><p><strong>Livraison en France en 7 à 10 jours ouvrés</strong> (du lundi au vendredi) : 1 à 2 jours de traitement, puis 6 à 8 jours d’acheminement.</p><p>Vous recevez un e-mail de suivi dès l’expédition et pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. <a href="livraison.html">Voir la politique d’expédition</a></p></div>
+<div data-content="retour" hidden><p><strong>Vous disposez de 30 jours</strong> après réception pour retourner ou échanger votre article.</p><p>Contactez-nous pour lancer votre retour ; les frais d’expédition du retour sont à la charge du client. <a href="politique-de-retour.html">Voir la politique de retour</a></p></div>
+</div>
+</div>
+
 
 <div class="pd-pack">
 <h2 class="pd-h2">Contenu du pack</h2>
 <div class="pd-pack-items">
 <div><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-4 3v14h16V6l-4-3"></path><path d="M8 3a4 4 0 0 0 8 0"></path><path d="M12 7v13"></path></svg><span>1 veste</span></div>
 <div><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"></path><path d="M9 9h6M9 13h6M9 17h4"></path></svg><span>Manuel d’utilisation</span></div>
+<div><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l2.2 11h13.6L21 8"></path><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"></path></svg><span>Manuel de lavage</span></div>
 <div id="pd-pack-batt"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"></rect><path d="M12 7l-2 4h4l-2 4"></path></svg><span>Batterie 20 000 mAh et câble</span></div>
 </div>
 </div>
@@ -541,13 +613,13 @@ body{background:#F8F6F1}
 <section class="pd-cross">
 <h2 class="pd-h2 pd-center">Complétez votre tenue</h2>
 <div class="pd-cross-grid">
-<a href="index.html#collection" class="pd-x">
+<a href="index.html#collection" class="pd-x" data-shop-handle="gilet-otreau">
 <video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
 <div class="pd-x-info"><h3><span style="font-weight: 600">GILET</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
-<a href="index.html#collection" class="pd-x">
+<a href="index.html#collection" class="pd-x" data-shop-handle="gilet-fin-otreau">
 <video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
 <div class="pd-x-info"><h3><span style="font-weight: 600">GILET FIN</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
-<a href="index.html#collection" class="pd-x">
+<a href="index.html#collection" class="pd-x" data-shop-handle="doudoune-otreau">
 <video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
 <div class="pd-x-info"><h3><span style="font-weight: 600">DOUDOUNE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
 </div>
@@ -560,6 +632,7 @@ body{background:#F8F6F1}
 <div class="f-brand">
 <a href="index.html" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
 <p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
+<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li>[votre adresse e-mail]</li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="index.html" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
 <a href="index.html" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
@@ -569,12 +642,12 @@ body{background:#F8F6F1}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="index.html#faq">Livraison</a></li><li><a href="index.html#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="index.html#faq">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>
 <p class="f-copy">© 2026 Otreau</p>
-<nav class="f-legal" aria-label="Informations légales"><a href="index.html">CGV</a><a href="index.html">Mentions légales</a><a href="index.html">Confidentialité</a></nav>
+<nav class="f-legal" aria-label="Informations légales"><a href="politique-de-retour.html">Politique de retour</a><a href="politique-de-confidentialite.html">Politique de confidentialité</a><a href="conditions-generales.html">Conditions générales</a><a href="livraison.html">Livraison</a><a href="mentions-legales.html">Mentions légales</a></nav>
 </div>
 </div>
 </footer>
@@ -624,7 +697,7 @@ body{background:#F8F6F1}
       var g=b.dataset.group;
       document.querySelectorAll('[data-group="'+g+'"]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
       if(g==='couleur') document.getElementById('pd-color').textContent=b.dataset.name;
-      if(g==='batterie') document.getElementById('pd-pack-batt').classList.toggle('is-off',b.textContent!=='Incluse');
+      if(g==='batterie') document.getElementById('pd-pack-batt').classList.toggle('is-off',b.textContent!=='Avec batterie');
     });
   });
   // quantité
@@ -668,6 +741,31 @@ var PRODUCT_SIZES = {
     c.addEventListener('mouseenter',function(){hl(c.dataset.k)});c.addEventListener('mouseleave',function(){hl(null)});
     c.addEventListener('focus',function(){hl(c.dataset.k)});c.addEventListener('blur',function(){hl(null)});
   });
+})();
+</script>
+<script>
+// Services : défilement automatique en boucle tant que l'utilisateur ne touche à rien ;
+// un clic affiche les infos en dessous (second clic : masque) et arrête la boucle
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.pd-trust-tab')), panel=document.getElementById('pd-trust-panel');
+  if(!panel||!tabs.length) return;
+  function show(t,on){
+    tabs.forEach(function(x){x.setAttribute('aria-selected',x===t&&on?'true':'false')});
+    panel.hidden=!on;
+    panel.querySelectorAll('[data-content]').forEach(function(c){c.hidden=c.dataset.content!==t.dataset.panel});
+    if(on){panel.style.animation='none';panel.offsetHeight;panel.style.animation='';}
+  }
+  var auto=setInterval(function(){
+    if(document.hidden) return;
+    var cur=tabs.findIndex(function(x){return x.getAttribute('aria-selected')==='true'});
+    show(tabs[(cur+1)%tabs.length],true);
+  },4000);
+  function stop(){clearInterval(auto);auto=0}
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    stop();
+    show(t,t.getAttribute('aria-selected')!=='true');
+  })});
+  panel.addEventListener('click',stop);
 })();
 </script>
 <script src="assets/shopify.js"></script>

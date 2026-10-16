@@ -156,6 +156,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .faq-icon::before,.faq-icon::after{content:"";position:absolute;left:0;top:50%;width:18px;height:1.8px;margin-top:-.9px;background:currentColor;transition:transform .3s ease}
 .faq-icon::after{transform:rotate(90deg)}
 .faq-item[open] .faq-icon::after{transform:rotate(0deg)}
+.faq-answer a{color:inherit;text-underline-offset:3px}
 .faq-answer{padding:0 4px 26px;max-width:720px;font-size:16px;line-height:1.65;color:#55616B}
 /* ===== CTA final avec photo produits ===== */
 .cta-final{position:relative;max-width:1392px;margin:0 auto;border-radius:32px;overflow:hidden;min-height:clamp(420px,44vw,640px);display:flex;align-items:center;justify-content:center;padding:64px 24px;background:#EDEDED url(assets/cta-produits-2.jpg) center/cover no-repeat;color:#14212B;text-align:center}
@@ -351,8 +352,17 @@ a{color:#14212B}a:hover{color:#B5650F}
 .menu-sub{display:flex;flex-direction:column;padding:0 0 12px 14px}
 .mobile-links .menu-sub a{font-size:17px;font-weight:400;text-transform:none;letter-spacing:0;padding:10px 0;border-bottom:0;color:rgba(255,255,255,.82)}
 .mobile-links .menu-sub a:hover{color:#F5A623}
-.mobile-links .menu-sub a.mg-all{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px;margin-top:4px}
+.mobile-links .menu-sub a.mg-all{display:flex;justify-content:space-between;align-items:center;color:#FFFFFF;text-decoration:none;margin-top:4px}
+.mobile-links .menu-sub a.mg-all:hover{color:#F5A623}
 @media (min-width:861px){.menu-group > summary{font-size:18px;padding:16px 0}.mobile-links .menu-sub a{font-size:15px;padding:8px 0}}
+/* Batterie : équipements centrés */
+.bv-feats li{flex-direction:column;align-items:center;text-align:center;gap:10px}
+.bv-feats li div{align-items:center}
+.bv-feats svg{margin-top:0}
+.f-contact{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:15px;color:#3D4A54}
+.f-contact a{color:#14212B;text-decoration:none}
+.f-contact a:hover{text-decoration:underline}
+.f-legal{flex-wrap:wrap;gap:8px 18px !important}
 </style>
 </head>
 <body>
@@ -363,7 +373,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="bandeau-track" aria-live="polite">
 <!-- Messages du bandeau : ajoute ou retire une ligne <span class="bandeau-msg">…</span> -->
 <span class="bandeau-msg is-active">Livraison suivie en France</span>
-<span class="bandeau-msg">Retours simples</span>
+<span class="bandeau-msg">Retours sous 30 jours</span>
 </div>
 </div>
 
@@ -395,21 +405,21 @@ a{color:#14212B}a:hover{color:#B5650F}
 <nav aria-label="Navigation mobile" class="mobile-links">
 <details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
 <div class="menu-sub">
-<a href="veste-otreau.html">Veste</a>
-<a href="#collection">Doudoune</a>
-<a href="#collection">Gilet</a>
-<a href="#collection">Gilet fin</a>
-<a href="#collection">Gilet polaire</a>
-<a href="#collection">Gants</a>
-<a href="#toutes-collections" class="mg-all">Voir toute la collection</a>
+<a href="veste-otreau.html" data-shop-handle="veste-otreau">Veste</a>
+<a href="#collection" data-shop-handle="doudoune-otreau">Doudoune</a>
+<a href="#collection" data-shop-handle="gilet-otreau">Gilet</a>
+<a href="#collection" data-shop-handle="gilet-fin-otreau">Gilet fin</a>
+<a href="#collection" data-shop-handle="gilet-polaire-otreau">Gilet polaire</a>
+<a href="#collection" data-shop-handle="gants-otreau">Gants</a>
+<a href="#toutes-collections" class="mg-all">Voir tous<span aria-hidden="true">→</span></a>
 </div>
 </details>
 <a href="#batterie">Batterie &amp; autonomie</a>
 <a href="#tailles">Tailles &amp; mesures</a>
-<a href="#faq">FAQ</a>
 <a href="suivi-commande.html">Suivre ma commande</a>
 <a href="a-propos.html">À propos</a>
 <a href="contact.html">Contact</a>
+<a href="#faq">FAQ</a>
 </nav>
 </div>
 
@@ -435,7 +445,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <section id="collection" style="padding: 0 24px 128px">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
-<h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em"><span style="font-weight: 600">La collection</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h2>
+<h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em"><span style="font-weight: 600">La sélection</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h2>
 <div role="group" class="type-filters" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
 <button type="button" class="type-btn" aria-pressed="false">Doudoune</button>
 <button type="button" class="type-btn" aria-pressed="false">Veste parka</button>
@@ -446,7 +456,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 <div class="product-grid">
 <a data-handle="veste-otreau" href="veste-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/veste-otreau.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/veste-otreau.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">VESTE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
@@ -461,7 +471,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 
 <a data-handle="gilet-otreau" href="#collection" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
@@ -475,7 +485,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </a>
 
 <a data-handle="gilet-fin-otreau" href="#collection" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet fin chauffant en rotation" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet fin chauffant en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET FIN</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
@@ -489,7 +499,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </a>
 
 <a data-handle="doudoune-otreau" href="#collection" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">DOUDOUNE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
@@ -504,7 +514,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 
 <a data-handle="gilet-polaire-otreau" href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet-polaire-rose.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet polaire chauffant rose en rotation" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/gilet-polaire-rose.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet polaire chauffant rose en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET POLAIRE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
@@ -518,7 +528,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </a>
 
 <a data-handle="gants-otreau" href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<div aria-hidden="true" style="width: 100%; aspect-ratio: 4 / 5; background: transparent; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
+<div aria-hidden="true" style="width: 100%; aspect-ratio: 1 / 1; background: transparent; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GANTS</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
@@ -554,16 +564,6 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="bv-stat"><span class="bv-num">190<small>g</small></span><span class="bv-lab">Poids</span></div>
 </div>
 <div class="bv-block">
-<h3 class="bv-h">Intensité de chauffe</h3>
-<div class="bv-lvls">
-<div class="bv-lvl"><span class="bv-lvl-name">Faible</span><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><span class="bv-lvl-h">[X h]</span></div>
-<div class="bv-lvl"><span class="bv-lvl-name">Moyenne</span><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><span class="bv-lvl-h">[X h]</span></div>
-<div class="bv-lvl"><span class="bv-lvl-name">Élevée</span><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><span class="bv-lvl-h">[X h]</span></div>
-</div>
-<p class="bv-note">Autonomie mesurée avec la batterie fournie, à [température]. Elle varie selon le froid et le vent.</p>
-</div>
-<div class="bv-block">
-<h3 class="bv-h">Tout est intégré</h3>
 <ul class="bv-feats">
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v5M11 3v5"/><rect x="5" y="8" width="8" height="5" rx="1"/><path d="M9 13v3a4 4 0 0 0 4 4h6"/></svg><div><strong>Câbles intégrés</strong><span>USB-C · Lightning · USB-A</span></div></li>
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M7 13V9M10 13V10M13 13v-2"/></svg><div><strong>Écran numérique</strong><span>La charge restante, en un coup d’œil</span></div></li>
@@ -672,7 +672,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 <details class="faq-item"><summary>Est-ce que ça chauffe vraiment dehors, même avec du vent ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Oui, à condition de porter le vêtement près du corps et sous une couche coupe-vent : la chaleur reste là où vous en avez besoin.</div></details>
 <details class="faq-item"><summary>Peut-on laver le vêtement ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">[Vos consignes, par exemple : retirez la batterie, lavage à la main ou en machine en cycle délicat à 30 °C, séchage à plat.]</div></details>
 <details class="faq-item"><summary>Quelle est la garantie ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">[Durée de garantie]. Un câble, un connecteur ou un élément chauffant défectueux est réparé ou remplacé.</div></details>
-<details class="faq-item"><summary>Quels sont les délais de livraison et de retour ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Livraison suivie en France sous [X] jours ouvrés. Vous disposez de [X] jours pour changer de taille ou retourner un article.</div></details>
+<details class="faq-item" id="faq-livraison"><summary>Quels sont les délais de livraison ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Comptez 7 à 10 jours ouvrés (du lundi au vendredi) pour une livraison en France : 1 à 2 jours de traitement, puis 6 à 8 jours d’acheminement. Dès l’expédition, vous recevez un e-mail avec le lien de suivi, et vous pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. Tous les détails sont sur notre page <a href="livraison.html">Livraison</a>.</div></details>
+<details class="faq-item" id="faq-retours"><summary>Comment retourner ou échanger un article ?<span class="faq-icon" aria-hidden="true"></span></summary><div class="faq-answer">Vous disposez de 30 jours après réception pour retourner ou échanger un article. Contactez notre service client pour lancer la démarche ; les frais d’expédition du retour sont à la charge du client. Tous les détails sont dans notre <a href="politique-de-retour.html">politique de retour</a>.</div></details>
 </div>
 </div>
 </section>
@@ -693,6 +694,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="f-brand">
 <a href="#top" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
 <p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
+<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li>[votre adresse e-mail]</li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="#top" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
 <a href="#top" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
@@ -702,12 +704,12 @@ a{color:#14212B}a:hover{color:#B5650F}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="#collection">Gilets chauffants</a></li><li><a href="#collection">Doudounes chauffantes</a></li><li><a href="#collection">Vestes parka chauffantes</a></li><li><a href="#collection">Gants chauffants</a></li><li><a href="#collection">Chaussettes chauffantes</a></li><li><a href="#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="#faq">Livraison</a></li><li><a href="#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="#faq">Droit de rétractation</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#tailles">Guide des tailles</a></li><li><a href="#batterie">Batterie &amp; autonomie</a></li><li><a href="#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="#top">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="#collection">Gilets chauffants</a></li><li><a href="#collection">Doudounes chauffantes</a></li><li><a href="#collection">Vestes parka chauffantes</a></li><li><a href="#collection">Gants chauffants</a></li><li><a href="#collection">Chaussettes chauffantes</a></li><li><a href="#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#tailles">Guide des tailles</a></li><li><a href="#batterie">Batterie &amp; autonomie</a></li><li><a href="#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="#top">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>
 <p class="f-copy">© 2026 Otreau</p>
-<nav class="f-legal" aria-label="Informations légales"><a href="#top">CGV</a><a href="#top">Mentions légales</a><a href="#top">Confidentialité</a></nav>
+<nav class="f-legal" aria-label="Informations légales"><a href="politique-de-retour.html">Politique de retour</a><a href="politique-de-confidentialite.html">Politique de confidentialité</a><a href="conditions-generales.html">Conditions générales</a><a href="livraison.html">Livraison</a><a href="mentions-legales.html">Mentions légales</a></nav>
 </div>
 </div>
 </footer>
@@ -724,9 +726,9 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
   var rows=document.getElementById('cat-rows'), grid=document.querySelector('.product-grid');
   if(!rows||!grid) return;
   var cats=[
-    {title:'Vestes', test:/^(VESTE|DOUDOUNE|PARKA)/},
-    {title:'Gilets', test:/^GILET/},
-    {title:'Chaussettes & gants', test:/^(CHAUSSETTE|GANT)/}
+    {title:'Collection Vestes', test:/^(VESTE|DOUDOUNE|PARKA)/},
+    {title:'Collection Gilets', test:/^GILET/},
+    {title:'Collection Chaussettes & gants', test:/^(CHAUSSETTE|GANT)/}
   ];
   var cards=[].slice.call(grid.children).filter(function(a){return a.tagName==='A'});
   cats.forEach(function(c){
@@ -983,6 +985,15 @@ var SIZE_GUIDE = {
   if(location.hash==='#toutes-collections') openAll();
   window.addEventListener('hashchange',function(){ if(location.hash==='#toutes-collections') openAll(); });
   document.querySelectorAll('a[href="#toutes-collections"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openAll();if(history.replaceState)history.replaceState(null,'','#toutes-collections')})});
+})();
+</script>
+<script>
+// FAQ : ouvre la question visée par l'ancre (#faq-livraison, #faq-retours…)
+(function(){
+  function openFaq(){ var h=location.hash; if(!/^#faq-/.test(h)) return; var d=document.querySelector(h); if(!d||d.tagName!=='DETAILS') return;
+    d.open=true; var hh=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--hh'))||64;
+    setTimeout(function(){window.scrollTo({top:d.getBoundingClientRect().top+window.pageYOffset-hh-24,behavior:'smooth'})},60); }
+  openFaq(); window.addEventListener('hashchange',openFaq);
 })();
 </script>
 <script src="assets/shopify.js"></script>

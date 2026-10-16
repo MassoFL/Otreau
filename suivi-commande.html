@@ -408,7 +408,8 @@ body{background:#F8F6F1}
 .menu-sub{display:flex;flex-direction:column;padding:0 0 12px 14px}
 .mobile-links .menu-sub a{font-size:17px;font-weight:400;text-transform:none;letter-spacing:0;padding:10px 0;border-bottom:0;color:rgba(255,255,255,.82)}
 .mobile-links .menu-sub a:hover{color:#F5A623}
-.mobile-links .menu-sub a.mg-all{color:#FFFFFF;text-decoration:underline;text-underline-offset:4px;margin-top:4px}
+.mobile-links .menu-sub a.mg-all{display:flex;justify-content:space-between;align-items:center;color:#FFFFFF;text-decoration:none;margin-top:4px}
+.mobile-links .menu-sub a.mg-all:hover{color:#F5A623}
 @media (min-width:861px){.menu-group > summary{font-size:18px;padding:16px 0}.mobile-links .menu-sub a{font-size:15px;padding:8px 0}}
 </style>
 <style>
@@ -437,6 +438,10 @@ body{background:#F8F6F1}
 .tr-help .ct-card h2{margin:0 0 4px;text-align:left;font-family:Manrope,sans-serif;font-weight:700;font-size:15px;text-transform:none;letter-spacing:0}
 @media (max-width:860px){.tr-main{grid-template-columns:minmax(0,1fr)}.tr-line{grid-template-columns:repeat(2,minmax(0,1fr))}.tr-hgrid{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:480px){.tr-line{grid-template-columns:minmax(0,1fr)}}
+.f-contact{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:4px;font-size:15px;color:#3D4A54}
+.f-contact a{color:#14212B;text-decoration:none}
+.f-contact a:hover{text-decoration:underline}
+.f-legal{flex-wrap:wrap;gap:8px 18px !important}
 </style>
 </head>
 <body>
@@ -445,7 +450,7 @@ body{background:#F8F6F1}
 <div class="bandeau-track" aria-live="polite">
 <!-- Messages du bandeau : ajoute ou retire une ligne <span class="bandeau-msg">…</span> -->
 <span class="bandeau-msg is-active">Livraison suivie en France</span>
-<span class="bandeau-msg">Retours simples</span>
+<span class="bandeau-msg">Retours sous 30 jours</span>
 </div>
 </div>
 <header class="site-header" style="padding: 0 clamp(16px, 4vw, 64px)">
@@ -474,21 +479,21 @@ body{background:#F8F6F1}
 <nav aria-label="Navigation mobile" class="mobile-links">
 <details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
 <div class="menu-sub">
-<a href="veste-otreau.html">Veste</a>
-<a href="index.html#collection">Doudoune</a>
-<a href="index.html#collection">Gilet</a>
-<a href="index.html#collection">Gilet fin</a>
-<a href="index.html#collection">Gilet polaire</a>
-<a href="index.html#collection">Gants</a>
-<a href="index.html#toutes-collections" class="mg-all">Voir toute la collection</a>
+<a href="veste-otreau.html" data-shop-handle="veste-otreau">Veste</a>
+<a href="index.html#collection" data-shop-handle="doudoune-otreau">Doudoune</a>
+<a href="index.html#collection" data-shop-handle="gilet-otreau">Gilet</a>
+<a href="index.html#collection" data-shop-handle="gilet-fin-otreau">Gilet fin</a>
+<a href="index.html#collection" data-shop-handle="gilet-polaire-otreau">Gilet polaire</a>
+<a href="index.html#collection" data-shop-handle="gants-otreau">Gants</a>
+<a href="index.html#toutes-collections" class="mg-all">Voir tous<span aria-hidden="true">→</span></a>
 </div>
 </details>
 <a href="index.html#batterie">Batterie &amp; autonomie</a>
 <a href="index.html#tailles">Tailles &amp; mesures</a>
-<a href="index.html#faq">FAQ</a>
 <a href="suivi-commande.html">Suivre ma commande</a>
 <a href="a-propos.html">À propos</a>
 <a href="contact.html">Contact</a>
+<a href="index.html#faq">FAQ</a>
 </nav>
 </div>
 <main class="tr">
@@ -518,9 +523,9 @@ body{background:#F8F6F1}
 <h2 id="tr-steps-t">Les étapes de votre commande</h2>
 <ol class="tr-line">
 <li><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12l5 5 9-10"/></svg></span><h3>Commande confirmée</h3><p>Vous recevez un e-mail de confirmation juste après le paiement.</p></li>
-<li><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/></svg></span><h3>En préparation</h3><p>Votre colis est préparé sous [X] jours ouvrés.</p></li>
+<li><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/></svg></span><h3>En préparation</h3><p>Votre commande est traitée sous 1 à 2 jours, du lundi au vendredi.</p></li>
 <li><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h12v9H3zM15 10h3.5l2.5 3v3h-6"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg></span><h3>Expédiée</h3><p>Un e-mail vous transmet le numéro et le lien de suivi du transporteur.</p></li>
-<li><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/><path d="M9 20v-6h6v6"/></svg></span><h3>Livrée</h3><p>Livraison suivie en France sous [X] jours ouvrés après l’expédition.</p></li>
+<li><span class="dot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11l8-7 8 7v9H4z"/><path d="M9 20v-6h6v6"/></svg></span><h3>Livrée</h3><p>Acheminement en France en 6 à 8 jours, du lundi au vendredi.</p></li>
 </ol>
 </section>
 
@@ -538,6 +543,7 @@ body{background:#F8F6F1}
 <div class="f-brand">
 <a href="index.html" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
 <p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
+<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li>[votre adresse e-mail]</li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="index.html" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
 <a href="index.html" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
@@ -547,12 +553,12 @@ body{background:#F8F6F1}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="index.html#faq">Livraison</a></li><li><a href="index.html#faq">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="index.html#faq">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>
 <p class="f-copy">© 2026 Otreau</p>
-<nav class="f-legal" aria-label="Informations légales"><a href="index.html">CGV</a><a href="index.html">Mentions légales</a><a href="index.html">Confidentialité</a></nav>
+<nav class="f-legal" aria-label="Informations légales"><a href="politique-de-retour.html">Politique de retour</a><a href="politique-de-confidentialite.html">Politique de confidentialité</a><a href="conditions-generales.html">Conditions générales</a><a href="livraison.html">Livraison</a><a href="mentions-legales.html">Mentions légales</a></nav>
 </div>
 </div>
 </footer>
