@@ -188,6 +188,7 @@
     '.oc-rm{display:block;margin-top:8px;border:0;background:none;padding:0;font-size:12px;color:#8A949B;text-decoration:underline;cursor:pointer}' +
     '.oc-foot{padding:20px 24px 24px;border-top:1px solid #E4DFD5;display:flex;flex-direction:column;gap:12px;background:#F8F6F1}' +
     '.oc-sub{display:flex;justify-content:space-between;font:700 17px Manrope,sans-serif}' +
+    '.oc-ship{display:flex;justify-content:space-between;font-size:14px;color:#55616B;margin-top:-4px}' +
     '.oc-note{margin:0;font-size:12.5px;color:#8A949B}' +
     '.oc-btn{display:flex;align-items:center;justify-content:center;min-height:54px;border:0;border-radius:999px;background:#14212B;color:#fff;font:700 16px Manrope,sans-serif;cursor:pointer;text-decoration:none;padding:0 28px}' +
     '.oc-btn[disabled]{opacity:.5;cursor:default}' +
@@ -284,7 +285,8 @@
         '<div><div class="oc-price">' + money(l.cost.totalAmount) + '</div><button type="button" class="oc-rm">Retirer</button></div></div>';
     }).join('') + (err ? '<p class="oc-msg">' + esc(err) + '</p>' : '');
     foot.innerHTML = '<div class="oc-sub"><span>Sous-total</span><span>' + ttc(cart.cost.subtotalAmount) + '</span></div>' +
-      '<p class="oc-note">Prix TTC. Frais de livraison calculés à l’étape du paiement.</p>' +
+      '<div class="oc-ship"><span>Livraison</span><span>3,20 € ' + TTC + '</span></div>' +
+      '<p class="oc-note">Prix TTC. Les frais de livraison sont ajoutés à l’étape du paiement.</p>' +
       '<a class="oc-btn" href="' + esc(cart.checkoutUrl) + '">Paiement sécurisé</a>';
     body.querySelectorAll('.oc-line').forEach(function (row) {
       var id = row.dataset.line, line = cart.lines.nodes.filter(function (l) { return l.id === id; })[0];

@@ -421,6 +421,12 @@ body{background:#F8F6F1}
 .f-contact a{color:#14212B;text-decoration:none}
 .f-contact a:hover{text-decoration:underline}
 .f-legal{flex-wrap:wrap;gap:8px 18px !important}
+/* Bas du pied de page : liens légaux répartis sur toute la largeur, copyright dessous */
+.f-bottom{display:flex !important;flex-direction:column;align-items:stretch;gap:18px}
+.f-bottom .f-pay{display:none}
+.f-bottom .f-legal{order:-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px !important;width:100%}
+.f-bottom .f-copy{text-align:center !important}
+@media (max-width:760px){.f-bottom .f-legal{justify-content:center}}
 </style>
 </head>
 <body>
@@ -535,7 +541,7 @@ body{background:#F8F6F1}
 <div class="f-brand">
 <a href="index.html" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
 <p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
-<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li>[votre adresse e-mail]</li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
+<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li><a href="mailto:contact@otreau.com">contact@otreau.com</a></li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="index.html" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
 <a href="index.html" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
@@ -548,7 +554,7 @@ body{background:#F8F6F1}
 <div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
-<div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>
+<div class="f-pay" aria-hidden="true"></div>
 <p class="f-copy">© 2026 Otreau</p>
 <nav class="f-legal" aria-label="Informations légales"><a href="politique-de-retour.html">Politique de retour</a><a href="politique-de-confidentialite.html">Politique de confidentialité</a><a href="conditions-generales.html">Conditions générales</a><a href="livraison.html">Livraison</a><a href="mentions-legales.html">Mentions légales</a></nav>
 </div>

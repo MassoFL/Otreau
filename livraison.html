@@ -402,10 +402,37 @@ body{background:#F8F6F1}
 .lg-doc h4{margin:16px 0 6px;font-family:Manrope,sans-serif;font-weight:700;font-size:15px}
 .lg-doc blockquote{margin:0;padding:0}
 .f-legal{flex-wrap:wrap;gap:8px 18px !important}
+/* Bas du pied de page : liens légaux répartis sur toute la largeur, copyright dessous */
+.f-bottom{display:flex !important;flex-direction:column;align-items:stretch;gap:18px}
+.f-bottom .f-pay{display:none}
+.f-bottom .f-legal{order:-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px 24px !important;width:100%}
+.f-bottom .f-copy{text-align:center !important}
+@media (max-width:760px){.f-bottom .f-legal{justify-content:center}}
+/* Vidéo en fond de la page Livraison (même traitement que Contact) */
+.pg-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#0B1218}
+.pg-bg video{width:100%;height:100%;object-fit:cover;display:block}
+.pg-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,14,20,.68),rgba(8,14,20,.5) 40%,rgba(8,14,20,.68))}
+body{background:transparent !important}
+html{background:#0B1218}
+.lg .pd-crumb,.lg .pd-crumb a{color:rgba(255,255,255,.75) !important}
+.lg-head h1{color:#FFFFFF}
+.lg-toc,.lg-doc{background:rgba(255,255,255,.10) !important;-webkit-backdrop-filter:blur(18px) saturate(120%);backdrop-filter:blur(18px) saturate(120%);border:1px solid rgba(255,255,255,.18) !important;border-radius:20px;box-shadow:0 20px 50px -25px rgba(0,0,0,.6)}
+.lg-doc{padding:30px clamp(20px,4vw,40px)}
+.lg-toc p,.lg-toc a,.lg-doc,.lg-doc h2,.lg-doc h3,.lg-doc p,.lg-doc li,.lg-doc strong,.lg-doc a{color:#FFFFFF !important}
+.lg-doc p,.lg-doc li{color:rgba(255,255,255,.85) !important}
+.lg-doc h2{border-top-color:rgba(255,255,255,.18) !important}
+.lg-doc .lg-table{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18)}
+.lg-doc .lg-table th{background:rgba(255,255,255,.08);color:#FFFFFF}
+.lg-doc .lg-table td{color:rgba(255,255,255,.85);border-bottom-color:rgba(255,255,255,.12)}
+.site-footer{position:relative;margin-top:0 !important}
+/* Livraison : tout le texte du contenu en blanc */
+main.lg,main.lg *{color:#FFFFFF !important}
+main.lg li::marker{color:#FFFFFF}
+main.lg a{text-decoration-color:rgba(255,255,255,.7)}
 </style>
 </head>
 <body>
-<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: #F8F6F1; font-size: 17px; line-height: 1.6">
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: transparent; font-size: 17px; line-height: 1.6">
 <div id="bandeau" style="position: absolute; top: 0; left: 0; right: 0; z-index: 21; background: rgba(0,0,0,0.5); color: #FFFFFF; font-size: 14px; text-align: center; padding: 14px 24px">
 <div class="bandeau-track" aria-live="polite">
 <!-- Messages du bandeau : ajoute ou retire une ligne <span class="bandeau-msg">…</span> -->
@@ -456,6 +483,7 @@ body{background:#F8F6F1}
 <a href="index.html#faq">FAQ</a>
 </nav>
 </div>
+<div class="pg-bg" aria-hidden="true"><video src="assets/livraison-bg.mp4" poster="assets/livraison-bg-poster.jpg" autoplay muted loop playsinline preload="auto"></video></div>
 <main class="lg">
 <nav class="pd-crumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">›</span><span aria-current="page">Livraison</span></nav>
 <header class="lg-head"><h1>Livraison</h1></header>
@@ -467,26 +495,26 @@ body{background:#F8F6F1}
 <li><strong>Délai d'acheminement (France)</strong>: <strong>6 à 8 jours</strong> du Lundi au Vendredi</li>
 </ul>
 <p><strong>Délai de livraison total (France): 7 à 10 jours ouvrés</strong> (du Lundi au Vendredi)</p>
-<p>Si vous souhaitez vérifier la disponibilité de la livraison dans votre région, vous pouvez nous contacter à <strong>[votre adresse e-mail]</strong>.</p>
+<p>Si vous souhaitez vérifier la disponibilité de la livraison dans votre région, vous pouvez nous contacter à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong>.</p>
 <p>Les commandes passées du Lundi au Vendredi avant 17h (GMT+1) sont traitées le jour même.</p>
 <p>Les commandes passées après Vendredi 17h (GMT+1) seront traitées dés le Lundi suivant.</p>
 <p>Dès l’expédition de votre commande, vous recevrez un e-mail de confirmation avec les informations de suivi. Il est également possible de suivre votre commande via <strong>notre page <a href="suivi-commande.html">Suivre ma commande</a></strong>.</p>
 <h2 id="frais-d-expedition">Frais d'expédition :</h2>
 <table class="lg-table"><thead><tr><th>Pays</th><th>Prix Livraison Standard</th><th>Transporteur</th></tr></thead><tbody>
-<tr><td><strong>France métropolitaine</strong></td><td><strong>[à compléter] €</strong></td><td><strong>[à compléter]</strong></td></tr>
+<tr><td><strong>France métropolitaine</strong></td><td><strong>3,20 € TTC</strong></td><td><strong>[à compléter]</strong></td></tr>
 </tbody></table>
 <h2 id="changement-d-adresse-de-livraison">Changement d'adresse de livraison :</h2>
-<p>Une fois qu'une commande est en transit, nous ne sommes plus en mesure de modifier l’adresse de destination. Si un changement d’adresse est nécessaire, veuillez nous contacter dans les <strong>24 heures suivant votre commande</strong> à <strong>[votre adresse e-mail]</strong>.</p>
+<p>Une fois qu'une commande est en transit, nous ne sommes plus en mesure de modifier l’adresse de destination. Si un changement d’adresse est nécessaire, veuillez nous contacter dans les <strong>24 heures suivant votre commande</strong> à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong>.</p>
 <h2 id="politique-d-annulation-et-erreurs-d-adresse">Politique d'annulation et erreurs d'adresse :</h2>
 <p>Les annulations sont possibles tant que la commande n’a pas encore été préparée pour l’expédition. Nous recommandons de faire votre demande <strong>dans les 24 heures</strong> après l’achat. Une fois l’article expédié, veuillez consulter notre <strong>politique de retour</strong> pour toute demande de remboursement.</p>
 <p>Nous vous encourageons à vérifier soigneusement votre adresse avant de finaliser votre commande. Toute correction d’adresse ne sera envisageable que si la commande est encore en cours de traitement.</p>
 <p><strong>Otreau</strong> ne pourra être tenu responsable des commandes retournées en raison d’informations erronées fournies par le client.</p>
 <h2 id="colis-endommages-en-transit">Colis endommagés en transit :</h2>
 <p>Si votre colis arrive visiblement détérioré, nous vous conseillons de refuser la livraison et d’informer immédiatement notre service client.</p>
-<p>Dans le cas où le colis aurait été livré en votre absence, merci de nous contacter à <strong>[votre adresse e-mail]</strong> en joignant des photos du produit et de son emballage.</p>
+<p>Dans le cas où le colis aurait été livré en votre absence, merci de nous contacter à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong> en joignant des photos du produit et de son emballage.</p>
 <h2 id="contact">Contact :</h2>
 <p><strong>Adresse</strong> : <strong>Massoali OÜ, Ahtri tn 12, 15551 Tallinn, Estonie<br />
-E-mail</strong> : <strong>[votre adresse e-mail]<br />
+E-mail</strong> : <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a><br />
 Numéro</strong> : <strong>+33 7 53 86 26 68</strong></p>
 <p><strong>Service client :<br />
 </strong>Disponible du <strong>Lundi au Vendredi</strong> de <strong>10h00 à 18h00</strong>.</p>
@@ -500,7 +528,7 @@ Numéro</strong> : <strong>+33 7 53 86 26 68</strong></p>
 <div class="f-brand">
 <a href="index.html" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
 <p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
-<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li>[votre adresse e-mail]</li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
+<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li><a href="mailto:contact@otreau.com">contact@otreau.com</a></li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="index.html" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
 <a href="index.html" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
@@ -513,7 +541,7 @@ Numéro</strong> : <strong>+33 7 53 86 26 68</strong></p>
 <div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="index.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
-<div class="f-pay" aria-label="Moyens de paiement"><span class="pay">Visa</span><span class="pay">Mastercard</span><span class="pay">CB</span><span class="pay">PayPal</span><span class="pay">Apple Pay</span></div>
+<div class="f-pay" aria-hidden="true"></div>
 <p class="f-copy">© 2026 Otreau</p>
 <nav class="f-legal" aria-label="Informations légales"><a href="politique-de-retour.html">Politique de retour</a><a href="politique-de-confidentialite.html">Politique de confidentialité</a><a href="conditions-generales.html">Conditions générales</a><a href="livraison.html">Livraison</a><a href="mentions-legales.html">Mentions légales</a></nav>
 </div>
