@@ -754,7 +754,6 @@
     '<label class="os-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>' +
     '<input type="search" placeholder="Rechercher un produit…" aria-label="Rechercher un produit" autocomplete="off"></label>' +
     '<button type="button" class="os-close" aria-label="Fermer la recherche">×</button></form>' +
-    '<div class="os-hint">Suggestions : <button type="button">veste</button><button type="button">batterie</button></div>' +
     '<div class="os-out" aria-live="polite"></div></div>';
   document.body.appendChild(sOverlay); document.body.appendChild(sPanel);
   var sInput = sPanel.querySelector('input'), sOut = sPanel.querySelector('.os-out'), sTimer = 0, sSeq = 0;
@@ -785,7 +784,6 @@
   }
   sInput.addEventListener('input', function () { clearTimeout(sTimer); sTimer = setTimeout(function () { runSearch(sInput.value); }, 250); });
   sPanel.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); clearTimeout(sTimer); runSearch(sInput.value); });
-  sPanel.querySelectorAll('.os-hint button').forEach(function (b) { b.addEventListener('click', function () { sInput.value = b.textContent; runSearch(b.textContent); sInput.focus(); }); });
 
   window.OtreauCart = { open: function () { renderCart(); openCart(); }, close: closeCart };
 })();
