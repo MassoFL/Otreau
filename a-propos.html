@@ -390,6 +390,12 @@ body{background:#F8F6F1}
 .ap-steps{padding:96px 0}
 .ap-steps .ap-h2{text-align:center;margin-bottom:44px}
 .ap-sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ap-crit{padding:0 0 96px;text-align:center}
+.ap-crit-intro{margin:-6px auto 36px;max-width:620px;font-size:17px;line-height:1.6;color:#55616B}
+.ap-cgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;text-align:left}
+@media (max-width:1000px){.ap-cgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.ap-cgrid{grid-template-columns:minmax(0,1fr)}.ap-crit{padding-bottom:64px}}
+
 .ap-s{background:#FFFFFF;border:1px solid #E4DFD5;padding:28px;border-radius:18px;display:flex;flex-direction:column;gap:10px}
 .ap-s .n{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.12em;color:#D9792B;text-transform:uppercase}
 .ap-s h3{margin:0;font-family:Manrope,sans-serif;font-weight:700;font-size:18px}
@@ -501,7 +507,7 @@ body{background:#F8F6F1}
 <nav class="pd-crumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">›</span><span aria-current="page">À propos</span></nav>
 <header class="ap-head">
 <h1>À propos</h1>
-<p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
+<p>Otreau est une aventure entrepreneuriale, avec une ambition : devenir le meilleur fabricant de vêtements chauffants. Pour cette première saison, nous avons sélectionné avec exigence des modèles existants ; la suite, nous la concevrons à partir de vos retours.</p>
 </header>
 </div>
 
@@ -512,12 +518,22 @@ body{background:#F8F6F1}
 <div>
 <h2 class="ap-h2" id="ap-story-t">Notre histoire</h2>
 <p>Emporter la chaleur de chez soi, dehors : c’est l’idée de départ d’Otreau. Un trajet à vélo un matin de janvier, une journée de travail en extérieur, une soirée qui se prolonge au bord de l’eau… trop souvent, c’est le froid qui fixe la limite.</p>
-<p class="ph">[Racontez ici comment est née Otreau : qui vous êtes, le déclic, ce qui vous a donné envie de créer la marque, et où vous en êtes aujourd’hui.]</p>
-<p>Nous avons voulu des vêtements simples à vivre : une batterie que l’on glisse dans une poche, un bouton, et une chaleur qui se règle selon le moment.</p>
+<p>Notre ambition : devenir le meilleur fabricant de vêtements chauffants. Pour y parvenir, plutôt que de dessiner d’emblée une collection sur le papier, nous avons choisi de partir du terrain. Pour cette première saison, nous sommes partis de vêtements chauffants existants. Mais ce n’est pas une simple sélection : nous avons contacté directement les fournisseurs, comparé leurs modèles sur des critères précis et retenu les meilleurs, ceux qui ont fait leurs preuves au fil des saisons précédentes.</p>
+<p>Ces vêtements, nous vous les proposons tels quels. Ce que vous en direz, ce qui fonctionne comme ce qui manque, servira de base à la suite : une collection que nous concevrons et ferons fabriquer nous-mêmes.</p>
 </div>
 <div class="ap-pics">
 <img src="assets/hero-4.jpg" alt="Promenade dans un parc enneigé au soleil couchant" loading="lazy">
 <img src="assets/hero-2.jpg" alt="Deux personnes sur un lac gelé à côté d’une tente de pêche" loading="lazy">
+</div>
+</section>
+<section class="ap-crit" aria-labelledby="ap-crit-t">
+<h2 class="ap-h2" id="ap-crit-t">Nos critères de sélection</h2>
+<p class="ap-crit-intro">Aucun modèle n’entre dans la collection par hasard. Après avoir échangé directement avec les fournisseurs et étudié leurs modèles des saisons précédentes, voici ce que nous avons vérifié avant de les retenir.</p>
+<div class="ap-cgrid">
+<div class="ap-s"><span class="n">Autonomie</span><h3>Une batterie qui tient la journée</h3><p>Batterie de 20 000 mAh avec charge rapide PD 22,5 W, qui recharge aussi votre téléphone.</p></div>
+<div class="ap-s"><span class="n">Chaleur</span><h3>Réglable selon le moment</h3><p>Plusieurs niveaux d’intensité, pour avoir chaud sans avoir trop chaud.</p></div>
+<div class="ap-s"><span class="n">Entretien</span><h3>Simple à laver</h3><p>Une fois la batterie retirée, le vêtement se lave. Un manuel de lavage est fourni.</p></div>
+<div class="ap-s"><span class="n">Tailles</span><h3>Un choix large et un guide précis</h3><p>Plusieurs tailles par modèle et des mesures détaillées pour choisir sans hésiter.</p></div>
 </div>
 </section>
 </div>
@@ -527,7 +543,7 @@ body{background:#F8F6F1}
 <h2 class="ap-h2" id="ap-values-t">Ce qui nous guide</h2>
 <div class="ap-vgrid">
 <div class="ap-v"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="#7CC4FA"/></svg><h3>Mission</h3><p>Permettre à celles et ceux qui vivent dehors de rester au chaud, simplement : une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de leurs journées.</p></div>
-<div class="ap-v"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><h3>Vision</h3><p>[Décrivez ce vers quoi tend Otreau : la place que vous voulez donner aux vêtements chauffants dans le quotidien, ce que la marque doit devenir dans les années à venir.]</p></div>
+<div class="ap-v"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><h3>Vision</h3><p>Passer, saison après saison, de la sélection à la création : concevoir nos propres vêtements chauffants à partir de l’usage réel de celles et ceux qui les portent.</p></div>
 <div class="ap-v ap-quote"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7H5v5h4v1a3 3 0 0 1-3 3M19 7h-4v5h4v1a3 3 0 0 1-3 3"/></svg><h3>Mot du fondateur</h3><p>« [Votre message personnel : pourquoi vous avez créé Otreau, ce qui compte pour vous, ce que vous voulez dire à vos clients.] »</p><p class="ap-sign">[Prénom Nom], fondateur d’Otreau</p></div>
 </div>
 </div>
@@ -537,16 +553,16 @@ body{background:#F8F6F1}
 <section class="ap-steps" aria-labelledby="ap-steps-t">
 <h2 class="ap-h2" id="ap-steps-t">Notre façon de faire</h2>
 <div class="ap-sgrid">
-<div class="ap-s"><span class="n">01 · Conception</span><h3>Penser l’usage d’abord</h3><p>[Expliquez comment vous choisissez les modèles, les matières et l’emplacement des zones chauffantes.]</p></div>
-<div class="ap-s"><span class="n">02 · Essais</span><h3>Tester dehors</h3><p>[Décrivez comment les vêtements sont testés : conditions, durée, ce que vous vérifiez.]</p></div>
-<div class="ap-s"><span class="n">03 · Accompagnement</span><h3>Rester disponibles</h3><p>Une question sur une taille, la batterie ou une commande ? Nous répondons nous-mêmes, sans détour.</p></div>
+<div class="ap-s"><span class="n">01 · Saison 1</span><h3>Sélectionner avec exigence</h3><p>Autonomie de la batterie, chaleur réglable, entretien, choix des tailles : chaque modèle de cette saison a été retenu sur des critères précis.</p></div>
+<div class="ap-s"><span class="n">02 · Vos retours</span><h3>Écouter celles et ceux qui les portent</h3><p>Après votre achat, dites-nous ce que vous en pensez. Chaque avis est lu et compte pour la suite.</p></div>
+<div class="ap-s"><span class="n">03 · Saison 2</span><h3>Concevoir notre collection</h3><p>À partir de vos retours, nous améliorerons les modèles pour concevoir et faire fabriquer notre propre collection.</p></div>
 </div>
 </section>
 
 <section class="ap-cta">
 <h2 class="ap-h2" style="margin:0">Prêt pour l’hiver ?</h2>
-<p>Découvrez la Collection Hiver ’26, ou écrivez-nous.</p>
-<div class="ap-btns"><a class="ap-btn dark" href="index.html#toutes-collections">Découvrir la collection</a><a class="ap-btn line" href="contact.html">Nous contacter</a></div>
+<p>Découvrez la première saison, ou dites-nous ce que vous en pensez.</p>
+<div class="ap-btns"><a class="ap-btn dark" href="index.html#toutes-collections">Découvrir la collection</a><a class="ap-btn line" href="contact.html">Donner mon avis</a></div>
 </section>
 </div>
 </main>
@@ -555,7 +571,7 @@ body{background:#F8F6F1}
 <div class="f-top">
 <div class="f-brand">
 <a href="index.html" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
-<p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
+<p>Otreau est une aventure entrepreneuriale, avec une ambition : devenir le meilleur fabricant de vêtements chauffants. Pour cette première saison, nous avons sélectionné avec exigence des modèles existants ; la suite, nous la concevrons à partir de vos retours.</p>
 <ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li><a href="mailto:contact@otreau.com">contact@otreau.com</a></li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="index.html" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>

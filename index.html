@@ -9,10 +9,59 @@
 <style>
 body{margin:0;background:#F8F6F1}
 /* ===== La marque (accueil) ===== */
+/* La marque : trajectoire en 4 étapes */
+.lm-road{list-style:none;margin:22px 0 10px;padding:0;width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative;counter-reset:none}
+.lm-road::before{content:"";position:absolute;top:21px;left:12.5%;right:12.5%;border-top:2px dashed rgba(255,255,255,.3)}
+.lm-road::after{content:"";position:absolute;top:20px;left:12.5%;width:12.5%;height:4px;border-radius:4px;background:linear-gradient(90deg,#7FD1A4,rgba(127,209,164,0));animation:lmRoad 2.8s ease-in-out infinite}
+@keyframes lmRoad{0%{width:0;opacity:0}30%{opacity:1}100%{width:25%;opacity:0}}
+.lm-road li{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:0 6px}
+.lm-dot{width:42px;height:42px;margin-bottom:10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 15px Manrope,sans-serif;color:#FFFFFF;background:rgba(11,25,16,.85);border:1.5px solid rgba(255,255,255,.45)}
+.lm-road li.is-now .lm-dot{background:linear-gradient(135deg,#1F5A3E,#2B7A52);border-color:#7FD1A4;box-shadow:0 0 0 6px rgba(127,209,164,.18);animation:lmPulse 2.4s ease-in-out infinite}
+@keyframes lmPulse{50%{box-shadow:0 0 0 11px rgba(127,209,164,.06)}}
+.lm-road strong{font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:#FFFFFF}
+.lm-road li > span:not(.lm-dot):not(.lm-tag){font-size:13.5px;line-height:1.4;color:#BFCDC5}
+.lm-road li:not(.is-now) strong{color:rgba(255,255,255,.85)}
+.lm-tag{position:absolute;top:-30px;white-space:nowrap;padding:3px 10px;border-radius:999px;background:#7FD1A4;color:#0B1910;font:700 11px Manrope,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+@media (max-width:640px){
+.lm-road{grid-template-columns:minmax(0,1fr);gap:18px;margin-top:30px;max-width:320px;margin-left:auto;margin-right:auto}
+.lm-road::before{top:21px;bottom:21px;left:20px;right:auto;border-top:0;border-left:2px dashed rgba(255,255,255,.3)}
+.lm-road::after{display:none}
+.lm-road li{display:grid;grid-template-columns:42px 1fr;column-gap:14px;align-items:center;text-align:left;padding:0}
+.lm-dot{grid-row:span 2;margin:0}
+.lm-road strong{align-self:end}.lm-road li > span:not(.lm-dot):not(.lm-tag){align-self:start}
+.lm-tag{position:static;grid-column:2;justify-self:start;margin-bottom:2px}
+.lm-road li.is-now .lm-dot{grid-row:span 3}
+}
+@media (prefers-reduced-motion: reduce){.lm-road::after,.lm-road li.is-now .lm-dot{animation:none}}
+
+/* La marque : texte seul, centré sur la vidéo */
+.lm .lm-wrap{grid-template-columns:minmax(0,1fr);max-width:760px}
+.lm .lm-txt{align-items:center;text-align:center}
+.lm .lm-points{align-items:center}
+.lm{padding-top:72px !important}
+
+/* La marque : vidéo d’atelier en fond (ralentie et assombrie) */
+.lm-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
+.lm::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(#0B1910 0,rgba(11,25,16,.7) 22%,rgba(11,25,16,.7) 70%,rgba(11,25,16,.85) 100%)}
+.lm .lm-wrap{position:relative;z-index:2}
+.lm .wave-sep{z-index:3}
+
+
+/* La marque : fond bleu nuit, séparée des tailles et de la FAQ par des vagues */
+.lm{position:relative;overflow:hidden;background:#0B1910;color:#FFFFFF;padding:56px 24px calc(80px + clamp(58px,8.5vw,130px)) !important}
+.lm .lm-txt h2,.lm .lm-txt .lm-lead,.lm .lm-points li{color:#FFFFFF}
+.lm .lm-txt p{color:#BFCDC5}
+.lm .lm-points svg{stroke:#7FD1A4}
+.lm .lm-btn{border-color:#FFFFFF;color:#FFFFFF;background:rgba(6,25,16,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+
+.lm .lm-btn:hover{background:#FFFFFF;color:#14212B}
+.lm .lm-pic img{box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+@media (max-width:860px){.lm{padding-top:40px !important}}
+
 .lm{padding:96px 24px 32px}
 .lm-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
 .lm-pic img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;border-radius:24px;box-shadow:0 30px 60px -36px rgba(20,33,43,.45)}
-.lm-txt{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.lm-txt{display:flex;flex-direction:column;align-items:flex-start;gap:18px;position:relative;z-index:2}
 .lm-txt h2{margin:0;font-family:Manrope,sans-serif;font-weight:300;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase}
 .lm-txt p{margin:0;font-size:17px;line-height:1.7;color:#3D4A54}
 .lm-txt .lm-lead{font-size:clamp(19px,1.7vw,22px);line-height:1.5;color:#14212B}
@@ -342,9 +391,19 @@ a{color:#14212B}a:hover{color:#B5650F}
 .bv-more .spec-acc summary{padding:13px 0}
 .bv-more .spec-acc summary h3{font-size:15px}
 .bv-more .spec-acc summary svg{width:20px;height:17px}
+/* Batterie : Description / Composition & entretien — même style que la page produit (titre centré, petites flèches aux extrémités) */
+.bv-more .spec-acc summary > svg,.bv-more .spec-acc summary .faq-icon{display:none}
+.bv-more .spec-acc summary{justify-content:space-between;padding:16px 14px !important}
+.bv-more .spec-acc summary h3{flex:none;text-align:center;font-size:16px !important}
+.bv-more .spec-acc summary::before,.bv-more .spec-acc summary::after{content:"";flex:none;width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-3px) rotate(45deg);opacity:.55;transition:transform .3s ease,opacity .2s}
+.bv-more .spec-acc[open] summary::before,.bv-more .spec-acc[open] summary::after{transform:translateY(2px) rotate(-135deg)}
+.bv-more .spec-acc summary:hover::before,.bv-more .spec-acc summary:hover::after{opacity:1}
+.bv-more .spec-body{text-align:center}
+.bv-more .spec-body .spec-row{text-align:left}
+
 @media (max-width:480px){.bv-feats{grid-template-columns:1fr}.bv-stat{padding-left:12px}.bv-lvl{grid-template-columns:70px 1fr 48px;gap:10px}}
 /* Bouton « Comment faire les mesures » */
-.howto{display:flex;flex-direction:column;align-items:center;margin-top:-16px}
+.howto{display:flex;flex-direction:column;align-items:center;margin-top:24px}
 .howto-btn{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:0 26px;background:#FBF8F2;color:#14212B;border:1.5px dashed #8C7A5B;border-radius:999px;font-family:Manrope,sans-serif;font-weight:600;font-size:15px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .howto-btn:hover{background:#14212B;color:#FFFFFF;border-color:#14212B;border-style:solid}
 .howto-ico{position:relative;width:12px;height:12px}
@@ -355,6 +414,12 @@ a{color:#14212B}a:hover{color:#B5650F}
 .howto-panel.is-open{grid-template-rows:1fr}
 .howto-inner{overflow:hidden;min-height:0}
 .howto-inner > div{padding-top:24px}
+/* « Comment faire les mesures » : même style que les détails de la section batterie (titre centré, flèches aux extrémités) */
+.howto-btn{display:flex !important;justify-content:space-between;width:min(720px,100%);min-height:0;padding:16px 14px !important;background:transparent !important;color:#14212B !important;border:0 !important;border-top:1px solid rgba(20,33,43,.22) !important;border-bottom:1px solid rgba(20,33,43,.22) !important;border-radius:0 !important;font-family:Manrope,sans-serif;font-weight:300;font-size:16px;letter-spacing:.01em;text-transform:uppercase}
+.howto-btn .howto-ico{display:none}
+.howto-btn::before,.howto-btn::after{content:"";flex:none;width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-3px) rotate(45deg);opacity:.55;transition:transform .3s ease,opacity .2s}
+.howto-btn[aria-expanded="true"]::before,.howto-btn[aria-expanded="true"]::after{transform:translateY(2px) rotate(-135deg)}
+.howto-btn:hover::before,.howto-btn:hover::after{opacity:1}
 .pc-price{margin:-2px 0 0;font-family:Manrope,sans-serif;font-weight:500;font-size:16px;color:#55616B}
 
 /* Éléments cliquables : bouts en demi-cercle */
@@ -402,6 +467,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 .wheel-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .wheel-arrow:hover{background:rgba(20,33,43,.08)}
 .wheel-arrow:disabled{opacity:.25;cursor:default;background:transparent}
+/* Flèches du sélecteur d’article : plus visibles (pastilles rondes) */
+.wheel-arrow{width:42px;height:42px;margin:6px 0;background:#FFFFFF;border:1.5px solid #14212B;box-shadow:0 6px 16px -8px rgba(20,33,43,.45);transition:background .2s,color .2s,opacity .2s,transform .2s}
+.wheel-arrow svg{width:20px;height:20px;stroke-width:2.2}
+.wheel-arrow:hover{background:#14212B;color:#FFFFFF;transform:scale(1.06)}
+.wheel-arrow:disabled{opacity:.3;background:#FFFFFF;color:#14212B;transform:none;box-shadow:none}
 </style>
 <style id="footer-dark">
 /* Pied de page : fond marbre noir, textes clairs pour la lisibilité */
@@ -750,12 +820,12 @@ a{color:#14212B}a:hover{color:#B5650F}
 <defs>
 <linearGradient id="wv3-sheen" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".35" stop-color="#D4D4D4" stop-opacity=".55"/><stop offset=".6" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#CFCFCF" stop-opacity=".65"/>
 <animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
-<linearGradient id="wv3-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#A89B84" stop-opacity=".04"/><stop offset=".22" stop-color="#A89B84" stop-opacity=".5"/><stop offset=".5" stop-color="#A89B84" stop-opacity=".1"/><stop offset=".8" stop-color="#A89B84" stop-opacity=".55"/><stop offset="1" stop-color="#A89B84" stop-opacity=".06"/>
+<linearGradient id="wv3-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".04"/><stop offset=".22" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset=".8" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".06"/>
 <animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
-<linearGradient id="wv3-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#F8F6F1"/></linearGradient>
+<linearGradient id="wv3-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#16301F"/><stop offset=".35" stop-color="#0B1910"/></linearGradient>
 <filter id="wv3-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
 </defs>
-<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#14212B" stroke-width="16" filter="url(#wv3-soft)" opacity=".13" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#14212B" stroke-width="16" filter="url(#wv3-soft)" opacity=".22" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
 <path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z" fill="url(#wv3-fill)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z"/></path>
 <path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="url(#wv3-sheen)" stroke-width="2.2" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
 <path d="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92" fill="none" stroke="url(#wv3-glint)" stroke-width="1" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="10.5s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92;M0,102 C238,74 458,138 700,196 C900,244 1138,176 1440,106;M0,108 C250,80 470,126 720,190 C920,240 1150,184 1440,100;M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92"/></path>
@@ -765,20 +835,37 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <!-- La marque : présentation courte (la page complète reste « À propos ») -->
 <section id="la-marque" class="lm" aria-labelledby="lm-titre">
+<video class="lm-bg" src="assets/marque-bg.mp4" poster="assets/marque-bg-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
 <div class="lm-wrap">
-<div class="lm-pic"><img src="assets/hero-6.jpg" alt="Un groupe d’amis autour d’un feu au bord d’un lac gelé, à la tombée de la nuit" loading="lazy"></div>
 <div class="lm-txt">
 <h2 id="lm-titre">La marque</h2>
-<p class="lm-lead">Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver.</p>
-<p>Une batterie que l’on glisse dans une poche, un bouton, et une chaleur qui se règle selon le moment : pour que le froid ne décide plus de la durée de vos journées.</p>
-<ul class="lm-points">
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c2 3 5 5.5 5 9.5A5 5 0 0 1 7 12.5C7 9.8 8.6 8 10 6.5c.3 2 1.2 3 2.2 3.5C12.6 7.6 12 5 12 3z"/></svg><span>Une chaleur réglable, discrète et fiable</span></li>
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="6" rx="1.5"/><rect x="17" y="13" width="4" height="6" rx="1.5"/></svg><span>Une équipe qui vous répond elle-même</span></li>
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg><span>Retours sous 30 jours</span></li>
-</ul>
+<p class="lm-lead">Otreau est une aventure entrepreneuriale. Notre ambition : devenir le meilleur fabricant de vêtements chauffants.</p>
+<p>Pour y arriver, nous avons choisi de commencer par l’écoute. Les modèles de cette première saison ne sont pas une simple sélection : nous avons contacté directement les fournisseurs et retenu ceux qui ont fait leurs preuves au fil des saisons précédentes, sur des critères précis : autonomie de la batterie, chaleur réglable, entretien simple et choix des tailles. Vos retours nous serviront ensuite à concevoir et faire fabriquer notre propre collection.</p>
+<ol class="lm-road" aria-label="Notre trajectoire">
+<li class="is-now"><span class="lm-dot">1</span><span class="lm-tag">Nous sommes ici</span><strong>Analyse du marché</strong><span>et sélection des fournisseurs</span></li>
+<li><span class="lm-dot">2</span><strong>Vos retours</strong><span>sur les modèles de la saison</span></li>
+<li><span class="lm-dot">3</span><strong>Amélioration</strong><span>des modèles, point par point</span></li>
+<li><span class="lm-dot">4</span><strong>Notre collection</strong><span>conçue et fabriquée par Otreau</span></li>
+</ol>
 <a class="lm-btn" href="a-propos.html">Découvrir notre histoire<span aria-hidden="true">→</span></a>
 </div>
 </div>
+<!-- Transition en vague vers la FAQ -->
+<div class="wave-sep wave-light wave-faq" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+<defs>
+<linearGradient id="wv4-sheen" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".35" stop-color="#D4D4D4" stop-opacity=".55"/><stop offset=".6" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#CFCFCF" stop-opacity=".65"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wv4-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#A89B84" stop-opacity=".04"/><stop offset=".22" stop-color="#A89B84" stop-opacity=".5"/><stop offset=".5" stop-color="#A89B84" stop-opacity=".1"/><stop offset=".8" stop-color="#A89B84" stop-opacity=".55"/><stop offset="1" stop-color="#A89B84" stop-opacity=".06"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wv4-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#F8F6F1"/></linearGradient>
+<filter id="wv4-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#14212B" stroke-width="16" filter="url(#wv4-soft)" opacity=".13" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z" fill="url(#wv4-fill)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="url(#wv4-sheen)" stroke-width="2.2" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92" fill="none" stroke="url(#wv4-glint)" stroke-width="1" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="10.5s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92;M0,102 C238,74 458,138 700,196 C900,244 1138,176 1440,106;M0,108 C250,80 470,126 720,190 C920,240 1150,184 1440,100;M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92"/></path>
+<path d="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128" fill="none" stroke="url(#wv4-glint)" stroke-width=".8" opacity=".6" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="17s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128;M0,130 C250,102 470,148 720,212 C920,262 1150,206 1440,122;M0,140 C262,116 500,136 742,202 C942,252 1162,216 1440,114;M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128"/></path>
+</svg></div>
 </section>
 
 <!-- FAQ -->
@@ -818,7 +905,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="f-top">
 <div class="f-brand">
 <a href="#top" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
-<p>Otreau conçoit des vêtements et accessoires chauffants pour celles et ceux qui vivent dehors, même en hiver. Une chaleur réglable, discrète et fiable, pour que le froid ne décide plus de la durée de vos journées.</p>
+<p>Otreau est une aventure entrepreneuriale, avec une ambition : devenir le meilleur fabricant de vêtements chauffants. Pour cette première saison, nous avons sélectionné avec exigence des modèles existants ; la suite, nous la concevrons à partir de vos retours.</p>
 <ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li><a href="mailto:contact@otreau.com">contact@otreau.com</a></li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="#top" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
