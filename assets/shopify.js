@@ -194,7 +194,7 @@
     '.oc-btn[disabled]{opacity:.5;cursor:default}' +
     '.oc-busy{opacity:.55;pointer-events:none}' +
     '.oc-msg{margin:8px 0 0;font-size:13px;color:#C2361F}' +
-    '.pc-car{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;background:var(--section-bg,#F8F6F1)}' +
+    '.pc-car{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;background:transparent}' +
     '.pc-car > video,.pc-car > .pc-car-base{position:absolute;inset:0;width:100% !important;height:100% !important;aspect-ratio:auto !important;object-fit:cover;display:block}' +
     '.pc-car > video,.pc-car > .pc-car-base{transition:opacity .35s ease}' +
     '.pc-car > .is-off{opacity:0 !important}' +

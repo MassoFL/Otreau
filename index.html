@@ -9,30 +9,36 @@
 <style>
 body{margin:0;background:#F8F6F1}
 /* ===== La marque (accueil) ===== */
-/* La marque : trajectoire en 4 étapes */
-.lm-road{list-style:none;margin:22px 0 10px;padding:0;width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:relative;counter-reset:none}
-.lm-road::before{content:"";position:absolute;top:21px;left:12.5%;right:12.5%;border-top:2px dashed rgba(255,255,255,.3)}
-.lm-road::after{content:"";position:absolute;top:20px;left:12.5%;width:12.5%;height:4px;border-radius:4px;background:linear-gradient(90deg,#7FD1A4,rgba(127,209,164,0));animation:lmRoad 2.8s ease-in-out infinite}
-@keyframes lmRoad{0%{width:0;opacity:0}30%{opacity:1}100%{width:25%;opacity:0}}
-.lm-road li{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:0 6px}
-.lm-dot{width:42px;height:42px;margin-bottom:10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 15px Manrope,sans-serif;color:#FFFFFF;background:rgba(11,25,16,.85);border:1.5px solid rgba(255,255,255,.45)}
-.lm-road li.is-now .lm-dot{background:linear-gradient(135deg,#1F5A3E,#2B7A52);border-color:#7FD1A4;box-shadow:0 0 0 6px rgba(127,209,164,.18);animation:lmPulse 2.4s ease-in-out infinite}
-@keyframes lmPulse{50%{box-shadow:0 0 0 11px rgba(127,209,164,.06)}}
+/* La marque : trajectoire en 4 étapes, sur une courbe */
+.lm-road{position:relative;width:100%;margin:40px 0 18px}
+.lm-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.lm-path{position:absolute;left:0;top:0;width:100%;height:110px;overflow:visible;pointer-events:none}
+.lm-path path{fill:none;stroke:rgba(255,255,255,.35);stroke-width:2;stroke-dasharray:6 7;vector-effect:non-scaling-stroke}
+.lm-path path.lm-glow{stroke:url(#lmHeatH);stroke-width:3;stroke-dasharray:70 2000;stroke-linecap:round;filter:drop-shadow(0 0 4px rgba(245,166,35,.65));animation:lmGlow 7s linear infinite}
+@keyframes lmGlow{0%{stroke-dashoffset:70}72%{stroke-dashoffset:-1000}100%{stroke-dashoffset:-1000}}
+/* quand la lumière arrive sur l’infini, la boucle continue de tourner puis s’estompe lentement */
+.lm-path path.lm-loop{stroke:url(#lmHeatH);stroke-width:3;stroke-dasharray:180 820;stroke-linecap:round;filter:drop-shadow(0 0 4px rgba(245,166,35,.65));opacity:0;animation:lmLoopSpin 1.8s linear infinite,lmLoopFade 7s linear infinite}
+@keyframes lmLoopSpin{from{stroke-dashoffset:0}to{stroke-dashoffset:-1000}}
+@keyframes lmLoopFade{0%,38%{opacity:0}44%{opacity:1}100%{opacity:0}}
+.lm-path-v{display:none}
+.lm-road li{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:53px 6px 0}
+.lm-road li:nth-child(even){padding-top:5px}
+.lm-dot{width:42px;height:42px;margin-bottom:10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 15px Manrope,sans-serif;color:#FFFFFF;background:linear-gradient(135deg,#173A2C,#1F5A3E);border:1.5px solid rgba(127,209,164,.7);box-shadow:0 0 0 5px rgba(127,209,164,.1)}
 .lm-road strong{font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:#FFFFFF}
-.lm-road li > span:not(.lm-dot):not(.lm-tag){font-size:13.5px;line-height:1.4;color:#BFCDC5}
-.lm-road li:not(.is-now) strong{color:rgba(255,255,255,.85)}
-.lm-tag{position:absolute;top:-30px;white-space:nowrap;padding:3px 10px;border-radius:999px;background:#7FD1A4;color:#0B1910;font:700 11px Manrope,sans-serif;letter-spacing:.04em;text-transform:uppercase}
+.lm-road li > span:not(.lm-dot){font-size:13.5px;line-height:1.4;color:#BFCDC5}
 @media (max-width:640px){
-.lm-road{grid-template-columns:minmax(0,1fr);gap:18px;margin-top:30px;max-width:320px;margin-left:auto;margin-right:auto}
-.lm-road::before{top:21px;bottom:21px;left:20px;right:auto;border-top:0;border-left:2px dashed rgba(255,255,255,.3)}
-.lm-road::after{display:none}
-.lm-road li{display:grid;grid-template-columns:42px 1fr;column-gap:14px;align-items:center;text-align:left;padding:0}
+.lm-road{margin-top:28px;max-width:330px;margin-left:auto;margin-right:auto}
+.lm-steps{grid-template-columns:minmax(0,1fr);gap:22px}
+.lm-path-h{display:none}
+.lm-path-v{display:block;width:70px;height:100%}
+.lm-path-v path.lm-glow,.lm-path-v path.lm-loop{stroke:url(#lmHeatV)}
+.lm-steps li:nth-child(4){margin-top:36px}
+.lm-road li,.lm-road li:nth-child(even){display:grid;grid-template-columns:42px 1fr;column-gap:14px;align-items:center;text-align:left;padding:0}
+.lm-road li:nth-child(even){padding-left:28px}
 .lm-dot{grid-row:span 2;margin:0}
-.lm-road strong{align-self:end}.lm-road li > span:not(.lm-dot):not(.lm-tag){align-self:start}
-.lm-tag{position:static;grid-column:2;justify-self:start;margin-bottom:2px}
-.lm-road li.is-now .lm-dot{grid-row:span 3}
+.lm-road strong{align-self:end}.lm-road li > span:not(.lm-dot){align-self:start}
 }
-@media (prefers-reduced-motion: reduce){.lm-road::after,.lm-road li.is-now .lm-dot{animation:none}}
+@media (prefers-reduced-motion: reduce){.lm-path path.lm-glow,.lm-path path.lm-loop{animation:none;display:none}}
 
 /* La marque : texte seul, centré sur la vidéo */
 .lm .lm-wrap{grid-template-columns:minmax(0,1fr);max-width:760px}
@@ -72,6 +78,8 @@ body{margin:0;background:#F8F6F1}
 .lm-btn:hover{background:#14212B;color:#FFFFFF}
 .lm-btn span{transition:transform .2s}.lm-btn:hover span{transform:translateX(3px)}
 @media (max-width:860px){.lm{padding:72px 24px 16px}.lm-wrap{grid-template-columns:minmax(0,1fr)}.lm-txt{align-items:center;text-align:center}.lm-points li{justify-content:center}}
+/* Cartes produit de l’accueil : tailles masquées */
+.pc-sizes{display:none !important}
 .wave-sep{display:block;line-height:0;position:absolute;left:0;right:0;bottom:-1px;z-index:1;pointer-events:none}
 .wave-sep svg{display:block;width:100%;height:clamp(58px,8.5vw,130px)}
 .wave-sep.wave-top{top:-1px;bottom:auto;z-index:4}
@@ -338,8 +346,8 @@ a{color:#14212B}a:hover{color:#B5650F}
   .cat-track > a{flex:0 0 74%;scroll-snap-align:start;display:flex !important}
   .cat-track > a:only-child{flex-basis:calc(100% - 0px)}
 }
-.hero-title{font-weight:400;filter:drop-shadow(0 1px 1px rgba(0,0,0,.9)) drop-shadow(0 2px 10px rgba(0,0,0,.8)) drop-shadow(0 8px 36px rgba(0,0,0,.75)) drop-shadow(0 0 60px rgba(0,0,0,.5))}
-@media (max-width:760px){.hero-title{font-weight:500}}
+.hero-title{font-weight:600;filter:drop-shadow(0 1px 1px rgba(0,0,0,.9)) drop-shadow(0 2px 10px rgba(0,0,0,.8)) drop-shadow(0 8px 36px rgba(0,0,0,.75)) drop-shadow(0 0 60px rgba(0,0,0,.5))}
+@media (max-width:760px){.hero-title{font-weight:700}}
 .hero-sub{filter:drop-shadow(0 1px 1px rgba(0,0,0,.9)) drop-shadow(0 2px 8px rgba(0,0,0,.8)) drop-shadow(0 0 30px rgba(0,0,0,.6))}
 .br-mobile{display:none}
 @media (max-width:760px){.br-mobile{display:inline}}
@@ -351,8 +359,8 @@ a{color:#14212B}a:hover{color:#B5650F}
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
   animation:glow-spin 3.2s linear infinite}
 .cta-glow::before{inset:-2px}
-.cta-glow{font-weight:400}
-@media (max-width:760px){.cta-glow{font-weight:500;padding:0 28px !important;font-size:17px !important;white-space:nowrap}}
+.cta-glow{font-weight:800}
+@media (max-width:760px){.cta-glow{font-weight:800;padding:0 28px !important;font-size:17px !important;white-space:nowrap}}
 .cta-glow span{filter:drop-shadow(0 1px 1px rgba(0,0,0,1)) drop-shadow(0 2px 6px rgba(0,0,0,.95)) drop-shadow(0 3px 14px rgba(0,0,0,.9)) drop-shadow(0 0 32px rgba(0,0,0,.75))}
 @keyframes glow-spin{to{--glow-a:360deg}}
 .cta-glow:hover::after,.cta-glow:focus-visible::after{opacity:0;transition:opacity .3s}
@@ -551,7 +559,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 <section id="top" class="hero" aria-label="Vidéo d'ambiance" style="position: relative; height: 200vh; background-color: #14212B">
 <div class="hero-sticky">
 <!-- Vidéos d'accueil : elles s'enchaînent en fondu. Pour en ajouter une, copiez une ligne <video> et changez src / poster. -->
-<video class="hero-video is-active" data-speed="0.7" src="assets/hero-video-2.mp4" poster="assets/hero-video-2-poster.jpg" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
+<!-- ancienne vidéo : <video class="hero-video" data-speed="0.7" src="assets/hero-video-2.mp4" poster="assets/hero-video-2-poster.jpg"></video> -->
+<video class="hero-video is-active" data-speed="0.7" src="assets/hero-video-3.mp4" poster="assets/hero-video-3-poster.jpg" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
 <!-- <video class="hero-video" src="assets/hero-video.mp4" poster="assets/hero-video-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video> -->
 <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 10%, rgba(0,0,0,0.3) 22%, rgba(0,0,0,0.08) 32%, rgba(0,0,0,0) 40%), linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 15%, rgba(0,0,0,0.4) 35%, rgba(0,0,0,0.12) 55%, rgba(0,0,0,0) 70%)"></div>
 </div>
@@ -581,7 +590,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="product-grid">
 <a data-handle="veste-otreau" href="veste-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/veste-otreau.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
-<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">VESTE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
@@ -596,7 +605,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <a data-handle="gilet-otreau" href="#collection" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
-<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
@@ -610,7 +619,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <a data-handle="gilet-fin-otreau" href="#collection" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet fin chauffant en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
-<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET FIN</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
@@ -624,7 +633,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <a data-handle="doudoune-otreau" href="#collection" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
-<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">DOUDOUNE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
@@ -639,7 +648,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <a data-handle="gilet-polaire-otreau" href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/gilet-polaire-rose.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet polaire chauffant rose en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
-<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET POLAIRE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
@@ -653,7 +662,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <a data-handle="gants-otreau" href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <div aria-hidden="true" style="width: 100%; aspect-ratio: 1 / 1; background: transparent; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
-<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: #FFFFFF; border: 1px solid #E4DFD5">
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GANTS</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
 <span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
@@ -841,12 +850,16 @@ a{color:#14212B}a:hover{color:#B5650F}
 <h2 id="lm-titre">La marque</h2>
 <p class="lm-lead">Otreau est une aventure entrepreneuriale. Notre ambition : devenir le meilleur fabricant de vêtements chauffants.</p>
 <p>Pour y arriver, nous avons choisi de commencer par l’écoute. Les modèles de cette première saison ne sont pas une simple sélection : nous avons contacté directement les fournisseurs et retenu ceux qui ont fait leurs preuves au fil des saisons précédentes, sur des critères précis : autonomie de la batterie, chaleur réglable, entretien simple et choix des tailles. Vos retours nous serviront ensuite à concevoir et faire fabriquer notre propre collection.</p>
-<ol class="lm-road" aria-label="Notre trajectoire">
-<li class="is-now"><span class="lm-dot">1</span><span class="lm-tag">Nous sommes ici</span><strong>Analyse du marché</strong><span>et sélection des fournisseurs</span></li>
+<div class="lm-road">
+<svg class="lm-path lm-path-h" viewBox="0 0 1000 110" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="lmHeatH" gradientUnits="userSpaceOnUse" x1="125" y1="0" x2="875" y2="0"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".3" stop-color="#B9E0FF"/><stop offset=".55" stop-color="#FFD27A"/><stop offset=".8" stop-color="#F5A623"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path d="M125,74 C220,74 270,26 375,26 C480,26 520,74 625,74 C680,74 715,70 750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 C795,22 840,26 875,26"/><path class="lm-glow" pathLength="1000" d="M125,74 C220,74 270,26 375,26 C480,26 520,74 625,74 C680,74 715,70 750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 C795,22 840,26 875,26"/><path class="lm-loop" pathLength="1000" d="M750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 Z"/></svg>
+<svg class="lm-path lm-path-v" viewBox="0 0 70 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="lmHeatV" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="0" y2="350"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".3" stop-color="#B9E0FF"/><stop offset=".55" stop-color="#FFD27A"/><stop offset=".8" stop-color="#F5A623"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path d="M21,50 C21,90 49,110 49,150 C49,190 21,210 21,250 C21,272 24,288 35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 C46,312 49,326 49,350"/><path class="lm-glow" pathLength="1000" d="M21,50 C21,90 49,110 49,150 C49,190 21,210 21,250 C21,272 24,288 35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 C46,312 49,326 49,350"/><path class="lm-loop" pathLength="1000" d="M35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 Z"/></svg>
+<ol class="lm-steps" aria-label="Notre trajectoire">
+<li><span class="lm-dot">1</span><strong>Hiver ’26</strong><span>Produits sélectionnés avec soin</span></li>
 <li><span class="lm-dot">2</span><strong>Vos retours</strong><span>sur les modèles de la saison</span></li>
 <li><span class="lm-dot">3</span><strong>Amélioration</strong><span>des modèles, point par point</span></li>
 <li><span class="lm-dot">4</span><strong>Notre collection</strong><span>conçue et fabriquée par Otreau</span></li>
 </ol>
+</div>
 <a class="lm-btn" href="a-propos.html">Découvrir notre histoire<span aria-hidden="true">→</span></a>
 </div>
 </div>
