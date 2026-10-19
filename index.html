@@ -80,6 +80,12 @@ body{margin:0;background:#F8F6F1}
 @media (max-width:860px){.lm{padding:72px 24px 16px}.lm-wrap{grid-template-columns:minmax(0,1fr)}.lm-txt{align-items:center;text-align:center}.lm-points li{justify-content:center}}
 /* Cartes produit de l’accueil : tailles masquées */
 .pc-sizes{display:none !important}
+/* Encadré « Bon à savoir » sous le guide des tailles */
+.size-alert{max-width:760px;margin:28px auto 0;padding:20px 24px;background:#FFF8EC;border:1px solid #E8C98F;border-left:4px solid #D9792B;border-radius:14px;text-align:left;color:#3D4A54}
+.size-alert-t{margin:0 0 10px;font-family:Manrope,sans-serif;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#B5650F}
+.size-alert ul{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.55}
+.size-alert strong{color:#14212B}
+.size-alert a{color:#14212B;text-underline-offset:3px}
 .wave-sep{display:block;line-height:0;position:absolute;left:0;right:0;bottom:-1px;z-index:1;pointer-events:none}
 .wave-sep svg{display:block;width:100%;height:clamp(58px,8.5vw,130px)}
 .wave-sep.wave-top{top:-1px;bottom:auto;z-index:4}
@@ -810,6 +816,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <thead><tr id="size-head"></tr></thead>
 <tbody id="size-body"></tbody>
 </table>
+<div id="size-note"></div>
 </div>
 </div>
 </div>
@@ -1080,7 +1087,7 @@ var SIZE_GUIDE = {
     { k: 'B', label: 'Longueur dos',     values: [null,null,null,null,null] },
     { k: 'C', label: 'Largeur épaules',  values: [null,null,null,null,null] },
     { k: 'D', label: 'Longueur manche',  values: [null,null,null,null,null] } ] },
-  'veste': { name: 'VESTE’Otreau', flat: 'doudoune', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
+  'veste': { name: 'VESTE’Otreau', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent 2 à 3 tailles plus petit que les tailles EU/US.</li><li><strong>Vous portez du M en EU/US ?</strong> Choisissez plutôt notre XL ou XXL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li></ul></div>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Tour de poitrine',  values: ['104 cm','108 cm','112 cm','116 cm','120 cm','124 cm','130 cm','136 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },
@@ -1097,6 +1104,7 @@ var SIZE_GUIDE = {
   function render(){
     var g=SIZE_GUIDE[current];
     label.textContent='Patron · '+g.name;
+    var sn=document.getElementById('size-note'); if(sn) sn.innerHTML=g.note||'';
     flats.forEach(function(f){if(f.dataset.product===g.flat)f.removeAttribute('hidden');else f.setAttribute('hidden','')});
     head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){
       return '<th scope="col" data-k="'+r.k+'" tabindex="0"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');

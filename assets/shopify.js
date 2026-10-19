@@ -50,13 +50,18 @@
 
   function fetchProducts(handles) {
     if (!handles.length) return Promise.resolve({});
-    var q = handles.map(function (h) { return 'handle:' + h; }).join(' OR ');
+    // Un produit est retrouvé que son identifiant Shopify soit « doudoune » ou « doudoune-otreau »
+    function alt(h) { return /-otreau$/.test(h) ? h.replace(/-otreau$/, '') : h + '-otreau'; }
+    var all = [];
+    handles.forEach(function (h) { [h, alt(h)].forEach(function (x) { if (all.indexOf(x) < 0) all.push(x); }); });
+    var q = all.map(function (h) { return 'handle:' + h; }).join(' OR ');
     function run(fields) {
       return gql('query P($q: String!) { products(first: 50, query: $q) { nodes { ' + fields + ' } } }', { q: q });
     }
     return run(PRODUCT_FIELDS).then(function (d) {
       var map = {};
       d.products.nodes.forEach(function (p) { sortSizes(p); map[p.handle] = p; });
+      handles.forEach(function (h) { if (!map[h] && map[alt(h)]) map[h] = map[alt(h)]; });
       return map;
     });
   }
