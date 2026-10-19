@@ -9,6 +9,17 @@
 <style>
 body{margin:0;background:#F8F6F1}
 /* ===== La marque (accueil) ===== */
+/* La marque : principes fondateurs */
+.lm-princ{width:100%;margin:18px 0 8px;padding-top:34px;border-top:1px solid rgba(255,255,255,.16)}
+.lm-princ-t{margin:0 0 8px;font-family:Manrope,sans-serif;font-weight:300;font-size:clamp(20px,2vw,26px);letter-spacing:.01em;text-transform:uppercase;color:#FFFFFF}
+.lm-princ-intro{margin:0 auto 24px !important;max-width:560px;font-size:15.5px !important;color:#BFCDC5 !important}
+.lm-princ-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.lm-pr{display:flex;flex-direction:column;align-items:center;gap:8px;padding:22px 16px;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:rgba(11,25,16,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.lm-pr svg{width:28px;height:28px;fill:none;stroke:#7FD1A4;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lm-pr strong{font-family:Manrope,sans-serif;font-weight:700;font-size:15.5px;color:#FFFFFF}
+.lm-pr span{font-size:14px;line-height:1.5;color:#BFCDC5}
+@media (max-width:640px){.lm-princ-grid{grid-template-columns:minmax(0,1fr)}}
+
 /* La marque : trajectoire en 4 étapes, sur une courbe */
 .lm-road{position:relative;width:100%;margin:40px 0 18px}
 .lm-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -543,7 +554,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
 <div class="menu-sub">
 <a href="veste-otreau.html" data-shop-handle="veste-otreau">Veste</a>
-<a href="#collection" data-shop-handle="doudoune-otreau">Doudoune</a>
+<a href="doudoune-otreau.html" data-shop-handle="doudoune-otreau">Doudoune</a>
 <a href="#collection" data-shop-handle="gilet-otreau">Gilet</a>
 <a href="#collection" data-shop-handle="gilet-fin-otreau">Gilet fin</a>
 <a href="#collection" data-shop-handle="gilet-polaire-otreau">Gilet polaire</a>
@@ -637,7 +648,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 </a>
 
-<a data-handle="doudoune-otreau" href="#collection" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<a data-handle="doudoune-otreau" href="doudoune-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">DOUDOUNE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
@@ -855,8 +866,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="lm-wrap">
 <div class="lm-txt">
 <h2 id="lm-titre">La marque</h2>
-<p class="lm-lead">Otreau est une aventure entrepreneuriale. Notre ambition : devenir le meilleur fabricant de vêtements chauffants.</p>
-<p>Pour y arriver, nous avons choisi de commencer par l’écoute. Les modèles de cette première saison ne sont pas une simple sélection : nous avons contacté directement les fournisseurs et retenu ceux qui ont fait leurs preuves au fil des saisons précédentes, sur des critères précis : autonomie de la batterie, chaleur réglable, entretien simple et choix des tailles. Vos retours nous serviront ensuite à concevoir et faire fabriquer notre propre collection.</p>
+<p class="lm-lead">Chez Otreau, un vêtement chauffant est d’abord un vêtement… équipé d’un mécanisme chauffant.</p>
+<p>Les modèles de la Collection Hiver ’26 ont fait l’objet d’une sélection rigoureuse : ceux que nous avons retenus ont fait leurs preuves au fil des hivers précédents, sur des critères précis : qualité du vêtement, entretien simple, autonomie de la batterie et choix simple des tailles. Vos retours précieux guideront la conception de l’édition 2027 de la veste.</p>
 <div class="lm-road">
 <svg class="lm-path lm-path-h" viewBox="0 0 1000 110" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="lmHeatH" gradientUnits="userSpaceOnUse" x1="125" y1="0" x2="875" y2="0"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".3" stop-color="#B9E0FF"/><stop offset=".55" stop-color="#FFD27A"/><stop offset=".8" stop-color="#F5A623"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path d="M125,74 C220,74 270,26 375,26 C480,26 520,74 625,74 C680,74 715,70 750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 C795,22 840,26 875,26"/><path class="lm-glow" pathLength="1000" d="M125,74 C220,74 270,26 375,26 C480,26 520,74 625,74 C680,74 715,70 750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 C795,22 840,26 875,26"/><path class="lm-loop" pathLength="1000" d="M750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 Z"/></svg>
 <svg class="lm-path lm-path-v" viewBox="0 0 70 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="lmHeatV" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="0" y2="350"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".3" stop-color="#B9E0FF"/><stop offset=".55" stop-color="#FFD27A"/><stop offset=".8" stop-color="#F5A623"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path d="M21,50 C21,90 49,110 49,150 C49,190 21,210 21,250 C21,272 24,288 35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 C46,312 49,326 49,350"/><path class="lm-glow" pathLength="1000" d="M21,50 C21,90 49,110 49,150 C49,190 21,210 21,250 C21,272 24,288 35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 C46,312 49,326 49,350"/><path class="lm-loop" pathLength="1000" d="M35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 Z"/></svg>
@@ -866,6 +877,15 @@ a{color:#14212B}a:hover{color:#B5650F}
 <li><span class="lm-dot">3</span><strong>Amélioration</strong><span>des modèles, point par point</span></li>
 <li><span class="lm-dot">4</span><strong>Notre collection</strong><span>conçue et fabriquée par Otreau</span></li>
 </ol>
+</div>
+<div class="lm-princ">
+<h3 class="lm-princ-t">Nos principes</h3>
+<p class="lm-princ-intro">Les trois critères sur lesquels nous retenons chaque modèle.</p>
+<div class="lm-princ-grid">
+<div class="lm-pr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3l-4 3v14h16V6l-4-3"/><path d="M8 3a4 4 0 0 0 8 0"/><path d="M12 7v13"/></svg><strong>Un vêtement d’abord</strong><span>Il doit être agréable à porter et à regarder, même batterie débranchée.</span></div>
+<div class="lm-pr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><strong>La sécurité avant tout</strong><span>Une chaleur maîtrisée, qui se règle et s’éteint d’un geste.</span></div>
+<div class="lm-pr"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5"/></svg><strong>Une autonomie qui suit</strong><span>Une chaleur qui dure aussi longtemps que vos journées dehors.</span></div>
+</div>
 </div>
 <a class="lm-btn" href="a-propos.html">Découvrir notre histoire<span aria-hidden="true">→</span></a>
 </div>

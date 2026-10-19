@@ -426,7 +426,12 @@
     var groups = [];
     document.querySelectorAll('.pd-info .pd-opts').forEach(function (box) {
       var label = box.getAttribute('aria-label'), opt = optionOf(p, label), field = box.closest('.pd-field');
-      if (!opt) { field.hidden = true; return; }
+      if (!opt) {
+        field.hidden = true;
+        // pas d’option Batterie dans Shopify : on retire aussi la question « La batterie est-elle incluse ? »
+        if (norm(label) === 'batterie') { var bq = document.querySelector('.pd-faq-row .pd-faq-field:not(.pd-wash)'); if (bq) bq.hidden = true; }
+        return;
+      }
       var old = [].slice.call(box.children), isSwatch = old.some(function (b) { return b.classList.contains('pd-swatch'); });
       box.innerHTML = '';
       opt.optionValues.forEach(function (v, i) {
@@ -716,7 +721,7 @@
 
   /* ---------- recherche (bouton loupe du menu) ---------- */
   // page dédiée de chaque produit (les autres renvoient vers la sélection de l'accueil)
-  var PRODUCT_PAGES = { 'veste-otreau': 'veste-otreau.html' };
+  var PRODUCT_PAGES = { 'veste-otreau': 'veste-otreau.html', 'veste': 'veste-otreau.html', 'doudoune-otreau': 'doudoune-otreau.html', 'doudoune': 'doudoune-otreau.html' };
   var SEARCH_Q = 'query S($q: String!) { predictiveSearch(query: $q, limit: 10, types: [PRODUCT], ' +
     'searchableFields: [TITLE, BODY, PRODUCT_TYPE, TAG, VARIANTS_TITLE, VENDOR], unavailableProducts: LAST) { products { ' +
     'handle title availableForSale featuredImage { url altText } priceRange { minVariantPrice { amount currencyCode } } ' +

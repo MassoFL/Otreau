@@ -480,6 +480,33 @@ body{background:#F8F6F1}
 .size-alert ul{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.55}
 .size-alert strong{color:#14212B}
 .size-alert a{color:#14212B;text-underline-offset:3px}
+/* Options absentes dans Shopify : bien masquées */
+.pd-info .pd-field[hidden]{display:none !important}
+.pd-faq-row .pd-faq-field[hidden] + .pd-faq-field{border-left:0 !important;box-shadow:none !important}
+.pd-faq-row .pd-faq-field[hidden] + .pd-faq-field::before{display:none !important}
+/* Mode d’emploi (d’après le manuel du fabricant) */
+.hw-intro{margin:-8px 0 28px;font-size:14px}
+.hw-steps{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+.hw-steps .pd-step{border-radius:16px}
+.hw-h3{margin:64px 0 8px;text-align:center;font-family:Manrope,sans-serif;font-weight:300;font-size:clamp(22px,2.2vw,28px);text-transform:uppercase;letter-spacing:.01em}
+.hw-sub{max-width:620px;margin:0 auto 26px;font-size:15px;line-height:1.6}
+.hw-levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:760px;margin:0 auto}
+.hw-lvl{display:flex;flex-direction:column;align-items:center;gap:6px;padding:24px 12px;background:#14212B;border-radius:16px;color:#FFFFFF;text-align:center}
+.hw-led{width:22px;height:22px;border-radius:6px;border:2.5px solid var(--c);box-shadow:0 0 14px var(--c),inset 0 0 6px var(--c);margin-bottom:6px}
+.hw-led-w{box-shadow:0 0 10px rgba(255,255,255,.7),inset 0 0 6px rgba(255,255,255,.7)}
+.hw-lvl strong{font-family:Manrope,sans-serif;font-weight:700;font-size:16px}
+.hw-deg{font-family:Manrope,sans-serif;font-weight:300;font-size:24px}
+.hw-lvl small{font-size:12.5px;color:#A9B4BB}
+.hw-auto{display:flex;align-items:center;justify-content:center;gap:14px;max-width:760px;margin:22px auto 0;padding:16px 20px;background:#FFFFFF;border:1px solid #E4DFD5;border-radius:16px}
+.hw-auto svg{flex:none;width:28px;height:28px;fill:none;stroke:#1F6342;stroke-width:1.6;stroke-linecap:round}
+.hw-auto p{margin:0;font-size:15px;line-height:1.5;color:#3D4A54}
+.hw-auto strong{color:#14212B}
+.hw-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:56px}
+.hw-box{background:#FFFFFF;border:1px solid #E4DFD5;border-radius:16px;padding:26px 28px}
+.hw-box h3{margin:0 0 12px;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.hw-box ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.55;color:#3D4A54}
+@media (max-width:900px){.hw-steps{grid-template-columns:repeat(2,minmax(0,1fr)) !important}.hw-cols{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.hw-steps{grid-template-columns:minmax(0,1fr) !important}.hw-levels{gap:8px}.hw-lvl{padding:18px 6px}.hw-deg{font-size:18px}.hw-auto{flex-direction:column;text-align:center}}
 /* Tailles dans des cercles */
 .pd-size-field .pd-opts > .pd-opt{width:46px;height:46px;min-width:46px;min-height:46px;padding:0;border-radius:50% !important;display:inline-flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:-.01em}
 /* Taille choisie : léger dégradé vert */
@@ -546,7 +573,7 @@ body{background:#F8F6F1}
 <details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
 <div class="menu-sub">
 <a href="veste-otreau.html" data-shop-handle="veste-otreau">Veste</a>
-<a href="index.html#collection" data-shop-handle="doudoune-otreau">Doudoune</a>
+<a href="doudoune-otreau.html" data-shop-handle="doudoune-otreau">Doudoune</a>
 <a href="index.html#collection" data-shop-handle="gilet-otreau">Gilet</a>
 <a href="index.html#collection" data-shop-handle="gilet-fin-otreau">Gilet fin</a>
 <a href="index.html#collection" data-shop-handle="gilet-polaire-otreau">Gilet polaire</a>
@@ -645,10 +672,10 @@ body{background:#F8F6F1}
 
 
 <section class="pd-details">
-<details class="pd-acc"><summary><span>Description</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>[Présentez la Veste’Otreau en quelques phrases : pour qui, pour quels moments, ce qui la rend différente. Rappelez qu’elle est plus efficace portée près du corps.]</p></div></details>
-<details class="pd-acc" open><summary><span>Propriétés</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Genre</span><strong>[Homme · Femme · Mixte]</strong></div><div class="pd-row"><span>Matière</span><strong>[…]</strong></div><div class="pd-row"><span>Protection</span><strong>[Coupe-vent · déperlant]</strong></div><div class="pd-row"><span>Poches</span><strong>[…]</strong></div><div class="pd-row"><span>Coupe</span><strong>[Ajustée · droite]</strong></div><div class="pd-row"><span>Poids</span><strong>[X g sans la batterie]</strong></div><h4 class="pd-h4">Intensité de chauffe</h4><div class="lvls"><div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Intensité faible</strong> : [X h à X h] d’autonomie</p></div><div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Intensité moyenne</strong> : [X h à X h] d’autonomie</p></div><div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Intensité élevée</strong> : [X h à X h] d’autonomie</p></div></div></div></details>
+<details class="pd-acc"><summary><span>Description</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Dans la Collection Hiver ’26, la <strong>VESTE’Otreau</strong> est votre bouclier contre le froid. Plus couvrante qu’une doudoune, plus légère qu’une parka, elle trouve le juste milieu pour affronter l’hiver sans s’alourdir.</p><p>Unisexe, elle se porte au quotidien comme lors des longues journées dehors, avec une chaleur réglable d’un simple bouton.</p><p>Ce modèle a déjà fait ses preuves au fil des hivers précédents : c’est pour cela que nous l’avons retenu. Et vos retours sur cette saison seront intégrés à sa version 2027.</p></div></details>
+<details class="pd-acc" open><summary><span>Propriétés</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Genre</span><strong>[Homme · Femme · Mixte]</strong></div><div class="pd-row"><span>Matière</span><strong>[…]</strong></div><div class="pd-row"><span>Protection</span><strong>[Coupe-vent · déperlant]</strong></div><div class="pd-row"><span>Poches</span><strong>[…]</strong></div><div class="pd-row"><span>Coupe</span><strong>[Ajustée · droite]</strong></div><div class="pd-row"><span>Poids</span><strong>[X g sans la batterie]</strong></div><h4 class="pd-h4">Niveaux de chaleur</h4><p style="margin:-6px 0 12px;font-size:14px;color:#55616B">Jusqu’à 12 h d’autonomie avec la batterie 20 000 mAh, selon le fabricant.</p><div class="lvls"><div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Doux</strong> (voyant bleu) : 40 – 45 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Moyen</strong> (voyant blanc) : 45 – 50 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Élevé</strong> (voyant rouge) : 50 – 55 °C</p></div></div></div></details>
 <details class="pd-acc"><summary><span>Usages recommandés</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>[Ex. : trajets à vélo ou à moto, travail en extérieur, promenades, marchés, sports d’hiver.]</p></div></details>
-<details class="pd-acc"><summary><span>Composition &amp; entretien</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Composition</span><strong>[…]</strong></div><p>Retirez toujours la batterie avant le lavage. [Vos consignes : lavage à la main ou en machine, température, séchage.]</p></div></details>
+<details class="pd-acc"><summary><span>Composition &amp; entretien</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Composition</span><strong>[…]</strong></div><p>Retirez toujours la batterie avant le lavage et refermez la poche. Lavage à la main ou en machine en programme délicat (30 °C max.), dans un filet de lavage, avec une lessive douce. Séchage à l’air libre. Ni essorage, ni repassage, ni javel, ni nettoyage à sec. <a class="pd-link" href="#mode-emploi">Tout le mode d’emploi</a></p></div></details>
 <details class="pd-acc"><summary><span>Batterie</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Capacité</span><strong>20 000 mAh</strong></div><div class="pd-row"><span>Charge rapide</span><strong>PD 22,5 W</strong></div><div class="pd-row"><span>Câbles intégrés</span><strong>USB-C · Lightning · USB-A</strong></div><div class="pd-row"><span>Poids</span><strong>190 g</strong></div><p><a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p></div></details>
 </section>
 
@@ -686,12 +713,52 @@ body{background:#F8F6F1}
 <div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent 2 à 3 tailles plus petit que les tailles EU/US.</li><li><strong>Vous portez du M en EU/US ?</strong> Choisissez plutôt notre XL ou XXL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li></ul></div>
 </section>
 
-<section class="pd-how">
+<section class="pd-how" id="mode-emploi">
 <h2 class="pd-h2 pd-center">Comment ça marche ?</h2>
-<div class="pd-steps">
-<div class="pd-step"><span class="pd-num">1</span><h3>Branchez la batterie</h3><p>Reliez le câble USB à la batterie chargée, puis glissez-la dans sa poche intérieure.</p></div>
-<div class="pd-step"><span class="pd-num">2</span><h3>Maintenez le bouton</h3><p>Un appui long, jusqu’à ce que le voyant s’allume. Un appui court ne suffit pas.</p></div>
-<div class="pd-step"><span class="pd-num">3</span><h3>Choisissez le niveau</h3><p>Appuis courts pour passer d’un niveau à l’autre. Comptez quelques minutes pour une chaleur optimale.</p></div>
+<p class="pd-center pd-muted hw-intro">D’après le manuel d’utilisation fourni avec la veste.</p>
+
+<div class="pd-steps hw-steps">
+<div class="pd-step"><span class="pd-num">1</span><h3>Branchez</h3><p>Reliez le câble USB situé dans la poche intérieure à la batterie, puis glissez-la dans la poche.</p></div>
+<div class="pd-step"><span class="pd-num">2</span><h3>Activez la batterie</h3><p>Appuyez sur le bouton de sortie de la batterie pour l’activer.</p></div>
+<div class="pd-step"><span class="pd-num">3</span><h3>Allumez</h3><p>Maintenez le bouton de la veste <strong>3 secondes</strong> jusqu’à ce que le voyant s’allume en rouge.</p></div>
+<div class="pd-step"><span class="pd-num">4</span><h3>Éteignez</h3><p>Maintenez de nouveau le bouton <strong>3 secondes</strong> : le voyant s’éteint et la veste arrête de chauffer.</p></div>
+</div>
+
+<h3 class="hw-h3">3 niveaux de chaleur</h3>
+<p class="pd-center pd-muted hw-sub">La couleur du voyant indique le niveau. Au démarrage, la veste chauffe à fond pendant 5 minutes (rouge), puis passe automatiquement au niveau moyen (blanc).</p>
+<div class="hw-levels">
+<div class="hw-lvl"><span class="hw-led" style="--c:#E5483B"></span><strong>Élevé</strong><span class="hw-deg">50 – 55 °C</span><small>Voyant rouge</small></div>
+<div class="hw-lvl"><span class="hw-led hw-led-w" style="--c:#FFFFFF"></span><strong>Moyen</strong><span class="hw-deg">45 – 50 °C</span><small>Voyant blanc</small></div>
+<div class="hw-lvl"><span class="hw-led" style="--c:#3E9BEA"></span><strong>Doux</strong><span class="hw-deg">40 – 45 °C</span><small>Voyant bleu</small></div>
+</div>
+
+<div class="hw-auto">
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+<p><strong>Jusqu’à 12 h d’autonomie</strong> avec la batterie 20 000 mAh fournie (environ 6 h avec une batterie de 10 000 mAh), selon le fabricant.</p>
+</div>
+
+<div class="hw-cols">
+<div class="hw-box">
+<h3>Entretien</h3>
+<ul>
+<li>Retirez la batterie, remettez le câble USB dans sa poche et fermez-la.</li>
+<li>Lavage à la main ou en machine (programme délicat, eau froide, 30 °C max.), avec une lessive douce et dans un filet de lavage.</li>
+<li>Lavez séparément, sans faire tremper.</li>
+<li>Séchage à l’air libre, à l’abri du soleil.</li>
+<li>Ne pas essorer ni tordre. Ni repassage, ni javel, ni nettoyage à sec.</li>
+</ul>
+</div>
+<div class="hw-box">
+<h3>Précautions</h3>
+<ul>
+<li>Ne pas faire porter à un nourrisson, un enfant ou une personne peu sensible à la chaleur (mauvaise circulation sanguine, par exemple).</li>
+<li>Éviter le contact direct des zones chauffantes avec la peau nue.</li>
+<li>Éteindre immédiatement en cas d’inconfort.</li>
+<li>Ne pas porter la veste si la doublure intérieure est mouillée. Ne jamais plonger la batterie dans un liquide.</li>
+<li>Pas d’épingles sur le vêtement : elles pourraient abîmer les fils chauffants.</li>
+<li>Débranchez la batterie quand vous ne portez pas la veste, et rangez-la au sec, loin des objets métalliques.</li>
+</ul>
+</div>
 </div>
 </section>
 
@@ -704,7 +771,7 @@ body{background:#F8F6F1}
 <a href="index.html#collection" class="pd-x" data-shop-handle="gilet-fin-otreau">
 <video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
 <div class="pd-x-info"><h3><span style="font-weight: 600">GILET FIN</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
-<a href="index.html#collection" class="pd-x" data-shop-handle="doudoune-otreau">
+<a href="doudoune-otreau.html" class="pd-x" data-shop-handle="doudoune-otreau">
 <video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
 <div class="pd-x-info"><h3><span style="font-weight: 600">DOUDOUNE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
 </div>
