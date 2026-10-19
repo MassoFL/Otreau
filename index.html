@@ -92,6 +92,7 @@ body{margin:0;background:#F8F6F1}
 /* Cartes produit de l’accueil : tailles masquées */
 .pc-sizes{display:none !important}
 /* Encadré « Bon à savoir » sous le guide des tailles */
+.size-table td,.size-table th[scope="row"]{white-space:nowrap}
 .size-alert{max-width:760px;margin:28px auto 0;padding:20px 24px;background:#FFF8EC;border:1px solid #E8C98F;border-left:4px solid #D9792B;border-radius:14px;text-align:left;color:#3D4A54}
 .size-alert-t{margin:0 0 10px;font-family:Manrope,sans-serif;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#B5650F}
 .size-alert ul{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.55}
@@ -814,7 +815,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <path class="garment" d="M138 40 Q170 66 202 40 L202 22 Q170 48 138 22 Z"></path>
 <path class="seam" d="M170 56 L170 316"></path>
 <path class="seam" d="M88 200 L252 200 M86 250 L254 250 M90 150 L250 150"></path>
-<g class="dim" data-k="C"><line class="ext" x1="112" y1="42" x2="112" y2="-6"></line><line class="ext" x1="228" y1="42" x2="228" y2="-6"></line><line x1="112" y1="0" x2="228" y2="0"></line><path d="M118 -4 L112 0 L118 4 M222 -4 L228 0 L222 4"></path><circle cx="170" cy="0" r="13"></circle><text x="170" y="0">C</text></g>
+<g class="dim" data-k="C"><line class="ext" x1="74" y1="62" x2="74" y2="-6"></line><line class="ext" x1="266" y1="62" x2="266" y2="-6"></line><line x1="74" y1="0" x2="266" y2="0"></line><path d="M80 -4 L74 0 L80 4 M260 -4 L266 0 L260 4"></path><circle cx="170" cy="0" r="13"></circle><text x="170" y="0">C</text></g>
 <g class="dim" data-k="A"><line x1="89" y1="168" x2="251" y2="168"></line><path d="M95 164 L89 168 L95 172 M245 164 L251 168 L245 172"></path><circle cx="130" cy="168" r="13"></circle><text x="130" y="168">A</text></g>
 <g class="dim" data-k="B"><line x1="210" y1="44" x2="210" y2="312"></line><path d="M206 50 L210 44 L214 50 M206 306 L210 312 L214 306"></path><circle cx="210" cy="275" r="13"></circle><text x="210" y="275">B</text></g>
 <g class="dim" data-k="D"><line class="ext" x1="266" y1="62" x2="281" y2="56"></line><line class="ext" x1="312" y1="214" x2="327" y2="208"></line><line x1="279" y1="57" x2="325" y2="209"></line><path d="M276 64 L279 57 L284 62 M320 203 L325 209 L327 201"></path><circle cx="302" cy="133" r="13"></circle><text x="302" y="133">D</text></g>
@@ -875,7 +876,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <li><span class="lm-dot">1</span><strong>Hiver ’26</strong><span>Produits sélectionnés avec soin</span></li>
 <li><span class="lm-dot">2</span><strong>Vos retours</strong><span>sur les modèles de la saison</span></li>
 <li><span class="lm-dot">3</span><strong>Amélioration</strong><span>des modèles, point par point</span></li>
-<li><span class="lm-dot">4</span><strong>Notre collection</strong><span>conçue et fabriquée par Otreau</span></li>
+<li><span class="lm-dot">4</span><strong>Hiver ’27</strong><span>Produits conçus par nos soins</span></li>
 </ol>
 </div>
 <div class="lm-princ">
@@ -1090,25 +1091,25 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
 // Une entrée par article. "flat" = le patron affiché (gilet sans manches, ou doudoune avec manches).
 // Remplacez les null par les mesures en cm.
 var SIZE_GUIDE = {
-  'gilet': { name: 'GILET’Otreau', flat: 'gilet', sizes: ['S','M','L','XL','XXL'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: [null,null,null,null,null] },
-    { k: 'B', label: 'Longueur dos',     values: [null,null,null,null,null] },
-    { k: 'C', label: 'Largeur épaules',  values: [null,null,null,null,null] } ] },
-  'gilet-fin': { name: 'GILET FIN’Otreau', flat: 'gilet', sizes: ['S','M','L','XL','XXL'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: [null,null,null,null,null] },
-    { k: 'B', label: 'Longueur dos',     values: [null,null,null,null,null] },
-    { k: 'C', label: 'Largeur épaules',  values: [null,null,null,null,null] } ] },
+  'gilet': { name: 'GILET’Otreau', flat: 'gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] },
+  'gilet-fin': { name: 'GILET FIN’Otreau', flat: 'gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe :</strong> prenez votre taille habituelle.</li><li><strong>Une taille pour trois :</strong> chaque taille couvre trois tailles standard (par exemple S, M et L).</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S – L','XL – 3XL','4XL – 6XL','7XL – 9XL'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['53 cm','58 cm','63 cm','68 cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['67 cm','72 cm','76 cm','80 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['44 cm','46 cm','48 cm','50 cm'] } ] },
   'gilet-polaire': { name: 'GILET POLAIRE’Otreau', flat: 'gilet', sizes: ['S','M','L','XL','XXL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: [null,null,null,null,null] },
     { k: 'B', label: 'Longueur dos',     values: [null,null,null,null,null] },
     { k: 'C', label: 'Largeur épaules',  values: [null,null,null,null,null] } ] },
-  'doudoune': { name: 'DOUDOUNE’Otreau', flat: 'doudoune', sizes: ['S','M','L','XL','XXL'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: [null,null,null,null,null] },
-    { k: 'B', label: 'Longueur dos',     values: [null,null,null,null,null] },
-    { k: 'C', label: 'Largeur épaules',  values: [null,null,null,null,null] },
-    { k: 'D', label: 'Longueur manche',  values: [null,null,null,null,null] } ] },
+  'doudoune': { name: 'DOUDOUNE’Otreau', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+    { k: 'A', label: 'Largeur poitrine',  values: ['50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm','66 cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['58 cm','59 cm','60 cm','61 cm','64 cm','66 cm','67 cm','68 cm','69 cm'] } ] },
   'veste': { name: 'VESTE’Otreau', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent 2 à 3 tailles plus petit que les tailles EU/US.</li><li><strong>Vous portez du M en EU/US ?</strong> Choisissez plutôt notre XL ou XXL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li></ul></div>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
-    { k: 'A', label: 'Tour de poitrine',  values: ['104 cm','108 cm','112 cm','116 cm','120 cm','124 cm','130 cm','136 cm'] },
+    { k: 'A', label: 'Largeur poitrine',  values: ['52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','65 cm','68 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['59 cm','61 cm','62 cm','63 cm','64 cm','66 cm','66 cm','67 cm'] } ] }

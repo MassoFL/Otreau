@@ -475,6 +475,7 @@ body{background:#F8F6F1}
 .pd-details .pd-acc[open] summary::before,.pd-details .pd-acc[open] summary::after{transform:translateY(2px) rotate(-135deg)}
 .pd-details .pd-acc summary:hover::before,.pd-details .pd-acc summary:hover::after{opacity:1}
 /* Encadré « Bon à savoir » sous le guide des tailles */
+.size-table td,.size-table th[scope="row"]{white-space:nowrap}
 .size-alert{max-width:760px;margin:28px auto 0;padding:20px 24px;background:#FFF8EC;border:1px solid #E8C98F;border-left:4px solid #D9792B;border-radius:14px;text-align:left;color:#3D4A54}
 .size-alert-t{margin:0 0 10px;font-family:Manrope,sans-serif;font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#B5650F}
 .size-alert ul{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.55}
@@ -671,7 +672,7 @@ body{background:#F8F6F1}
 <path class="garment" d="M138 40 Q170 66 202 40 L202 22 Q170 48 138 22 Z"></path>
 <path class="seam" d="M170 56 L170 316"></path>
 <path class="seam" d="M88 200 L252 200 M86 250 L254 250 M90 150 L250 150"></path>
-<g class="dim" data-k="C"><line class="ext" x1="112" y1="42" x2="112" y2="-6"></line><line class="ext" x1="228" y1="42" x2="228" y2="-6"></line><line x1="112" y1="0" x2="228" y2="0"></line><path d="M118 -4 L112 0 L118 4 M222 -4 L228 0 L222 4"></path><circle cx="170" cy="0" r="13"></circle><text x="170" y="0">C</text></g>
+<g class="dim" data-k="C"><line class="ext" x1="74" y1="62" x2="74" y2="-6"></line><line class="ext" x1="266" y1="62" x2="266" y2="-6"></line><line x1="74" y1="0" x2="266" y2="0"></line><path d="M80 -4 L74 0 L80 4 M260 -4 L266 0 L260 4"></path><circle cx="170" cy="0" r="13"></circle><text x="170" y="0">C</text></g>
 <g class="dim" data-k="A"><line x1="89" y1="168" x2="251" y2="168"></line><path d="M95 164 L89 168 L95 172 M245 164 L251 168 L245 172"></path><circle cx="130" cy="168" r="13"></circle><text x="130" y="168">A</text></g>
 <g class="dim" data-k="B"><line x1="210" y1="44" x2="210" y2="312"></line><path d="M206 50 L210 44 L214 50 M206 306 L210 312 L214 306"></path><circle cx="210" cy="275" r="13"></circle><text x="210" y="275">B</text></g>
 <g class="dim" data-k="D"><line class="ext" x1="266" y1="62" x2="281" y2="56"></line><line class="ext" x1="312" y1="214" x2="327" y2="208"></line><line x1="279" y1="57" x2="325" y2="209"></line><path d="M276 64 L279 57 L284 62 M320 203 L325 209 L327 201"></path><circle cx="302" cy="133" r="13"></circle><text x="302" y="133">D</text></g>
@@ -687,7 +688,7 @@ body{background:#F8F6F1}
 </div>
 </div>
 </div>
-<p class="pd-center pd-muted" style="margin-top:20px;font-size:14px">[Conseil de taille pour la doudoune, par exemple : taille asiatique, prenez une taille au-dessus de votre taille habituelle.]</p>
+<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>
 </section>
 
 <section class="pd-how">
@@ -811,12 +812,12 @@ body{background:#F8F6F1}
 <script>
 /* ===== Guide des tailles de la DOUDOUNE'Otreau : remplacez les null par vos mesures en cm ===== */
 var PRODUCT_SIZES = {
-  sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+  sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'],
   rows: [
-    { k: 'A', label: 'Tour de poitrine',  values: [null, null, null, null, null] },
-    { k: 'B', label: 'Longueur du corps', values: [null, null, null, null, null] },
-    { k: 'C', label: 'Largeur épaules',   values: [null, null, null, null, null] },
-    { k: 'D', label: 'Longueur manche',   values: [null, null, null, null, null] }
+    { k: 'A', label: 'Largeur poitrine',  values: ['50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm','66 cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['58 cm','59 cm','60 cm','61 cm','64 cm','66 cm','67 cm','68 cm','69 cm'] }
   ]
 };
 (function(){
