@@ -173,6 +173,9 @@ a{color:#14212B}a:hover{color:#B5650F}
 .patron::after{content:"";position:absolute;inset:12px;border:1.5px dashed rgba(140,122,91,.55);border-radius:3px;pointer-events:none}
 .patron-pin{position:absolute;top:-9px;width:18px;height:18px;border-radius:50%;background:#D9792B;box-shadow:inset -3px -3px 0 rgba(0,0,0,.18),0 2px 3px rgba(0,0,0,.25)}
 .flat{width:100%;height:auto;max-width:420px;display:block;margin:0 auto}
+.flat-photo{max-width:380px;aspect-ratio:auto;object-fit:contain}
+.flat[hidden]{display:none}
+
 .flat[hidden]{display:none}
 .flat .garment{fill:#F1EADC;stroke:#14212B;stroke-width:1.6;stroke-linejoin:round}
 .flat .seam{stroke:#14212B;stroke-width:1.2;stroke-dasharray:3 4;fill:none;opacity:.6}
@@ -829,10 +832,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 <g class="dim" data-k="D"><line class="ext" x1="266" y1="62" x2="281" y2="56"></line><line class="ext" x1="312" y1="214" x2="327" y2="208"></line><line x1="279" y1="57" x2="325" y2="209"></line><path d="M276 64 L279 57 L284 62 M320 203 L325 209 L327 201"></path><circle cx="302" cy="133" r="13"></circle><text x="302" y="133">D</text></g>
 </g>
 </svg>
+<img class="flat flat-photo" data-product="veste" src="assets/patron-veste.webp" alt="Veste avec les mesures A (largeur poitrine), B (longueur), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
 <table class="size-table" id="size-table">
-<caption>Mesures du vêtement posé à plat, en centimètres. Survolez une colonne pour voir la mesure sur le patron.</caption>
+<caption>Mesures du vêtement posé à plat, en centimètres.</caption>
 <thead><tr id="size-head"></tr></thead>
 <tbody id="size-body"></tbody>
 </table>
@@ -1145,7 +1149,7 @@ var SIZE_GUIDE = {
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['58 cm','59 cm','60 cm','61 cm','64 cm','66 cm','67 cm','68 cm','69 cm'] } ] },
-  'veste': { name: 'VESTE’Otreau', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent 2 à 3 tailles plus petit que les tailles EU/US.</li><li><strong>Vous portez du M en EU/US ?</strong> Choisissez plutôt notre XL ou XXL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li></ul></div>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
+  'veste': { name: 'VESTE’Otreau', flat: 'veste', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir</p><ul><li><strong>Nos tailles taillent petit :</strong> prévoyez deux tailles au-dessus de la vôtre, mais fiez-vous d’abord au tableau.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li></ul></div>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','65 cm','68 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },
@@ -1165,21 +1169,11 @@ var SIZE_GUIDE = {
     var sn=document.getElementById('size-note'); if(sn) sn.innerHTML=g.note||'';
     flats.forEach(function(f){if(f.dataset.product===g.flat)f.removeAttribute('hidden');else f.setAttribute('hidden','')});
     head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){
-      return '<th scope="col" data-k="'+r.k+'" tabindex="0"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
+      return '<th scope="col" data-k="'+r.k+'"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
     body.innerHTML=g.sizes.map(function(z,i){
       return '<tr><th scope="row">'+z+'</th>'+g.rows.map(function(r){var v=r.values[i];
         return v==null?'<td class="empty" data-k="'+r.k+'">—</td>':'<td data-k="'+r.k+'">'+v+'</td>'}).join('')+'</tr>';
     }).join('');
-    document.querySelectorAll('#size-table [data-k]').forEach(function(c){
-      c.addEventListener('mouseenter',function(){highlight(c.dataset.k)});
-      c.addEventListener('focus',function(){highlight(c.dataset.k)});
-      c.addEventListener('mouseleave',function(){highlight(null)});
-      c.addEventListener('blur',function(){highlight(null)});
-    });
-    activeFlat().querySelectorAll('.dim').forEach(function(d){
-      d.addEventListener('mouseenter',function(){highlight(d.dataset.k)});
-      d.addEventListener('mouseleave',function(){highlight(null)});
-    });
     highlight(null);
   }
   render();

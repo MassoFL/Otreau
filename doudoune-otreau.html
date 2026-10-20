@@ -683,7 +683,7 @@ body{background:#F8F6F1}
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
 <table class="size-table" id="pd-size-table">
-<caption>Survolez une colonne pour voir la mesure sur le patron.</caption>
+
 <thead><tr id="pd-size-head"></tr></thead>
 <tbody id="pd-size-body"></tbody>
 </table>
@@ -824,15 +824,11 @@ var PRODUCT_SIZES = {
 };
 (function(){
   var g=PRODUCT_SIZES, head=document.getElementById('pd-size-head'), body=document.getElementById('pd-size-body'), flat=document.querySelector('#guide-tailles .flat');
-  head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){return '<th scope="col" data-k="'+r.k+'" tabindex="0"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
+  head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){return '<th scope="col" data-k="'+r.k+'"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
   body.innerHTML=g.sizes.map(function(z,i){return '<tr><th scope="row">'+z+'</th>'+g.rows.map(function(r){var v=r.values[i];return v==null?'<td class="empty" data-k="'+r.k+'">—</td>':'<td data-k="'+r.k+'">'+v+'</td>'}).join('')+'</tr>'}).join('');
   function hl(k){flat.classList.toggle('has-active',!!k);
     flat.querySelectorAll('.dim').forEach(function(d){d.classList.toggle('is-active',d.dataset.k===k)});
     document.querySelectorAll('#pd-size-table [data-k]').forEach(function(c){c.classList.toggle('is-active',c.dataset.k===k)});}
-  document.querySelectorAll('#pd-size-table [data-k], #guide-tailles .dim').forEach(function(c){
-    c.addEventListener('mouseenter',function(){hl(c.dataset.k)});c.addEventListener('mouseleave',function(){hl(null)});
-    c.addEventListener('focus',function(){hl(c.dataset.k)});c.addEventListener('blur',function(){hl(null)});
-  });
 })();
 </script>
 <script>

@@ -239,6 +239,10 @@
     '.pd-arrow:hover{opacity:1;background:#fff}' +
     '.pd-arrow svg{width:18px;height:18px;fill:none;stroke:#14212B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}' +
     '.pd-arrow-prev{left:12px}.pd-arrow-next{right:12px}' +
+    '.pd-main .pd-arrow,.pd-main .pd-count{opacity:0;pointer-events:none;transition:opacity .25s}' +
+    '.pd-main.is-ui .pd-arrow,.pd-main.is-ui .pd-count{opacity:.9;pointer-events:auto}' +
+    '@media (hover:hover){.pd-main:hover .pd-arrow,.pd-main:hover .pd-count{opacity:.9;pointer-events:auto}}' +
+    '.pd-main .pd-arrow:hover{opacity:1}' +
     '.pd-thumbs{display:flex !important;flex-wrap:nowrap;gap:8px;overflow:hidden}' +
     '.pd-thumbs .pd-thumb{position:relative;flex:0 0 auto;width:68px;height:68px;aspect-ratio:auto}' +
     '.pd-thumb-more{font:700 20px/1 Manrope,sans-serif;letter-spacing:.05em;color:#14212B;background:transparent !important;border:1.5px solid #E4DFD5 !important}' +
@@ -834,6 +838,11 @@
         if (Math.abs(dx) > 40) render((cur + (dx > 0 ? -1 : 1) + items.length) % items.length);
       }, { passive: true });
     }
+    // flèches et numéro : visibles quand on touche/clique la photo, masqués dès qu'on clique ailleurs
+    main.addEventListener('click', function () { main.classList.add('is-ui'); });
+    main.addEventListener('touchstart', function () { main.classList.add('is-ui'); }, { passive: true });
+    document.addEventListener('click', function (e) { if (!main.contains(e.target) && !thumbsBox.contains(e.target)) main.classList.remove('is-ui'); });
+    document.addEventListener('touchstart', function (e) { if (!main.contains(e.target) && !thumbsBox.contains(e.target)) main.classList.remove('is-ui'); }, { passive: true });
     thumbsBox.hidden = items.length < 2;
     render(0);
     api.show = function (i) { if (i >= 0 && i < items.length) render(i); };
