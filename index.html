@@ -93,7 +93,7 @@ body{margin:0;background:#F8F6F1}
 .pc-sizes{display:none !important}
 /* Annotations « tailleur » du guide des tailles */
 .size-tip{display:flex;align-items:flex-start;gap:12px;margin:0 0 20px;padding:12px 16px;border:1px dashed rgba(140,122,91,.6);border-radius:8px;background:rgba(245,166,35,.06);font-family:'DM Mono',monospace;font-size:13px;line-height:1.5;color:#6E5F45;text-align:left}
-.size-tip-ico{flex:none;width:20px;height:20px;margin-top:2px;fill:none;stroke:#D9792B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.size-tip-ico{flex:none;width:20px;height:20px;margin-top:-1px;fill:none;stroke:#D9792B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .size-tip p{margin:0}
 .size-tip p+p{margin-top:6px}
 .size-tip b{font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#B5650F;margin-right:6px}
@@ -530,6 +530,9 @@ a{color:#14212B}a:hover{color:#B5650F}
 .site-footer .f-select::after{border-color:#FFFFFF !important}
 .site-footer .f-contact a,.site-footer .f-col a,.site-footer .f-legal a{text-decoration:underline !important;text-decoration-color:rgba(255,255,255,.28) !important;text-decoration-thickness:1px !important;text-underline-offset:4px;transition:color .2s,text-decoration-color .2s}
 .site-footer .f-contact a:hover,.site-footer .f-col a:hover,.site-footer .f-legal a:hover{text-decoration-color:rgba(255,255,255,.85) !important}
+.sz-o{margin-left:1px;font-family:Manrope,sans-serif;font-weight:300;font-size:11px;letter-spacing:0;color:#A3ABB1}
+.size-tol{margin:14px 0 0;font-family:'DM Mono',monospace;font-size:12px;color:#8C7A5B;text-align:right}
+#size-note .size-tol{text-align:center}
 </style>
 </head>
 <body>
@@ -980,7 +983,6 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-hidden="true"></div>
-<p class="f-copy">© 2026 Otreau</p>
 <nav class="f-legal" aria-label="Informations légales"><a href="politique-de-retour.html">Politique de retour</a><a href="politique-de-confidentialite.html">Politique de confidentialité</a><a href="conditions-generales.html">Conditions générales</a><a href="livraison.html">Livraison</a><a href="mentions-legales.html">Mentions légales</a></nav>
 </div>
 </div>
@@ -1156,7 +1158,7 @@ var SIZE_GUIDE = {
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['58 cm','59 cm','60 cm','61 cm','64 cm','66 cm','67 cm','68 cm','69 cm'] } ] },
-  'veste': { name: 'VESTE’Otreau', flat: 'veste', note: '<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Prévoyez deux tailles de plus, mais suivez d’abord le tableau.</p><p><b>Tolérance</b> 1 à 3 cm, mesures prises à la main.</p></div></div>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
+  'veste': { name: 'VESTE’Otreau', flat: 'veste', note: '<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Les tailles ’Otreau taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div><p class="size-tol">Tolérance : 1 à 3 cm, mesures prises à la main.</p>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','65 cm','68 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },
@@ -1178,7 +1180,7 @@ var SIZE_GUIDE = {
     head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){
       return '<th scope="col" data-k="'+r.k+'"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
     body.innerHTML=g.sizes.map(function(z,i){
-      return '<tr><th scope="row">'+z+'</th>'+g.rows.map(function(r){var v=r.values[i];
+      return '<tr><th scope="row">'+z+(current==='veste'?'<span class="sz-o">’Otreau</span>':'')+'</th>'+g.rows.map(function(r){var v=r.values[i];
         return v==null?'<td class="empty" data-k="'+r.k+'">—</td>':'<td data-k="'+r.k+'">'+v+'</td>'}).join('')+'</tr>';
     }).join('');
     highlight(null);
