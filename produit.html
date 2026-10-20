@@ -238,7 +238,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .spec-body .spec-row strong{font-size:14px}
 .spec-body .spec-note{margin:14px 0 0;padding-top:0;border-top:0;font-size:12px}
 .spec-text{margin:0 0 10px;font-size:14px;line-height:1.6;color:#C9CED2}
-.pd-size{margin:96px 0 0;padding:64px clamp(16px,4vw,48px);background-color:#E9DFCC;background-image:linear-gradient(rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(rgba(20,33,43,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.035) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+.pd-size{margin:96px 0 0;padding:64px clamp(16px,4vw,48px);background:transparent}
 .pd-size .flat{max-width:380px}
 html{scroll-behavior:smooth}
 #guide-tailles{scroll-margin-top:120px}
@@ -300,7 +300,7 @@ body{background:#F8F6F1}
 .pd-qty input::-webkit-outer-spin-button,.pd-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .pd-add{flex:1;min-height:56px;border:2px solid #14212B;background:#14212B;color:#FFFFFF;font-family:Manrope,sans-serif;font-weight:700;font-size:16px;cursor:pointer;border-radius:0}
 .pd-acc{border-bottom:1px solid #D9D3C7}
-.pd-accs .pd-acc:first-child,.pd-details .pd-acc:first-child{border-top:1px solid #D9D3C7}
+.pd-accs .pd-acc:first-child,.pd-details .pd-acc:first-of-type{border-top:1px solid #D9D3C7}
 .pd-acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 2px;font-family:Manrope,sans-serif;font-weight:300;font-size:18px;text-transform:uppercase;letter-spacing:.01em}
 .pd-acc summary::-webkit-details-marker{display:none}
 .pd-acc[open] .faq-icon::after{transform:rotate(0deg)}
@@ -646,7 +646,8 @@ body{background:#F8F6F1}
 </section>
 
 
-<section class="pd-details">
+<section class="pd-details" aria-labelledby="pd-details-title">
+<h2 class="pd-h2 pd-center" id="pd-details-title">Détails du produit</h2>
 <details class="pd-acc" open><summary><span>Description</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Ce modèle de la Collection Hiver ’26 a été retenu avec exigence pour sa qualité, son entretien simple et son autonomie.</p></div></details>
 <details class="pd-acc"><summary><span>Batterie</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Capacité</span><strong>20 000 mAh</strong></div><div class="pd-row"><span>Charge rapide</span><strong>PD 22,5 W</strong></div><div class="pd-row"><span>Câbles intégrés</span><strong>USB-C · Lightning · USB-A</strong></div><div class="pd-row"><span>Poids</span><strong>190 g</strong></div><p><a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p></div></details>
 </section>

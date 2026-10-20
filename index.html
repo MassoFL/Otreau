@@ -91,6 +91,13 @@ body{margin:0;background:#F8F6F1}
 @media (max-width:860px){.lm{padding:72px 24px 16px}.lm-wrap{grid-template-columns:minmax(0,1fr)}.lm-txt{align-items:center;text-align:center}.lm-points li{justify-content:center}}
 /* Cartes produit de l’accueil : tailles masquées */
 .pc-sizes{display:none !important}
+/* Annotations « tailleur » du guide des tailles */
+.size-tip{display:flex;align-items:flex-start;gap:12px;margin:0 0 20px;padding:12px 16px;border:1px dashed rgba(140,122,91,.6);border-radius:8px;background:rgba(245,166,35,.06);font-family:'DM Mono',monospace;font-size:13px;line-height:1.5;color:#6E5F45;text-align:left}
+.size-tip-ico{flex:none;width:20px;height:20px;margin-top:2px;fill:none;stroke:#D9792B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.size-tip p{margin:0}
+.size-tip p+p{margin-top:6px}
+.size-tip b{font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#B5650F;margin-right:6px}
+#size-note .size-tip{max-width:640px;margin:24px auto 0}
 /* Encadré « Bon à savoir » sous le guide des tailles */
 .size-table td,.size-table th[scope="row"]{white-space:nowrap}
 .size-alert{max-width:760px;margin:28px auto 0;padding:20px 24px;background:#FFF8EC;border:1px solid #E8C98F;border-left:4px solid #D9792B;border-radius:14px;text-align:left;color:#3D4A54}
@@ -1149,7 +1156,7 @@ var SIZE_GUIDE = {
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['58 cm','59 cm','60 cm','61 cm','64 cm','66 cm','67 cm','68 cm','69 cm'] } ] },
-  'veste': { name: 'VESTE’Otreau', flat: 'veste', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir</p><ul><li><strong>Nos tailles taillent petit :</strong> prévoyez deux tailles au-dessus de la vôtre, mais fiez-vous d’abord au tableau.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li></ul></div>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
+  'veste': { name: 'VESTE’Otreau', flat: 'veste', note: '<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Prévoyez deux tailles de plus, mais suivez d’abord le tableau.</p><p><b>Tolérance</b> 1 à 3 cm, mesures prises à la main.</p></div></div>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','65 cm','68 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },

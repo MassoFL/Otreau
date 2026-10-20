@@ -240,7 +240,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .spec-body .spec-row strong{font-size:14px}
 .spec-body .spec-note{margin:14px 0 0;padding-top:0;border-top:0;font-size:12px}
 .spec-text{margin:0 0 10px;font-size:14px;line-height:1.6;color:#C9CED2}
-.pd-size{margin:96px 0 0;padding:64px clamp(16px,4vw,48px);background-color:#E9DFCC;background-image:linear-gradient(rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.07) 1px,transparent 1px),linear-gradient(rgba(20,33,43,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,33,43,.035) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px}
+.pd-size{margin:96px 0 0;padding:64px clamp(16px,4vw,48px);background:transparent}
 .pd-size .flat{max-width:380px}
 html{scroll-behavior:smooth}
 #guide-tailles{scroll-margin-top:120px}
@@ -302,7 +302,7 @@ body{background:#F8F6F1}
 .pd-qty input::-webkit-outer-spin-button,.pd-qty input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .pd-add{flex:1;min-height:56px;border:2px solid #14212B;background:#14212B;color:#FFFFFF;font-family:Manrope,sans-serif;font-weight:700;font-size:16px;cursor:pointer;border-radius:0}
 .pd-acc{border-bottom:1px solid #D9D3C7}
-.pd-accs .pd-acc:first-child,.pd-details .pd-acc:first-child{border-top:1px solid #D9D3C7}
+.pd-accs .pd-acc:first-child,.pd-details .pd-acc:first-of-type{border-top:1px solid #D9D3C7}
 .pd-acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 2px;font-family:Manrope,sans-serif;font-weight:300;font-size:18px;text-transform:uppercase;letter-spacing:.01em}
 .pd-acc summary::-webkit-details-marker{display:none}
 .pd-acc[open] .faq-icon::after{transform:rotate(0deg)}
@@ -476,6 +476,13 @@ body{background:#F8F6F1}
 .pd-details .pd-acc summary::before,.pd-details .pd-acc summary::after{content:"";flex:none;width:7px;height:7px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-3px) rotate(45deg);opacity:.55;transition:transform .3s ease,opacity .2s}
 .pd-details .pd-acc[open] summary::before,.pd-details .pd-acc[open] summary::after{transform:translateY(2px) rotate(-135deg)}
 .pd-details .pd-acc summary:hover::before,.pd-details .pd-acc summary:hover::after{opacity:1}
+/* Annotations « tailleur » du guide des tailles */
+.size-tip{display:flex;align-items:flex-start;gap:12px;margin:0 0 20px;padding:12px 16px;border:1px dashed rgba(140,122,91,.6);border-radius:8px;background:rgba(245,166,35,.06);font-family:'DM Mono',monospace;font-size:13px;line-height:1.5;color:#6E5F45;text-align:left}
+.size-tip-ico{flex:none;width:20px;height:20px;margin-top:2px;fill:none;stroke:#D9792B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.size-tip p{margin:0}
+.size-tip p+p{margin-top:6px}
+.size-tip b{font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#B5650F;margin-right:6px}
+#size-note .size-tip{max-width:640px;margin:24px auto 0}
 /* Encadré « Bon à savoir » sous le guide des tailles */
 .size-table td,.size-table th[scope="row"]{white-space:nowrap}
 .size-alert{max-width:760px;margin:28px auto 0;padding:20px 24px;background:#FFF8EC;border:1px solid #E8C98F;border-left:4px solid #D9792B;border-radius:14px;text-align:left;color:#3D4A54}
@@ -491,7 +498,9 @@ body{background:#F8F6F1}
 .hw-intro{margin:-8px 0 28px;font-size:14px}
 .hw-steps{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
 .hw-steps .pd-step{border-radius:16px}
-.hw-h3{margin:64px 0 8px;text-align:center;font-family:Manrope,sans-serif;font-weight:300;font-size:clamp(22px,2.2vw,28px);text-transform:uppercase;letter-spacing:.01em}
+.hw-steps .pd-step{overflow:hidden}
+.hw-pic{display:block;width:calc(100% + 56px);max-width:none;margin:-28px -28px 18px;height:auto;aspect-ratio:3/2;object-fit:cover;background:#F1EEE8}
+.hw-h3{margin-top:64px}
 .hw-sub{max-width:620px;margin:0 auto 26px;font-size:15px;line-height:1.6}
 .hw-levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:760px;margin:0 auto}
 .hw-lvl{display:flex;flex-direction:column;align-items:center;gap:6px;padding:24px 12px;background:#14212B;border-radius:16px;color:#FFFFFF;text-align:center}
@@ -505,6 +514,12 @@ body{background:#F8F6F1}
 .hw-auto p{margin:0;font-size:15px;line-height:1.5;color:#3D4A54}
 .hw-auto strong{color:#14212B}
 .hw-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:56px}
+.pd-care{margin:96px 0}
+.hw-steps.hw-steps-3{grid-template-columns:repeat(3,minmax(0,1fr)) !important}
+@media (max-width:900px){.hw-steps.hw-steps-3{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}
+@media (max-width:560px){.hw-steps.hw-steps-3{grid-template-columns:minmax(0,1fr) !important}}
+html,body{overflow-x:clip}
+.hw-cols{grid-template-columns:minmax(0,1fr) !important;max-width:760px;margin-left:auto;margin-right:auto}
 .hw-box{background:#FFFFFF;border:1px solid #E4DFD5;border-radius:16px;padding:26px 28px}
 .hw-box h3{margin:0 0 12px;font-family:Manrope,sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
 .hw-box ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.55;color:#3D4A54}
@@ -676,19 +691,19 @@ body{background:#F8F6F1}
 </section>
 
 
-<section class="pd-details">
+<section class="pd-details" aria-labelledby="pd-details-title">
+<h2 class="pd-h2 pd-center" id="pd-details-title">Détails du produit</h2>
 <details class="pd-acc"><summary><span>Description</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Dans la Collection Hiver ’26, la <strong>VESTE’Otreau</strong> est votre bouclier contre le froid. Plus couvrante qu’une doudoune, plus légère qu’une parka, elle trouve le juste milieu pour affronter l’hiver sans s’alourdir.</p><p>Unisexe, elle se porte au quotidien comme lors des longues journées dehors, avec une chaleur réglable d’un simple bouton.</p><p>Ce modèle a déjà fait ses preuves au fil des hivers précédents : c’est pour cela que nous l’avons retenu. Et vos retours sur cette saison seront intégrés à sa version 2027.</p></div></details>
 <details class="pd-acc" open><summary><span>Propriétés</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Genre</span><strong>Mixte</strong></div><div class="pd-row"><span>Matière</span><strong>Polyester</strong></div><div class="pd-row"><span>Zones chauffantes</span><strong>4 zones + capuche chauffante</strong></div><div class="pd-row"><span>Réglage</span><strong>3 niveaux de chaleur</strong></div><div class="pd-row"><span>Batterie</span><strong>USB 5 V · 20 000 mAh fournie en option</strong></div></div></details>
 <details class="pd-acc"><summary><span>Niveaux de chaleur</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p style="margin:0 0 16px;font-size:14px;color:#55616B">Jusqu’à 10 h d’autonomie avec la batterie 20 000 mAh.</p><div class="lvls"><div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Doux</strong> (voyant bleu) : 40 – 45 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Moyen</strong> (voyant blanc) : 45 – 50 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Élevé</strong> (voyant rouge) : 50 – 55 °C</p></div></div></div></details>
 <details class="pd-acc"><summary><span>Usages</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><ul class="pd-uses"><li>Quotidien en hiver</li><li>Plein air</li><li>Sports d’hiver</li></ul></div></details>
-<details class="pd-acc"><summary><span>Entretien</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Retirez toujours la batterie avant le lavage et refermez la poche. Lavage à la main ou en machine en programme délicat (30 °C max.), dans un filet de lavage, avec une lessive douce. Séchage à l’air libre. Ni essorage, ni repassage, ni javel, ni nettoyage à sec. <a class="pd-link" href="#mode-emploi">Tout le mode d’emploi</a></p></div></details>
+<details class="pd-acc"><summary><span>Entretien</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Retirez toujours la batterie avant le lavage et refermez la poche. Lavage à la main ou en machine en programme délicat (30 °C max.), dans un filet de lavage, avec une lessive douce. Séchage à l’air libre. Ni essorage, ni repassage, ni javel, ni nettoyage à sec. <a class="pd-link" href="#entretien">Voir le guide d’entretien</a></p></div></details>
 <details class="pd-acc"><summary><span>Batterie</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Capacité</span><strong>20 000 mAh</strong></div><div class="pd-row"><span>Charge rapide</span><strong>PD 22,5 W</strong></div><div class="pd-row"><span>Câbles intégrés</span><strong>USB-C · Lightning · USB-A</strong></div><div class="pd-row"><span>Poids</span><strong>190 g</strong></div><p><a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p></div></details>
 </section>
 
 <section class="pd-size" id="guide-tailles" aria-labelledby="pd-size-title">
 <h2 class="pd-h2 pd-center" id="pd-size-title">Guide des tailles</h2>
-<p class="pd-center pd-muted" style="margin:-8px 0 18px">Les mesures de la VESTE’Otreau, posée à plat, en centimètres.</p>
-<div class="size-alert" style="margin:0 auto 32px" role="note"><p class="size-alert-t">Bon à savoir</p><ul><li><strong>Nos tailles taillent petit :</strong> prévoyez deux tailles au-dessus de la vôtre, mais fiez-vous d’abord au tableau.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li></ul></div>
+<p class="pd-center pd-muted" style="margin:-8px 0 28px">Les mesures de la VESTE’Otreau, posée à plat, en centimètres.</p>
 <div class="patron">
 <span class="patron-pin" style="left: 28px" aria-hidden="true"></span>
 <span class="patron-pin" style="right: 28px" aria-hidden="true"></span>
@@ -698,6 +713,7 @@ body{background:#F8F6F1}
 <img class="flat flat-photo" data-product="veste" src="assets/patron-veste.webp" alt="Veste avec les mesures A (largeur poitrine), B (longueur), C (largeur épaules) et D (longueur manche)" loading="lazy">
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
+<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Prévoyez deux tailles de plus, mais suivez d’abord le tableau.</p><p><b>Tolérance</b> 1 à 3 cm, mesures prises à la main.</p></div></div>
 <table class="size-table" id="pd-size-table">
 
 <thead><tr id="pd-size-head"></tr></thead>
@@ -711,50 +727,35 @@ body{background:#F8F6F1}
 
 <section class="pd-how" id="mode-emploi">
 <h2 class="pd-h2 pd-center">Comment ça marche ?</h2>
-<p class="pd-center pd-muted hw-intro">D’après le manuel d’utilisation fourni avec la veste.</p>
 
 <div class="pd-steps hw-steps">
-<div class="pd-step"><span class="pd-num">1</span><h3>Branchez</h3><p>Reliez le câble USB situé dans la poche intérieure à la batterie, puis glissez-la dans la poche.</p></div>
-<div class="pd-step"><span class="pd-num">2</span><h3>Activez la batterie</h3><p>Appuyez sur le bouton de sortie de la batterie pour l’activer.</p></div>
-<div class="pd-step"><span class="pd-num">3</span><h3>Allumez</h3><p>Maintenez le bouton de la veste <strong>3 secondes</strong> jusqu’à ce que le voyant s’allume en rouge.</p></div>
-<div class="pd-step"><span class="pd-num">4</span><h3>Éteignez</h3><p>Maintenez de nouveau le bouton <strong>3 secondes</strong> : le voyant s’éteint et la veste arrête de chauffer.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/step-branchez.webp" alt="Câble USB de la veste branché sur le port USB-A de la batterie" width="900" height="614" loading="lazy"><span class="pd-num">1</span><h3>Branchez</h3><p>Reliez le câble USB situé dans la poche intérieure à la batterie.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/step-activez.webp" alt="Appui sur le bouton de la batterie : l’écran affiche le niveau de charge" width="900" height="514" loading="lazy"><span class="pd-num">2</span><h3>Activez la batterie</h3><p>Appuyez sur le bouton de sortie de la batterie pour l’activer.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/step-allumez.webp" alt="Appui de 3 secondes sur le bouton de la veste : le voyant s’allume" width="900" height="614" loading="lazy"><span class="pd-num">3</span><h3>Allumez</h3><p>Maintenez le bouton de la veste <strong>3 secondes</strong> : le voyant s’allume et la veste commence à chauffer. Ensuite, <strong>un clic</strong> suffit pour passer au niveau de chaleur suivant.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/step-eteignez-v2.webp" alt="Nouvel appui de 3 secondes sur le bouton : le voyant s’éteint" width="900" height="614" loading="lazy"><span class="pd-num">4</span><h3>Éteignez</h3><p>Maintenez de nouveau le bouton <strong>3 secondes</strong> : le voyant s’éteint et la veste arrête de chauffer.</p></div>
 </div>
 
-<h3 class="hw-h3">3 niveaux de chaleur</h3>
-<p class="pd-center pd-muted hw-sub">La couleur du voyant indique le niveau. Au démarrage, la veste chauffe à fond pendant 5 minutes (rouge), puis passe automatiquement au niveau moyen (blanc).</p>
-<div class="hw-levels">
-<div class="hw-lvl"><span class="hw-led" style="--c:#E5483B"></span><strong>Élevé</strong><span class="hw-deg">50 – 55 °C</span><small>Voyant rouge</small></div>
-<div class="hw-lvl"><span class="hw-led hw-led-w" style="--c:#FFFFFF"></span><strong>Moyen</strong><span class="hw-deg">45 – 50 °C</span><small>Voyant blanc</small></div>
-<div class="hw-lvl"><span class="hw-led" style="--c:#3E9BEA"></span><strong>Doux</strong><span class="hw-deg">40 – 45 °C</span><small>Voyant bleu</small></div>
-</div>
+</section>
 
-<div class="hw-auto">
-<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-<p><strong>Jusqu’à 10 h d’autonomie</strong> avec la batterie 20 000 mAh fournie, selon le niveau de chaleur choisi.</p>
+<section class="pd-care" id="entretien" aria-labelledby="pd-care-title">
+<h2 class="pd-h2 pd-center" id="pd-care-title">Entretien</h2>
+<div class="pd-steps hw-steps">
+<div class="pd-step"><img class="hw-pic" src="assets/ent-1.webp" alt="Batterie retirée de la poche intérieure, câble USB rangé" width="533" height="355" loading="lazy"><span class="pd-num">1</span><h3>Retirez la batterie</h3><p>Remettez le câble USB dans sa poche et fermez-la.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/ent-2.webp" alt="Programme délicat 30 °C ou lavage à la main, lessive douce, filet de lavage" width="900" height="600" loading="lazy"><span class="pd-num">2</span><h3>Lavez en douceur</h3><p>À la main ou en machine (programme délicat, eau froide, 30 °C max.), avec une lessive douce et dans un filet de lavage.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/ent-3.webp" alt="Veste séchant sur un cintre, à l’abri du soleil" width="708" height="472" loading="lazy"><span class="pd-num">3</span><h3>Séchez à l’air libre</h3><p>À l’abri du soleil.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/ent-4.webp" alt="Pictogrammes : pas d’essorage, pas de repassage, pas de javel, pas de nettoyage à sec" width="755" height="503" loading="lazy"><span class="pd-num">4</span><h3>Ni essorage ni torsion</h3><p>Ni repassage, ni javel, ni nettoyage à sec.</p></div>
 </div>
+</section>
 
-<div class="hw-cols">
-<div class="hw-box">
-<h3>Entretien</h3>
-<ul>
-<li>Retirez la batterie, remettez le câble USB dans sa poche et fermez-la.</li>
-<li>Lavage à la main ou en machine (programme délicat, eau froide, 30 °C max.), avec une lessive douce et dans un filet de lavage.</li>
-<li>Lavez séparément, sans faire tremper.</li>
-<li>Séchage à l’air libre, à l’abri du soleil.</li>
-<li>Ne pas essorer ni tordre. Ni repassage, ni javel, ni nettoyage à sec.</li>
-</ul>
-</div>
-<div class="hw-box">
-<h3>Précautions</h3>
-<ul>
-<li>Ne pas faire porter à un nourrisson, un enfant ou une personne peu sensible à la chaleur (mauvaise circulation sanguine, par exemple).</li>
-<li>Éviter le contact direct des zones chauffantes avec la peau nue.</li>
-<li>Éteindre immédiatement en cas d’inconfort.</li>
-<li>Ne pas porter la veste si la doublure intérieure est mouillée. Ne jamais plonger la batterie dans un liquide.</li>
-<li>Pas d’épingles sur le vêtement : elles pourraient abîmer les fils chauffants.</li>
-<li>Débranchez la batterie quand vous ne portez pas la veste, et rangez-la au sec, loin des objets métalliques.</li>
-</ul>
-</div>
+<section class="pd-care" id="precautions" aria-labelledby="pd-prec-title">
+<h2 class="pd-h2 pd-center" id="pd-prec-title">Précautions</h2>
+<div class="pd-steps hw-steps hw-steps-3">
+<div class="pd-step"><img class="hw-pic" src="assets/prec-1.webp" alt="Nourrisson, enfant et personne âgée barrés d’un pictogramme d’interdiction" width="505" height="337" loading="lazy"><span class="pd-num">1</span><h3>Pas pour tout le monde</h3><p>Ne pas faire porter à un nourrisson, un enfant ou une personne peu sensible à la chaleur (mauvaise circulation sanguine, par exemple).</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-2.webp" alt="Zone chauffante de la doublure et main barrée" width="455" height="303" loading="lazy"><span class="pd-num">2</span><h3>Pas sur la peau nue</h3><p>Évitez le contact direct des zones chauffantes avec la peau.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-3.webp" alt="Bouton de la veste et pictogramme d’inconfort" width="502" height="335" loading="lazy"><span class="pd-num">3</span><h3>En cas d’inconfort</h3><p>Éteignez immédiatement la veste.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-4.webp" alt="Doublure mouillée et batterie dans l’eau, barrées" width="507" height="338" loading="lazy"><span class="pd-num">4</span><h3>Gardez-la au sec</h3><p>Ne portez pas la veste si la doublure intérieure est mouillée. Ne plongez jamais la batterie dans un liquide.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-5.webp" alt="Épingle à nourrice barrée sur la veste" width="458" height="305" loading="lazy"><span class="pd-num">5</span><h3>Pas d’épingles</h3><p>Elles pourraient abîmer les fils chauffants.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-6.webp" alt="Batterie débranchée et rangée dans une pochette, loin des objets métalliques" width="502" height="335" loading="lazy"><span class="pd-num">6</span><h3>Après usage</h3><p>Débranchez la batterie et rangez-la au sec, loin des objets métalliques.</p></div>
 </div>
 </section>
 
