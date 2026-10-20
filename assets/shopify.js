@@ -102,8 +102,15 @@
   }
   // tailles toujours dans l'ordre XS → 3XL, quel que soit l'ordre saisi dans Shopify
   var SIZE_ORDER = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '2XL', 'XXXL', '3XL', '4XL'];
+  function isBlack(n) { n = norm(n); return n === 'noir' || n === 'black' || n.indexOf('noir') === 0 || n.indexOf('black') === 0; }
   function sortSizes(p) {
     (p.options || []).forEach(function (o) {
+      // couleur : le noir est placé au milieu des pastilles
+      if (norm(o.name) === 'couleur') {
+        var bi = -1; o.optionValues.forEach(function (v, i) { if (bi < 0 && isBlack(v.name)) bi = i; });
+        if (bi > -1 && o.optionValues.length > 2) { var bk = o.optionValues.splice(bi, 1)[0]; o.optionValues.splice(Math.floor(o.optionValues.length / 2), 0, bk); }
+        return;
+      }
       if (norm(o.name) !== 'taille') return;
       o.optionValues.sort(function (a, b) {
         var ia = SIZE_ORDER.indexOf(String(a.name).toUpperCase()), ib = SIZE_ORDER.indexOf(String(b.name).toUpperCase());
@@ -593,6 +600,8 @@
         var mid = Math.floor(cands.length / 2), pos = cands.slice();
         cands.sort(function (a, b) { return Math.abs(pos.indexOf(a) - mid) - Math.abs(pos.indexOf(b) - mid); });
       }
+      // couleur : le noir est sélectionné par défaut
+      if (norm(g.name) === 'couleur') cands.sort(function (a, b) { return isBlack(b.dataset.value) - isBlack(a.dataset.value); });
       // batterie : « avec batterie » sélectionnée par défaut
       if (norm(g.name) === 'batterie') cands.sort(function (a, b) { return (norm(a.dataset.value).indexOf('sans') === 0) - (norm(b.dataset.value).indexOf('sans') === 0); });
       var first = cands.filter(function (b) { return valueAvailable(p, g.name, b.dataset.value); })[0] || cands[0];
