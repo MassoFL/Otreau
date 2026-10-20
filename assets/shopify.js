@@ -92,7 +92,8 @@
   // Pastilles de couleur : couleur/image définie dans Shopify, sinon couleurs courantes
   var COLORS = { blanc: '#F4F3EF', ecru: '#EDE6D6', beige: '#D8C7A8', camel: '#B8875A', marron: '#6B4A35', noir: '#1A1A1A',
     gris: '#9AA0A6', 'gris clair': '#C9CDD1', 'gris fonce': '#4A4F55', anthracite: '#3A3D42', bleu: '#2F5D9E', 'bleu marine': '#1F2A44', marine: '#1F2A44',
-    vert: '#4E6B4A', kaki: '#6B6B3E', 'vert kaki': '#6B6B3E', rouge: '#B3312C', bordeaux: '#6D1F2A', rose: '#E7A9B8', orange: '#E8641F', jaune: '#E9C46A', violet: '#6A4C93' };
+    vert: '#4E6B4A', kaki: '#6B6B3E', 'vert kaki': '#6B6B3E', rouge: '#B3312C', bordeaux: '#6D1F2A', rose: '#E7A9B8', orange: '#E8641F', jaune: '#E9C46A', violet: '#6A4C93',
+    black: '#1A1A1A', white: '#F4F3EF', blue: '#2F5D9E', navy: '#1F2A44', red: '#B3312C', green: '#4E6B4A', grey: '#9AA0A6', gray: '#9AA0A6', pink: '#E7A9B8', khaki: '#6B6B3E', camouflage: 'linear-gradient(135deg,#4E5B3A 0 30%,#7A7450 30% 55%,#2F3526 55% 75%,#8C8460 75%)' };
   function swatchStyle(v) {
     var sw = v.swatch || {};
     if (sw.image && sw.image.previewImage) return 'background:url(' + JSON.stringify(sw.image.previewImage.url) + ') center/cover';
@@ -217,6 +218,11 @@
     '.pc-dots span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.55);box-shadow:0 0 2px rgba(0,0,0,.3);transition:background .3s,transform .3s}' +
     '.pc-dots span.is-on{background:#fff;transform:scale(1.25)}' +
     '.pd-main.has-media{background:transparent}' +
+    '.pc-colors{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:6px;padding:4px}' +
+    '.pc-color{width:22px;height:22px;padding:0;border-radius:50%;border:0;box-shadow:0 0 0 1px rgba(20,33,43,.12);cursor:pointer;font:700 10px Manrope,sans-serif;color:#14212B;background:#F4F3EF;transition:transform .15s,box-shadow .15s}' +
+    '.pc-color:hover{transform:scale(1.12)}' +
+    '.pc-color[aria-pressed="true"]{transform:scale(1.08);box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #1F6342,0 4px 10px rgba(20,33,43,.25)}' +
+    '.pc-arrow[hidden]{display:none !important}' +
     'html.shop-pending [data-handle],html.shop-pending .pd-x[data-shop-handle]{visibility:hidden}' +
     '@media (min-width:561px){.product-grid.is-few{grid-template-columns:repeat(var(--n),minmax(0,300px)) !important;justify-content:center}}' +
     '.pd-info .pd-size-row{position:relative;justify-content:flex-start !important;gap:10px !important;padding:10px calc(50% - 30px) !important;scroll-snap-type:x mandatory;' +
@@ -341,7 +347,47 @@
   var pdInfo = document.querySelector('[data-shopify-handle]');
   if (pdInfo && handles.indexOf(pdInfo.dataset.shopifyHandle) < 0) handles.push(pdInfo.dataset.shopifyHandle);
 
-  fetchProducts(handles).then(function (map) {
+  // Accueil : toute la collection vient de Shopify. Chaque produit publié reçoit sa carte
+  // (les cartes déjà écrites dans la page sont réutilisées), avec une catégorie pour les filtres.
+  function catOf(p) {
+    var c = ((p.category && p.category.name) || '') + ' ' + (p.productType || '') + ' ' + (p.title || '');
+    if (/vest\b|vests|gilet/i.test(c)) return 'gilet';
+    if (/parka/i.test(c)) return 'parka';
+    if (/glove|mitten|sock|gant|chaussette/i.test(c)) return 'accessoire';
+    return 'veste';
+  }
+  function pageOf(h) { return PRODUCT_PAGES[h] || ('produit.html?p=' + encodeURIComponent(h)); }
+  function buildCollection() {
+    var grid = document.querySelector('.product-grid');
+    if (!grid) return Promise.resolve();
+    return gql('{ products(first: 100) { nodes { handle title productType category { name } } } }').then(function (d) {
+      var tpl = grid.querySelector(':scope > a[data-handle]');
+      var all = d.products.nodes;
+      function strip(h) { return h.replace(/-otreau$/, ''); }
+      all.forEach(function (p) {
+        var card = [].slice.call(grid.querySelectorAll(':scope > a[data-handle]')).filter(function (a) { return strip(a.dataset.handle) === strip(p.handle); })[0];
+        if (!card && tpl) {
+          card = tpl.cloneNode(true);
+          var v = card.querySelector('video');
+          if (v) { var ph = document.createElement('div'); ph.className = 'pc-ph'; ph.setAttribute('style', 'width: 100%; aspect-ratio: 1 / 1; background: transparent'); v.replaceWith(ph); }
+          card.querySelectorAll('.pc-car').forEach(function (c) { c.remove(); });
+          card.dataset.handle = p.handle;
+          var h3 = card.querySelector('h3'); if (h3) h3.innerHTML = titleHtml(p.title);
+          var pr = card.querySelector('.pc-price'); if (pr) pr.textContent = '';
+          grid.appendChild(card);
+        }
+        if (!card) return;
+        card.dataset.cat = catOf(p);
+        card.href = pageOf(p.handle);
+        if (handles.indexOf(card.dataset.handle) < 0) handles.push(card.dataset.handle);
+      });
+      // les 4 premiers produits sont visibles, les suivants s'affichent avec « Voir toute la collection »
+      [].slice.call(grid.querySelectorAll(':scope > a[data-handle]')).forEach(function (a, i) { a.classList.toggle('product-extra', i >= 4); });
+      document.dispatchEvent(new CustomEvent('otreau:collection'));
+    }).catch(function () {});
+  }
+
+  buildCollection().then(function () { return fetchProducts(handles); }).then(function (map) {
     removeMissing(map);
     shopDone();
     // cartes (y compris les copies des lignes mobiles)
@@ -374,6 +420,7 @@
         var multi = pv.some(function (v) { return v.price.amount !== lo.price.amount; });
         price.innerHTML = (multi ? 'Dès ' : '') + ttc(lo.price);
       }
+      cardColors(el, p);
       var sizes = el.querySelector('.pc-sizes'), opt = optionOf(p, 'Taille');
       if (sizes && !opt) sizes.hidden = true;   // produit sans option Taille dans Shopify
       if (sizes && opt) {
@@ -415,6 +462,8 @@
     // Règle : pas de vidéo sur la page produit (la vidéo est réservée à la page d'accueil)
     var gallery = buildGallery(mediaList(p).filter(function (x) { return x.type !== 'video'; }));
     // « Puis-je laver la veste / le gilet ? » selon le produit
+    var packItem = document.getElementById('pd-pack-item');
+    if (packItem && p.title) packItem.textContent = '1 ' + baseTitle(p.title).toLocaleLowerCase('fr-FR');
     var washQ = document.getElementById('pd-wash-q');
     if (washQ && p.title) {
       var base = baseTitle(p.title), first = base.split(' ')[0];
@@ -503,7 +552,12 @@
         });
       });
       var v = current();
-      if (v && v.image && gallery) gallery.showUrl(v.image.url);
+      if (gallery && !skipJump) {
+        var cst = colorG && colorInfo && colorInfo.starts.filter(function (x) { return x.name === colorG.selected; })[0];
+        if (cst) { if (lastColor !== colorG.selected) gallery.show(cst.idx); }
+        else if (v && v.image) gallery.showUrl(v.image.url);
+      }
+      if (colorG) lastColor = colorG.selected;
       if (v) priceEl.innerHTML = ttc(v.price);
       else {
         // prix le plus bas parmi les variantes compatibles avec les choix déjà faits
@@ -520,6 +574,14 @@
     }
 
     // présélection : la 1re valeur disponible pour les options autres que la taille
+    // Couleur ↔ photos : choisir une couleur montre ses photos ; en faisant défiler, on passe à la couleur suivante
+    var colorG = groups.filter(function (g) { return norm(g.name) === 'couleur'; })[0];
+    var colorInfo = colorG ? colorStarts(p, optionOf(p, colorG.name)) : null, lastColor = null, skipJump = false;
+    if (gallery && colorInfo && colorInfo.starts.length) gallery.onChange = function (i) {
+      var c = null; colorInfo.starts.forEach(function (x) { if (x.idx <= i) c = x; });
+      if (!c) c = colorInfo.starts[colorInfo.starts.length - 1];
+      if (c && c.name !== colorG.selected) { skipJump = true; lastColor = c.name; pick(colorG, c.name); skipJump = false; }
+    };
     groups.forEach(function (g) {
       var cands = [].slice.call(g.box.querySelectorAll('[data-value]'));
       // taille : celle du milieu est sélectionnée par défaut (la plus proche disponible)
@@ -530,6 +592,8 @@
       // batterie : « avec batterie » sélectionnée par défaut
       if (norm(g.name) === 'batterie') cands.sort(function (a, b) { return (norm(a.dataset.value).indexOf('sans') === 0) - (norm(b.dataset.value).indexOf('sans') === 0); });
       var first = cands.filter(function (b) { return valueAvailable(p, g.name, b.dataset.value); })[0] || cands[0];
+      var wanted = new URLSearchParams(location.search).get('couleur');
+      if (wanted && norm(g.name) === 'couleur') { var w = cands.filter(function (b) { return norm(b.dataset.value) === norm(wanted); })[0]; if (w) first = w; }
       if (first) { g.selected = first.dataset.value; }
     });
     groups.forEach(function (g) { if (g.selected) pick(g, g.selected); });
@@ -577,7 +641,61 @@
   }
 
   // Cartes : vidéo (ou 1re photo) puis photos, avec flèches précédent / suivant
-  function cardCarousel(first, imgs, hasVideo) {
+
+  // Index (dans les photos du produit) où commence chaque couleur
+  function colorStarts(p, opt) {
+    function key(u) { return String(u || '').split('?')[0]; }
+    var imgs = mediaList(p).filter(function (x) { return x.type === 'image'; }), out = [];
+    opt.optionValues.forEach(function (ov) {
+      var vr = p.variants.nodes.filter(function (x) { return x.image && x.selectedOptions.some(function (o) { return norm(o.name) === norm(opt.name) && o.value === ov.name; }); })[0];
+      if (!vr) return;
+      var k = -1; imgs.forEach(function (im, n) { if (k < 0 && key(im.src) === key(vr.image.url)) k = n; });
+      if (k >= 0) out.push({ name: ov.name, idx: k });
+    });
+    out.sort(function (a, b) { return a.idx - b.idx; });
+    return { imgs: imgs, starts: out };
+  }
+  // Carte produit : choix de la couleur (pastilles) → la photo de la variante s'affiche et le lien la présélectionne
+  function cardColors(el, p) {
+    var opt = optionOf(p, 'Couleur'); if (!opt || opt.optionValues.length < 2) return;
+    var old = el.querySelector('.pc-colors'); if (old) old.remove();
+    var box = document.createElement('div'); box.className = 'pc-colors'; box.setAttribute('role', 'group'); box.setAttribute('aria-label', 'Couleur');
+    var base = el.getAttribute('href') || '';
+    opt.optionValues.forEach(function (v) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'pc-color';
+      b.setAttribute('aria-label', v.name); b.title = v.name; b.setAttribute('aria-pressed', 'false');
+      var st = swatchStyle(v); if (st) b.setAttribute('style', st); else b.textContent = v.name.charAt(0);
+      b.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        box.querySelectorAll('.pc-color').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        selectColor(v.name, true);
+      });
+      box.appendChild(b);
+    });
+    function setPressed(name) {
+      box.querySelectorAll('.pc-color').forEach(function (x) { x.setAttribute('aria-pressed', x.title === name ? 'true' : 'false'); });
+      var url = base.split('#')[0]; url += (url.indexOf('?') > -1 ? '&' : '?') + 'couleur=' + encodeURIComponent(name);
+      el.setAttribute('href', url);
+    }
+    function selectColor(name, rebuild) {
+      setPressed(name);
+      var cs = colorStarts(p, opt), st = cs.starts.filter(function (x) { return x.name === name; })[0];
+      if (!rebuild || !cs.imgs.length) return;
+      var cur = el.querySelector('.pc-car') || el.querySelector('video') || el.querySelector('.pc-ph');
+      if (!cur) return;
+      if (cur._stop) cur._stop();
+      var ph = document.createElement('div'); cur.replaceWith(ph);
+      // toutes les photos du produit, en partant de la couleur choisie ; en défilant, on passe à la couleur suivante
+      cardCarousel(ph, cs.imgs, false, { start: st ? st.idx : 0, noAuto: true, onChange: function (i) {
+        var c = null; cs.starts.forEach(function (x) { if (x.idx <= i) c = x; });
+        if (!c && cs.starts.length) c = cs.starts[cs.starts.length - 1];
+        if (c) setPressed(c.name);
+      } });
+    }
+    var price = el.querySelector('.pc-price'); (price || el.querySelector('h3')).insertAdjacentElement('afterend', box);
+  }
+  function cardCarousel(first, imgs, hasVideo, opts) {
+    opts = opts || {};
     var box = document.createElement('div'); box.className = 'pc-car';
     first.replaceWith(box);
     var slides = [];
@@ -588,13 +706,15 @@
       else im.className = 'pc-car-base';
       box.appendChild(im); slides.push(im);
     });
-    if (slides.length < 2) return;
+    if (slides.length < 2) return box;
     var cur = 0, dots = document.createElement('div'); dots.className = 'pc-dots'; dots.setAttribute('aria-hidden', 'true');
     slides.forEach(function (_, k) { var d = document.createElement('span'); if (!k) d.className = 'is-on'; dots.appendChild(d); });
     function show(i) {
-      cur = (i + slides.length) % slides.length;
+      cur = opts.noLoop ? Math.max(0, Math.min(slides.length - 1, i)) : (i + slides.length) % slides.length;
+      if (opts.noLoop) { var pv = box.querySelector('.pc-arrow-prev'), nx = box.querySelector('.pc-arrow-next'); if (pv) pv.hidden = cur === 0; if (nx) nx.hidden = cur === slides.length - 1; }
       slides.forEach(function (sl, k) { if (k) sl.classList.toggle('is-on', k === cur); else sl.classList.toggle('is-off', cur !== 0); });
       [].slice.call(dots.children).forEach(function (d, k) { d.classList.toggle('is-on', k === cur); });
+      if (opts.onChange) opts.onChange(cur);
       if (hasVideo) { if (cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } else first.pause(); }
     }
     ['prev', 'next'].forEach(function (dir) {
@@ -605,6 +725,7 @@
       box.appendChild(a);
     });
     box.appendChild(dots);
+    if (opts.noLoop || opts.start) show(opts.start || 0);
 
     // Défilement automatique tant que l'utilisateur ne touche à rien :
     // la vidéo joue jusqu'au bout, puis chaque photo ~2,5 s, puis retour à la vidéo… en boucle.
@@ -628,13 +749,15 @@
         if (auto && running && cur === 0) setTimeout(function () { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); }, 0);
       });
     }
-    function start() { running = true; auto = true; if (hasVideo && cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } schedule(); }
+    function start() { if (opts.noAuto) return; running = true; auto = true; if (hasVideo && cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } schedule(); }
     function stop() { running = false; clearTimeout(timer); if (hasVideo) first.pause(); }
+    box._stop = stop;
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (es) {
         es.forEach(function (e) { if (e.isIntersecting && e.intersectionRatio >= 0.5) start(); else stop(); });
       }, { threshold: [0, 0.5] }).observe(box);
     } else start();
+    return box;
   }
 
   function centerSize(row, btn, smooth) {
@@ -667,10 +790,12 @@
       if (it.type === 'video') { var pr = node.play(); if (pr && pr.catch) pr.catch(function () {}); }
       if (count) { count.textContent = (i + 1) + ' / ' + items.length; count.hidden = items.length < 2; }
       cur = i; if (i < start || i >= start + PER) { start = Math.floor(i / PER) * PER; drawThumbs(); }
+      if (api.onChange) api.onChange(i);
       [].slice.call(thumbsBox.querySelectorAll('[data-i]')).forEach(function (b) { b.classList.toggle('is-active', +b.dataset.i === i); });
     }
     // une seule ligne de miniatures ; s'il y en a trop, une case « … » affiche les suivantes
     var MAX = 5, PER = items.length > MAX ? MAX - 1 : MAX, start = 0, cur = 0;
+    var api = { onChange: null };
     function drawThumbs() {
       thumbsBox.innerHTML = '';
       items.slice(start, start + PER).forEach(function (it, k) {
@@ -711,12 +836,12 @@
     }
     thumbsBox.hidden = items.length < 2;
     render(0);
-    return {
-      showUrl: function (url) {
-        var base = String(url).split('?')[0];
-        for (var i = 0; i < items.length; i++) if (String(items[i].src).split('?')[0] === base) { render(i); return; }
-      }
+    api.show = function (i) { if (i >= 0 && i < items.length) render(i); };
+    api.showUrl = function (url) {
+      var base = String(url).split('?')[0];
+      for (var i = 0; i < items.length; i++) if (String(items[i].src).split('?')[0] === base) { render(i); return; }
     };
+    return api;
   }
 
   /* ---------- recherche (bouton loupe du menu) ---------- */
@@ -785,7 +910,7 @@
       sOut.innerHTML = '<div class="os-results">' + list.map(function (p) {
         var pv = withBattery(p), lo = pv.length ? pv.reduce(function (a, b) { return parseFloat(b.price.amount) < parseFloat(a.price.amount) ? b : a; }).price : p.priceRange.minVariantPrice;
         var img = p.featuredImage && p.featuredImage.url;
-        return '<a class="os-item" href="' + esc(PRODUCT_PAGES[p.handle] || 'index.html#collection') + '">' +
+        return '<a class="os-item" href="' + esc(PRODUCT_PAGES[p.handle] || ('produit.html?p=' + encodeURIComponent(p.handle))) + '">' +
           '<div class="os-img">' + (img ? '<img src="' + esc(sized(img, 500)) + '" alt="' + esc((p.featuredImage.altText) || plainTitle(p.title)) + '" loading="lazy">' : '') + '</div>' +
           '<div class="os-t">' + titleHtml(p.title) + '</div><div class="os-p">' + ttc(lo) + (p.availableForSale ? '' : ' · Épuisé') + '</div></a>';
       }).join('') + '</div>';

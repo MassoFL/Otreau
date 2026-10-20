@@ -98,6 +98,14 @@ body{margin:0;background:#F8F6F1}
 .size-alert ul{margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.55}
 .size-alert strong{color:#14212B}
 .size-alert a{color:#14212B;text-underline-offset:3px}
+/* Filtres de la collection */
+.type-filters{justify-content:center}
+.type-btn[hidden]{display:none !important}
+.product-grid > a.is-filtered-out,.product-grid.show-all > a.is-filtered-out{display:none !important}
+.product-grid.is-filtering .product-extra:not(.is-filtered-out){display:flex !important}
+.show-all-wrap.is-filtering{display:none !important}
+@media (min-width:561px){.product-grid.is-few-f{grid-template-columns:repeat(var(--nf),minmax(0,300px)) !important;justify-content:center}}
+@media (max-width:640px){.type-filters{grid-template-columns:repeat(auto-fit,minmax(96px,1fr)) !important}}
 .wave-sep{display:block;line-height:0;position:absolute;left:0;right:0;bottom:-1px;z-index:1;pointer-events:none}
 .wave-sep svg{display:block;width:100%;height:clamp(58px,8.5vw,130px)}
 .wave-sep.wave-top{top:-1px;bottom:auto;z-index:4}
@@ -598,11 +606,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
 <h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em"><span style="font-weight: 600">La sélection</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h2>
 <div role="group" class="type-filters" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
-<button type="button" class="type-btn" aria-pressed="false">Doudoune</button>
-<button type="button" class="type-btn" aria-pressed="false">Veste parka</button>
-<button type="button" class="type-btn" aria-pressed="false">Gilet</button>
-<button type="button" class="type-btn" aria-pressed="false">Chaussettes</button>
-<button type="button" class="type-btn" aria-pressed="false">Gants</button>
+<button type="button" class="type-btn" data-filter="" aria-pressed="true">Tous</button>
+<button type="button" class="type-btn" data-filter="veste" aria-pressed="false">Vestes</button>
+<button type="button" class="type-btn" data-filter="parka" aria-pressed="false">Parkas</button>
+<button type="button" class="type-btn" data-filter="gilet" aria-pressed="false">Gilets</button>
+<button type="button" class="type-btn" data-filter="accessoire" aria-pressed="false">Gants & chaussettes</button>
 </div>
 </div>
 <div class="product-grid">
@@ -979,13 +987,15 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
   var rows=document.getElementById('cat-rows'), grid=document.querySelector('.product-grid');
   if(!rows||!grid) return;
   var cats=[
-    {title:'Collection Vestes', test:/^(VESTE|DOUDOUNE|PARKA)/},
-    {title:'Collection Gilets', test:/^GILET/},
-    {title:'Collection Chaussettes & gants', test:/^(CHAUSSETTE|GANT)/}
+    {title:'Collection Vestes', k:['veste','parka'], test:/^(VESTE|DOUDOUNE|PARKA|SOFTSHELL|SWEET)/},
+    {title:'Collection Gilets', k:['gilet'], test:/^GILET/},
+    {title:'Collection Chaussettes & gants', k:['accessoire'], test:/^(CHAUSSETTE|GANT)/}
   ];
+  function build(){
+  rows.innerHTML='';
   var cards=[].slice.call(grid.children).filter(function(a){return a.tagName==='A'});
   cats.forEach(function(c){
-    var list=cards.filter(function(a){var h=a.querySelector('h3');return h&&c.test.test(h.textContent.trim().toUpperCase())});
+    var list=cards.filter(function(a){if(a.dataset.cat)return c.k.indexOf(a.dataset.cat)>=0;var h=a.querySelector('h3');return h&&c.test.test(h.textContent.trim().toUpperCase())});
     if(!list.length) return;
     var row=document.createElement('div'); row.className='cat-row';
     row.innerHTML='<h3 class="cat-title">'+c.title+(list.length>1?'<small>Faites défiler →</small>':'')+'</h3>';
@@ -993,6 +1003,9 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
     list.forEach(function(a){var k=a.cloneNode(true);k.classList.remove('product-extra');track.appendChild(k)});
     row.appendChild(track); rows.appendChild(row);
   });
+  }
+  build();
+  document.addEventListener('otreau:collection',build);
 })();
 </script>
 <script>
@@ -1002,7 +1015,31 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
   function start(){clearInterval(timer);timer=setInterval(function(){show((cur+1)%slides.length)},6000)}
   dots.forEach(function(d){d.addEventListener('click',function(){show(+d.dataset.i);start()})});
   if(slides.length) start();
-  document.querySelectorAll('.type-btn').forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-pressed')==='true';document.querySelectorAll('.type-btn').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed',on?'false':'true')})});
+  /* Filtres de la collection : par type de vêtement (seuls les types présents dans Shopify restent visibles) */
+  (function(){
+    var grid=document.querySelector('.product-grid'), bar=document.querySelector('.type-filters'); if(!grid||!bar) return;
+    var btns=[].slice.call(bar.querySelectorAll('.type-btn')), wrap=document.querySelector('.show-all-wrap');
+    function cards(){return [].slice.call(grid.querySelectorAll(':scope > a[data-handle]'))}
+    function apply(f){
+      var list=f?f.split(' '):null;
+      cards().forEach(function(a){a.classList.toggle('is-filtered-out', !!list && list.indexOf(a.dataset.cat)<0)});
+      grid.classList.toggle('is-filtering', !!list);
+      var n=cards().filter(function(x){return !x.classList.contains('is-filtered-out')}).length;
+      if(list&&n<4){grid.classList.add('is-few-f');grid.style.setProperty('--nf',n)}else grid.classList.remove('is-few-f');
+      if(wrap) wrap.classList.toggle('is-filtering', !!list);
+    }
+    function refresh(){
+      var have=cards().map(function(a){return a.dataset.cat}).filter(Boolean), shown=0;
+      btns.forEach(function(b){var f=b.dataset.filter; var ok=!f||f.split(' ').some(function(h){return have.indexOf(h)>=0}); b.hidden=!ok; if(ok&&f)shown++;});
+      bar.style.gridTemplateColumns='repeat('+(shown+1)+',minmax(0,170px))';
+      var cur=btns.filter(function(b){return b.getAttribute('aria-pressed')==='true'})[0];
+      if(cur&&cur.hidden){btns[0].setAttribute('aria-pressed','true');cur.setAttribute('aria-pressed','false');apply('')}
+    }
+    btns.forEach(function(b){b.addEventListener('click',function(){
+      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')}); apply(b.dataset.filter);
+    })});
+    new MutationObserver(refresh).observe(grid,{childList:true}); document.addEventListener('otreau:collection',refresh); refresh();
+  })();
   // Vidéos produits : survol sur ordinateur, lecture automatique en boucle à l'écran sur mobile/tablette
   var touchOnly=window.matchMedia('(hover: none), (pointer: coarse)').matches;
   var pv=document.querySelectorAll('.hover-video');
@@ -1099,10 +1136,10 @@ var SIZE_GUIDE = {
     { k: 'A', label: 'Largeur poitrine', values: ['53 cm','58 cm','63 cm','68 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['67 cm','72 cm','76 cm','80 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['44 cm','46 cm','48 cm','50 cm'] } ] },
-  'gilet-polaire': { name: 'GILET POLAIRE’Otreau', flat: 'gilet', sizes: ['S','M','L','XL','XXL'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: [null,null,null,null,null] },
-    { k: 'B', label: 'Longueur dos',     values: [null,null,null,null,null] },
-    { k: 'C', label: 'Largeur épaules',  values: [null,null,null,null,null] } ] },
+  'gilet-polaire': { name: 'GILET POLAIRE’Otreau', flat: 'gilet', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['55 cm','57 cm','59 cm','61 cm','63 cm','65 cm','67 cm','69 cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['67 cm','69 cm','71 cm','73 cm','75 cm','77 cm','79 cm','81 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['46 cm','47 cm','48 cm','49 cm','50 cm','51 cm','52 cm','53 cm'] } ] },
   'doudoune': { name: 'DOUDOUNE’Otreau', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm','66 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
