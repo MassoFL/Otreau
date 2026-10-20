@@ -555,6 +555,17 @@ html,body{overflow-x:clip}
 .site-footer .f-select::after{border-color:#FFFFFF !important}
 .site-footer .f-contact a,.site-footer .f-col a,.site-footer .f-legal a{text-decoration:underline !important;text-decoration-color:rgba(255,255,255,.28) !important;text-decoration-thickness:1px !important;text-underline-offset:4px;transition:color .2s,text-decoration-color .2s}
 .site-footer .f-contact a:hover,.site-footer .f-col a:hover,.site-footer .f-legal a:hover{text-decoration-color:rgba(255,255,255,.85) !important}
+/* Rythme vertical homogène des sections de la page produit */
+:root{--pd-sec:clamp(64px,8vw,96px)}
+.pd-details{margin-top:var(--pd-sec) !important}
+.pd-size{margin:var(--pd-sec) 0 0 !important;padding:0 clamp(16px,4vw,48px) !important}
+.pd-how,.pd-care{margin:var(--pd-sec) 0 !important}
+.pd-cross{margin-top:var(--pd-sec) !important}
+.pd-h2.pd-center{margin-bottom:32px}
+.pd-cross-more{margin:40px 0 0;text-align:center}
+.pd-all{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 40px;border:1.5px solid #14212B;border-radius:999px;color:#14212B;text-decoration:none;font-family:Manrope,sans-serif;font-weight:700;font-size:16px;transition:background .2s ease,color .2s ease}
+.pd-all:hover,.pd-all:focus-visible{background:#14212B;color:#FFFFFF}
+.pd-all svg{transition:transform .2s ease}.pd-all:hover svg{transform:translateX(3px)}
 </style>
 </head>
 <body>
@@ -772,6 +783,7 @@ html,body{overflow-x:clip}
 <video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
 <div class="pd-x-info"><h3><span style="font-weight: 600">DOUDOUNE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
 </div>
+<p class="pd-cross-more"><a class="pd-all" href="index.html#collection">Découvrir tout<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
 </section>
 
 </main>
