@@ -864,7 +864,7 @@
 
   /* ---------- recherche (bouton loupe du menu) ---------- */
   // page dédiée de chaque produit (les autres renvoient vers la sélection de l'accueil)
-  var PRODUCT_PAGES = { 'veste-otreau': 'veste-otreau.html', 'veste': 'veste-otreau.html', 'doudoune-otreau': 'doudoune-otreau.html', 'doudoune': 'doudoune-otreau.html' };
+  var PRODUCT_PAGES = { 'veste-otreau': 'veste-otreau.html', 'veste': 'veste-otreau.html', 'doudoune-otreau': 'doudoune-otreau.html', 'doudoune': 'doudoune-otreau.html', 'gilet-otreau': 'gilet-otreau.html', 'gilet': 'gilet-otreau.html' };
   var SEARCH_Q = 'query S($q: String!) { predictiveSearch(query: $q, limit: 10, types: [PRODUCT], ' +
     'searchableFields: [TITLE, BODY, PRODUCT_TYPE, TAG, VARIANTS_TITLE, VENDOR], unavailableProducts: LAST) { products { ' +
     'handle title availableForSale featuredImage { url altText } priceRange { minVariantPrice { amount currencyCode } } ' +
