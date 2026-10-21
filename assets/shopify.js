@@ -209,9 +209,10 @@
     '.oc-msg{margin:8px 0 0;font-size:13px;color:#C2361F}' +
     '.pc-car{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;background:transparent}' +
     '.pc-car > video,.pc-car > .pc-car-base{position:absolute;inset:0;width:100% !important;height:100% !important;aspect-ratio:auto !important;object-fit:cover;display:block}' +
+    '.pc-car > .pc-car-base{object-fit:contain !important;object-position:center}' +
     '.pc-car > video,.pc-car > .pc-car-base{transition:opacity .35s ease}' +
     '.pc-car > .is-off{opacity:0 !important}' +
-    '.pc-car-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease;pointer-events:none}' +
+    '.pc-car-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transition:opacity .35s ease;pointer-events:none}' +
     '.pc-car-slide.is-on{opacity:1}' +
     '.pc-arrow{position:absolute;top:50%;z-index:2;width:32px;height:32px;margin-top:-16px;border:0;border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 2px 8px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s,background .2s}' +
     '.pc-arrow svg{width:15px;height:15px;fill:none;stroke:#14212B;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}' +
@@ -796,7 +797,7 @@
         node.setAttribute('aria-label', it.alt);
       } else {
         node = document.createElement('img'); node.src = sized(it.src, 1400); node.alt = it.alt;
-        node.setAttribute('style', 'width:100%;height:100%;object-fit:cover;display:block');
+        node.setAttribute('style', 'width:100%;height:100%;object-fit:contain;object-position:center;display:block');
       }
       main.classList.add('has-media');
       main.insertBefore(node, main.firstChild);
@@ -817,7 +818,7 @@
         b.setAttribute('aria-label', (it.type === 'video' ? 'Vidéo : ' : 'Photo : ') + it.alt);
         var src = it.type === 'video' ? it.poster : it.src;
         if (src) b.classList.add('has-img');
-        b.innerHTML = (src ? '<img src="' + esc(sized(src, 200)) + '" alt="" style="width:100%;height:100%;object-fit:cover;display:block">' : '<span>Vidéo</span>') +
+        b.innerHTML = (src ? '<img src="' + esc(sized(src, 200)) + '" alt="" style="width:100%;height:100%;object-fit:contain;display:block">' : '<span>Vidéo</span>') +
           (it.type === 'video' ? '<span class="pd-thumb-play" aria-hidden="true"></span>' : '');
         b.classList.toggle('is-active', i === cur);
         b.addEventListener('click', function () { render(i); });

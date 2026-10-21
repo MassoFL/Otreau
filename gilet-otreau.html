@@ -728,17 +728,7 @@ html,body{overflow-x:clip}
 <div style="position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
 <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
 <span class="atelier-kicker" style="text-transform:none;letter-spacing:.06em">Patron · GILET’Otreau</span>
-<svg class="flat" data-product="gilet" viewBox="0 0 360 380" role="img" aria-label="Schéma du gilet à plat avec les mesures A, B et C">
-<g transform="translate(20,30)">
-<path class="garment" d="M150 54 L118 40 Q104 36 92 42 L72 54 Q90 96 64 128 Q54 146 58 176 L60 300 Q104 318 150 318 Q196 318 240 300 L242 176 Q246 146 236 128 Q210 96 228 54 L208 42 Q196 36 182 40 Z"></path>
-<path class="garment" d="M118 40 Q150 66 182 40 L182 26 Q150 48 118 26 Z"></path>
-<path class="seam" d="M150 56 L150 316"></path>
-<path class="seam" d="M84 236 L120 232 M216 236 L180 232"></path>
-<g class="dim" data-k="C"><line class="ext" x1="72" y1="54" x2="72" y2="2"></line><line class="ext" x1="228" y1="54" x2="228" y2="2"></line><line x1="72" y1="8" x2="228" y2="8"></line><path d="M78 4 L72 8 L78 12 M222 4 L228 8 L222 12"></path><circle cx="150" cy="8" r="13"></circle><text x="150" y="8">C</text></g>
-<g class="dim" data-k="A"><line x1="62" y1="150" x2="238" y2="150"></line><path d="M68 146 L62 150 L68 154 M232 146 L238 150 L232 154"></path><circle cx="150" cy="150" r="13"></circle><text x="150" y="150">A</text></g>
-<g class="dim" data-k="B"><line class="ext" x1="182" y1="40" x2="292" y2="40"></line><line class="ext" x1="240" y1="300" x2="292" y2="300"></line><line x1="284" y1="40" x2="284" y2="300"></line><path d="M280 46 L284 40 L288 46 M280 294 L284 300 L288 294"></path><circle cx="284" cy="170" r="13"></circle><text x="284" y="170">B</text></g>
-</g>
-</svg>
+<img class="flat flat-photo" data-product="gilet-photo" src="assets/patron-gilet-v2.webp" alt="Gilet avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" width="725" height="800" loading="lazy">
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
 <table class="size-table" id="pd-size-table">
@@ -759,8 +749,8 @@ html,body{overflow-x:clip}
 <div class="pd-steps hw-steps">
 <div class="pd-step"><img class="hw-pic" src="assets/step-branchez.webp" alt="Câble USB du gilet branché sur le port USB-A de la batterie" width="900" height="614" loading="lazy"><span class="pd-num">1</span><h3>Branchez</h3><p>Reliez le câble USB situé dans la poche intérieure à la batterie.</p></div>
 <div class="pd-step"><img class="hw-pic" src="assets/step-activez.webp" alt="Appui sur le bouton de la batterie : l’écran affiche le niveau de charge" width="900" height="514" loading="lazy"><span class="pd-num">2</span><h3>Activez la batterie</h3><p>Appuyez sur le bouton de sortie de la batterie pour l’activer.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/step-allumez.webp" alt="Appui de 3 secondes sur le bouton du gilet : le voyant s’allume" width="900" height="614" loading="lazy"><span class="pd-num">3</span><h3>Allumez</h3><p>Maintenez le bouton du gilet <strong>3 secondes</strong> : le voyant s’allume et le gilet commence à chauffer. Ensuite, <strong>un clic</strong> suffit pour passer au niveau de chaleur suivant.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/step-eteignez-v2.webp" alt="Nouvel appui de 3 secondes sur le bouton : le voyant s’éteint" width="900" height="614" loading="lazy"><span class="pd-num">4</span><h3>Éteignez</h3><p>Maintenez de nouveau le bouton <strong>3 secondes</strong> : le voyant s’éteint et le gilet arrête de chauffer.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/gilet-step-allumez.webp" alt="Appui de 3 secondes sur le bouton du gilet : les voyants s’allument" width="900" height="600" loading="lazy"><span class="pd-num">3</span><h3>Allumez</h3><p>Maintenez le bouton du gilet <strong>3 secondes</strong> : le voyant s’allume et le gilet commence à chauffer. Ensuite, <strong>un clic</strong> suffit pour passer au niveau de chaleur suivant.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/gilet-step-eteignez.webp" alt="Nouvel appui de 3 secondes sur le bouton du gilet : les voyants s’éteignent" width="900" height="612" loading="lazy"><span class="pd-num">4</span><h3>Éteignez</h3><p>Maintenez de nouveau le bouton <strong>3 secondes</strong> : le voyant s’éteint et le gilet arrête de chauffer.</p></div>
 </div>
 
 </section>
@@ -768,9 +758,9 @@ html,body{overflow-x:clip}
 <section class="pd-care" id="entretien" aria-labelledby="pd-care-title">
 <h2 class="pd-h2 pd-center" id="pd-care-title">Entretien</h2>
 <div class="pd-steps hw-steps">
-<div class="pd-step"><img class="hw-pic" src="assets/ent-1.webp" alt="Batterie retirée de la poche intérieure, câble USB rangé" width="533" height="355" loading="lazy"><span class="pd-num">1</span><h3>Retirez la batterie</h3><p>Remettez le câble USB dans sa poche et fermez-la.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/ent-2.webp" alt="Programme délicat 30 °C ou lavage à la main, lessive douce, filet de lavage" width="900" height="600" loading="lazy"><span class="pd-num">2</span><h3>Lavez en douceur</h3><p>À la main ou en machine (programme délicat, eau froide, 30 °C max.), avec une lessive douce et dans un filet de lavage.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/ent-3.webp" alt="Gilet séchant sur un cintre, à l’abri du soleil" width="708" height="472" loading="lazy"><span class="pd-num">3</span><h3>Séchez à l’air libre</h3><p>À l’abri du soleil.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/gilet-ent-1.webp" alt="Batterie retirée de la poche intérieure du gilet, câble USB rangé" width="900" height="600" loading="lazy"><span class="pd-num">1</span><h3>Retirez la batterie</h3><p>Remettez le câble USB dans sa poche et fermez-la.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/gilet-ent-2.webp" alt="Programme délicat 30 °C ou lavage à la main, lessive douce, gilet dans un filet de lavage" width="900" height="588" loading="lazy"><span class="pd-num">2</span><h3>Lavez en douceur</h3><p>À la main ou en machine (programme délicat, eau froide, 30 °C max.), avec une lessive douce et dans un filet de lavage.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/gilet-ent-3.webp" alt="Gilet séchant sur un cintre, à l’abri du soleil" width="900" height="572" loading="lazy"><span class="pd-num">3</span><h3>Séchez à l’air libre</h3><p>À l’abri du soleil.</p></div>
 <div class="pd-step"><img class="hw-pic" src="assets/ent-4.webp" alt="Pictogrammes : pas d’essorage, pas de repassage, pas de javel, pas de nettoyage à sec" width="755" height="503" loading="lazy"><span class="pd-num">4</span><h3>Ni essorage ni torsion</h3><p>Ni repassage, ni javel, ni nettoyage à sec.</p></div>
 </div>
 </section>
@@ -778,12 +768,11 @@ html,body{overflow-x:clip}
 <section class="pd-care" id="precautions" aria-labelledby="pd-prec-title">
 <h2 class="pd-h2 pd-center" id="pd-prec-title">Précautions</h2>
 <div class="pd-steps hw-steps hw-steps-3">
-<div class="pd-step"><img class="hw-pic" src="assets/prec-1.webp" alt="Nourrisson, enfant et personne âgée barrés d’un pictogramme d’interdiction" width="505" height="337" loading="lazy"><span class="pd-num">1</span><h3>Pas pour tout le monde</h3><p>Ne pas faire porter à un nourrisson, un enfant ou une personne peu sensible à la chaleur (mauvaise circulation sanguine, par exemple).</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/prec-2.webp" alt="Zone chauffante de la doublure et main barrée" width="455" height="303" loading="lazy"><span class="pd-num">2</span><h3>Pas sur la peau nue</h3><p>Évitez le contact direct des zones chauffantes avec la peau.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/prec-3.webp" alt="Bouton du gilet et pictogramme d’inconfort" width="502" height="335" loading="lazy"><span class="pd-num">3</span><h3>En cas d’inconfort</h3><p>Éteignez immédiatement le gilet.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/prec-4.webp" alt="Doublure mouillée et batterie dans l’eau, barrées" width="507" height="338" loading="lazy"><span class="pd-num">4</span><h3>Gardez-le au sec</h3><p>Ne portez pas le gilet si la doublure intérieure est mouillée. Ne plongez jamais la batterie dans un liquide.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/prec-5.webp" alt="Épingle à nourrice barrée sur le gilet" width="458" height="305" loading="lazy"><span class="pd-num">5</span><h3>Pas d’épingles</h3><p>Elles pourraient abîmer les fils chauffants.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/prec-6.webp" alt="Batterie débranchée et rangée dans une pochette, loin des objets métalliques" width="502" height="335" loading="lazy"><span class="pd-num">6</span><h3>Après usage</h3><p>Débranchez la batterie et rangez-la au sec, loin des objets métalliques.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-2.webp" alt="Zone chauffante de la doublure et main barrée" width="455" height="303" loading="lazy"><span class="pd-num">1</span><h3>Pas sur la peau nue</h3><p>Évitez le contact direct des zones chauffantes avec la peau.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-3.webp" alt="Bouton du gilet et pictogramme d’inconfort" width="502" height="335" loading="lazy"><span class="pd-num">2</span><h3>En cas d’inconfort</h3><p>Éteignez immédiatement le gilet.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-4.webp" alt="Doublure mouillée et batterie dans l’eau, barrées" width="507" height="338" loading="lazy"><span class="pd-num">3</span><h3>Gardez-le au sec</h3><p>Ne portez pas le gilet si la doublure intérieure est mouillée. Ne plongez jamais la batterie dans un liquide.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-5.webp" alt="Épingle à nourrice barrée sur le gilet" width="458" height="305" loading="lazy"><span class="pd-num">4</span><h3>Pas d’épingles</h3><p>Elles pourraient abîmer les fils chauffants.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/prec-6.webp" alt="Batterie débranchée et rangée dans une pochette, loin des objets métalliques" width="502" height="335" loading="lazy"><span class="pd-num">5</span><h3>Après usage</h3><p>Débranchez la batterie et rangez-la au sec, loin des objets métalliques.</p></div>
 </div>
 </section>
 

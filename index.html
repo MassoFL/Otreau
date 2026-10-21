@@ -536,6 +536,43 @@ a{color:#14212B}a:hover{color:#B5650F}
 .site-footer .f-contact a:hover,.site-footer .f-col a:hover,.site-footer .f-legal a:hover{text-decoration-color:rgba(255,255,255,.85) !important}
 .sz-o{margin-left:1px;font-family:Manrope,sans-serif;font-weight:300;font-size:11px;letter-spacing:0;color:#A3ABB1}
 .size-tol{margin:14px 0 0;font-family:'DM Mono',monospace;font-size:12px;color:#8C7A5B;text-align:center}
+/* ===== Carrousel vidéo incurvé (section La marque) ===== */
+.lm-ring{position:relative;align-self:stretch;margin:34px calc(50% - 50vw) 18px;height:clamp(250px,30vw,400px);overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 6%,#000 94%,transparent 100%)}
+.lm-ring.is-drag{cursor:grabbing}
+.lm-ring-stage{position:absolute;inset:0;perspective:1100px;perspective-origin:50% 50%}
+.lm-card{position:absolute;left:50%;top:50%;width:var(--cw,220px);aspect-ratio:3/4;margin:0;border-radius:18px;overflow:hidden;background:#1b2a22;box-shadow:0 18px 40px -18px rgba(0,0,0,.7);will-change:transform,opacity;backface-visibility:hidden}
+.lm-card video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+@media (max-width:640px){.lm-ring{height:300px}}
+.lm-card figcaption{position:absolute;left:0;right:0;bottom:0;padding:38px 16px 16px;background:linear-gradient(180deg,transparent,rgba(5,14,10,.86));color:#FFFFFF;text-align:left;display:flex;flex-direction:column;gap:4px}
+.lm-card figcaption strong{font:700 15px/1.25 Manrope,sans-serif}
+.lm-card figcaption span{font-size:12.5px;line-height:1.45;color:rgba(255,255,255,.82)}
+@media (max-width:640px){.lm-card figcaption{padding:28px 12px 12px}.lm-card figcaption strong{font-size:13px}.lm-card figcaption span{font-size:11px}}
+.lm-card figcaption{background:linear-gradient(180deg,transparent 0,rgba(5,14,10,.55) 35%,rgba(5,14,10,.92) 100%) !important;text-shadow:0 1px 3px rgba(0,0,0,.75),0 0 12px rgba(0,0,0,.45)}
+.lm-num{font:300 26px/1 Manrope,sans-serif;letter-spacing:.02em;color:#FFFFFF;opacity:.9;margin-bottom:6px}
+@media (max-width:640px){.lm-num{font-size:20px;margin-bottom:4px}}
+/* Trajectoire : étapes étalées sur toute la largeur de l’écran */
+@media (min-width:641px){.lm-road{align-self:center;width:min(1240px,calc(100vw - clamp(48px,8vw,140px)));max-width:none;margin-left:0;margin-right:0}}
+/* Lisibilité des textes des principes, quelle que soit la vidéo */
+.lm-card figcaption{padding:70px 16px 16px !important;background:linear-gradient(180deg,rgba(4,10,7,0) 0,rgba(4,10,7,.55) 30%,rgba(4,10,7,.9) 62%,rgba(4,10,7,.96) 100%) !important;text-shadow:0 1px 2px rgba(0,0,0,.9),0 2px 10px rgba(0,0,0,.6) !important}
+.lm-card figcaption strong{font-size:16px;letter-spacing:.005em}
+.lm-card figcaption span{color:rgba(255,255,255,.9) !important}
+@media (max-width:640px){.lm-card figcaption{padding:48px 12px 12px !important}.lm-card figcaption strong{font-size:13.5px}}
+/* ===== Trajectoire sans boucle : les hivers suivants rapetissent au loin ===== */
+.lm-path-js{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,#000 72%,transparent 100%);mask-image:linear-gradient(90deg,#000 72%,transparent 100%)}
+.lm-path-js path.lm-glow{stroke:url(#lmHeat)}
+.lm-steps{grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,.72fr) minmax(0,.54fr) minmax(0,.4fr)}
+.lm-far .lm-dot{margin-bottom:8px}
+.lm-road li.lm-f1{padding-top:50px;opacity:.82}.lm-f1 .lm-dot{width:32px;height:32px;font-size:12px}.lm-f1 strong{font-size:13px !important}
+.lm-road li.lm-f2{padding-top:22px;opacity:.6}.lm-f2 .lm-dot{width:24px;height:24px;font-size:10px;box-shadow:0 0 0 3px rgba(127,209,164,.12)}.lm-f2 strong{font-size:11.5px !important}
+.lm-road li.lm-f3{padding-top:50px;opacity:.42}.lm-f3 .lm-dot{width:18px;height:18px;font-size:0;box-shadow:none}.lm-f3 strong{font-size:10.5px !important}
+@media (max-width:640px){
+.lm-path-js{-webkit-mask-image:linear-gradient(180deg,#000 75%,transparent 100%);mask-image:linear-gradient(180deg,#000 75%,transparent 100%)}
+.lm-steps{grid-template-columns:minmax(0,1fr)}
+.lm-steps li:nth-child(4){margin-top:0 !important}
+.lm-road li.lm-far{padding-top:0;margin-top:-6px}
+.lm-far .lm-dot{justify-self:center;margin:0}
+.lm-road li.lm-f2{padding-left:28px}
+}
 </style>
 </head>
 <body>
@@ -846,6 +883,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <g class="dim" data-k="D"><line class="ext" x1="266" y1="62" x2="281" y2="56"></line><line class="ext" x1="312" y1="214" x2="327" y2="208"></line><line x1="279" y1="57" x2="325" y2="209"></line><path d="M276 64 L279 57 L284 62 M320 203 L325 209 L327 201"></path><circle cx="302" cy="133" r="13"></circle><text x="302" y="133">D</text></g>
 </g>
 </svg>
+<img class="flat flat-photo" data-product="gilet-photo" src="assets/patron-gilet-v2.webp" alt="Gilet avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" width="725" height="800" loading="lazy" hidden>
 <img class="flat flat-photo" data-product="veste" src="assets/patron-veste.webp" alt="Veste avec les mesures A (largeur poitrine), B (longueur), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
@@ -895,22 +933,28 @@ a{color:#14212B}a:hover{color:#B5650F}
 <p class="lm-lead">Chez Otreau, un vêtement chauffant est d’abord un vêtement… équipé d’un mécanisme chauffant.</p>
 <p>Les modèles de la Collection Hiver ’26 ont fait l’objet d’une sélection rigoureuse : ceux que nous avons retenus ont fait leurs preuves au fil des hivers précédents, sur des critères précis : qualité du vêtement, entretien simple, autonomie de la batterie et choix simple des tailles. Vos retours précieux guideront la conception de l’édition 2027 de la veste.</p>
 <div class="lm-road">
-<svg class="lm-path lm-path-h" viewBox="0 0 1000 110" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="lmHeatH" gradientUnits="userSpaceOnUse" x1="125" y1="0" x2="875" y2="0"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".3" stop-color="#B9E0FF"/><stop offset=".55" stop-color="#FFD27A"/><stop offset=".8" stop-color="#F5A623"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path d="M125,74 C220,74 270,26 375,26 C480,26 520,74 625,74 C680,74 715,70 750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 C795,22 840,26 875,26"/><path class="lm-glow" pathLength="1000" d="M125,74 C220,74 270,26 375,26 C480,26 520,74 625,74 C680,74 715,70 750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 C795,22 840,26 875,26"/><path class="lm-loop" pathLength="1000" d="M750,50 C785,30 822,32 822,50 C822,68 785,70 750,50 C715,30 678,32 678,50 C678,68 715,70 750,50 Z"/></svg>
-<svg class="lm-path lm-path-v" viewBox="0 0 70 400" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="lmHeatV" gradientUnits="userSpaceOnUse" x1="0" y1="50" x2="0" y2="350"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".3" stop-color="#B9E0FF"/><stop offset=".55" stop-color="#FFD27A"/><stop offset=".8" stop-color="#F5A623"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path d="M21,50 C21,90 49,110 49,150 C49,190 21,210 21,250 C21,272 24,288 35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 C46,312 49,326 49,350"/><path class="lm-glow" pathLength="1000" d="M21,50 C21,90 49,110 49,150 C49,190 21,210 21,250 C21,272 24,288 35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 C46,312 49,326 49,350"/><path class="lm-loop" pathLength="1000" d="M35,300 C47,314 63,316 63,300 C63,284 47,286 35,300 C23,314 7,316 7,300 C7,284 23,286 35,300 Z"/></svg>
+<svg class="lm-path lm-path-js" aria-hidden="true"><defs><linearGradient id="lmHeat" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".3" stop-color="#B9E0FF"/><stop offset=".55" stop-color="#FFD27A"/><stop offset=".8" stop-color="#F5A623"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path class="lm-base"/><path class="lm-glow" pathLength="1000"/></svg>
 <ol class="lm-steps" aria-label="Notre trajectoire">
 <li><span class="lm-dot">1</span><strong>Hiver ’26</strong><span>Produits sélectionnés avec soin</span></li>
 <li><span class="lm-dot">2</span><strong>Vos retours</strong><span>sur les modèles de la saison</span></li>
 <li><span class="lm-dot">3</span><strong>Amélioration</strong><span>des modèles, point par point</span></li>
 <li><span class="lm-dot">4</span><strong>Hiver ’27</strong><span>Produits conçus par nos soins</span></li>
+<li class="lm-far lm-f1"><span class="lm-dot">5</span><strong>Hiver ’28</strong></li>
+<li class="lm-far lm-f2"><span class="lm-dot">6</span><strong>Hiver ’29</strong></li>
+<li class="lm-far lm-f3"><span class="lm-dot">7</span><strong>Hiver ’30</strong></li>
 </ol>
 </div>
 <div class="lm-princ">
 <h3 class="lm-princ-t">Nos principes</h3>
-<p class="lm-princ-intro">Les trois critères sur lesquels nous retenons chaque modèle.</p>
-<div class="lm-princ-grid">
-<div class="lm-pr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3l-4 3v14h16V6l-4-3"/><path d="M8 3a4 4 0 0 0 8 0"/><path d="M12 7v13"/></svg><strong>Un vêtement d’abord</strong><span>Il doit être agréable à porter et à regarder, même batterie débranchée.</span></div>
-<div class="lm-pr"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><strong>La sécurité avant tout</strong><span>Une chaleur maîtrisée, qui se règle et s’éteint d’un geste.</span></div>
-<div class="lm-pr"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5"/></svg><strong>Une autonomie qui suit</strong><span>Une chaleur qui dure aussi longtemps que vos journées dehors.</span></div>
+</div>
+<!-- Nos principes en carrousel incurvé : tourne au défilement et au glisser (vidéos provisoires, à remplacer) -->
+<div class="lm-ring" role="region" aria-label="Nos principes">
+<div class="lm-ring-stage">
+<figure class="lm-card"><video poster="assets/principe-1a.jpg" data-src="assets/principe-1a.mp4" data-playlist="assets/principe-1a.mp4|assets/principe-1b.mp4|assets/principe-1c.mp4" data-rate="0.6" muted loop playsinline preload="none" aria-hidden="true" style="object-position:50% 35%"></video><figcaption><b class="lm-num">01</b><strong>Un vêtement d’abord</strong><span>Il doit être agréable à porter et à regarder, même batterie débranchée.</span></figcaption></figure>
+<figure class="lm-card"><video poster="assets/principe-2a.jpg" data-src="assets/principe-2a.mp4" data-playlist="assets/principe-2a.mp4|assets/principe-2b.mp4" data-rate="0.6" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption><b class="lm-num">02</b><strong>La sécurité avant tout</strong><span>Une chaleur maîtrisée, qui se règle et s’éteint d’un geste.</span></figcaption></figure>
+<figure class="lm-card"><video data-src="assets/batterie.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption><b class="lm-num">03</b><strong>Une autonomie qui suit</strong><span>Une chaleur qui dure aussi longtemps que vos journées dehors.</span></figcaption></figure>
+<figure class="lm-card"><video poster="assets/principe-4a.jpg" data-src="assets/principe-4a.mp4" data-rate="0.6" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption><b class="lm-num">04</b><strong>Un entretien simple</strong><span>Batterie retirée, il passe en machine, en programme délicat.</span></figcaption></figure>
+<figure class="lm-card"><video data-src="assets/gilet-fin.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption><b class="lm-num">05</b><strong>Des tailles sans surprise</strong><span>Des mesures prises à plat pour chaque modèle, pour choisir sereinement.</span></figcaption></figure>
 </div>
 </div>
 <a class="lm-btn" href="a-propos.html">Découvrir notre histoire<span aria-hidden="true">→</span></a>
@@ -1144,7 +1188,7 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
 // Une entrée par article. "flat" = le patron affiché (gilet sans manches, ou doudoune avec manches).
 // Remplacez les null par les mesures en cm.
 var SIZE_GUIDE = {
-  'gilet': { name: 'GILET’Otreau', flat: 'gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'gilet': { name: 'GILET’Otreau', flat: 'gilet-photo', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] },
@@ -1301,5 +1345,72 @@ var SIZE_GUIDE = {
 })();
 </script>
 <script src="assets/shopify.js"></script>
+<script>
+/* Carrousel vidéo incurvé : les cartes sont posées sur l'intérieur d'un cylindre (les bords se rapprochent).
+   Il tourne doucement tout seul, suit le défilement de la page et se fait glisser au doigt ou à la souris. */
+(function(){
+  var ring=document.querySelector('.lm-ring'); if(!ring) return;
+  var cards=[].slice.call(ring.querySelectorAll('.lm-card')), N=cards.length;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Ralenti (data-rate="0.6") : réappliqué à chaque nouvelle vidéo
+  cards.forEach(function(c){ var v=c.querySelector('video'), r=parseFloat(v.dataset.rate);
+    if(!r) return; function set(){ v.defaultPlaybackRate=r; v.playbackRate=r; } set();
+    v.addEventListener('loadedmetadata',set); v.addEventListener('playing',set); });
+  // Cartes à plusieurs vidéos (data-playlist="a.mp4|b.mp4|c.mp4") : elles s'enchaînent en boucle
+  cards.forEach(function(c){ var v=c.querySelector('video'), list=(v.dataset.playlist||'').split('|').filter(Boolean);
+    if(list.length<2) return; var k=0; v.loop=false;
+    v.addEventListener('ended',function(){ k=(k+1)%list.length; v.src=list[k]; v.play().catch(function(){}); }); });
+  var off=0, vel=0, drag=false, lastX=0, lastT=0, lastY=window.scrollY, inView=false, W, GAP, R, L;
+  function size(){ var w=ring.clientWidth; W=w<640?150:(w<1000?200:230); GAP=w<640?10:16; R=Math.max(320,w*.5); L=N*(W+GAP); ring.style.setProperty('--cw',W+'px'); }
+  function render(){
+    var h=ring.clientHeight;
+    cards.forEach(function(c,i){
+      var x=((i*(W+GAP)+off)%L+L)%L-L/2, a=x/R;
+      if(Math.abs(a)>1.05){ c.style.opacity='0'; c.style.visibility='hidden'; pause(c); return; }
+      var tx=R*Math.sin(a), tz=R*(1-Math.cos(a));
+      c.style.visibility='visible';
+      c.style.opacity=String(Math.max(0,Math.min(1,(1.05-Math.abs(a))*4)));
+      c.style.transform='translate(-50%,-50%) translate3d('+tx.toFixed(1)+'px,0,'+tz.toFixed(1)+'px) rotateY('+(-a*57.2958).toFixed(2)+'deg)';
+      play(c);
+    });
+  }
+  function play(c){ if(!inView) return; var v=c.querySelector('video'); if(!v.src&&v.dataset.src) v.src=v.dataset.src; if(v.paused) v.play().catch(function(){}); }
+  function pause(c){ var v=c.querySelector('video'); if(v&&!v.paused) v.pause(); }
+  function tick(){
+    if(!drag){ off+=vel; vel*=.94; if(!reduce&&inView) off-=.35; }
+    render(); requestAnimationFrame(tick);
+  }
+  window.addEventListener('scroll',function(){ var y=window.scrollY, d=y-lastY; lastY=y; if(inView&&!drag) vel-=d*.08; },{passive:true});
+  ring.addEventListener('pointerdown',function(e){ drag=true; ring.classList.add('is-drag'); lastX=e.clientX; lastT=performance.now(); vel=0; ring.setPointerCapture(e.pointerId); });
+  ring.addEventListener('pointermove',function(e){ if(!drag) return; var dx=e.clientX-lastX, t=performance.now(); off+=dx; vel=dx/Math.max(1,(t-lastT)/16); lastX=e.clientX; lastT=t; });
+  function up(){ if(!drag) return; drag=false; ring.classList.remove('is-drag'); }
+  ring.addEventListener('pointerup',up); ring.addEventListener('pointercancel',up);
+  new IntersectionObserver(function(es){ inView=es[0].isIntersecting; if(!inView) cards.forEach(pause); },{threshold:.05}).observe(ring);
+  window.addEventListener('resize',size); size(); render(); requestAnimationFrame(tick);
+})();
+</script>
+<script>
+/* Trajectoire : le tracé relie le centre de chaque pastille, quel que soit l'écran, puis s'efface vers l'avenir */
+(function(){
+  var road=document.querySelector('.lm-road'); if(!road) return;
+  var svg=road.querySelector('.lm-path-js'), base=svg.querySelector('.lm-base'), glow=svg.querySelector('.lm-glow'), grad=svg.querySelector('#lmHeat');
+  function draw(){
+    var r=road.getBoundingClientRect(), pts=[].map.call(road.querySelectorAll('.lm-dot'),function(d){var b=d.getBoundingClientRect();return [b.left+b.width/2-r.left,b.top+b.height/2-r.top];});
+    if(pts.length<2) return;
+    var horiz=Math.abs(pts[pts.length-1][0]-pts[0][0])>Math.abs(pts[pts.length-1][1]-pts[0][1]);
+    var last=pts[pts.length-1], prev=pts[pts.length-2];
+    pts.push(horiz?[last[0]+(last[0]-prev[0])*.9,(last[1]+prev[1])/2]:[(last[0]+prev[0])/2,last[1]+(last[1]-prev[1])*.9]);
+    var d='M'+pts[0][0].toFixed(1)+','+pts[0][1].toFixed(1);
+    for(var k=1;k<pts.length;k++){var a=pts[k-1],b=pts[k];
+      d+=horiz?' C'+(a[0]+(b[0]-a[0])/2).toFixed(1)+','+a[1].toFixed(1)+' '+(b[0]-(b[0]-a[0])/2).toFixed(1)+','+b[1].toFixed(1)+' '+b[0].toFixed(1)+','+b[1].toFixed(1)
+               :' C'+a[0].toFixed(1)+','+(a[1]+(b[1]-a[1])/2).toFixed(1)+' '+b[0].toFixed(1)+','+(b[1]-(b[1]-a[1])/2).toFixed(1)+' '+b[0].toFixed(1)+','+b[1].toFixed(1);}
+    svg.setAttribute('viewBox','0 0 '+r.width.toFixed(1)+' '+r.height.toFixed(1));
+    base.setAttribute('d',d); glow.setAttribute('d',d);
+    var e=pts[pts.length-1]; grad.setAttribute('x1',pts[0][0]); grad.setAttribute('y1',pts[0][1]); grad.setAttribute('x2',e[0]); grad.setAttribute('y2',e[1]);
+  }
+  draw(); window.addEventListener('resize',draw); window.addEventListener('load',draw);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(draw);
+})();
+</script>
 </body>
 </html>
