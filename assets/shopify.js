@@ -65,21 +65,60 @@
       return map;
     });
   }
-  // Titre Shopify « Veste » ou « Gilet fin » → « VESTE’Otreau » / « GILET FIN’Otreau »
-  // (type en majuscules + ’Otreau ajouté à la fin ; un « Otreau » déjà présent n'est pas doublé)
+  // Titre Shopify « Veste » ou « Gilet fin » → « VESTE » / « GILET FIN »
+  // (type en majuscules, sans suffixe ; un « Otreau » déjà présent n'est pas doublé)
   function baseTitle(t) {
     return String(t || '').replace(/[\s’'-]*otreau\s*$/i, '').trim().toLocaleUpperCase('fr-FR');
   }
-  function plainTitle(t) { return baseTitle(t) + '’Otreau'; }
+  function plainTitle(t) { return baseTitle(t); }
   function titleHtml(t) {
-    return '<span style="font-weight: 600">' + esc(baseTitle(t)) + '</span><span style="font-weight: 300; color: #8A949B">’Otreau</span>';
+    return '<span style="font-weight: 600">' + esc(baseTitle(t)) + '</span>';
   }
   function sized(url, w) { return url ? url + (url.indexOf('?') > -1 ? '&' : '?') + 'width=' + w : url; }
   // médias Shopify → liste simple {type, src, poster, alt}
+  // Photo « portée » (mannequin) ou visuel technique (infographie, détails) ?
+  // D'après le texte alternatif saisi dans Shopify, sinon le nom du fichier.
+  var MODEL_RE = /portrait|mod[eè]le|homme|femme|couple|duo|senior|souriant|port[eé]e?\b|lifestyle/i;
+  var TECH_RE = /infograph|guide|zone|niveau|fonctionnal|d[eé]tail|finition|lavable|lavage|poche|bouton|taille|captur|sch[eé]ma/i;
+  function isModelPhoto(src, alt) {
+    var f = ''; try { f = decodeURIComponent(String(src || '').split('?')[0].split('/').pop()); } catch (e) { f = String(src || ''); }
+    var t = (alt || '') + ' ' + f.replace(/[_-]+/g, ' ');
+    return MODEL_RE.test(t) && !TECH_RE.test(t);
+  }
+  function isTechPhoto(src, alt) {
+    var f = ''; try { f = decodeURIComponent(String(src || '').split('?')[0].split('/').pop()); } catch (e) { f = String(src || ''); }
+    return TECH_RE.test((alt || '') + ' ' + f.replace(/[_-]+/g, ' '));
+  }
+  // Photo du produit seul : fond transparent sur les bords, et pas de peau dans le haut (pas de mannequin).
+  var cutCache = {};
+  function isCutout(url) {
+    var key = String(url).split('?')[0]; if (cutCache[key]) return cutCache[key];
+    return (cutCache[key] = new Promise(function (res) {
+      var im = new Image(); im.crossOrigin = 'anonymous';
+      im.onload = function () {
+        try {
+          var N = 64, c = document.createElement('canvas'); c.width = c.height = N; var x = c.getContext('2d'); x.drawImage(im, 0, 0, N, N);
+          var d = x.getImageData(0, 0, N, N).data, t = 0, n = 0;
+          for (var i = 0; i < N; i++) [[i, 0], [i, N - 1], [0, i], [N - 1, i]].forEach(function (q) { var k = (q[1] * N + q[0]) * 4; n++; if (d[k + 3] < 20) t++; });
+          if (t / n <= 0.5) return res(false);
+          // détourée, mais portée ? On cherche la peau (visage, cou) dans le haut de la silhouette.
+          var op = 0, sk = 0;
+          for (var y = 0; y < N * 0.4; y++) for (var X = 0; X < N; X++) {
+            var k = (y * N + X) * 4, r = d[k], g = d[k + 1], b = d[k + 2];
+            if (d[k + 3] < 128) continue; op++;
+            if (r > 95 && g > 40 && b > 20 && r > g && r > b && r - g > 15 && Math.max(r, g, b) - Math.min(r, g, b) > 15) sk++;
+          }
+          res(!op || sk / op < 0.15);
+        } catch (e) { res(false); }
+      };
+      im.onerror = function () { res(false); };
+      im.src = sized(url, 96);
+    }));
+  }
   function mediaList(p) {
     var out = [];
     ((p.media && p.media.nodes) || []).forEach(function (m) {
-      if (m.mediaContentType === 'IMAGE' && m.image) out.push({ type: 'image', src: m.image.url, alt: m.image.altText || m.alt || p.title });
+      if (m.mediaContentType === 'IMAGE' && m.image) out.push({ type: 'image', src: m.image.url, alt: m.image.altText || m.alt || p.title, model: isModelPhoto(m.image.url, m.image.altText || m.alt), rawAlt: m.image.altText || m.alt || '' });
       else if (m.mediaContentType === 'VIDEO' && m.sources && m.sources.length) {
         var mp4 = m.sources.filter(function (s) { return /mp4/.test(s.mimeType); }).sort(function (a, b) { return (b.height || 0) - (a.height || 0); });
         var best = mp4.filter(function (s) { return (s.height || 0) <= 1080; })[0] || mp4[mp4.length - 1] || m.sources[0];
@@ -214,6 +253,8 @@
     '.pc-car > .is-off{opacity:0 !important}' +
     '.pc-car-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transition:opacity .35s ease;pointer-events:none}' +
     '.pc-car-slide.is-on{opacity:1}' +
+    '.pc-car::after{content:"\\2019Otreau";position:absolute;top:10px;right:12px;z-index:3;font:300 13px/1 Manrope,sans-serif;letter-spacing:.01em;color:#8A949B;pointer-events:none}' +
+    '.pc-car{perspective:1100px}.pc-car.is-swing > img{visibility:hidden}.pc-swing{position:absolute;inset:0;z-index:1;pointer-events:none;perspective:1100px;overflow:hidden}.pc-swing img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 50%;transition:transform 1s cubic-bezier(.45,0,.2,1),opacity 1s cubic-bezier(.45,0,.2,1),filter 1s ease}.pc-swing-out{transform:rotateY(0) scale(1);opacity:1}.pc-swing-in{transform:rotateY(calc(var(--d) * 70deg)) scale(.86);opacity:0;filter:brightness(.85)}.pc-swing.is-go .pc-swing-out{transform:rotateY(calc(var(--d) * -70deg)) scale(.86);opacity:0;filter:brightness(.85)}.pc-swing.is-go .pc-swing-in{transform:rotateY(0) scale(1);opacity:1;filter:none}' +
     '.pc-arrow{position:absolute;top:50%;z-index:2;width:32px;height:32px;margin-top:-16px;border:0;border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 2px 8px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transition:opacity .2s,background .2s}' +
     '.pc-arrow svg{width:15px;height:15px;fill:none;stroke:#14212B;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}' +
     '.pc-arrow:hover{background:#fff}' +
@@ -346,6 +387,8 @@
     });
     var grid = document.querySelector('.product-grid');
     if (grid) {
+      // après le retrait des produits absents de Shopify : toujours 4 produits sur la première ligne
+      [].slice.call(grid.querySelectorAll(':scope > a[data-handle]')).forEach(function (a, i) { a.classList.toggle('product-extra', i >= 4); });
       var n = grid.querySelectorAll(':scope > a').length;
       if (!grid.querySelector('.product-extra')) { var w = document.querySelector('.show-all-wrap'); if (w) w.style.display = 'none'; }
       if (n && n < 4) { grid.classList.add('is-few'); grid.style.setProperty('--n', n); }
@@ -414,7 +457,8 @@
       var list = mediaList(p), shopVid = list.filter(function (x) { return x.type === 'video'; })[0];
       var imgs = list.filter(function (x) { return x.type === 'image'; });
       var vid = el.querySelector('video'), ph = vid || (h3 && h3.parentNode.previousElementSibling);
-      if (shopVid && ph) {
+      // Accueil : pas de vidéo dans les cartes produit, uniquement les photos
+      if (false && shopVid && ph) {
         if (!vid) {
           vid = document.createElement('video'); vid.muted = true; vid.playsInline = true; vid.loop = true; vid.autoplay = true; vid.preload = 'metadata';
           vid.setAttribute('style', 'width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: transparent; display: block');
@@ -423,7 +467,24 @@
         vid.src = shopVid.src; if (shopVid.poster) vid.poster = sized(shopVid.poster, 800);
         vid.setAttribute('aria-label', shopVid.alt);
       }
-      if (imgs.length && ph) cardCarousel(ph, imgs, !!vid);
+      // Accueil : le défilement automatique ne montre que les photos du produit seul (détouré, sans mannequin ni fond) ;
+      // au clic, toutes les photos sont accessibles
+      if (imgs.length && ph) {
+        if (vid) { var hold = document.createElement('div'); hold.className = 'pc-ph'; hold.setAttribute('style', 'width:100%;aspect-ratio:1/1'); vid.replaceWith(hold); ph = hold; vid = null; }
+        (function (ph, imgs) {
+          var cand = imgs.filter(function (x) { return !x.model && !isTechPhoto(x.src, x.rawAlt); });
+          Promise.all(cand.map(function (x) { return isCutout(x.src); })).then(function (ok) {
+            var packs = cand.filter(function (_, k) { return ok[k]; });
+            var pick = packs.length ? packs : imgs.filter(function (x) { return !isTechPhoto(x.src, x.rawAlt); });
+            if (!pick.length) pick = imgs;
+            // toutes les photos restent accessibles aux flèches ; seules celles retenues défilent toutes seules
+            var all = imgs.map(function (x) { return Object.assign({}, x, { auto: pick.indexOf(x) > -1 }); });
+            var first = 0; all.some(function (x, k) { if (x.auto) { first = k; return true; } });
+            if (ph.isConnected) cardCarousel(ph, all, false, first ? { start: first } : undefined);
+          });
+        })(ph, imgs);
+      }
+      else if (vid) { var ph2 = document.createElement('div'); ph2.className = 'pc-ph'; ph2.setAttribute('style', 'width:100%;aspect-ratio:1/1;background:#EFEFEF'); vid.replaceWith(ph2); }
       var price = el.querySelector('.pc-price');
       if (!price && h3) { price = document.createElement('p'); price.className = 'pc-price'; h3.insertAdjacentElement('afterend', price); }
       if (price) {
@@ -723,13 +784,32 @@
     if (slides.length < 2) return box;
     var cur = 0, dots = document.createElement('div'); dots.className = 'pc-dots'; dots.setAttribute('aria-hidden', 'true');
     slides.forEach(function (_, k) { var d = document.createElement('span'); if (!k) d.className = 'is-on'; dots.appendChild(d); });
+    // Effet présentoir : la photo pivote doucement sur elle-même comme sur un socle tournant,
+    // la suivante arrive en pivotant de l'autre côté, avec un léger recul
+    var reduceMo = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function prism(from, to, dir) {
+      var a = slides[from], b = slides[to];
+      if (reduceMo || !a || !b || a.tagName !== 'IMG' || b.tagName !== 'IMG') return;
+      var old = box.querySelector('.pc-swing'); if (old) old.remove();
+      var wrap = document.createElement('div'); wrap.className = 'pc-swing'; wrap.setAttribute('aria-hidden', 'true');
+      function layer(src, cls) { var im = document.createElement('img'); im.src = src; im.alt = ''; im.className = cls; wrap.appendChild(im); return im; }
+      var out = layer(a.currentSrc || a.src, 'pc-swing-out'), inn = layer(b.currentSrc || b.src, 'pc-swing-in');
+      wrap.style.setProperty('--d', dir > 0 ? 1 : -1);
+      box.appendChild(wrap); box.classList.add('is-swing'); void wrap.offsetWidth; wrap.classList.add('is-go');
+      var done = false; function end() { if (done) return; done = true; wrap.remove(); box.classList.remove('is-swing'); }
+      inn.addEventListener('transitionend', end); setTimeout(end, 1400);
+    }
+    var autoMove = false; // effet socle tournant : seulement pour le défilement automatique
     function show(i) {
+      var from = cur, dir = i > cur ? 1 : -1;
+      if (!autoMove) { var sw = box.querySelector('.pc-swing'); if (sw) { sw.remove(); box.classList.remove('is-swing'); } }
       cur = opts.noLoop ? Math.max(0, Math.min(slides.length - 1, i)) : (i + slides.length) % slides.length;
       if (opts.noLoop) { var pv = box.querySelector('.pc-arrow-prev'), nx = box.querySelector('.pc-arrow-next'); if (pv) pv.hidden = cur === 0; if (nx) nx.hidden = cur === slides.length - 1; }
       slides.forEach(function (sl, k) { if (k) sl.classList.toggle('is-on', k === cur); else sl.classList.toggle('is-off', cur !== 0); });
       [].slice.call(dots.children).forEach(function (d, k) { d.classList.toggle('is-on', k === cur); });
       if (opts.onChange) opts.onChange(cur);
       if (hasVideo) { if (cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } else first.pause(); }
+      if (from !== cur && autoMove) prism(from, cur, dir);
     }
     ['prev', 'next'].forEach(function (dir) {
       var a = document.createElement('button'); a.type = 'button'; a.className = 'pc-arrow pc-arrow-' + dir;
@@ -744,6 +824,10 @@
     // Défilement automatique tant que l'utilisateur ne touche à rien :
     // la vidéo joue jusqu'au bout, puis chaque photo ~2,5 s, puis retour à la vidéo… en boucle.
     var PHOTO_MS = 2500, timer = 0, auto = true, running = false;
+    // seules la vidéo et les photos portées défilent toutes seules ; les flèches montrent tout
+    var autoIdx = slides.map(function (_, k) { return k; }).filter(function (k) {
+      if (hasVideo && k === 0) return true; var it = imgs[k - (hasVideo ? 1 : 0)]; return it && it.auto; });
+    function nextAuto() { var a = autoIdx.filter(function (k) { return k > cur; }); return a.length ? a[0] : autoIdx[0]; }
     function schedule() {
       clearTimeout(timer); if (!auto || !running) return;
       if (hasVideo && cur === 0) {
@@ -753,7 +837,12 @@
         timer = setTimeout(advance, (isFinite(d) && d > 0 ? (d - first.currentTime) * 1000 + 600 : 12000));
       } else timer = setTimeout(advance, PHOTO_MS);
     }
-    function advance() { if (!auto || !running) return; show(cur + 1); if (hasVideo && cur === 0) { try { first.currentTime = 0; } catch (e) {} } schedule(); }
+    function advance() {
+      if (!auto || !running || !autoIdx.length) return;
+      var n = nextAuto();
+      if (n === cur) { if (hasVideo && cur === 0) { first.loop = true; var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } return; }
+      autoMove = true; show(n); autoMove = false; if (hasVideo && cur === 0) { try { first.currentTime = 0; } catch (e) {} } schedule();
+    }
     function manual() { auto = false; clearTimeout(timer); if (hasVideo) first.loop = true; }
     if (hasVideo) {
       first.addEventListener('ended', function () { if (auto && running && cur === 0) advance(); });
@@ -763,7 +852,7 @@
         if (auto && running && cur === 0) setTimeout(function () { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); }, 0);
       });
     }
-    function start() { if (opts.noAuto) return; running = true; auto = true; if (hasVideo && cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } schedule(); }
+    function start() { if (opts.noAuto || !autoIdx.length) return; running = true; auto = true; if (autoIdx.indexOf(cur) < 0) show(autoIdx[0]); if (hasVideo && cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } schedule(); }
     function stop() { running = false; clearTimeout(timer); if (hasVideo) first.pause(); }
     box._stop = stop;
     if ('IntersectionObserver' in window) {

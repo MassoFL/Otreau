@@ -573,6 +573,71 @@ a{color:#14212B}a:hover{color:#B5650F}
 .lm-far .lm-dot{justify-self:center;margin:0}
 .lm-road li.lm-f2{padding-left:28px}
 }
+@media (max-width:760px){.hero-video.hero-fire{object-position:66% 55%}}
+/* Principes : vidéos en noir et blanc */
+.lm-card video{filter:grayscale(1) contrast(1.05)}
+/* Cartes de la sélection : lumière aux couleurs du hero qui fait le tour du bas de carte */
+#collection a[data-handle] > div:last-child{position:relative;box-shadow:inset 0 0 0 1.5px #4A535A;margin-top:26px}
+#collection a[data-handle] > div:last-child::after{content:"";position:absolute;inset:0;padding:1.5px;pointer-events:none;z-index:0;
+  background:conic-gradient(from var(--glow-a),transparent 0 70%,#3E9BEA 78%,#B9E0FF 84%,#FFD27A 89%,#F5A623 94%,#E8641F 98%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:glow-spin 5s linear infinite}
+#collection a[data-handle]:nth-child(4n+2) > div:last-child::after{animation-delay:-1.25s}
+#collection a[data-handle]:nth-child(4n+3) > div:last-child::after{animation-delay:-2.5s}
+#collection a[data-handle]:nth-child(4n+4) > div:last-child::after{animation-delay:-3.75s}
+@media (prefers-reduced-motion: reduce){#collection a[data-handle] > div:last-child::after{animation:none}}
+/* Bouton « Découvrir » des cartes : lumière noire qui tourne (essai) */
+.pc-cta{position:relative}
+.pc-cta::after{content:"";position:absolute;inset:-2.5px;padding:2.5px;z-index:1;pointer-events:none;border-radius:0;filter:drop-shadow(0 0 3px rgba(0,0,0,.6)) drop-shadow(0 0 8px rgba(0,0,0,.35));
+  background:conic-gradient(from var(--glow-a),transparent 0 55%,rgba(20,33,43,.25) 66%,#5A636B 76%,#2A3640 86%,#000000 94%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:glow-spin 4.5s linear infinite}
+@media (prefers-reduced-motion: reduce){.pc-cta::after{animation:none}}
+/* Bas de carte en face de prisme : on devine le départ de la face du dessus, qui s'estompe */
+#collection a[data-handle]{overflow:visible !important}
+.pc-side{position:absolute;left:0;right:0;bottom:100%;height:22px;pointer-events:none;z-index:0;transform-origin:50% 100%;transform:perspective(380px) rotateX(62deg);-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+.pc-side::before{content:"";position:absolute;inset:0;border-left:1px solid rgba(74,83,90,.55);border-right:1px solid rgba(74,83,90,.55);background:linear-gradient(90deg,rgba(74,83,90,.06),rgba(74,83,90,.12))}
+/* ===== La marque : mise en page éditoriale ===== */
+.lm-head{display:flex;flex-direction:column;align-items:center;gap:28px;align-self:flex-start;position:relative;left:50%;transform:translateX(-50%);width:min(980px,calc(100vw - 48px));max-width:none;margin:0 auto;text-align:center}
+.lm-kicker{display:flex;align-items:center;gap:22px;margin:0 !important;font:300 clamp(30px,3.4vw,44px)/1.1 Manrope,sans-serif !important;letter-spacing:.01em;text-transform:uppercase;color:#FFFFFF !important}
+.lm-kicker::before,.lm-kicker::after{content:"";width:64px;height:1px;background:rgba(255,255,255,.35)}
+.lm-txt h2.lm-quote{margin:0;font:600 clamp(36px,4.6vw,68px)/1.04 Manrope,sans-serif;letter-spacing:-.01em;text-transform:uppercase;color:#FFFFFF}
+@media (max-width:760px){.lm-txt h2.lm-quote{font-weight:700}}
+.lm-quote em{font-style:normal;font-weight:600;background:linear-gradient(100deg,#3E9BEA,#B9E0FF 35%,#FFD27A 65%,#F5A623 85%,#E8641F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lm-sel{width:100%;max-width:860px;margin:26px auto 0;padding-top:34px;border-top:1px solid rgba(255,255,255,.16);display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center}
+.lm-txt p.lm-sel-txt{max-width:640px;font-size:16.5px;line-height:1.75;color:#BFCDC5}
+.lm-sel-txt strong{color:#FFFFFF;font-weight:600}
+.lm-crit{list-style:none;margin:0;padding:0;width:100%;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.lm-crit li{display:flex;flex-direction:column;align-items:center;gap:8px;padding:4px 14px;font:600 14.5px/1.35 Manrope,sans-serif;color:#FFFFFF}
+.lm-crit li+li{border-left:1px solid rgba(255,255,255,.16)}
+.lm-crit span{font:300 22px/1 Manrope,sans-serif;color:#FFD27A}
+.lm-txt p.lm-sel-end{font-size:14.5px;font-style:italic;color:#9FB2A8}
+@media (max-width:640px){.lm-crit{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:22px}.lm-crit li:nth-child(3){border-left:0}.lm-kicker::before,.lm-kicker::after{width:26px}}
+.lm-cite{margin:0;display:flex;flex-direction:column;align-items:center;gap:22px}
+.lm-author{display:flex;align-items:center;gap:12px;font:500 clamp(14px,1.2vw,16px)/1.3 Manrope,sans-serif;letter-spacing:.04em;color:#BFCDC5}
+.lm-author::before{content:"";width:28px;height:1px;background:rgba(255,255,255,.45)}
+.lm-crit-5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.lm-road-t{margin:44px 0 0 !important;text-align:center;align-self:center}
+.lm-road-t span{color:#8A949B}
+@media (max-width:640px){.lm-crit-5{grid-template-columns:repeat(2,minmax(0,1fr))}.lm-crit-5 li{border-left:0 !important}.lm-crit-5 li:nth-child(even){border-left:1px solid rgba(255,255,255,.16) !important}.lm-crit-5 li:last-child{grid-column:1 / -1}}
+.lm-sel-t{margin:22px 0 18px !important;text-align:center}
+.lm-quote .lm-author{display:inline-flex;vertical-align:middle;margin-left:16px;gap:10px;text-transform:none;font:500 clamp(13px,1.1vw,15px)/1 Manrope,sans-serif;letter-spacing:.04em;color:#BFCDC5}
+.lm-quote .lm-author::before{width:22px}
+/* Principes fondateurs : cartes plus larges, cadre et lumière comme les cartes produit */
+.lm-sel{max-width:none !important;align-self:flex-start;position:relative;left:50%;transform:translateX(-50%);width:min(1240px,calc(100vw - clamp(32px,6vw,120px))) !important}
+.lm-crit-5 li{padding:6px 22px;justify-content:flex-start}
+.lm-crit-5 li small{display:block;margin-top:2px;font:400 13.5px/1.55 Manrope,sans-serif;color:#9FB2A8}
+@media (max-width:640px){.lm-crit-5{row-gap:28px}.lm-crit-5 li{padding:4px 12px}}
+.lm-qmark{display:inline-block;width:.62em;height:auto}
+.lm-q-open{vertical-align:.32em;margin-right:.18em}
+.lm-q-close{vertical-align:.32em;margin-left:.14em;transform:rotate(180deg)}
+.lm-grey{color:#8A949B}
+.lm .lm-btn{border-radius:0 !important;margin-top:48px}
+/* Pluie subtile sur « La sélection’Otreau » */
+.sel-rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+#collection > :not(.sel-rain):not(.wave-sep){position:relative;z-index:1}
 </style>
 </head>
 <body>
@@ -639,7 +704,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="hero-sticky">
 <!-- Vidéos d'accueil : elles s'enchaînent en fondu. Pour en ajouter une, copiez une ligne <video> et changez src / poster. -->
 <!-- ancienne vidéo : <video class="hero-video" data-speed="0.7" src="assets/hero-video-2.mp4" poster="assets/hero-video-2-poster.jpg"></video> -->
-<video class="hero-video is-active" data-speed="0.7" src="assets/hero-video-3.mp4" poster="assets/hero-video-3-poster.jpg" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
+<!-- vidéo précédente (ruisseau enneigé) : <video class="hero-video" data-speed="0.7" src="assets/hero-video-3.mp4" poster="assets/hero-video-3-poster.jpg"></video> -->
+<video class="hero-video is-active hero-fire" data-speed="0.4" src="assets/hero-video-4.mp4" poster="assets/hero-video-4-poster.jpg" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
 <!-- <video class="hero-video" src="assets/hero-video.mp4" poster="assets/hero-video-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video> -->
 <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 10%, rgba(0,0,0,0.3) 22%, rgba(0,0,0,0.08) 32%, rgba(0,0,0,0) 40%), linear-gradient(0deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 15%, rgba(0,0,0,0.4) 35%, rgba(0,0,0,0.12) 55%, rgba(0,0,0,0) 70%)"></div>
 </div>
@@ -659,7 +725,6 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
 <h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em"><span style="font-weight: 600">La sélection</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h2>
 <div role="group" class="type-filters" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
-<button type="button" class="type-btn" data-filter="" aria-pressed="true">Tous</button>
 <button type="button" class="type-btn" data-filter="veste" aria-pressed="false">Vestes</button>
 <button type="button" class="type-btn" data-filter="parka" aria-pressed="false">Parkas</button>
 <button type="button" class="type-btn" data-filter="gilet" aria-pressed="false">Gilets</button>
@@ -668,11 +733,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 </div>
 <div class="product-grid">
 <a data-handle="veste-otreau" href="veste-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/veste-otreau.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/veste-otreau.mp4#t=0.1" muted loop playsinline preload="none" class="hover-video" aria-label="Veste chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">VESTE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">VESTE</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 <ul class="pc-feats" aria-label="Inclus avec l’article">
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
@@ -683,11 +748,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 
 <a data-handle="gilet-otreau" href="gilet-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="none" class="hover-video" aria-label="Gilet chauffant en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 <ul class="pc-feats" aria-label="Inclus avec l’article">
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
@@ -697,11 +762,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 </a>
 
 <a data-handle="gilet-fin-otreau" href="#collection" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet fin chauffant en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="none" class="hover-video" aria-label="Gilet fin chauffant en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET FIN</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET FIN</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 <ul class="pc-feats" aria-label="Inclus avec l’article">
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
@@ -711,11 +776,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 </a>
 
 <a data-handle="doudoune-otreau" href="doudoune-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/doudoune-2.mp4#t=0.1" muted loop playsinline preload="none" class="hover-video" aria-label="Doudoune chauffante en rotation, zones chauffantes allumées" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">DOUDOUNE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">DOUDOUNE</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 <ul class="pc-feats" aria-label="Inclus avec l’article">
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
@@ -726,11 +791,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 
 <a data-handle="gilet-polaire-otreau" href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
-<video src="assets/gilet-polaire-rose.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-label="Gilet polaire chauffant rose en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
+<video src="assets/gilet-polaire-rose.mp4#t=0.1" muted loop playsinline preload="none" class="hover-video" aria-label="Gilet polaire chauffant rose en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET POLAIRE</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET POLAIRE</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 <ul class="pc-feats" aria-label="Inclus avec l’article">
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
@@ -742,9 +807,9 @@ a{color:#14212B}a:hover{color:#B5650F}
 <a data-handle="gants-otreau" href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <div aria-hidden="true" style="width: 100%; aspect-ratio: 1 / 1; background: transparent; display: flex; align-items: center; justify-content: center; color: #8A949B; font-size: 14px">Visuel à venir</div>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
-<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GANTS</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h3>
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GANTS</span></h3>
 <ul class="pc-sizes" aria-label="Tailles disponibles"><li>S</li><li>M</li><li>L</li><li>XL</li><li>XXL</li></ul>
-<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 999px; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
 <ul class="pc-feats" aria-label="Inclus avec l’article">
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
@@ -847,7 +912,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <button type="button" class="wheel-arrow" data-dir="-1" aria-label="Article précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
 <div class="wheel-box">
 <div class="wheel-band" aria-hidden="true"></div>
-<ul class="wheel-list" role="listbox" tabindex="0" aria-label="Choisir un article"><li role="option" data-product="gilet" aria-selected="true">GILET’Otreau</li><li role="option" data-product="gilet-fin" aria-selected="false">GILET FIN’Otreau</li><li role="option" data-product="gilet-polaire" aria-selected="false">GILET POLAIRE’Otreau</li><li role="option" data-product="doudoune" aria-selected="false">DOUDOUNE’Otreau</li><li role="option" data-product="veste" aria-selected="false">VESTE’Otreau</li></ul>
+<ul class="wheel-list" role="listbox" tabindex="0" aria-label="Choisir un article"><li role="option" data-product="gilet" aria-selected="true">GILET</li><li role="option" data-product="gilet-fin" aria-selected="false">GILET FIN</li><li role="option" data-product="gilet-polaire" aria-selected="false">GILET POLAIRE</li><li role="option" data-product="doudoune" aria-selected="false">DOUDOUNE</li><li role="option" data-product="veste" aria-selected="false">VESTE</li></ul>
 </div>
 <button type="button" class="wheel-arrow" data-dir="1" aria-label="Article suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
 </div>
@@ -929,9 +994,23 @@ a{color:#14212B}a:hover{color:#B5650F}
 <video class="lm-bg" src="assets/marque-bg.mp4" poster="assets/marque-bg-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
 <div class="lm-wrap">
 <div class="lm-txt">
-<h2 id="lm-titre">La marque</h2>
-<p class="lm-lead">Chez Otreau, un vêtement chauffant est d’abord un vêtement… équipé d’un mécanisme chauffant.</p>
-<p>Les modèles de la Collection Hiver ’26 ont fait l’objet d’une sélection rigoureuse : ceux que nous avons retenus ont fait leurs preuves au fil des hivers précédents, sur des critères précis : qualité du vêtement, entretien simple, autonomie de la batterie et choix simple des tailles. Vos retours précieux guideront la conception de l’édition 2027 de la veste.</p>
+<div class="lm-head">
+<p class="lm-kicker">La marque en bref</p>
+<figure class="lm-cite">
+<h2 id="lm-titre" class="lm-quote"><svg class="lm-qmark lm-q-open" viewBox="0 0 48 36" aria-hidden="true"><defs><linearGradient id="lmQ" x1="0" x2="1"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".5" stop-color="#FFD27A"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path fill="#FFFFFF" d="M0 36V22.5C0 10.6 6.3 3.1 18.9 0l2.4 4.6C14.6 6.9 11.2 11 10.8 17H20v19H0zm27 0V22.5C27 10.6 33.3 3.1 45.9 0l2.4 4.6C41.6 6.9 38.2 11 37.8 17H47v19H27z"/></svg>Un vêtement chauffant est <span class="heat-text">d’abord un vêtement</span>… équipé d’un mécanisme chauffant.<svg class="lm-qmark lm-q-close" viewBox="0 0 48 36" aria-hidden="true"><path fill="#FFFFFF" d="M0 36V22.5C0 10.6 6.3 3.1 18.9 0l2.4 4.6C14.6 6.9 11.2 11 10.8 17H20v19H0zm27 0V22.5C27 10.6 33.3 3.1 45.9 0l2.4 4.6C41.6 6.9 38.2 11 37.8 17H47v19H27z"/></svg><span class="lm-author">Le mot du fondateur</span></h2>
+</figure>
+</div>
+<div class="lm-sel">
+<h3 class="lm-princ-t lm-sel-t">Nous avons créé <span class="lm-grey">Otreau</span> autour de cinq principes fondateurs</h3>
+<ul class="lm-crit lm-crit-5" aria-label="Nos principes fondateurs">
+<li><span>01</span>Un vêtement d’abord<small>Agréable à porter et à regarder, même batterie débranchée.</small></li>
+<li><span>02</span>La sécurité avant tout<small>Une chaleur maîtrisée, qui se règle et s’éteint d’un geste.</small></li>
+<li><span>03</span>Une autonomie qui suit<small>Une chaleur qui dure aussi longtemps que vos journées dehors.</small></li>
+<li><span>04</span>Un entretien simple<small>Batterie retirée, il passe en machine, en programme délicat.</small></li>
+<li><span>05</span>Des tailles sans surprise<small>Des mesures prises à plat pour choisir sereinement.</small></li>
+</ul>
+</div>
+<h3 class="lm-princ-t lm-road-t">L’aventure <span>Otreau</span> a déjà commencé, rejoignez-nous</h3>
 <div class="lm-road">
 <svg class="lm-path lm-path-js" aria-hidden="true"><defs><linearGradient id="lmHeat" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".3" stop-color="#B9E0FF"/><stop offset=".55" stop-color="#FFD27A"/><stop offset=".8" stop-color="#F5A623"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path class="lm-base"/><path class="lm-glow" pathLength="1000"/></svg>
 <ol class="lm-steps" aria-label="Notre trajectoire">
@@ -944,20 +1023,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <li class="lm-far lm-f3"><span class="lm-dot">7</span><strong>Hiver ’30</strong></li>
 </ol>
 </div>
-<div class="lm-princ">
-<h3 class="lm-princ-t">Nos principes</h3>
-</div>
-<!-- Nos principes en carrousel incurvé : tourne au défilement et au glisser (vidéos provisoires, à remplacer) -->
-<div class="lm-ring" role="region" aria-label="Nos principes">
-<div class="lm-ring-stage">
-<figure class="lm-card"><video poster="assets/principe-1a.jpg" data-src="assets/principe-1a.mp4" data-playlist="assets/principe-1a.mp4|assets/principe-1b.mp4|assets/principe-1c.mp4" data-rate="0.6" muted loop playsinline preload="none" aria-hidden="true" style="object-position:50% 35%"></video><figcaption><b class="lm-num">01</b><strong>Un vêtement d’abord</strong><span>Il doit être agréable à porter et à regarder, même batterie débranchée.</span></figcaption></figure>
-<figure class="lm-card"><video poster="assets/principe-2a.jpg" data-src="assets/principe-2a.mp4" data-playlist="assets/principe-2a.mp4|assets/principe-2b.mp4" data-rate="0.6" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption><b class="lm-num">02</b><strong>La sécurité avant tout</strong><span>Une chaleur maîtrisée, qui se règle et s’éteint d’un geste.</span></figcaption></figure>
-<figure class="lm-card"><video data-src="assets/batterie.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption><b class="lm-num">03</b><strong>Une autonomie qui suit</strong><span>Une chaleur qui dure aussi longtemps que vos journées dehors.</span></figcaption></figure>
-<figure class="lm-card"><video poster="assets/principe-4a.jpg" data-src="assets/principe-4a.mp4" data-rate="0.6" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption><b class="lm-num">04</b><strong>Un entretien simple</strong><span>Batterie retirée, il passe en machine, en programme délicat.</span></figcaption></figure>
-<figure class="lm-card"><video data-src="assets/gilet-fin.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><figcaption><b class="lm-num">05</b><strong>Des tailles sans surprise</strong><span>Des mesures prises à plat pour chaque modèle, pour choisir sereinement.</span></figcaption></figure>
-</div>
-</div>
-<a class="lm-btn" href="a-propos.html">Découvrir notre histoire<span aria-hidden="true">→</span></a>
+<a class="lm-btn" href="a-propos.html">Découvrir l’histoire complète</a>
 </div>
 </div>
 <!-- Transition en vague vers la FAQ -->
@@ -1091,12 +1157,14 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
     function refresh(){
       var have=cards().map(function(a){return a.dataset.cat}).filter(Boolean), shown=0;
       btns.forEach(function(b){var f=b.dataset.filter; var ok=!f||f.split(' ').some(function(h){return have.indexOf(h)>=0}); b.hidden=!ok; if(ok&&f)shown++;});
-      bar.style.gridTemplateColumns='repeat('+(shown+1)+',minmax(0,170px))';
+      bar.style.gridTemplateColumns='repeat('+shown+',minmax(0,170px))';
       var cur=btns.filter(function(b){return b.getAttribute('aria-pressed')==='true'})[0];
-      if(cur&&cur.hidden){btns[0].setAttribute('aria-pressed','true');cur.setAttribute('aria-pressed','false');apply('')}
+      if(cur&&cur.hidden){cur.setAttribute('aria-pressed','false');apply('')}
     }
     btns.forEach(function(b){b.addEventListener('click',function(){
-      btns.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')}); apply(b.dataset.filter);
+      // un second clic sur le filtre actif le désactive : on revient à toute la collection
+      var on=b.getAttribute('aria-pressed')!=='true';
+      btns.forEach(function(x){x.setAttribute('aria-pressed',(x===b&&on)?'true':'false')}); apply(on?b.dataset.filter:'');
     })});
     new MutationObserver(refresh).observe(grid,{childList:true}); document.addEventListener('otreau:collection',refresh); refresh();
   })();
@@ -1188,24 +1256,24 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
 // Une entrée par article. "flat" = le patron affiché (gilet sans manches, ou doudoune avec manches).
 // Remplacez les null par les mesures en cm.
 var SIZE_GUIDE = {
-  'gilet': { name: 'GILET’Otreau', flat: 'gilet-photo', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'gilet': { name: 'GILET', flat: 'gilet-photo', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] },
-  'gilet-fin': { name: 'GILET FIN’Otreau', flat: 'gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe :</strong> prenez votre taille habituelle.</li><li><strong>Une taille pour trois :</strong> chaque taille couvre trois tailles standard (par exemple S, M et L).</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S – L','XL – 3XL','4XL – 6XL','7XL – 9XL'], rows: [
+  'gilet-fin': { name: 'GILET FIN', flat: 'gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe :</strong> prenez votre taille habituelle.</li><li><strong>Une taille pour trois :</strong> chaque taille couvre trois tailles standard (par exemple S, M et L).</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S – L','XL – 3XL','4XL – 6XL','7XL – 9XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['53 cm','58 cm','63 cm','68 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['67 cm','72 cm','76 cm','80 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['44 cm','46 cm','48 cm','50 cm'] } ] },
-  'gilet-polaire': { name: 'GILET POLAIRE’Otreau', flat: 'gilet', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'gilet-polaire': { name: 'GILET POLAIRE', flat: 'gilet', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['55 cm','57 cm','59 cm','61 cm','63 cm','65 cm','67 cm','69 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['67 cm','69 cm','71 cm','73 cm','75 cm','77 cm','79 cm','81 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['46 cm','47 cm','48 cm','49 cm','50 cm','51 cm','52 cm','53 cm'] } ] },
-  'doudoune': { name: 'DOUDOUNE’Otreau', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'doudoune': { name: 'DOUDOUNE', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm','66 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['58 cm','59 cm','60 cm','61 cm','64 cm','66 cm','67 cm','68 cm','69 cm'] } ] },
-  'veste': { name: 'VESTE’Otreau', flat: 'veste', note: '<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Les tailles ’Otreau taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div>', tol: '<p class="size-tol">Tolérance : 1 à 3 cm, mesures prises à la main.</p>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
+  'veste': { name: 'VESTE', flat: 'veste', note: '<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div>', tol: '<p class="size-tol">Tolérance : 1 à 3 cm, mesures prises à la main.</p>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','65 cm','68 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },
@@ -1227,7 +1295,7 @@ var SIZE_GUIDE = {
     head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){
       return '<th scope="col" data-k="'+r.k+'"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
     body.innerHTML=g.sizes.map(function(z,i){
-      return '<tr><th scope="row">'+z+(current==='veste'?'<span class="sz-o">’Otreau</span>':'')+'</th>'+g.rows.map(function(r){var v=r.values[i];
+      return '<tr><th scope="row">'+z+'</th>'+g.rows.map(function(r){var v=r.values[i];
         return v==null?'<td class="empty" data-k="'+r.k+'">—</td>':'<td data-k="'+r.k+'">'+v+'</td>'}).join('')+'</tr>';
     }).join('');
     highlight(null);
@@ -1346,50 +1414,6 @@ var SIZE_GUIDE = {
 </script>
 <script src="assets/shopify.js"></script>
 <script>
-/* Carrousel vidéo incurvé : les cartes sont posées sur l'intérieur d'un cylindre (les bords se rapprochent).
-   Il tourne doucement tout seul, suit le défilement de la page et se fait glisser au doigt ou à la souris. */
-(function(){
-  var ring=document.querySelector('.lm-ring'); if(!ring) return;
-  var cards=[].slice.call(ring.querySelectorAll('.lm-card')), N=cards.length;
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Ralenti (data-rate="0.6") : réappliqué à chaque nouvelle vidéo
-  cards.forEach(function(c){ var v=c.querySelector('video'), r=parseFloat(v.dataset.rate);
-    if(!r) return; function set(){ v.defaultPlaybackRate=r; v.playbackRate=r; } set();
-    v.addEventListener('loadedmetadata',set); v.addEventListener('playing',set); });
-  // Cartes à plusieurs vidéos (data-playlist="a.mp4|b.mp4|c.mp4") : elles s'enchaînent en boucle
-  cards.forEach(function(c){ var v=c.querySelector('video'), list=(v.dataset.playlist||'').split('|').filter(Boolean);
-    if(list.length<2) return; var k=0; v.loop=false;
-    v.addEventListener('ended',function(){ k=(k+1)%list.length; v.src=list[k]; v.play().catch(function(){}); }); });
-  var off=0, vel=0, drag=false, lastX=0, lastT=0, lastY=window.scrollY, inView=false, W, GAP, R, L;
-  function size(){ var w=ring.clientWidth; W=w<640?150:(w<1000?200:230); GAP=w<640?10:16; R=Math.max(320,w*.5); L=N*(W+GAP); ring.style.setProperty('--cw',W+'px'); }
-  function render(){
-    var h=ring.clientHeight;
-    cards.forEach(function(c,i){
-      var x=((i*(W+GAP)+off)%L+L)%L-L/2, a=x/R;
-      if(Math.abs(a)>1.05){ c.style.opacity='0'; c.style.visibility='hidden'; pause(c); return; }
-      var tx=R*Math.sin(a), tz=R*(1-Math.cos(a));
-      c.style.visibility='visible';
-      c.style.opacity=String(Math.max(0,Math.min(1,(1.05-Math.abs(a))*4)));
-      c.style.transform='translate(-50%,-50%) translate3d('+tx.toFixed(1)+'px,0,'+tz.toFixed(1)+'px) rotateY('+(-a*57.2958).toFixed(2)+'deg)';
-      play(c);
-    });
-  }
-  function play(c){ if(!inView) return; var v=c.querySelector('video'); if(!v.src&&v.dataset.src) v.src=v.dataset.src; if(v.paused) v.play().catch(function(){}); }
-  function pause(c){ var v=c.querySelector('video'); if(v&&!v.paused) v.pause(); }
-  function tick(){
-    if(!drag){ off+=vel; vel*=.94; if(!reduce&&inView) off-=.35; }
-    render(); requestAnimationFrame(tick);
-  }
-  window.addEventListener('scroll',function(){ var y=window.scrollY, d=y-lastY; lastY=y; if(inView&&!drag) vel-=d*.08; },{passive:true});
-  ring.addEventListener('pointerdown',function(e){ drag=true; ring.classList.add('is-drag'); lastX=e.clientX; lastT=performance.now(); vel=0; ring.setPointerCapture(e.pointerId); });
-  ring.addEventListener('pointermove',function(e){ if(!drag) return; var dx=e.clientX-lastX, t=performance.now(); off+=dx; vel=dx/Math.max(1,(t-lastT)/16); lastX=e.clientX; lastT=t; });
-  function up(){ if(!drag) return; drag=false; ring.classList.remove('is-drag'); }
-  ring.addEventListener('pointerup',up); ring.addEventListener('pointercancel',up);
-  new IntersectionObserver(function(es){ inView=es[0].isIntersecting; if(!inView) cards.forEach(pause); },{threshold:.05}).observe(ring);
-  window.addEventListener('resize',size); size(); render(); requestAnimationFrame(tick);
-})();
-</script>
-<script>
 /* Trajectoire : le tracé relie le centre de chaque pastille, quel que soit l'écran, puis s'efface vers l'avenir */
 (function(){
   var road=document.querySelector('.lm-road'); if(!road) return;
@@ -1410,6 +1434,39 @@ var SIZE_GUIDE = {
   }
   draw(); window.addEventListener('resize',draw); window.addEventListener('load',draw);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(draw);
+})();
+</script>
+<script>
+/* Faces latérales du prisme sous chaque carte de la sélection (y compris les cartes ajoutées depuis Shopify) */
+(function(){
+  function add(){ document.querySelectorAll('#collection a[data-handle] > div:last-child').forEach(function(d){
+    if(d.querySelector(':scope > .pc-side')) return;
+    var e=document.createElement('i'); e.className='pc-side pc-side-t'; e.setAttribute('aria-hidden','true'); d.appendChild(e); }); }
+  add(); document.addEventListener('otreau:collection',function(){ setTimeout(add,0); });
+  var g=document.querySelector('.product-grid'); if(g) new MutationObserver(add).observe(g,{childList:true});
+})();
+</script>
+<script>
+/* Pluie subtile derrière les cartes de la sélection : fines gouttes grises en diagonale, uniquement à l'écran */
+(function(){
+  var sec=document.getElementById('collection'); if(!sec) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cv=document.createElement('canvas'); cv.className='sel-rain'; cv.setAttribute('aria-hidden','true'); sec.insertBefore(cv,sec.firstChild);
+  var cx=cv.getContext('2d'), W=0, H=0, dpr=Math.min(2,window.devicePixelRatio||1), drops=[], on=false, raf=0, last=0;
+  function size(){ W=sec.clientWidth; H=sec.clientHeight; cv.width=W*dpr; cv.height=H*dpr; cx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.round(W*H/7000); drops=[]; for(var i=0;i<n;i++) drops.push(mk(true)); }
+  function mk(any){ var z=Math.random(); return { x:Math.random()*(W+200)-100, y:any?Math.random()*H:-30-Math.random()*H*.3, l:8+z*14, v:260+z*420, a:.08+z*.16, w:.7+z*.6 }; }
+  function frame(t){ raf=0; if(!on) return; var dt=Math.min(.05,(t-(last||t))/1000); last=t;
+    cx.clearRect(0,0,W,H); cx.lineCap='round';
+    for(var i=0;i<drops.length;i++){ var d=drops[i]; d.y+=d.v*dt; d.x+=d.v*dt*.12;
+      if(d.y>H+20||d.x>W+40){ drops[i]=mk(false); continue; }
+      cx.strokeStyle='rgba(70,82,92,'+d.a.toFixed(3)+')'; cx.lineWidth=d.w;
+      cx.beginPath(); cx.moveTo(d.x,d.y); cx.lineTo(d.x-d.l*.12,d.y-d.l); cx.stroke(); }
+    raf=requestAnimationFrame(frame); }
+  new IntersectionObserver(function(es){ on=es[0].isIntersecting; if(on&&!raf){ last=0; raf=requestAnimationFrame(frame); } },{threshold:0}).observe(sec);
+  window.addEventListener('resize',size); document.addEventListener('otreau:collection',function(){ setTimeout(size,50); });
+  if(window.ResizeObserver) new ResizeObserver(function(){ if(Math.abs(sec.clientHeight-H)>4) size(); }).observe(sec);
+  size();
 })();
 </script>
 </body>
