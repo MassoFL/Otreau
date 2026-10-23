@@ -661,6 +661,45 @@ a{color:#14212B}a:hover{color:#B5650F}
 #collection .pc-car::after{color:#3D4A54}
 /* Mobile : pas de lumière tournante sur le bouton du hero ni sur les boutons « Découvrir » */
 @media (max-width:760px){.cta-glow::after,.pc-cta::after{display:none !important;animation:none !important}}
+/* Tailles & mesures : même fond que la sélection (vidéo du hero floutée sous un voile de marbre) */
+#tailles.atelier{background:#0B1910 !important;overflow:hidden}
+#tailles > div:not(.tl-veil):not(.wave-sep):not(.tape){position:relative;z-index:2}
+/* ===== Tailles & mesures sur la vidéo sombre (ancienne vidéo de la marque) ===== */
+.tl-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
+.tl-veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(#0B1910 0,rgba(11,25,16,.7) 22%,rgba(11,25,16,.7) 70%,rgba(11,25,16,.85) 100%)}
+#tailles h2{color:#FFFFFF !important}
+#tailles h2 + p{color:#BFCDC5 !important}
+#tailles h2 + p span{color:#FFFFFF !important}
+#tailles .wheel-list li{color:rgba(255,255,255,.62)}
+#tailles .wheel-list li[aria-selected="true"]{color:#000000}
+#tailles .howto-btn{color:#FFFFFF !important;border-top-color:rgba(255,255,255,.3) !important;border-bottom-color:rgba(255,255,255,.3) !important}
+/* ===== La marque sur fond clair (vidéo du hero floutée sous le marbre) ===== */
+.lm{background:transparent !important;color:#14212B !important}
+.lm::before{display:none !important}
+.lm .lm-wrap{z-index:2}
+.lm .lm-kicker{color:#14212B !important}
+.lm .lm-kicker::before,.lm .lm-kicker::after{background:rgba(20,33,43,.35) !important}
+.lm .lm-txt h2.lm-quote{color:#14212B}
+.lm .lm-author{color:#3D4A54 !important}
+.lm .lm-author::before{background:rgba(20,33,43,.45) !important}
+.lm .lm-sel{border-top-color:rgba(20,33,43,.18) !important}
+.lm .lm-princ-t{color:#14212B !important}
+.lm .lm-crit li{color:#14212B !important}
+.lm .lm-crit li+li{border-left-color:rgba(20,33,43,.18) !important}
+.lm .lm-crit span{color:#B5650F !important}
+.lm .lm-crit li small{color:#3D4A54 !important}
+.lm .lm-road strong{color:#14212B !important}
+.lm .lm-road li > span:not(.lm-dot){color:#3D4A54 !important}
+.lm .lm-path path:not(.lm-glow){stroke:rgba(20,33,43,.35) !important}
+.lm .lm-btn{border-color:#14212B !important;color:#14212B !important;background:transparent !important;-webkit-backdrop-filter:none;backdrop-filter:none}
+.lm .lm-btn:hover{background:#14212B !important;color:#FFFFFF !important}
+#tailles > .wave-sep.wave-light{transform:translateY(2px)}
+#la-marque{margin-top:-1px}
+/* Vague Batterie → Tailles : seulement le noir sur le vert foncé, sans reflets blancs */
+#tailles .wave-top path[fill="none"]{display:none}
+#tailles .tape{opacity:.28}
+/* Carte du patron : légèrement translucide sur la vidéo */
+#tailles .patron{background:rgba(251,248,242,.8) !important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 </style>
 </head>
 <body>
@@ -909,6 +948,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <!-- Tailles & mesures -->
 <section id="tailles" class="atelier" aria-labelledby="tailles-titre">
+<video class="tl-bg" src="assets/marque-bg.mp4" poster="assets/marque-bg-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+<div class="tl-veil" aria-hidden="true"></div>
 <!-- Transition en vague depuis la section batterie -->
 <div class="wave-sep wave-top" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
 <defs>
@@ -916,7 +957,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
 <linearGradient id="wv2-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".04"/><stop offset=".22" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset=".8" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".06"/>
 <animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
-<linearGradient id="wv2-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1A1A1A"/><stop offset=".35" stop-color="#000000"/></linearGradient>
+<linearGradient id="wv2-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#000000"/><stop offset=".35" stop-color="#000000"/></linearGradient>
 <filter id="wv2-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
 </defs>
 <g transform="translate(1440,270) scale(-1,-1)">
@@ -1003,7 +1044,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
 <linearGradient id="wv3-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".04"/><stop offset=".22" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset=".8" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".06"/>
 <animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
-<linearGradient id="wv3-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#16301F"/><stop offset=".35" stop-color="#0B1910"/></linearGradient>
+<linearGradient id="wv3-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#CFCCC7"/><stop offset=".45" stop-color="#B9B7B3"/></linearGradient>
 <filter id="wv3-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
 </defs>
 <path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#14212B" stroke-width="16" filter="url(#wv3-soft)" opacity=".22" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
@@ -1016,13 +1057,13 @@ a{color:#14212B}a:hover{color:#B5650F}
 
 <!-- La marque : présentation courte (la page complète reste « À propos ») -->
 <section id="la-marque" class="lm" aria-labelledby="lm-titre">
-<video class="lm-bg" src="assets/marque-bg.mp4" poster="assets/marque-bg-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+<div class="sel-bg" aria-hidden="true"><video data-src="assets/hero-video-4.mp4" poster="assets/hero-video-4-poster.jpg" muted loop playsinline preload="none"></video></div>
 <div class="lm-wrap">
 <div class="lm-txt">
 <div class="lm-head">
 <p class="lm-kicker">La marque en bref</p>
 <figure class="lm-cite">
-<h2 id="lm-titre" class="lm-quote"><svg class="lm-qmark lm-q-open" viewBox="0 0 48 36" aria-hidden="true"><defs><linearGradient id="lmQ" x1="0" x2="1"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".5" stop-color="#FFD27A"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path fill="#FFFFFF" d="M0 36V22.5C0 10.6 6.3 3.1 18.9 0l2.4 4.6C14.6 6.9 11.2 11 10.8 17H20v19H0zm27 0V22.5C27 10.6 33.3 3.1 45.9 0l2.4 4.6C41.6 6.9 38.2 11 37.8 17H47v19H27z"/></svg>Un vêtement chauffant est <span class="heat-text">d’abord un vêtement</span>… équipé d’un mécanisme chauffant.<svg class="lm-qmark lm-q-close" viewBox="0 0 48 36" aria-hidden="true"><path fill="#FFFFFF" d="M0 36V22.5C0 10.6 6.3 3.1 18.9 0l2.4 4.6C14.6 6.9 11.2 11 10.8 17H20v19H0zm27 0V22.5C27 10.6 33.3 3.1 45.9 0l2.4 4.6C41.6 6.9 38.2 11 37.8 17H47v19H27z"/></svg><span class="lm-author">Le mot du fondateur</span></h2>
+<h2 id="lm-titre" class="lm-quote"><svg class="lm-qmark lm-q-open" viewBox="0 0 48 36" aria-hidden="true"><defs><linearGradient id="lmQ" x1="0" x2="1"><stop offset="0" stop-color="#3E9BEA"/><stop offset=".5" stop-color="#FFD27A"/><stop offset="1" stop-color="#E8641F"/></linearGradient></defs><path fill="#14212B" d="M0 36V22.5C0 10.6 6.3 3.1 18.9 0l2.4 4.6C14.6 6.9 11.2 11 10.8 17H20v19H0zm27 0V22.5C27 10.6 33.3 3.1 45.9 0l2.4 4.6C41.6 6.9 38.2 11 37.8 17H47v19H27z"/></svg>Un vêtement chauffant est <span class="heat-text">d’abord un vêtement</span>… équipé d’un mécanisme chauffant.<svg class="lm-qmark lm-q-close" viewBox="0 0 48 36" aria-hidden="true"><path fill="#14212B" d="M0 36V22.5C0 10.6 6.3 3.1 18.9 0l2.4 4.6C14.6 6.9 11.2 11 10.8 17H20v19H0zm27 0V22.5C27 10.6 33.3 3.1 45.9 0l2.4 4.6C41.6 6.9 38.2 11 37.8 17H47v19H27z"/></svg><span class="lm-author">Le mot du fondateur</span></h2>
 </figure>
 </div>
 <div class="lm-sel">
@@ -1497,12 +1538,14 @@ var SIZE_GUIDE = {
 <script>
 /* Vidéo floutée de la sélection : chargée et lue seulement quand la section est à l'écran */
 (function(){
-  var v=document.querySelector('.sel-bg video'), sec=document.getElementById('collection'); if(!v||!sec) return;
-  v.playbackRate=v.defaultPlaybackRate=0.4;
-  new IntersectionObserver(function(es){
-    if(es[0].isIntersecting){ if(!v.src) v.src=v.dataset.src; v.playbackRate=0.4; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
-    else v.pause();
-  },{threshold:0}).observe(sec);
+  document.querySelectorAll('.sel-bg video').forEach(function(v){
+    var sec=v.closest('section'); if(!sec) return;
+    v.playbackRate=v.defaultPlaybackRate=0.4;
+    new IntersectionObserver(function(es){
+      if(es[0].isIntersecting){ if(!v.src) v.src=v.dataset.src; v.playbackRate=0.4; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+      else v.pause();
+    },{threshold:0}).observe(sec);
+  });
 })();
 </script>
 </body>
