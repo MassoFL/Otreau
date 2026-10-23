@@ -659,6 +659,8 @@ a{color:#14212B}a:hover{color:#B5650F}
 #collection .type-btn{border-color:rgba(20,33,43,.45) !important}
 #collection .type-btn[aria-pressed="true"]{color:#FFFFFF !important}
 #collection .pc-car::after{color:#3D4A54}
+/* Mobile : pas de lumière tournante sur le bouton du hero ni sur les boutons « Découvrir » */
+@media (max-width:760px){.cta-glow::after,.pc-cta::after{display:none !important;animation:none !important}}
 </style>
 </head>
 <body>
