@@ -578,7 +578,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .lm-card video{filter:grayscale(1) contrast(1.05)}
 /* Cartes de la sélection : lumière aux couleurs du hero qui fait le tour du bas de carte */
 #collection a[data-handle] > div:last-child{position:relative;box-shadow:inset 0 0 0 1.5px #4A535A;margin-top:26px}
-#collection a[data-handle] > div:last-child::after{content:"";position:absolute;inset:0;padding:1.5px;pointer-events:none;z-index:0;
+#collection a[data-handle] > div:last-child::after{content:"";position:absolute;inset:0;padding:1px;pointer-events:none;z-index:0;opacity:.55;
   background:conic-gradient(from var(--glow-a),transparent 0 70%,#3E9BEA 78%,#B9E0FF 84%,#FFD27A 89%,#F5A623 94%,#E8641F 98%,transparent 100%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
@@ -634,10 +634,31 @@ a{color:#14212B}a:hover{color:#B5650F}
 .lm-q-open{vertical-align:.32em;margin-right:.18em}
 .lm-q-close{vertical-align:.32em;margin-left:.14em;transform:rotate(180deg)}
 .lm-grey{color:#8A949B}
-.lm .lm-btn{border-radius:0 !important;margin-top:48px}
+.lm .lm-btn{border-radius:0 !important;margin-top:48px;border-width:1px !important;font:300 clamp(15px,1.4vw,18px)/1 Manrope,sans-serif !important;letter-spacing:.01em;text-transform:uppercase}
 /* Pluie subtile sur « La sélection’Otreau » */
-.sel-rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-#collection > :not(.sel-rain):not(.wave-sep){position:relative;z-index:1}
+.sel-rain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+#collection > :not(.sel-rain):not(.wave-sep):not(.sel-bg){position:relative;z-index:2}
+/* Bouton du hero : angles droits (contour, remplissage au survol et lumière) */
+.cta-glow,.cta-glow::before,.cta-glow::after{border-radius:0 !important}
+/* Titres de section : deux traits fins de part et d’autre, comme « La marque en bref » */
+.sec-title{display:flex;align-items:center;justify-content:center;gap:22px;text-align:center}
+.sec-title::before,.sec-title::after{content:"";flex:0 0 64px;height:1px;background:currentColor;opacity:.35}
+@media (max-width:640px){.sec-title{gap:14px}.sec-title::before,.sec-title::after{flex-basis:26px}}
+/* Bouton du hero : texte en majuscules, un peu plus fin */
+.cta-glow{font-weight:500 !important;text-transform:uppercase;letter-spacing:.06em !important}
+/* Sélection : vidéo du hero floutée en fond, sous un voile de marbre */
+.sel-bg{position:absolute;inset:0;z-index:0;clip-path:inset(0);pointer-events:none}
+.sel-bg video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:blur(26px) saturate(1.15);transform:scale(1.12)}
+.sel-bg::after{content:"";position:absolute;inset:0;background:#F8F6F1 url(assets/collection-bg.jpg) center / cover no-repeat;opacity:.72}
+/* Sélection sur fond vidéo : tous les textes en sombre */
+#collection h2,#collection h3,#collection .type-btn,#collection #show-all{color:#14212B !important}
+#collection .pc-price{color:#2A3640 !important}
+#collection .pc-price small,#collection .pc-price span{color:#3D4A54 !important}
+#collection .pc-feats li{color:#2A3640 !important}
+#collection .pc-feats svg{stroke:#2A3640 !important}
+#collection .type-btn{border-color:rgba(20,33,43,.45) !important}
+#collection .type-btn[aria-pressed="true"]{color:#FFFFFF !important}
+#collection .pc-car::after{color:#3D4A54}
 </style>
 </head>
 <body>
@@ -720,10 +741,12 @@ a{color:#14212B}a:hover{color:#B5650F}
 <!-- Bandeau qui accompagne le contenu quand il recouvre la vidéo (messages copiés depuis le bandeau du haut) -->
 <div class="bandeau-curtain" aria-hidden="true"><div class="bandeau-track bandeau-copy"></div></div>
 <!-- Collection -->
-<section id="collection" style="padding: 56px 24px 128px; margin-top: -56px; position: relative; background: #F8F6F1 url(assets/collection-bg.jpg) center / cover no-repeat">
+<section id="collection" style="padding: 56px 24px 128px; margin-top: -56px; position: relative; background: transparent">
+<!-- La vidéo du hero reste visible, floutée, derrière la sélection -->
+<div class="sel-bg" aria-hidden="true"><video data-src="assets/hero-video-4.mp4" poster="assets/hero-video-4-poster.jpg" muted loop playsinline preload="none"></video></div>
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
-<h2 style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em"><span style="font-weight: 600">La sélection</span><span style="font-weight: 300; color: #8A949B">’Otreau</span></h2>
+<h2 class="sec-title" style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La sélection</h2>
 <div role="group" class="type-filters" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
 <button type="button" class="type-btn" data-filter="veste" aria-pressed="false">Vestes</button>
 <button type="button" class="type-btn" data-filter="parka" aria-pressed="false">Parkas</button>
@@ -847,7 +870,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <section id="batterie" style="background: #000000; color: #FFFFFF; padding: 64px 24px 120px; margin-bottom: 0">
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
-<h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Batterie &amp; autonomie</h2>
+<h2 class="sec-title" style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Batterie &amp; autonomie</h2>
 <p style="margin: 0; font-size: 18px; color: #A9B4BB; max-width: 520px">Une batterie qui <span style="color: #FFFFFF; text-decoration: underline; text-decoration-color: #3E9BEA; text-decoration-thickness: 2px; text-underline-offset: 5px">se charge vite et dure longtemps.</span></p>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 40px clamp(32px, 5vw, 72px); align-items: center">
@@ -905,7 +928,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="tape" aria-hidden="true"><div class="tape-strip"></div></div>
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
-<h2 id="tailles-titre" style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Tailles &amp; mesures</h2>
+<h2 id="tailles-titre" class="sec-title" style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Tailles &amp; mesures</h2>
 <p style="margin: 0; font-size: 18px; color: #55616B; max-width: 560px">Un guide qui rend <span style="color: #14212B; text-decoration: underline; text-decoration-color: #D9792B; text-decoration-thickness: 2px; text-underline-offset: 5px">impossible de se tromper de taille.</span></p>
 </div>
 <div class="wheel" id="wheel">
@@ -1048,7 +1071,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <section id="faq" style="padding: 64px 24px 128px">
 <div style="max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
-<h2 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Questions fréquentes</h2>
+<h2 class="sec-title" style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Questions fréquentes</h2>
 <p style="margin: 0; font-size: 18px; color: #55616B; max-width: 520px">Tout ce qu’on nous demande avant d’acheter.</p>
 </div>
 <div class="faq-list">
@@ -1454,8 +1477,8 @@ var SIZE_GUIDE = {
   var cv=document.createElement('canvas'); cv.className='sel-rain'; cv.setAttribute('aria-hidden','true'); sec.insertBefore(cv,sec.firstChild);
   var cx=cv.getContext('2d'), W=0, H=0, dpr=Math.min(2,window.devicePixelRatio||1), drops=[], on=false, raf=0, last=0;
   function size(){ W=sec.clientWidth; H=sec.clientHeight; cv.width=W*dpr; cv.height=H*dpr; cx.setTransform(dpr,0,0,dpr,0,0);
-    var n=Math.round(W*H/7000); drops=[]; for(var i=0;i<n;i++) drops.push(mk(true)); }
-  function mk(any){ var z=Math.random(); return { x:Math.random()*(W+200)-100, y:any?Math.random()*H:-30-Math.random()*H*.3, l:8+z*14, v:260+z*420, a:.08+z*.16, w:.7+z*.6 }; }
+    var n=Math.round(W*H/11000); drops=[]; for(var i=0;i<n;i++) drops.push(mk(true)); }
+  function mk(any){ var z=Math.random(); return { x:Math.random()*(W+200)-100, y:any?Math.random()*H:-30-Math.random()*H*.3, l:8+z*14, v:260+z*420, a:.04+z*.09, w:.5+z*.5 }; }
   function frame(t){ raf=0; if(!on) return; var dt=Math.min(.05,(t-(last||t))/1000); last=t;
     cx.clearRect(0,0,W,H); cx.lineCap='round';
     for(var i=0;i<drops.length;i++){ var d=drops[i]; d.y+=d.v*dt; d.x+=d.v*dt*.12;
@@ -1467,6 +1490,17 @@ var SIZE_GUIDE = {
   window.addEventListener('resize',size); document.addEventListener('otreau:collection',function(){ setTimeout(size,50); });
   if(window.ResizeObserver) new ResizeObserver(function(){ if(Math.abs(sec.clientHeight-H)>4) size(); }).observe(sec);
   size();
+})();
+</script>
+<script>
+/* Vidéo floutée de la sélection : chargée et lue seulement quand la section est à l'écran */
+(function(){
+  var v=document.querySelector('.sel-bg video'), sec=document.getElementById('collection'); if(!v||!sec) return;
+  v.playbackRate=v.defaultPlaybackRate=0.4;
+  new IntersectionObserver(function(es){
+    if(es[0].isIntersecting){ if(!v.src) v.src=v.dataset.src; v.playbackRate=0.4; var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+    else v.pause();
+  },{threshold:0}).observe(sec);
 })();
 </script>
 </body>
