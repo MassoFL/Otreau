@@ -1136,9 +1136,9 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
   var rows=document.getElementById('cat-rows'), grid=document.querySelector('.product-grid');
   if(!rows||!grid) return;
   var cats=[
-    {title:'Collection Vestes', k:['veste','parka'], test:/^(VESTE|DOUDOUNE|PARKA|SOFTSHELL|SWEET)/},
-    {title:'Collection Gilets', k:['gilet'], test:/^GILET/},
-    {title:'Collection Chaussettes & gants', k:['accessoire'], test:/^(CHAUSSETTE|GANT)/}
+    {title:'Vestes', k:['veste','parka'], test:/^(VESTE|DOUDOUNE|PARKA|SOFTSHELL|SWEET)/},
+    {title:'Gilets', k:['gilet'], test:/^GILET/},
+    {title:'Chaussettes & gants', k:['accessoire'], test:/^(CHAUSSETTE|GANT)/}
   ];
   function build(){
   rows.innerHTML='';
@@ -1147,7 +1147,7 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
     var list=cards.filter(function(a){if(a.dataset.cat)return c.k.indexOf(a.dataset.cat)>=0;var h=a.querySelector('h3');return h&&c.test.test(h.textContent.trim().toUpperCase())});
     if(!list.length) return;
     var row=document.createElement('div'); row.className='cat-row';
-    row.innerHTML='<h3 class="cat-title">'+c.title+(list.length>1?'<small>Faites défiler →</small>':'')+'</h3>';
+    row.innerHTML='<h3 class="cat-title">'+c.title+'</h3>';
     var track=document.createElement('div'); track.className='cat-track';
     list.forEach(function(a){var k=a.cloneNode(true);k.classList.remove('product-extra');track.appendChild(k)});
     row.appendChild(track); rows.appendChild(row);
