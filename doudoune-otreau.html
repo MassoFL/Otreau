@@ -527,6 +527,17 @@ body{background:#F8F6F1}
 .pd-all:hover,.pd-all:focus-visible{background:#14212B;color:#FFFFFF}
 .pd-all svg{transition:transform .2s ease}.pd-all:hover svg{transform:translateX(3px)}
 </style>
+<style>/* Bandeau d’annonces en bleu, texte blanc, plus fin */#bandeau{background:#123F72 !important;color:#FFFFFF !important;padding-top:7px !important;padding-bottom:7px !important}.bandeau-curtain{color:#FFFFFF !important;height:36px !important;margin:-36px 0 56px !important;padding-top:7px !important;padding-bottom:7px !important}.bandeau-track{perspective:260px;overflow:visible !important}.bandeau-msg{color:#FFFFFF !important;font-weight:600;text-shadow:none;-webkit-font-smoothing:antialiased;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 50% -11px;transform:rotateX(-90deg) !important;transition:opacity .7s ease,transform .7s cubic-bezier(.45,0,.2,1) !important}.bandeau-msg.is-active{transform:none !important;backface-visibility:visible;-webkit-backface-visibility:visible}.bandeau-msg.is-leaving{transform:rotateX(90deg) !important}@media (prefers-reduced-motion: reduce){.bandeau-msg,.bandeau-msg.is-leaving{transform:none !important;transition:opacity .3s ease !important}}.flat-shop{display:block;width:100%;max-width:380px;height:auto;margin:0 auto}
+.flat-shop[hidden]{display:none}
+.size-tip{display:flex;align-items:flex-start;gap:12px;margin:0 0 20px;padding:12px 16px;border:1px dashed rgba(140,122,91,.6);border-radius:8px;background:rgba(245,166,35,.06);font-family:'DM Mono',monospace;font-size:13px;line-height:1.5;color:#6E5F45;text-align:left}
+.size-tip-ico{flex:none;width:20px;height:20px;margin-top:-1px;fill:none;stroke:#D9792B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.size-tip p{margin:0}
+.size-tip p+p{margin-top:6px}
+.size-tip b{font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#B5650F;margin-right:6px}
+.size-tip-top{position:relative;z-index:1;width:fit-content;max-width:100%;margin:0 auto 28px}
+.size-tip-top p{white-space:nowrap}
+@media (max-width:900px){.size-tip-top p{white-space:normal}}
+</style>
 </head>
 <body>
 <div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: #F8F6F1; font-size: 17px; line-height: 1.6">
@@ -677,21 +688,11 @@ body{background:#F8F6F1}
 <div class="patron">
 <span class="patron-pin" style="left: 28px" aria-hidden="true"></span>
 <span class="patron-pin" style="right: 28px" aria-hidden="true"></span>
+<div class="size-tip size-tip-top" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div>
 <div style="position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
 <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
 <span class="atelier-kicker" style="text-transform:none;letter-spacing:.06em">Patron · DOUDOUNE</span>
-<svg class="flat" data-product="doudoune" viewBox="0 0 360 380" role="img" aria-label="Schéma de la doudoune à plat avec les mesures A, B, C et D">
-<g transform="translate(10,30)">
-<path class="garment" d="M170 54 L138 40 Q124 36 112 42 L74 62 L28 214 L58 224 L88 148 L80 300 Q124 318 170 318 Q216 318 260 300 L252 148 L282 224 L312 214 L266 62 L228 42 Q216 36 202 40 Z"></path>
-<path class="garment" d="M138 40 Q170 66 202 40 L202 22 Q170 48 138 22 Z"></path>
-<path class="seam" d="M170 56 L170 316"></path>
-<path class="seam" d="M88 200 L252 200 M86 250 L254 250 M90 150 L250 150"></path>
-<g class="dim" data-k="C"><line class="ext" x1="74" y1="62" x2="74" y2="-6"></line><line class="ext" x1="266" y1="62" x2="266" y2="-6"></line><line x1="74" y1="0" x2="266" y2="0"></line><path d="M80 -4 L74 0 L80 4 M260 -4 L266 0 L260 4"></path><circle cx="170" cy="0" r="13"></circle><text x="170" y="0">C</text></g>
-<g class="dim" data-k="A"><line x1="89" y1="168" x2="251" y2="168"></line><path d="M95 164 L89 168 L95 172 M245 164 L251 168 L245 172"></path><circle cx="130" cy="168" r="13"></circle><text x="130" y="168">A</text></g>
-<g class="dim" data-k="B"><line x1="210" y1="44" x2="210" y2="312"></line><path d="M206 50 L210 44 L214 50 M206 306 L210 312 L214 306"></path><circle cx="210" cy="275" r="13"></circle><text x="210" y="275">B</text></g>
-<g class="dim" data-k="D"><line class="ext" x1="266" y1="62" x2="281" y2="56"></line><line class="ext" x1="312" y1="214" x2="327" y2="208"></line><line x1="279" y1="57" x2="325" y2="209"></line><path d="M276 64 L279 57 L284 62 M320 203 L325 209 L327 201"></path><circle cx="302" cy="133" r="13"></circle><text x="302" y="133">D</text></g>
-</g>
-</svg>
+<img class="flat flat-photo" data-product="doudoune" src="assets/patron-doudoune.webp" width="783" height="820" alt="Doudoune avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy">
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
 <table class="size-table" id="pd-size-table">
@@ -702,7 +703,6 @@ body{background:#F8F6F1}
 </div>
 </div>
 </div>
-<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>
 </section>
 
 <section class="pd-how">

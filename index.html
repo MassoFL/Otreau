@@ -577,7 +577,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 /* Principes : vidéos en noir et blanc */
 .lm-card video{filter:grayscale(1) contrast(1.05)}
 /* Cartes de la sélection : lumière aux couleurs du hero qui fait le tour du bas de carte */
-#collection a[data-handle] > div:last-child{position:relative;box-shadow:inset 0 0 0 1.5px #4A535A;margin-top:26px}
+#collection a[data-handle] > div:last-child{position:relative;box-shadow:inset 0 0 0 1.5px #9AA2A8;margin-top:26px}
 #collection a[data-handle] > div:last-child::after{content:"";position:absolute;inset:0;padding:1px;pointer-events:none;z-index:0;opacity:.55;
   background:conic-gradient(from var(--glow-a),transparent 0 70%,#3E9BEA 78%,#B9E0FF 84%,#FFD27A 89%,#F5A623 94%,#E8641F 98%,transparent 100%);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
@@ -598,7 +598,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 /* Bas de carte en face de prisme : on devine le départ de la face du dessus, qui s'estompe */
 #collection a[data-handle]{overflow:visible !important}
 .pc-side{position:absolute;left:0;right:0;bottom:100%;height:22px;pointer-events:none;z-index:0;transform-origin:50% 100%;transform:perspective(380px) rotateX(62deg);-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
-.pc-side::before{content:"";position:absolute;inset:0;border-left:1px solid rgba(74,83,90,.55);border-right:1px solid rgba(74,83,90,.55);background:linear-gradient(90deg,rgba(74,83,90,.06),rgba(74,83,90,.12))}
+.pc-side::before{content:"";position:absolute;inset:0;border-left:1px solid rgba(154,162,168,.6);border-right:1px solid rgba(154,162,168,.6);background:linear-gradient(90deg,rgba(74,83,90,.06),rgba(74,83,90,.12))}
 /* ===== La marque : mise en page éditoriale ===== */
 .lm-head{display:flex;flex-direction:column;align-items:center;gap:28px;align-self:flex-start;position:relative;left:50%;transform:translateX(-50%);width:min(980px,calc(100vw - 48px));max-width:none;margin:0 auto;text-align:center}
 .lm-kicker{display:flex;align-items:center;gap:22px;margin:0 !important;font:300 clamp(30px,3.4vw,44px)/1.1 Manrope,sans-serif !important;letter-spacing:.01em;text-transform:uppercase;color:#FFFFFF !important}
@@ -663,10 +663,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 @media (max-width:760px){.cta-glow::after,.pc-cta::after{display:none !important;animation:none !important}}
 /* Tailles & mesures : même fond que la sélection (vidéo du hero floutée sous un voile de marbre) */
 #tailles.atelier{background:#0B1910 !important;overflow:hidden}
-#tailles > div:not(.tl-veil):not(.wave-sep):not(.tape){position:relative;z-index:2}
+#tailles > div:not(.tl-veil):not(.tl-clip):not(.wave-sep):not(.tape){position:relative;z-index:2}
 /* ===== Tailles & mesures sur la vidéo sombre (ancienne vidéo de la marque) ===== */
-.tl-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none}
-.tl-veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(#0B1910 0,rgba(11,25,16,.7) 22%,rgba(11,25,16,.7) 70%,rgba(11,25,16,.85) 100%)}
+.tl-clip{position:absolute;inset:0;z-index:0;clip-path:inset(0);pointer-events:none}
+.tl-bg{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.tl-veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(#0B1910 0,rgba(11,25,16,.7) 14%,rgba(11,25,16,.7) 84%,rgba(11,25,16,.85) 100%)}
 #tailles h2{color:#FFFFFF !important}
 #tailles h2 + p{color:#BFCDC5 !important}
 #tailles h2 + p span{color:#FFFFFF !important}
@@ -699,7 +700,101 @@ a{color:#14212B}a:hover{color:#B5650F}
 #tailles .wave-top path[fill="none"]{display:none}
 #tailles .tape{opacity:.28}
 /* Carte du patron : légèrement translucide sur la vidéo */
-#tailles .patron{background:rgba(251,248,242,.8) !important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#tailles .patron{background:rgba(251,248,242,.66) !important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+/* « Voir toute la collection » : même style que « Découvrir l’histoire complète » */
+#show-all{border:1px solid #14212B !important;border-radius:0 !important;background:transparent !important;color:#14212B !important;font:300 clamp(15px,1.4vw,18px)/1 Manrope,sans-serif !important;letter-spacing:.01em;text-transform:uppercase;padding:0 32px !important;min-height:54px !important;transition:background .25s ease,color .25s ease}
+#show-all:hover,#show-all:focus-visible{background:#14212B !important;color:#FFFFFF !important}
+#show-all svg{display:none}
+/* Batterie → Tailles : coupure nette, sans vague */
+#tailles > .wave-top{display:none !important}
+#tailles.atelier{padding-top:88px !important}
+#collection #show-all:hover,#collection #show-all:focus-visible,#collection #show-all:active,#collection #show-all:hover *,#collection #show-all:active *{color:#FFFFFF !important}
+#collection #show-all:hover,#collection #show-all:focus-visible,#collection #show-all:active{background:#14212B !important}
+/* Batterie : caractéristiques en bannière qui défile en bas de section */
+.bv-marquee{position:relative;width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;padding:14px 0 0;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.bv-feats-row{display:flex !important;flex-wrap:nowrap;width:max-content;gap:0 !important;animation:bvScroll 40s linear infinite}
+.bv-marquee:hover .bv-feats-row{animation-play-state:paused}
+.bv-feats-row li{flex:none;flex-direction:row !important;align-items:center !important;text-align:left !important;gap:12px !important;padding:0 44px;border-left:1px solid rgba(255,255,255,.14)}
+.bv-feats-row li div{align-items:flex-start !important;flex-direction:row !important;gap:10px !important;white-space:nowrap}
+.bv-feats-row li div span{align-self:center}
+.bv-feats-row svg{margin-top:0 !important}
+@keyframes bvScroll{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.bv-feats-row{animation:none}}
+#batterie{padding-bottom:14px !important}
+</style>
+<style>/* Bandeau d’annonces en bleu, texte blanc, plus fin */#bandeau{background:#123F72 !important;color:#FFFFFF !important;padding-top:7px !important;padding-bottom:7px !important}.bandeau-curtain{color:#FFFFFF !important;height:36px !important;margin:-36px 0 56px !important;padding-top:7px !important;padding-bottom:7px !important}.bandeau-track{perspective:260px;overflow:visible !important}.bandeau-msg{color:#FFFFFF !important;font-weight:600;text-shadow:none;-webkit-font-smoothing:antialiased;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 50% -11px;transform:rotateX(-90deg) !important;transition:opacity .7s ease,transform .7s cubic-bezier(.45,0,.2,1) !important}.bandeau-msg.is-active{transform:none !important;backface-visibility:visible;-webkit-backface-visibility:visible}.bandeau-msg.is-leaving{transform:rotateX(90deg) !important}@media (prefers-reduced-motion: reduce){.bandeau-msg,.bandeau-msg.is-leaving{transform:none !important;transition:opacity .3s ease !important}}.bv-count{font-variant-numeric:tabular-nums}
+/* Batterie : même noir que le fond de la vidéo, sans cadre visible */
+#batterie{background:#0F0F0F !important}
+.batt-media{background:#0F0F0F !important;border-color:transparent !important;-webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 72% 70% at 50% 50%,#000 62%,transparent 100%)}
+@media (min-width:861px){
+#batterie{overflow-x:clip}
+.batt-col{justify-content:flex-start !important}
+.batt-media{--bx:max(24px,calc((100vw - 1200px) / 2));width:calc(100% + var(--bx) + 40px) !important;margin:0 calc(-1 * var(--bx)) 0 -40px;aspect-ratio:9/12 !important;border-radius:0 !important}
+}
+/* Tailles : notice plus opaque sur la carte translucide */
+#tailles .size-tip{background:rgba(255,246,228,.9) !important;border-color:rgba(181,101,15,.45) !important}
+/* ===== Batterie : bloc « Pensée pour vos journées dehors » (style des principes de la marque) ===== */
+.bt-more{width:100%;display:flex;flex-direction:column;align-items:center;gap:30px;padding-top:44px;border-top:1px solid rgba(255,255,255,.14)}
+.bt-t{margin:10px 0 0;font:300 clamp(20px,2vw,26px)/1.2 Manrope,sans-serif;letter-spacing:.01em;text-transform:uppercase;color:#FFFFFF;text-align:center}
+.bt-t span{color:#8A949B}
+.bt-crit{list-style:none;margin:0;padding:0;width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));row-gap:34px}
+.bt-crit li{display:flex;flex-direction:column;align-items:center;gap:8px;padding:4px 26px;text-align:center;font:600 15px/1.35 Manrope,sans-serif;color:#FFFFFF}
+.bt-crit li:not(:nth-child(3n+1)){border-left:1px solid rgba(255,255,255,.14)}
+.bt-crit li > span{font:300 22px/1 Manrope,sans-serif;color:#3E9BEA}
+.bt-crit li small{font:400 13.5px/1.55 Manrope,sans-serif;color:#8C969D;max-width:300px}
+.bt-ports{width:100%;max-width:980px;display:flex;flex-direction:column}
+.bt-pr{display:grid;grid-template-columns:110px repeat(4,minmax(0,1fr));align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.bt-pr:first-child{border-top:1px solid rgba(255,255,255,.12)}
+.bt-pr b{font:500 12px/1 'DM Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#3E9BEA}
+.bt-pr span{display:flex;flex-direction:column;gap:3px;font-size:13px;color:#8C969D;text-align:center}
+.bt-pr span strong{font:600 14.5px/1.3 Manrope,sans-serif;color:#FFFFFF}
+.bt-note{margin:0;max-width:720px;text-align:center;font-size:12.5px;line-height:1.6;color:#6F7A82}
+@media (max-width:760px){
+.bt-crit{grid-template-columns:repeat(2,minmax(0,1fr))}
+.bt-crit li{padding:4px 12px}
+.bt-crit li:not(:nth-child(3n+1)){border-left:0}
+.bt-crit li:nth-child(even){border-left:1px solid rgba(255,255,255,.14)}
+.bt-pr{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:14px}
+.bt-pr b{grid-column:1 / -1;text-align:center}
+}
+.flat-shop{display:block;width:100%;max-width:380px;height:auto;margin:0 auto}
+.flat-shop[hidden]{display:none}
+/* Patrons : même hauteur pour tous les dessins, quelle que soit leur largeur */
+#tailles img.flat-photo{width:auto !important;max-width:100% !important;height:clamp(300px,34vw,430px) !important;object-fit:contain;margin:0 auto}
+#tailles .flat-shop{height:clamp(300px,34vw,430px) !important;width:auto !important;max-width:100%}
+/* Tailles : flèches gauche / droite autour du dessin du patron ; roue sous le patron */
+.pt-col{position:relative}
+.pt-nav{position:absolute;top:50%;z-index:3;width:44px;height:44px;margin-top:-6px;padding:0;border:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s,transform .2s}
+.pt-nav svg{width:26px;height:26px;fill:none;stroke:#14212B;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 3px rgba(255,255,255,.9))}
+.pt-prev{left:-10px}.pt-next{right:-10px}
+.pt-nav:hover:not(:disabled){transform:scale(1.12)}
+.pt-nav:disabled{opacity:.25;cursor:default}
+#tailles .pt-col .wheel{margin:0 0 6px;align-self:center}
+#tailles .pt-col .wheel-arrow{transform:scale(.85)}
+@media (max-width:640px){.pt-nav{width:30px;height:44px}.pt-nav svg{width:22px;height:22px}.pt-prev{left:-24px}.pt-next{right:-24px}}
+.pt-nav{margin-top:-22px !important}
+#tailles .pt-col .wheel-list li{color:#2A3640 !important}
+#tailles .pt-col .wheel-list li[aria-selected="true"]{color:#000 !important}
+/* Sélecteur de produit horizontal */
+#tailles .wheel{flex-direction:row !important;align-items:center;gap:6px !important;width:100%;justify-content:center}
+#tailles .wheel-box{width:min(440px,100%);height:52px;flex:1 1 auto}
+#tailles .wheel-band{left:50%;right:auto;top:50%;width:170px;height:40px;margin:-20px 0 0 -85px}
+#tailles .wheel-list{display:flex;flex-direction:row;height:100%;padding:0 calc(50% - 85px);overflow-x:scroll;overflow-y:hidden;scroll-snap-type:x mandatory;
+  -webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.2) 0,#000 32%,#000 68%,rgba(0,0,0,.2) 100%);mask-image:linear-gradient(90deg,rgba(0,0,0,.2) 0,#000 32%,#000 68%,rgba(0,0,0,.2) 100%)}
+#tailles .wheel-list li{flex:0 0 170px;width:170px;height:100%;font-size:14px;white-space:nowrap;text-align:center}
+#tailles .wheel-list li[aria-selected="true"]{font-size:16px}
+#tailles .wheel-arrow{margin:0 !important;flex:none}
+@media (max-width:640px){#tailles .wheel-band{width:150px;margin-left:-75px}#tailles .wheel-list{padding:0 calc(50% - 75px)}#tailles .wheel-list li{flex-basis:150px;width:150px;font-size:13px}#tailles .wheel-list li[aria-selected="true"]{font-size:14.5px}}
+#tailles .table-scroll{transition:margin-top .35s ease}
+/* Sélecteur : sans rectangle, flèches identiques à celles du patron */
+#tailles .wheel-band{display:none !important}
+#tailles .wheel-arrow,#tailles .pt-col .wheel-arrow{width:44px;height:44px;padding:0;border:0 !important;background:transparent !important;box-shadow:none !important;border-radius:0;color:#14212B;transform:none;transition:opacity .2s,transform .2s}
+#tailles .wheel-arrow svg{width:26px;height:26px;stroke:#14212B;stroke-width:2.2;filter:drop-shadow(0 0 3px rgba(255,255,255,.9))}
+#tailles .wheel-arrow:hover:not(:disabled){background:transparent !important;color:#14212B;transform:scale(1.12)}
+#tailles .wheel-arrow:disabled{opacity:.25;transform:none}
+@media (max-width:640px){#tailles .wheel-arrow,#tailles .pt-col .wheel-arrow{width:30px}#tailles .wheel-arrow svg{width:22px;height:22px}}
+#tailles #patron-label{display:none !important}
+#tailles .pt-nav{display:none !important}
 </style>
 </head>
 <body>
@@ -895,7 +990,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 <animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
 <linearGradient id="wv-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".04"/><stop offset=".22" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset=".8" stop-color="#FFFFFF" stop-opacity=".55"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".06"/>
 <animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
-<linearGradient id="wv-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1A1A1A"/><stop offset=".35" stop-color="#000000"/></linearGradient>
+<linearGradient id="wv-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1F1F1F"/><stop offset=".35" stop-color="#0F0F0F"/></linearGradient>
 <filter id="wv-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
 </defs>
 <path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#E6E3DC" stroke-width="18" filter="url(#wv-soft)" opacity=".7" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
@@ -917,38 +1012,66 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div style="display: flex; flex-wrap: wrap; gap: 40px clamp(32px, 5vw, 72px); align-items: center">
 <div class="spec-card batt-v2">
 <div class="bv-stats">
-<div class="bv-stat"><span class="bv-num">20 000<small>mAh</small></span><span class="bv-lab">Capacité</span></div>
-<div class="bv-stat"><span class="bv-num">22,5<small>W</small></span><span class="bv-lab">Charge rapide PD</span></div>
-<div class="bv-stat"><span class="bv-num">190<small>g</small></span><span class="bv-lab">Poids</span></div>
-</div>
-<div class="bv-block">
-<ul class="bv-feats">
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v5M11 3v5"/><rect x="5" y="8" width="8" height="5" rx="1"/><path d="M9 13v3a4 4 0 0 0 4 4h6"/></svg><div><strong>Câbles intégrés</strong><span>USB-C · Lightning · USB-A</span></div></li>
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M7 13V9M10 13V10M13 13v-2"/></svg><div><strong>Écran numérique</strong><span>La charge restante, en un coup d’œil</span></div></li>
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg><div><strong>Charge bidirectionnelle</strong><span>Recharge aussi votre téléphone</span></div></li>
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.6 1 2.5h6c0-.9.2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg><div><strong>Lampe LED</strong><span>Pratique quand la nuit tombe</span></div></li>
-</ul>
+<div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="0" data-to="20000" data-dec="0">20 000</span><small>mAh</small></span><span class="bv-lab">Capacité</span></div>
+<div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="0" data-to="22.5" data-dec="1">22,5</span><small>W</small></span><span class="bv-lab">Charge rapide PD</span></div>
+<div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="500" data-to="190" data-dec="0">190</span><small>g</small></span><span class="bv-lab">Poids</span></div>
 </div>
 <div class="bv-more">
 <details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#3E9BEA" stroke-width="2" stroke-linecap="round"><path d="M6 6h28M6 13h28M6 20h20M6 27h14"></path></svg><h3>Description</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
 <p class="spec-text">Batterie externe 20 000 mAh conçue pour alimenter vos vêtements Otreau toute la journée. Charge rapide PD 22,5 W et bidirectionnelle, câbles USB-C, Lightning et USB-A intégrés, écran numérique pour suivre la charge restante et lampe LED intégrée. Elle peut aussi recharger votre téléphone en déplacement.</p>
 </div></details>
 <details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#3E9BEA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 3c6 7 10 12 10 18a10 10 0 0 1-20 0c0-6 4-11 10-18z"></path><path d="M15 22a5 5 0 0 0 5 5"></path></svg><h3>Composition &amp; entretien</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
-<div class="spec-row"><span>Composition</span><strong>[Lithium-polymère · coque …]</strong></div>
+<div class="spec-row"><span>Composition</span><strong>Lithium-polymère haute densité · coque ABS + PC</strong></div>
 <p class="spec-text">Rangez la batterie à température ambiante et évitez de la laisser en plein soleil ou près d’une source de chaleur. Retirez-la toujours du vêtement avant lavage. Pour la préserver, rechargez-la au moins une fois tous les [3 mois] si vous ne l’utilisez pas.</p>
 </div></details>
 </div>
 </div>
 <div class="batt-col"><div class="batt-media">
-<video src="assets/batterie.mp4#t=0.1" autoplay muted loop playsinline preload="metadata" aria-label="Batterie externe 20 000 mAh Otreau en rotation, écran de charge allumé"></video>
+<video src="assets/batterie-2.mp4#t=0.1" autoplay muted loop playsinline preload="metadata" aria-label="Batterie externe 20 000 mAh Otreau en rotation, écran de charge allumé"></video>
 </div></div>
 </div>
+<!-- Batterie : ce qu'elle sait faire (même style que les principes de la marque) -->
+<div class="bt-more">
+<h3 class="bt-t">Pensée pour <span>vos journées dehors</span></h3>
+<ul class="bt-crit">
+<li><span>01</span>Quatre appareils à la fois<small>4 sorties et 2 entrées : votre vêtement, votre téléphone et vos écouteurs en même temps.</small></li>
+<li><span>02</span>Six protections<small>Surtension, surintensité, court-circuit, surcharge, surpuissance et décharge profonde.</small></li>
+<li><span>03</span>Écran précis au % près<small>La charge restante et l’état de la charge rapide, en un coup d’œil.</small></li>
+<li><span>04</span>Compatible avec presque tout<small>PD, QC 2.0 / 3.0, PPS, AFC, SCP / FCP : iOS, Android, tablettes, montres, écouteurs.</small></li>
+<li><span>05</span>Câbles intégrés et souples<small>Câbles plats en TPE, rangés dans leur logement : plus de câbles emmêlés.</small></li>
+<li><span>06</span>Acceptée en cabine<small>Conforme aux normes aériennes internationales, selon le règlement de chaque compagnie.</small></li>
+</ul>
+<h3 class="bt-t">Entrées &amp; sorties</h3>
+<div class="bt-ports">
+<div class="bt-pr"><b>Entrées</b><span><strong>USB-C</strong>18 W max</span><span><strong>Micro-USB</strong>18 W max</span></div>
+<div class="bt-pr"><b>Sorties</b><span><strong>USB-C</strong>20 W max</span><span><strong>USB-A</strong>22,5 W max</span><span><strong>Câble USB-C</strong>22,5 W max</span><span><strong>Câble Lightning</strong>12 W max</span></div>
+</div>
+<p class="bt-note">149,5 × 67 × 29,1 mm · 74 Wh · Lithium-polymère. Quand plusieurs appareils chargent en même temps, la charge rapide se désactive automatiquement, par sécurité.</p>
+</div>
+<div class="bv-marquee"><ul class="bv-feats bv-feats-row">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v5M11 3v5"/><rect x="5" y="8" width="8" height="5" rx="1"/><path d="M9 13v3a4 4 0 0 0 4 4h6"/></svg><div><strong>Câbles intégrés</strong><span>USB-C · Lightning · USB-A</span></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M7 13V9M10 13V10M13 13v-2"/></svg><div><strong>Écran numérique</strong><span>La charge restante, en un coup d’œil</span></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg><div><strong>Charge bidirectionnelle</strong><span>Recharge aussi votre téléphone</span></div></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.6 1 2.5h6c0-.9.2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg><div><strong>Lampe LED</strong><span>Pratique quand la nuit tombe</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v5M11 3v5"/><rect x="5" y="8" width="8" height="5" rx="1"/><path d="M9 13v3a4 4 0 0 0 4 4h6"/></svg><div><strong>Câbles intégrés</strong><span>USB-C · Lightning · USB-A</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M7 13V9M10 13V10M13 13v-2"/></svg><div><strong>Écran numérique</strong><span>La charge restante, en un coup d’œil</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg><div><strong>Charge bidirectionnelle</strong><span>Recharge aussi votre téléphone</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.6 1 2.5h6c0-.9.2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg><div><strong>Lampe LED</strong><span>Pratique quand la nuit tombe</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v5M11 3v5"/><rect x="5" y="8" width="8" height="5" rx="1"/><path d="M9 13v3a4 4 0 0 0 4 4h6"/></svg><div><strong>Câbles intégrés</strong><span>USB-C · Lightning · USB-A</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M7 13V9M10 13V10M13 13v-2"/></svg><div><strong>Écran numérique</strong><span>La charge restante, en un coup d’œil</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg><div><strong>Charge bidirectionnelle</strong><span>Recharge aussi votre téléphone</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.6 1 2.5h6c0-.9.2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg><div><strong>Lampe LED</strong><span>Pratique quand la nuit tombe</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v5M11 3v5"/><rect x="5" y="8" width="8" height="5" rx="1"/><path d="M9 13v3a4 4 0 0 0 4 4h6"/></svg><div><strong>Câbles intégrés</strong><span>USB-C · Lightning · USB-A</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 21h8M12 17v4"/><path d="M7 13V9M10 13V10M13 13v-2"/></svg><div><strong>Écran numérique</strong><span>La charge restante, en un coup d’œil</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h13l-3-3M20 15H7l3 3"/></svg><div><strong>Charge bidirectionnelle</strong><span>Recharge aussi votre téléphone</span></div></li>
+<li aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1 1.6 1 2.5h6c0-.9.2-1.7 1-2.5A6 6 0 0 0 12 3z"/></svg><div><strong>Lampe LED</strong><span>Pratique quand la nuit tombe</span></div></li>
+</ul></div>
 </div>
 </section>
 
 <!-- Tailles & mesures -->
 <section id="tailles" class="atelier" aria-labelledby="tailles-titre">
-<video class="tl-bg" src="assets/marque-bg.mp4" poster="assets/marque-bg-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+<div class="tl-clip" aria-hidden="true"><video class="tl-bg" src="assets/marque-bg.mp4" poster="assets/marque-bg-poster.jpg" autoplay muted loop playsinline preload="metadata"></video></div>
 <div class="tl-veil" aria-hidden="true"></div>
 <!-- Transition en vague depuis la section batterie -->
 <div class="wave-sep wave-top" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
@@ -974,21 +1097,23 @@ a{color:#14212B}a:hover{color:#B5650F}
 <h2 id="tailles-titre" class="sec-title" style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Tailles &amp; mesures</h2>
 <p style="margin: 0; font-size: 18px; color: #55616B; max-width: 560px">Un guide qui rend <span style="color: #14212B; text-decoration: underline; text-decoration-color: #D9792B; text-decoration-thickness: 2px; text-underline-offset: 5px">impossible de se tromper de taille.</span></p>
 </div>
-<div class="wheel" id="wheel">
-<button type="button" class="wheel-arrow" data-dir="-1" aria-label="Article précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
-<div class="wheel-box">
-<div class="wheel-band" aria-hidden="true"></div>
-<ul class="wheel-list" role="listbox" tabindex="0" aria-label="Choisir un article"><li role="option" data-product="gilet" aria-selected="true">GILET</li><li role="option" data-product="gilet-fin" aria-selected="false">GILET FIN</li><li role="option" data-product="gilet-polaire" aria-selected="false">GILET POLAIRE</li><li role="option" data-product="doudoune" aria-selected="false">DOUDOUNE</li><li role="option" data-product="veste" aria-selected="false">VESTE</li></ul>
-</div>
-<button type="button" class="wheel-arrow" data-dir="1" aria-label="Article suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-</div>
 <div class="patron">
 <span class="patron-pin" style="left: 28px" aria-hidden="true"></span>
 <span class="patron-pin" style="right: 28px" aria-hidden="true"></span>
 <div id="size-note"></div>
-<div style="position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
-<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<div style="position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px">
+<div class="pt-col" style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<button type="button" class="pt-nav pt-prev" data-dir="-1" aria-label="Modèle précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" class="pt-nav pt-next" data-dir="1" aria-label="Modèle suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
 <span class="atelier-kicker" id="patron-label">Patron · Le Gilet</span>
+<!-- Sélecteur de produit, en haut du patron -->
+<div class="wheel" id="wheel">
+<button type="button" class="wheel-arrow" data-dir="-1" aria-label="Article précédent"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+<div class="wheel-box">
+<div class="wheel-band" aria-hidden="true"></div>
+<ul class="wheel-list" role="listbox" tabindex="0" aria-label="Choisir un article"><li role="option" data-product="gilet" aria-selected="true">GILET DOUDOUNE</li><li role="option" data-product="gilet-fin" aria-selected="false">GILET ULTRA FIN</li><li role="option" data-product="doudoune" aria-selected="false">DOUDOUNE</li><li role="option" data-product="veste" aria-selected="false">LA VESTE</li><li role="option" data-product="parka" aria-selected="false">PARKA HOMME</li><li role="option" data-product="parka-femme" aria-selected="false">PARKA FEMME</li><li role="option" data-product="softshell" aria-selected="false">SOFTSHELL</li><li role="option" data-product="veste-polaire" aria-selected="false">VESTE POLAIRE</li><li role="option" data-product="sweat" aria-selected="false">SWEET</li><li role="option" data-product="gilet-capuche" aria-selected="false">GILET AVEC CAPUCHE</li><li role="option" data-product="gilet-camouflage" aria-selected="false">GILET CAMOUFLAGE</li><li role="option" data-product="gilet-bicolore" aria-selected="false">GILET BICOLORE</li></ul>
+</div>
+<button type="button" class="wheel-arrow" data-dir="1" aria-label="Article suivant"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
 
 <svg class="flat" data-product="gilet" viewBox="0 0 360 380" role="img" aria-label="Schéma du gilet à plat avec les mesures A, B et C">
 <g transform="translate(20,30)">
@@ -1002,20 +1127,17 @@ a{color:#14212B}a:hover{color:#B5650F}
 </g>
 </svg>
 
-<svg class="flat" data-product="doudoune" viewBox="0 0 360 380" role="img" aria-label="Schéma de la doudoune à plat avec les mesures A, B, C et D" hidden>
-<g transform="translate(10,30)">
-<path class="garment" d="M170 54 L138 40 Q124 36 112 42 L74 62 L28 214 L58 224 L88 148 L80 300 Q124 318 170 318 Q216 318 260 300 L252 148 L282 224 L312 214 L266 62 L228 42 Q216 36 202 40 Z"></path>
-<path class="garment" d="M138 40 Q170 66 202 40 L202 22 Q170 48 138 22 Z"></path>
-<path class="seam" d="M170 56 L170 316"></path>
-<path class="seam" d="M88 200 L252 200 M86 250 L254 250 M90 150 L250 150"></path>
-<g class="dim" data-k="C"><line class="ext" x1="74" y1="62" x2="74" y2="-6"></line><line class="ext" x1="266" y1="62" x2="266" y2="-6"></line><line x1="74" y1="0" x2="266" y2="0"></line><path d="M80 -4 L74 0 L80 4 M260 -4 L266 0 L260 4"></path><circle cx="170" cy="0" r="13"></circle><text x="170" y="0">C</text></g>
-<g class="dim" data-k="A"><line x1="89" y1="168" x2="251" y2="168"></line><path d="M95 164 L89 168 L95 172 M245 164 L251 168 L245 172"></path><circle cx="130" cy="168" r="13"></circle><text x="130" y="168">A</text></g>
-<g class="dim" data-k="B"><line x1="210" y1="44" x2="210" y2="312"></line><path d="M206 50 L210 44 L214 50 M206 306 L210 312 L214 306"></path><circle cx="210" cy="275" r="13"></circle><text x="210" y="275">B</text></g>
-<g class="dim" data-k="D"><line class="ext" x1="266" y1="62" x2="281" y2="56"></line><line class="ext" x1="312" y1="214" x2="327" y2="208"></line><line x1="279" y1="57" x2="325" y2="209"></line><path d="M276 64 L279 57 L284 62 M320 203 L325 209 L327 201"></path><circle cx="302" cy="133" r="13"></circle><text x="302" y="133">D</text></g>
-</g>
-</svg>
-<img class="flat flat-photo" data-product="gilet-photo" src="assets/patron-gilet-v2.webp" alt="Gilet avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" width="725" height="800" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="veste" src="assets/patron-veste.webp" alt="Veste avec les mesures A (largeur poitrine), B (longueur), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="doudoune" src="assets/patron-doudoune.webp" width="783" height="820" alt="Doudoune avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="gilet-photo" src="assets/patron-gilet-v3.webp" alt="Gilet avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" width="477" height="820" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="gilet-fin" src="assets/patron-ultra-fin.webp" width="587" height="820" alt="Gilet ultra fin avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="parka" src="assets/patron-parka.webp" width="773" height="820" alt="Parka avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="softshell" src="assets/patron-softshell.webp" width="716" height="820" alt="Softshell avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="sweat" src="assets/patron-sweat.webp" width="783" height="820" alt="Sweat à capuche avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="gilet-camouflage" src="assets/patron-camouflage.webp" width="556" height="820" alt="Gilet camouflage avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="gilet-bicolore" src="assets/patron-bicolore.webp" width="510" height="820" alt="Gilet bicolore avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="veste-polaire" src="assets/patron-veste-polaire.webp" width="776" height="820" alt="Veste polaire avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="gilet-capuche" src="assets/patron-gilet-capuche.webp" width="522" height="820" alt="Gilet avec capuche avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="veste" src="assets/patron-veste-v3.webp" width="771" height="820" alt="Veste avec les mesures A (largeur poitrine), B (longueur), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
 <table class="size-table" id="size-table">
@@ -1293,7 +1415,7 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
     curtainBand.style.transform=lift?'translateY('+(-lift)+'px)':'';
     var top=curtainBand.getBoundingClientRect().top;
     var t=(vhh-bh-top)/Math.max(vhh-bh-hh,1); t=Math.min(Math.max(t,0),1);
-    curtainBand.style.backgroundColor='rgba(0,0,0,'+t.toFixed(3)+')'; curtainBand.firstElementChild.style.opacity=t.toFixed(3); }
+    curtainBand.style.backgroundColor='rgba(18,63,114,'+t.toFixed(3)+')'; curtainBand.firstElementChild.style.opacity=t.toFixed(3); }
   var lastW=window.innerWidth; window.addEventListener('resize',function(){if(window.innerWidth!==lastW){lastW=window.innerWidth;layout()}bandFade()}); window.addEventListener('orientationchange',function(){setTimeout(layout,250)}); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout); window.addEventListener('load',layout); layout(); bandFade();
   var ticking=false; window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){place();videoState();bandFade();ticking=false})}},{passive:true});
 })();
@@ -1321,29 +1443,63 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
 /* ===== Guide des tailles : remplacez les null par vos mesures en cm ===== */
 // Une entrée par article. "flat" = le patron affiché (gilet sans manches, ou doudoune avec manches).
 // Remplacez les null par les mesures en cm.
+  var SIZE_NOTE='<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div>';
 var SIZE_GUIDE = {
-  'gilet': { name: 'GILET', flat: 'gilet-photo', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'gilet': { name: 'GILET DOUDOUNE', flat: 'gilet-photo', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] },
-  'gilet-fin': { name: 'GILET FIN', flat: 'gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe :</strong> prenez votre taille habituelle.</li><li><strong>Une taille pour trois :</strong> chaque taille couvre trois tailles standard (par exemple S, M et L).</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S – L','XL – 3XL','4XL – 6XL','7XL – 9XL'], rows: [
+  'gilet-fin': { name: 'GILET ULTRA FIN', flat: 'gilet-fin', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe :</strong> prenez votre taille habituelle.</li><li><strong>Une taille pour trois :</strong> chaque taille couvre trois tailles standard (par exemple S, M et L).</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S – L','XL – 3XL','4XL – 6XL','7XL – 9XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['53 cm','58 cm','63 cm','68 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['67 cm','72 cm','76 cm','80 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['44 cm','46 cm','48 cm','50 cm'] } ] },
-  'gilet-polaire': { name: 'GILET POLAIRE', flat: 'gilet', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: ['55 cm','57 cm','59 cm','61 cm','63 cm','65 cm','67 cm','69 cm'] },
-    { k: 'B', label: 'Longueur dos',     values: ['67 cm','69 cm','71 cm','73 cm','75 cm','77 cm','79 cm','81 cm'] },
-    { k: 'C', label: 'Largeur épaules',  values: ['46 cm','47 cm','48 cm','49 cm','50 cm','51 cm','52 cm','53 cm'] } ] },
   'doudoune': { name: 'DOUDOUNE', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm','66 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['58 cm','59 cm','60 cm','61 cm','64 cm','66 cm','67 cm','68 cm','69 cm'] } ] },
-  'veste': { name: 'VESTE', flat: 'veste', note: '<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div>', tol: '<p class="size-tol">Tolérance : 1 à 3 cm, mesures prises à la main.</p>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
+  'veste': { name: 'LA VESTE', flat: 'veste', note: '<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div>', tol: '<p class="size-tol">Tolérance : 1 à 3 cm, mesures prises à la main.</p>', sizes: ['M','L','XL','XXL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','65 cm','68 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },
-    { k: 'D', label: 'Longueur manche',   values: ['59 cm','61 cm','62 cm','63 cm','64 cm','66 cm','66 cm','67 cm'] } ] }
+    { k: 'D', label: 'Longueur manche',   values: ['59 cm','61 cm','62 cm','63 cm','64 cm','66 cm','66 cm','67 cm'] } ] },
+  'parka': { name: 'PARKA HOMME', flat: 'parka', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
+    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
+  'parka-femme': { name: 'PARKA FEMME', flat: 'parka', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
+    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
+  'softshell': { name: 'SOFTSHELL', flat: 'softshell', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
+    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
+  'veste-polaire': { name: 'VESTE POLAIRE', flat: 'veste-polaire', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
+    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
+  'sweat': { name: 'SWEET', flat: 'sweat', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
+    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
+  'gilet-capuche': { name: 'GILET AVEC CAPUCHE', flat: 'gilet-capuche', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
+  'gilet-camouflage': { name: 'GILET CAMOUFLAGE', flat: 'gilet-camouflage', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
+  'gilet-bicolore': { name: 'GILET BICOLORE', flat: 'gilet-bicolore', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] }
 };
 (function(){
   var head=document.getElementById('size-head'), body=document.getElementById('size-body'), label=document.getElementById('patron-label');
@@ -1356,7 +1512,7 @@ var SIZE_GUIDE = {
   function render(){
     var g=SIZE_GUIDE[current];
     label.textContent='Patron · '+g.name;
-    var sn=document.getElementById('size-note'); if(sn) sn.innerHTML=g.note||''; var st=document.getElementById('size-tol'); if(st) st.innerHTML=g.tol||'';
+    var sn=document.getElementById('size-note'); if(sn) sn.innerHTML=SIZE_NOTE; var st=document.getElementById('size-tol'); if(st) st.innerHTML=g.tol||'';
     flats.forEach(function(f){if(f.dataset.product===g.flat)f.removeAttribute('hidden');else f.setAttribute('hidden','')});
     head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){
       return '<th scope="col" data-k="'+r.k+'"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
@@ -1368,15 +1524,16 @@ var SIZE_GUIDE = {
   }
   render();
   // Roue de sélection (défilement vertical façon iPhone)
-  var list=document.querySelector('.wheel-list'), opts=[].slice.call(list.children), ITEM=38, idx=0, raf=0, settle=0;
+  var list=document.querySelector('.wheel-list'), opts=[].slice.call(list.children), ITEM=(opts[0]&&opts[0].offsetWidth)||150, idx=0, raf=0, settle=0;
   function paint(){raf=0;
-    var mid=list.scrollTop+list.clientHeight/2;
+    ITEM=(opts[0]&&opts[0].offsetWidth)||ITEM;
+    var mid=list.scrollLeft+list.clientWidth/2;
     opts.forEach(function(li){
-      var d=(li.offsetTop+ITEM/2-mid)/ITEM, a=Math.max(-3,Math.min(3,d));
-      li.style.transform='perspective(420px) rotateX('+(-a*28)+'deg) scale('+(1-Math.abs(a)*0.06)+')';
+      var d=(li.offsetLeft+ITEM/2-mid)/ITEM, a=Math.max(-3,Math.min(3,d));
+      li.style.transform='perspective(520px) rotateY('+(a*32)+'deg) scale('+(1-Math.abs(a)*0.08)+')';
       li.style.opacity=String(Math.max(0.25,1-Math.abs(a)*0.3));
     });
-    var n=Math.max(0,Math.min(opts.length-1,Math.round(list.scrollTop/ITEM)));
+    var n=Math.max(0,Math.min(opts.length-1,Math.round(list.scrollLeft/ITEM)));
     if(n!==idx){idx=n;opts.forEach(function(li,i){li.setAttribute('aria-selected',i===n?'true':'false')})}
   }
   var hinting=false;
@@ -1385,18 +1542,20 @@ var SIZE_GUIDE = {
     if(!raf)raf=requestAnimationFrame(paint);
     clearTimeout(settle); settle=setTimeout(choose,140);
   },{passive:true});
-  function go(i,smooth){i=Math.max(0,Math.min(opts.length-1,i));list.scrollTo({top:i*ITEM,behavior:smooth?'smooth':'auto'})}
+  function go(i,smooth){i=Math.max(0,Math.min(opts.length-1,i));list.scrollTo({left:i*ITEM,behavior:smooth?'smooth':'auto'})}
   // petites flèches haut / bas pour parcourir les articles
   var arrows=document.querySelectorAll('.wheel-arrow');
   var tgt=null,tgtT=0;
   arrows.forEach(function(b){b.addEventListener('click',function(){touched=true;hinting=false;tgt=Math.max(0,Math.min(opts.length-1,(tgt==null?idx:tgt)+parseInt(b.dataset.dir,10)));go(tgt,true);clearTimeout(tgtT);tgtT=setTimeout(function(){tgt=null},700)})});
-  function arrowState(){arrows.forEach(function(b){var d=parseInt(b.dataset.dir,10);b.disabled=(d<0&&idx<=0)||(d>0&&idx>=opts.length-1)})}
+  document.querySelectorAll('.pt-nav').forEach(function(b){b.addEventListener('click',function(){var w=document.querySelector('.wheel-arrow[data-dir="'+b.dataset.dir+'"]'); if(w&&!w.disabled) w.click();})});
+  function arrowState(){arrows.forEach(function(b){var d=parseInt(b.dataset.dir,10);b.disabled=(d<0&&idx<=0)||(d>0&&idx>=opts.length-1)});
+    document.querySelectorAll('.pt-nav').forEach(function(b){var d=parseInt(b.dataset.dir,10);b.disabled=(d<0&&idx<=0)||(d>0&&idx>=opts.length-1)})}
   list.addEventListener('scroll',function(){requestAnimationFrame(arrowState)},{passive:true});
   setTimeout(arrowState,50);
   opts.forEach(function(li,i){li.addEventListener('click',function(){go(i,true)})});
   list.addEventListener('keydown',function(e){
-    if(e.key==='ArrowDown'){e.preventDefault();go(idx+1,true)}
-    else if(e.key==='ArrowUp'){e.preventDefault();go(idx-1,true)}
+    if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(idx+1,true)}
+    else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(idx-1,true)}
   });
   // Départ sur l'article du milieu
   idx=Math.floor(opts.length/2);
@@ -1546,6 +1705,40 @@ var SIZE_GUIDE = {
       else v.pause();
     },{threshold:0}).observe(sec);
   });
+})();
+</script>
+<script>
+/* Chiffres de la batterie : compteur qui monte (capacité, charge) ou descend (poids) à l'apparition */
+(function(){
+  var els=[].slice.call(document.querySelectorAll('.bv-count')); if(!els.length) return;
+  function fmt(v,dec){ return v.toLocaleString('fr-FR',{minimumFractionDigits:dec,maximumFractionDigits:dec}).replace(/\u202f/g,'\u00a0'); }
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function run(el){
+    var a=parseFloat(el.dataset.from), b=parseFloat(el.dataset.to), dec=+el.dataset.dec, D=1800, t0=null;
+    function step(t){ if(!t0) t0=t; var k=Math.min(1,(t-t0)/D), e=1-Math.pow(1-k,3);
+      el.textContent=fmt(a+(b-a)*e,dec); if(k<1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  if(reduce||!('IntersectionObserver' in window)) return;
+  els.forEach(function(el){ el.textContent=fmt(parseFloat(el.dataset.from),+el.dataset.dec); });
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } }); },{threshold:.6});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<script>
+/* Flèches latérales du patron : toujours centrées sur le dessin affiché */
+(function(){
+  function place(){ var f=[].slice.call(document.querySelectorAll('#tailles .flat')).filter(function(x){return getComputedStyle(x).display!=='none'})[0]; if(!f) return;
+    var t=f.offsetTop+f.offsetHeight/2; document.querySelectorAll('.pt-nav').forEach(function(b){b.style.top=t+'px'});
+    /* Table des mesures : centrée verticalement sur le dessin quand elle est à droite */
+    var col=f.closest('.pt-col'), w=document.querySelector('#tailles .table-scroll'); if(!col||!w) return;
+    var m=parseFloat(w.style.marginTop)||0, beside=Math.abs((w.offsetTop-m)-col.offsetTop)<30;
+    w.style.marginTop=beside?Math.max(0,Math.round(col.offsetTop+t-w.offsetHeight/2-col.offsetTop))+'px':'0px'; }
+  window.addEventListener('resize',place); window.addEventListener('load',place);
+  document.querySelectorAll('#tailles .flat').forEach(function(f){ if(f.tagName==='IMG') f.addEventListener('load',place); });
+  new MutationObserver(place).observe(document.getElementById('tailles'),{subtree:true,attributes:true,attributeFilter:['hidden']});
+  new MutationObserver(function(){setTimeout(place,30)}).observe(document.getElementById('size-table'),{subtree:true,childList:true});
+  place();
 })();
 </script>
 </body>
