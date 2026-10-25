@@ -80,6 +80,12 @@
   // D'après le texte alternatif saisi dans Shopify, sinon le nom du fichier.
   var MODEL_RE = /portrait|mod[eè]le|homme|femme|couple|duo|senior|souriant|port[eé]e?\b|lifestyle/i;
   var TECH_RE = /infograph|guide|zone|niveau|fonctionnal|d[eé]tail|finition|lavable|lavage|poche|bouton|taille|captur|sch[eé]ma/i;
+  // Photo prise en caméra thermique : défile avec les autres, avec la mention « Carte thermique »
+  var THERMAL_RE = /thermique|thermal|infrarouge/i;
+  function isThermalPhoto(src, alt) {
+    var f = ''; try { f = decodeURIComponent(String(src || '').split('?')[0].split('/').pop()); } catch (e) { f = String(src || ''); }
+    return THERMAL_RE.test((alt || '') + ' ' + f.replace(/[_-]+/g, ' '));
+  }
   function isModelPhoto(src, alt) {
     var f = ''; try { f = decodeURIComponent(String(src || '').split('?')[0].split('/').pop()); } catch (e) { f = String(src || ''); }
     var t = (alt || '') + ' ' + f.replace(/[_-]+/g, ' ');
@@ -118,12 +124,18 @@
   function mediaList(p) {
     var out = [];
     ((p.media && p.media.nodes) || []).forEach(function (m) {
-      if (m.mediaContentType === 'IMAGE' && m.image) out.push({ type: 'image', src: m.image.url, alt: m.image.altText || m.alt || p.title, model: isModelPhoto(m.image.url, m.image.altText || m.alt), rawAlt: m.image.altText || m.alt || '' });
+      if (m.mediaContentType === 'IMAGE' && m.image) out.push({ type: 'image', src: m.image.url, alt: m.image.altText || m.alt || p.title, model: isModelPhoto(m.image.url, m.image.altText || m.alt), thermal: isThermalPhoto(m.image.url, m.image.altText || m.alt) && !isTechPhoto(m.image.url, m.image.altText || m.alt), rawAlt: m.image.altText || m.alt || '' });
       else if (m.mediaContentType === 'VIDEO' && m.sources && m.sources.length) {
         var mp4 = m.sources.filter(function (s) { return /mp4/.test(s.mimeType); }).sort(function (a, b) { return (b.height || 0) - (a.height || 0); });
         var best = mp4.filter(function (s) { return (s.height || 0) <= 1080; })[0] || mp4[mp4.length - 1] || m.sources[0];
         out.push({ type: 'video', src: best.url, poster: m.previewImage && m.previewImage.url, alt: m.alt || p.title });
       }
+    });
+    // photos thermiques : vue de devant / vue de dos (d'après le nom ou le texte alternatif, sinon l'ordre : 1re devant, 2e dos)
+    var th = out.filter(function (x) { return x.thermal; });
+    th.forEach(function (x, k) {
+      var t = (x.rawAlt || '') + ' ' + String(x.src).split('?')[0].split('/').pop().replace(/[_-]+/g, ' ');
+      x.view = /\b(dos|arri[eè]re|back)\b/i.test(t) ? 'Vue de dos' : /\b(devant|face|front)\b/i.test(t) ? 'Vue de devant' : (k % 2 ? 'Vue de dos' : 'Vue de devant');
     });
     if (!out.length && p.featuredImage) out.push({ type: 'image', src: p.featuredImage.url, alt: p.featuredImage.altText || p.title });
     return out;
@@ -251,6 +263,11 @@
     '.pc-car > .pc-car-base{object-fit:contain !important;object-position:center}' +
     '.pc-car > video,.pc-car > .pc-car-base{transition:opacity .35s ease}' +
     '.pc-car > .is-off{opacity:0 !important}' +
+    '.pc-thermal{position:absolute;left:50%;bottom:0;margin-left:0;white-space:nowrap;translate:-50% 0;z-index:4;display:inline-flex;align-items:center;gap:6px;padding:3px 9px;background:#FFD23F;color:#14212B;font:700 9.5px/1.2 Manrope,Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;pointer-events:none;opacity:0;transition:opacity .15s ease}' +
+    '.pc-thermal::before{content:"";width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,#FFE14D,#FF7A1A 45%,#D61F6B 75%,#5A1FA8)}' +
+    '.pc-thermal.is-on{opacity:1}' +
+    '.pc-view{position:absolute;left:10px;top:10px;z-index:4;padding:4px 9px;background:rgba(14,20,26,.78);color:#fff;font:500 10.5px/1.2 Manrope,Arial,sans-serif;letter-spacing:.04em;pointer-events:none;opacity:0;transition:opacity .15s ease}' +
+    '.pc-view.is-on{opacity:1}' +
     '.pc-car-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transition:opacity .35s ease;pointer-events:none}' +
     '.pc-car-slide.is-on{opacity:1}' +
     '.pc-dots{display:none !important}' +
@@ -480,7 +497,7 @@
             var pick = packs.length ? packs : imgs.filter(function (x) { return !isTechPhoto(x.src, x.rawAlt); });
             if (!pick.length) pick = imgs;
             // toutes les photos restent accessibles aux flèches ; seules celles retenues défilent toutes seules
-            var all = imgs.map(function (x) { return Object.assign({}, x, { auto: pick.indexOf(x) > -1 }); });
+            var all = imgs.map(function (x) { return Object.assign({}, x, { auto: pick.indexOf(x) > -1 || !!x.thermal }); });
             var first = 0; all.some(function (x, k) { if (x.auto) { first = k; return true; } });
             if (ph.isConnected) cardCarousel(ph, all, false, first ? { start: first } : undefined);
           });
@@ -783,6 +800,16 @@
       else im.className = 'pc-car-base';
       box.appendChild(im); slides.push(im);
     });
+    // mention par-dessus les photos prises en caméra thermique
+    var thermTag = null, viewTag = null;
+    if (imgs.some(function (it) { return it.thermal; })) {
+      thermTag = document.createElement('span'); thermTag.className = 'pc-thermal'; thermTag.textContent = 'Carte thermique';
+      box.appendChild(thermTag);
+      viewTag = document.createElement('span'); viewTag.className = 'pc-view'; box.appendChild(viewTag);
+    }
+    function tagFor(k) { if (!thermTag) return; var it = imgs[k - (hasVideo ? 1 : 0)]; thermTag.classList.toggle('is-on', !!(it && it.thermal)); if (it && it.thermal) viewTag.textContent = it.view || ''; viewTag.classList.toggle('is-on', !!(it && it.thermal && it.view)); }
+    tagFor(0);
+    var tagTimer = 0;
     if (slides.length < 2) return box;
     var cur = 0, dots = document.createElement('div'); dots.className = 'pc-dots'; dots.setAttribute('aria-hidden', 'true');
     slides.forEach(function (_, k) { var d = document.createElement('span'); if (!k) d.className = 'is-on'; dots.appendChild(d); });
@@ -809,6 +836,9 @@
       if (opts.noLoop) { var pv = box.querySelector('.pc-arrow-prev'), nx = box.querySelector('.pc-arrow-next'); if (pv) pv.hidden = cur === 0; if (nx) nx.hidden = cur === slides.length - 1; }
       slides.forEach(function (sl, k) { if (k) sl.classList.toggle('is-on', k === cur); else sl.classList.toggle('is-off', cur !== 0); });
       [].slice.call(dots.children).forEach(function (d, k) { d.classList.toggle('is-on', k === cur); });
+      // pendant la rotation, les mentions changent à mi-parcours, quand la nouvelle photo prend le dessus
+      clearTimeout(tagTimer);
+      if (from !== cur && autoMove && !reduceMo) { var c0 = cur; tagTimer = setTimeout(function () { tagFor(c0); }, 500); } else tagFor(cur);
       if (opts.onChange) opts.onChange(cur);
       if (hasVideo) { if (cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } else first.pause(); }
       if (from !== cur && autoMove) prism(from, cur, dir);
