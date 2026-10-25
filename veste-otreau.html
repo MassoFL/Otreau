@@ -3,6 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Écran d'attente de la page produit : le logo s'affiche tant que les données Shopify ne sont pas chargées -->
+<style>
+html.pd-loading body::before{content:"Otreau\2122";position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#F8F6F1;color:#14212B;font:800 34px/1 Manrope,Arial,sans-serif;letter-spacing:-.02em;animation:pdPulse 1.4s ease-in-out infinite;transition:opacity .4s ease}
+html.pd-loading.pd-ready body::before{opacity:0;animation:none}
+html.pd-loading body{overflow:hidden}
+html.pd-loading.pd-ready body{overflow:auto}
+@keyframes pdPulse{0%,100%{color:rgba(20,33,43,1)}50%{color:rgba(20,33,43,.35)}}
+@media (prefers-reduced-motion:reduce){html.pd-loading body::before{animation:none}}
+</style>
+<script>document.documentElement.classList.add('pd-loading');setTimeout(function(){var h=document.documentElement;h.classList.add('pd-ready');setTimeout(function(){h.classList.remove('pd-loading','pd-ready')},450)},8000);</script>
 <title>Veste chauffante | Otreau</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500&amp;family=Instrument+Serif:ital@1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">

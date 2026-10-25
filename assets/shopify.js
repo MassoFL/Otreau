@@ -419,6 +419,11 @@
 
   /* ---------- page produit ---------- */
   var pdInfo = document.querySelector('[data-shopify-handle]');
+  // retire l'écran d'attente (logo) une fois la page produit remplie avec les vraies données
+  function pdReady() {
+    var h = document.documentElement; if (!h.classList.contains('pd-loading')) return;
+    requestAnimationFrame(function () { h.classList.add('pd-ready'); setTimeout(function () { h.classList.remove('pd-loading', 'pd-ready'); }, 450); });
+  }
   if (pdInfo && handles.indexOf(pdInfo.dataset.shopifyHandle) < 0) handles.push(pdInfo.dataset.shopifyHandle);
 
   // Accueil : toute la collection vient de Shopify. Chaque produit publié reçoit sa carte
@@ -522,11 +527,11 @@
         }).join('');
       }
     });
-    if (pdInfo) initProductPage(map[pdInfo.dataset.shopifyHandle]);
+    if (pdInfo) { try { initProductPage(map[pdInfo.dataset.shopifyHandle]); } finally { pdReady(); } }
   }).catch(function (e) {
     shopDone();
     if (window.console) console.warn('[Otreau] Shopify indisponible :', e.message);
-    if (pdInfo) initProductPage(null);
+    if (pdInfo) { try { initProductPage(null); } finally { pdReady(); } }
   });
 
   function initProductPage(p) {
