@@ -364,6 +364,7 @@
       '.pd-gallery.has-story .pd-story-l strong{font-size:12.5px !important;font-weight:600 !important;white-space:nowrap}' +
     '}' +
     '.pd-story-m{display:none}' +
+    '.pd-main{touch-action:pan-y}.pd-main .pd-peek{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;display:block;z-index:1;pointer-events:none;will-change:transform}.pd-main > img{will-change:transform}' +
     '.pd-cap{display:flex;justify-content:center;margin:12px 0 2px}.pd-cap[hidden]{display:none}' +
     '.pd-cap-n{font:500 11.5px/1 \'DM Mono\',monospace;letter-spacing:.2em;color:#8A6A3B}' +
     'svg.pd-cover-big{display:block;height:calc(clamp(30px,3vw,42px) * .873);margin:0;width:auto;overflow:visible}' +
@@ -1269,12 +1270,48 @@
         a.addEventListener('click', function () { render((cur + (dir === 'prev' ? -1 : 1) + items.length) % items.length); });
         main.appendChild(a);
       });
-      var x0 = null;
-      main.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-      main.addEventListener('touchend', function (e) {
-        if (x0 == null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
-        if (Math.abs(dx) > 40) render((cur + (dx > 0 ? -1 : 1) + items.length) % items.length);
+      // Balayage au doigt : la photo suit le doigt, la suivante (ou la précédente) arrive à côté
+      var x0 = null, y0 = 0, dx = 0, axis = null, peek = null, peekDir = 0, t0 = 0, busy = false;
+      function curNode() { return main.querySelector(':scope > img, :scope > video'); }
+      function srcOf(k) { var it = items[k]; return it.type === 'video' ? (it.poster ? sized(it.poster, 1200) : '') : sized(it.src, 1400); }
+      function setPeek(dir) {
+        if (peekDir === dir && peek) return;
+        if (peek) { peek.remove(); peek = null; }
+        peekDir = dir; if (!dir) return;
+        var k = (cur + dir + items.length) % items.length, src = srcOf(k); if (!src) return;
+        peek = document.createElement('img'); peek.src = src; peek.alt = ''; peek.className = 'pd-peek';
+        main.appendChild(peek);
+      }
+      function place(x, anim) {
+        var n = curNode(), W = main.clientWidth, tr = anim ? 'transform .28s cubic-bezier(.2,.7,.2,1)' : 'none';
+        if (n) { n.style.transition = tr; n.style.transform = 'translate3d(' + x + 'px,0,0)'; }
+        if (peek) { peek.style.transition = tr; peek.style.transform = 'translate3d(' + (x + (peekDir > 0 ? W : -W)) + 'px,0,0)'; }
+      }
+      main.addEventListener('touchstart', function (e) {
+        if (busy || items.length < 2) return;
+        x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; dx = 0; axis = null; t0 = Date.now();
       }, { passive: true });
+      main.addEventListener('touchmove', function (e) {
+        if (x0 == null) return;
+        var mx = e.touches[0].clientX - x0, my = e.touches[0].clientY - y0;
+        if (!axis) { if (Math.abs(mx) < 6 && Math.abs(my) < 6) return; axis = Math.abs(mx) > Math.abs(my) ? 'x' : 'y'; }
+        if (axis !== 'x') return;
+        if (e.cancelable) e.preventDefault();
+        dx = mx; setPeek(dx < 0 ? 1 : dx > 0 ? -1 : 0); place(dx, false);
+      }, { passive: false });
+      function end() {
+        if (x0 == null) return; x0 = null;
+        if (axis !== 'x') return;
+        var W = main.clientWidth, fast = Math.abs(dx) > 30 && Date.now() - t0 < 250;
+        if ((Math.abs(dx) > W * 0.22 || fast) && peek) {
+          var dir = dx < 0 ? 1 : -1; busy = true; place(dir > 0 ? -W : W, true);
+          setTimeout(function () { var p = peek; peek = null; peekDir = 0; render((cur + dir + items.length) % items.length); if (p) p.remove(); busy = false; }, 280);
+        } else {
+          place(0, true); setTimeout(function () { setPeek(0); var n = curNode(); if (n) { n.style.transform = ''; n.style.transition = ''; } }, 280);
+        }
+      }
+      main.addEventListener('touchend', end, { passive: true });
+      main.addEventListener('touchcancel', end, { passive: true });
     }
     // flèches et numéro : visibles quand on touche/clique la photo, masqués dès qu'on clique ailleurs
     main.addEventListener('click', function () { main.classList.add('is-ui'); });
