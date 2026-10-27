@@ -312,9 +312,17 @@
     '.pd-story{text-align:center}.pd-story-p{margin-left:auto !important;margin-right:auto !important}.pd-story-l{width:fit-content;max-width:100%;margin-left:auto !important;margin-right:auto !important;text-align:left}' +
     '@media (min-width:1360px){' +
       'main.pd:has(.pd-gallery.has-story){max-width:1880px;padding-left:24px !important;padding-right:24px !important}' +
-      'main.pd .pd-top:has(> .pd-gallery.has-story){position:relative;grid-template-columns:clamp(300px,22vw,420px) minmax(0,1fr) minmax(490px,clamp(490px,27vw,560px)) !important;grid-template-rows:auto auto auto 1fr !important;grid-template-areas:"story main info" ". cap info" ". thumbs info" ". . info" !important;column-gap:clamp(22px,1.8vw,36px) !important;row-gap:12px !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story){position:relative;grid-template-columns:clamp(300px,22vw,420px) minmax(0,1fr) minmax(490px,clamp(490px,27vw,560px)) !important;grid-template-rows:auto auto auto !important;grid-template-areas:"story main info" ". cap info" ". thumbs info" !important;column-gap:clamp(22px,1.8vw,36px) !important;row-gap:12px !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info{grid-area:info;order:0 !important;padding-left:30px}' +
-      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-title{font-size:clamp(44px,3.4vw,66px) !important;line-height:1 !important;letter-spacing:-.02em}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-trust-tab{padding:8px 4px !important;gap:5px !important}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-trust-tab svg{width:21px;height:21px}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-trust-panel{margin-top:6px !important;padding:12px 16px !important;font-size:13.5px !important;line-height:1.5 !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-faq-row .pd-q{font-size:14px !important;line-height:1.25 !important}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-faq-row .pd-a{font-size:13px !important;line-height:1.35 !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-size-field .pd-size-link{margin-top:2px !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) + .pd-details{margin-top:clamp(36px,3vw,56px) !important}' +
+      'main.pd .pd-top > .pd-info.is-fit{display:flex;flex-direction:column;justify-content:space-between;row-gap:2px;align-self:start}' +
+      'main.pd .pd-top > .pd-info.is-fit > *{margin-top:0 !important;margin-bottom:0 !important;flex:none}' +
+      'main.pd .pd-top > .pd-info.is-fit > [hidden],main.pd .pd-top > .pd-info.is-fit > .oc-msg[hidden]{display:none !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-title{font-size:clamp(44px,3.4vw,66px) !important;line-height:.92 !important;letter-spacing:-.02em}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-price{margin:14px 0 24px !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-batt-field{margin-top:0 !important}' +
       '.pd-gallery.has-story{display:contents !important}' +
@@ -340,6 +348,19 @@
     '.pd-gallery.story-tight .pd-story-p{display:none}.pd-gallery.story-tight .pd-story-l{margin-top:14px;gap:8px}.pd-gallery.story-tight .pd-story-l small{font-size:12px}' +
     '.pd-gallery.has-story.story-below{margin-left:0;padding-left:0;grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "cap" "thumbs" "story"}.pd-gallery.story-below > .pd-story{margin-top:18px;align-self:start}.pd-gallery.story-below .pd-story-p{display:block;max-width:none}' +
     '@media (max-width:900px){.pd-gallery.has-story{position:relative !important;top:auto !important}.pd-gallery.has-story > .pd-arrow-prev{left:4px !important}.pd-gallery.has-story > .pd-arrow-next{right:4px !important}.pd-gallery.has-story{margin-left:0;padding-left:0;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"main" "cap" "thumbs" "story"}.pd-gallery.has-story > .pd-story{margin-top:18px;align-self:start}.pd-story-p{max-width:none}}' +
+    '.pd-trust-panel{background:transparent !important;border:0 !important;box-shadow:none !important}' +
+    '.pd-crumb{display:none !important}' +
+    '@media (max-width:900px){' +
+      '.pd-gallery.has-story{grid-template-areas:"story" "main" "cap" "thumbs" !important}' +
+      '.pd-gallery.has-story > .pd-story{margin:0 0 10px !important;align-self:start}' +
+      '.pd-gallery.has-story .pd-story-h{min-height:0 !important;font-size:20px !important;line-height:1.15 !important;font-weight:600 !important}' +
+      '.pd-gallery.has-story .pd-story-p{display:none !important}' +
+      '.pd-gallery.has-story .pd-story-l{margin:8px auto 0 !important;width:100% !important;display:flex !important;flex-flow:row wrap !important;justify-content:center;gap:4px 14px !important;min-height:2.9em;align-content:flex-start}' +
+      '.pd-gallery.has-story .pd-story-l li{height:auto !important;display:inline-flex !important;align-items:center !important;gap:6px !important}' +
+      '.pd-gallery.has-story .pd-story-l li::before{content:"" !important;width:4px;height:4px;border-radius:50%;background:#D9792B;flex:none}' +
+      '.pd-gallery.has-story .pd-story-l small{display:none !important}' +
+      '.pd-gallery.has-story .pd-story-l strong{font-size:12.5px !important;font-weight:600 !important;white-space:nowrap}' +
+    '}' +
     '.pd-cap{display:flex;justify-content:center;margin:12px 0 2px}.pd-cap[hidden]{display:none}' +
     '.pd-cap-n{font:500 11.5px/1 \'DM Mono\',monospace;letter-spacing:.2em;color:#8A6A3B}' +
     'svg.pd-cover-big{display:block;height:calc(clamp(30px,3vw,42px) * .873);margin:0;width:auto;overflow:visible}' +
@@ -645,6 +666,19 @@
     }
   };
   var STORY_TEXT = 'Une chaleur ciblée et homogène pour rester au chaud, par tous les temps.';
+  // Détails visibles sur la photo des finitions (4 zooms), par produit
+  var FINITIONS = {
+    'veste-otreau': { h: 'Les finitions', p: 'Quatre détails pensés pour tenir chaud et durer.', items: [
+      { t: 'Capuche ajustable', d: 'Cordons de serrage pour la fermer au vent' },
+      { t: 'Poignets élastiqués', d: 'Le froid reste dehors, la chaleur dedans' },
+      { t: 'Bouton de chaleur', d: 'Sur la poitrine, à portée de main' },
+      { t: 'Fermeture zippée', d: 'Zip intégral jusqu’au col montant' } ] },
+    'gilet': { h: 'Les finitions', p: 'Quatre détails pensés pour tenir chaud et durer.', items: [
+      { t: 'Col montant zippé', d: 'Protège le cou du vent' },
+      { t: 'Matelassage en diagonale', d: 'Le garnissage reste bien réparti' },
+      { t: 'Boutons de commande', d: 'Sur la poitrine, à portée de main' },
+      { t: 'Poches zippées', d: 'Vos affaires restent en place' } ] }
+  };
   // Températures des niveaux de chaleur (seulement quand elles sont connues pour le produit)
   var LEVEL_TEMPS = { 'veste-otreau': ['voyant bleu · 40 – 45 °C', 'voyant blanc · 45 – 50 °C', 'voyant rouge · 50 – 55 °C'] };
   // Contenu du bloc de gauche selon la photo affichée
@@ -661,6 +695,8 @@
       { ico: 'wash', t: 'Programme délicat', d: '30 °C max., dans un filet de lavage, lessive douce' },
       { ico: 'air', t: 'Séchage à l’air libre', d: 'Ni essorage, ni repassage, ni javel' },
       { ico: 'drop', t: 'Tissu déperlant', d: 'La pluie fine et les éclaboussures glissent' } ] };
+    // Photo « finitions » (4 zooms sur les détails) : contenu propre à chaque produit
+    if (/finition|d[eé]tails? (raffin|ingenieu|premium)/i.test(f)) { var fz = FINITIONS[h] || FINITIONS[base]; if (fz) return fz; }
     if (/batterie|powerbank/i.test(f)) return { h: 'Batterie 20 000 mAh', p: 'Une seule charge pour toute votre journée dehors.', items: [
       { ico: 'clock', t: 'Jusqu’à 10 h d’autonomie', d: 'Selon le niveau de chaleur choisi' },
       { ico: 'bolt', t: 'Charge rapide 22,5 W', d: 'Compatible PD et QC' },
@@ -726,6 +762,20 @@
     }
     pos(); window.addEventListener('resize', pos); window.addEventListener('load', pos);
     if (window.ResizeObserver) new ResizeObserver(pos).observe(gal);
+    // Bloc d'achat (titre → onglets) : réparti pour finir exactement au niveau du bas des miniatures
+    var info = document.querySelector('.pd-top > .pd-info'), thumbs = gal.querySelector('.pd-thumbs');
+    function fitInfo() {
+      if (!info || !thumbs) return;
+      info.classList.remove('is-fit'); info.style.height = '';
+      if (getComputedStyle(gal).display !== 'contents') return;
+      // on mesure la colonne photo sans l'influence du bloc d'achat (hauteur 0 le temps de la mesure)
+      info.classList.add('is-fit'); info.style.height = '0px'; info.style.overflow = 'hidden';
+      var top = info.getBoundingClientRect().top, target = thumbs.getBoundingClientRect().bottom - top, need = info.scrollHeight;
+      info.style.overflow = '';
+      if (need > target + 1) { info.classList.remove('is-fit'); info.style.height = ''; } else info.style.height = target + 'px';
+    }
+    fitInfo(); window.addEventListener('resize', fitInfo); window.addEventListener('load', fitInfo);
+    if (window.ResizeObserver) { var ro = new ResizeObserver(function () { requestAnimationFrame(fitInfo); }); ro.observe(thumbs); var tp = info && info.querySelector('.pd-trust-panel'); if (tp) ro.observe(tp); }
   }
   function initProductPage(p) {
     if (pdInfo) buildStory(pdInfo.dataset.shopifyHandle);
