@@ -372,6 +372,7 @@
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > .pd-story{order:1}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > .pd-main{order:2}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > .pd-cap{order:3;margin:10px 0 0 !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > .pd-thumbs{display:none !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-price{order:4;margin:4px 0 20px !important;text-align:center}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-price{position:relative}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-price .ttc{position:absolute;margin-left:.35em;bottom:.28em;white-space:nowrap}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > *{order:5}' +
     '}' +
     '.pd-cap{display:flex;justify-content:center;margin:12px 0 2px}.pd-cap[hidden]{display:none}' +
