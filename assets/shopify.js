@@ -355,13 +355,15 @@
       '.pd-gallery.has-story{grid-template-areas:"story" "main" "cap" "thumbs" !important}' +
       '.pd-gallery.has-story > .pd-story{margin:0 0 2px !important;align-self:start}' +
       '.pd-gallery.has-story .pd-story-h{min-height:0 !important;font-size:20px !important;line-height:1.15 !important;font-weight:600 !important}' +
-      '.pd-gallery.has-story .pd-story-p{display:none !important}' +
+      '.pd-gallery.has-story .pd-story-p,.pd-gallery.has-story > .pd-story > .pd-story-l{display:none !important}' +
+      '.pd-gallery.has-story .pd-story-m{display:block;order:2;margin:6px auto 0;max-width:340px;min-height:2.8em;font-size:13.5px;line-height:1.4;color:#55616B}.pd-gallery.has-story > .pd-story{display:flex;flex-direction:column}.pd-gallery.has-story .pd-story-h{order:1}' +
       '.pd-gallery.has-story .pd-story-l{margin:6px auto 0 !important;width:100% !important;display:grid !important;grid-template-columns:1fr 1fr;gap:2px 12px !important}' +
       '.pd-gallery.has-story .pd-story-l li{height:auto !important;display:block !important;text-align:center}' +
       '.pd-gallery.has-story .pd-story-l li::before{content:none !important}' +
       '.pd-gallery.has-story .pd-story-l small{display:none !important}' +
       '.pd-gallery.has-story .pd-story-l strong{font-size:12.5px !important;font-weight:600 !important;white-space:nowrap}' +
     '}' +
+    '.pd-story-m{display:none}' +
     '.pd-cap{display:flex;justify-content:center;margin:12px 0 2px}.pd-cap[hidden]{display:none}' +
     '.pd-cap-n{font:500 11.5px/1 \'DM Mono\',monospace;letter-spacing:.2em;color:#8A6A3B}' +
     'svg.pd-cover-big{display:block;height:calc(clamp(30px,3vw,42px) * .873);margin:0;width:auto;overflow:visible}' +
@@ -710,8 +712,14 @@
       { ico: 'lvl3', t: 'Élevé', d: t ? t[2] : 'Pour les grands froids' },
       { ico: 'clock', t: 'Jusqu’à 10 h d’autonomie', d: 'Avec la batterie 20 000 mAh' } ] };
   }
+  // Version mobile : les points clés réunis en une phrase (« A, B, C et D. »)
+  function storySentence(items) {
+    var t = items.map(function (x, k) { var s = x.t; return k && /^[A-ZÉÈÀ][a-zéèêàâîôûç]/.test(s) && !/^[A-Z]{2}/.test(s) ? s.charAt(0).toLocaleLowerCase('fr-FR') + s.slice(1) : s; });
+    if (!t.length) return '';
+    return (t.length > 1 ? t.slice(0, -1).join(', ') + ' et ' + t[t.length - 1] : t[0]) + '.';
+  }
   function storyHtml(c) {
-    return '<h2 class="pd-story-h">' + esc(c.h).replace(/mAh/g, '<span style="text-transform:none">mAh</span>') + '</h2>' + '<p class="pd-story-p">' + esc(c.p) + '</p>' +
+    return '<p class="pd-story-m">' + esc(storySentence(c.items)) + '</p>' + '<h2 class="pd-story-h">' + esc(c.h).replace(/mAh/g, '<span style="text-transform:none">mAh</span>') + '</h2>' + '<p class="pd-story-p">' + esc(c.p) + '</p>' +
       (c.items.length ? '<ul class="pd-story-l">' + c.items.map(function (x) {
         return '<li><span><strong>' + esc(x.t) + '</strong><small>' + esc(x.d) + '</small></span></li>';
       }).join('') + '</ul>' : '');
