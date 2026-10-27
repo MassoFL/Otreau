@@ -584,8 +584,19 @@ html,body{overflow-x:clip}
 #size-note .size-tol{text-align:center}
 </style>
 <style>/* Bandeau d’annonces en bleu, texte blanc, plus fin */#bandeau{background:#123F72 !important;color:#FFFFFF !important;padding-top:7px !important;padding-bottom:7px !important}.bandeau-curtain{color:#FFFFFF !important;height:36px !important;margin:-36px 0 56px !important;padding-top:7px !important;padding-bottom:7px !important}.bandeau-track{perspective:260px;overflow:visible !important}.bandeau-msg{color:#FFFFFF !important;font-weight:600;text-shadow:none;-webkit-font-smoothing:antialiased;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-origin:50% 50% -11px;transform:rotateX(-90deg) !important;transition:opacity .7s ease,transform .7s cubic-bezier(.45,0,.2,1) !important}.bandeau-msg.is-active{transform:none !important;backface-visibility:visible;-webkit-backface-visibility:visible}.bandeau-msg.is-leaving{transform:rotateX(90deg) !important}@media (prefers-reduced-motion: reduce){.bandeau-msg,.bandeau-msg.is-leaving{transform:none !important;transition:opacity .3s ease !important}}</style>
+<style>
+/* Fond de la page produit : même ambiance que la section « Sélection » de l'accueil (vidéo floutée + marbre + pluie fine) */
+body{background:#F8F6F1}
+.pg-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.pg-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:blur(26px) saturate(1.1) brightness(1.15);transform:scale(1.12)}
+.pg-bg::after{content:"";position:absolute;inset:0;background:#F8F6F1 url(assets/collection-bg.jpg) center / cover no-repeat;opacity:.86}
+.pg-bg + div{background:transparent !important}
+.pg-rain{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.pd-trust-tab,.pd-trust-tab::before,.pd-trust-tab::after,.pd-trust-panel{border-radius:0 !important}
+</style>
 </head>
 <body>
+<div class="pg-bg" aria-hidden="true"><video src="assets/hero-video-4.mp4" poster="assets/hero-video-4-poster.jpg" muted loop playsinline autoplay preload="auto"></video></div>
 <div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: #F8F6F1; font-size: 17px; line-height: 1.6">
 <div id="bandeau" style="position: absolute; top: 0; left: 0; right: 0; z-index: 21; background: rgba(0,0,0,0.5); color: #FFFFFF; font-size: 14px; text-align: center; padding: 14px 24px">
 <div class="bandeau-track" aria-live="polite">
@@ -962,6 +973,23 @@ var PRODUCT_SIZES = {
     var cf=document.querySelector('.pd-color-field'); if(cf){ro.observe(cf);[].forEach.call(cf.children,function(x){ro.observe(x)})}}
   var mo=new MutationObserver(soon); var cfield=document.querySelector('.pd-color-field'); if(cfield) mo.observe(cfield,{childList:true,subtree:true,characterData:true});
   window.addEventListener('resize',soon); window.addEventListener('load',soon); soon(); setTimeout(soon,800); setTimeout(soon,2000);
+})();
+</script>
+<script>
+/* Fond de la page produit : vidéo ralentie + pluie subtile (comme la sélection de l'accueil) */
+(function(){
+  var v=document.querySelector('.pg-bg video'); if(v){ v.playbackRate=v.defaultPlaybackRate=0.4; v.addEventListener('loadedmetadata',function(){v.playbackRate=0.4}); }
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ if(v) v.pause(); return; }
+  var cv=document.createElement('canvas'); cv.className='pg-rain'; cv.setAttribute('aria-hidden','true'); document.body.insertBefore(cv,document.body.firstChild);
+  var cx=cv.getContext('2d'), W=0, H=0, dpr=Math.min(2,window.devicePixelRatio||1), drops=[], last=0;
+  function mk(any){ var z=Math.random(); return { x:Math.random()*(W+200)-100, y:any?Math.random()*H:-30-Math.random()*H*.3, l:8+z*14, v:260+z*420, a:.04+z*.09, w:.5+z*.5 }; }
+  function size(){ W=innerWidth; H=innerHeight; cv.width=W*dpr; cv.height=H*dpr; cx.setTransform(dpr,0,0,dpr,0,0); var n=Math.round(W*H/11000); drops=[]; for(var i=0;i<n;i++) drops.push(mk(true)); }
+  function frame(t){ var dt=Math.min(.05,(t-(last||t))/1000); last=t; cx.clearRect(0,0,W,H); cx.lineCap='round';
+    for(var i=0;i<drops.length;i++){ var d=drops[i]; d.y+=d.v*dt; d.x+=d.v*dt*.12;
+      if(d.y>H+20||d.x>W+40){ drops[i]=mk(false); continue; }
+      cx.strokeStyle='rgba(70,82,92,'+d.a.toFixed(3)+')'; cx.lineWidth=d.w; cx.beginPath(); cx.moveTo(d.x,d.y); cx.lineTo(d.x-d.l*.12,d.y-d.l); cx.stroke(); }
+    requestAnimationFrame(frame); }
+  addEventListener('resize',size); size(); requestAnimationFrame(frame);
 })();
 </script>
 </body>

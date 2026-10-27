@@ -294,14 +294,34 @@
     '.pc-wash{position:absolute;left:50%;top:auto;bottom:0;z-index:4;translate:-50% 0;display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:18px 18px 0 0;border-bottom:0 !important;background:rgba(12,18,24,.5);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);border:1px solid #7CC4FA;box-shadow:0 0 10px rgba(124,196,250,.55),inset 0 0 8px rgba(124,196,250,.25);color:#9AD3FF;text-shadow:0 0 6px rgba(124,196,250,.9),0 0 14px rgba(70,160,240,.6);font:600 12.5px/1 Manrope,Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .2s ease}' +
     '.pc-wash svg{width:24px;height:18px;fill:none;stroke:#9AD3FF;filter:drop-shadow(0 0 4px rgba(124,196,250,.9));stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}' +
     '.pc-wash.is-on{opacity:1}' +
+    '.pd-main{--cov-h:clamp(58px,6.6vw,78px)}' +
+    '.pd-main.has-cover > img{margin-top:0;height:calc(100% - var(--cov-h)) !important;transition:none}' +
+    '.pd-cover{position:absolute;left:0;right:0;top:auto;bottom:0;height:var(--cov-h);z-index:3;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:clamp(12px,1.6vw,18px);padding:0 16px;background:transparent;color:#14212B;pointer-events:none;opacity:0;transition:opacity .45s ease}' +
+    '.pd-cover.is-in{opacity:1}' +
+    '.pd-main.has-cover{--cov-h:clamp(64px,6.6vw,80px)}@media (max-width:560px){.pd-main.has-cover{--cov-h:86px}.pd-cover .pd-cover-t{white-space:normal;text-align:left}}' +
+    '.pd-cover-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 42% 40% at 50% 50%,rgba(8,13,18,.55) 0%,rgba(8,13,18,.28) 55%,rgba(8,13,18,0) 100%);opacity:0;transition:opacity .5s ease}' +
+    '.pd-cover-scrim.is-in{opacity:1}' +
+    '.pd-main .pd-count,#pd-count{display:none !important}' +
+    '.pd-cap{display:flex;justify-content:center;margin:12px 0 2px}.pd-cap[hidden]{display:none}' +
+    '.pd-cap-n{font:500 11.5px/1 \'DM Mono\',monospace;letter-spacing:.2em;color:#8A6A3B}' +
+    'svg.pd-cover-big{display:block;height:calc(clamp(30px,3vw,42px) * .873);margin:0;width:auto;overflow:visible}' +
+    'svg.pd-cover-big text{font:600 120px/1 Manrope,Arial,sans-serif;letter-spacing:-.01em;dominant-baseline:alphabetic}' +
+    'svg.pd-cover-big .b0{fill:#FFFFFF;stroke:#F0462A;stroke-width:3.5;paint-order:stroke;filter:drop-shadow(0 0 3px rgba(240,70,42,.45)) drop-shadow(0 0 10px rgba(240,80,40,.2))}' +
+    'svg.pd-cover-big .b1{fill:none;stroke:#FF8A55;stroke-width:1.5;opacity:.5}' +
+    'svg.pd-cover-big .b2{fill:none;stroke:#FFE3C2;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:34 242;opacity:.75;filter:drop-shadow(0 0 3px rgba(255,160,90,.7));animation:pdTrace 3.6s linear infinite}' +
+    '@keyframes pdTrace{to{stroke-dashoffset:-276}}' +
+    '@media (prefers-reduced-motion:reduce){svg.pd-cover-big .b2{animation:none;opacity:0}}' +
+    '.pd-cover-t{margin:0;padding:2px 0 2px clamp(12px,1.6vw,18px);border-left:2px solid #D9792B;font:600 clamp(30px,3vw,42px)/1.05 Manrope,Arial,sans-serif;letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap}' +
+    '.pd-cover-t.pd-cover-solo{margin:0;padding:0;border:0;white-space:normal;overflow:hidden;text-overflow:ellipsis;font:700 clamp(15px,1.7vw,20px)/1.2 Manrope,Arial,sans-serif;letter-spacing:.02em;text-transform:none;max-width:70%}' +
     '.pc-wash.pc-heat{border-color:#FF8A4C;box-shadow:0 0 10px rgba(255,120,60,.6),inset 0 0 8px rgba(255,120,60,.25);color:#FFB27A;text-shadow:0 0 6px rgba(255,130,60,.9),0 0 14px rgba(240,80,30,.6)}' +
     '.pc-wash.pc-heat svg{width:18px;height:18px;stroke:#FFB27A;filter:drop-shadow(0 0 4px rgba(255,130,60,.9))}' +
     '.pc-car > .pc-wash{transition:none}.pc-car.is-swing > .pc-wash{opacity:0}' +
     '.pc-swing .pc-wash-sw{z-index:2;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform 1s cubic-bezier(.45,0,.2,1),opacity 1s cubic-bezier(.45,0,.2,1)}' +
     '.pc-swing .pc-wash-sw.pc-swing-out{opacity:1}.pc-swing.is-go .pc-wash-sw.pc-swing-out{opacity:0}' +
     '.pc-swing .pc-wash-sw.pc-swing-in{opacity:0}.pc-swing.is-go .pc-wash-sw.pc-swing-in{opacity:1}' +
-    '.pd-main .pc-wash.pc-heat svg{width:23px;height:23px}' +
-    '.pd-main .pc-wash{bottom:0;padding:13px 24px;gap:12px;font-size:15px}.pd-main .pc-wash svg{width:30px;height:23px}' +
+    '.pd-photo-txt{position:absolute;left:clamp(14px,2vw,24px);top:clamp(12px,1.8vw,22px);z-index:4;pointer-events:none;font:800 clamp(22px,3vw,38px)/1 Manrope,Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;background-image:linear-gradient(90deg,#7CC4FA 0%,#3E9BEA 14%,#B9E0FF 26%,#FFD27A 38%,#F5A623 50%,#E8641F 62%,#FFD27A 74%,#B9E0FF 86%,#7CC4FA 100%);background-size:200% 100%;background-repeat:repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35)) drop-shadow(0 2px 6px rgba(0,0,0,.2));animation:pdTxtFlow 4s linear infinite}' +
+    '@keyframes pdTxtFlow{from{background-position:0% 50%}to{background-position:200% 50%}}' +
+    '@media (prefers-reduced-motion:reduce){.pd-photo-txt{animation:none}}' +
     '.pc-view{position:absolute;left:10px;top:10px;z-index:4;padding:4px 9px;background:rgba(14,20,26,.78);color:#fff;font:500 10.5px/1.2 Manrope,Arial,sans-serif;letter-spacing:.04em;pointer-events:none;opacity:0;transition:opacity .15s ease}' +
     '.pc-view.is-on{opacity:1}' +
     '.pc-car-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transition:opacity .35s ease;pointer-events:none}' +
@@ -834,8 +854,8 @@
   var HEAT_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 20c-2-2.5-2-4.5 0-7s2-4.5 0-7"/><path d="M12.5 20c-2-2.5-2-4.5 0-7s2-4.5 0-7"/><path d="M17 20c-2-2.5-2-4.5 0-7s2-4.5 0-7"/></svg>';
   function badgeOf(it) {
     if (!it || it.type === 'video') return null;
-    if (it.zones && it.zonesN) return { cls: 'pc-wash pc-heat', html: HEAT_ICON + '<span>' + it.zonesN + ' Zones</span>' };
-    if (it.water) return { cls: 'pc-wash', html: WASH_HTML };
+    if (it.zones && it.zonesN) return { cls: 'pc-wash pc-heat', html: HEAT_ICON + '<span>' + it.zonesN + ' Zones</span>', label: it.zonesN + ' Zones' };
+    if (it.water) return { cls: 'pc-wash', html: WASH_HTML, label: 'Lavable' };
     return null;
   }
   function cardCarousel(first, imgs, hasVideo, opts) {
@@ -882,8 +902,8 @@
       function washLayer(k, cls) {
         var bg = badgeOf(imgs[k - (hasVideo ? 1 : 0)]); if (!washTag || !bg) return;
         var t = document.createElement('span'); t.className = bg.cls + ' pc-wash-sw ' + cls; t.innerHTML = bg.html; wrap.appendChild(t);
-        var bh = box.clientHeight, th = t.offsetHeight, bt = parseFloat(getComputedStyle(t).bottom) || 0;
-        t.style.transformOrigin = '50% ' + (bt + th - bh / 2) + 'px';
+        var br = box.getBoundingClientRect(), tr = t.getBoundingClientRect();
+        t.style.transformOrigin = (br.left + br.width / 2 - tr.left) + 'px ' + (br.top + br.height / 2 - tr.top) + 'px';
       }
       wrap.style.setProperty('--d', dir > 0 ? 1 : -1);
       box.appendChild(wrap); washLayer(from, 'pc-swing-out'); washLayer(to, 'pc-swing-in');
@@ -970,6 +990,17 @@
     var main = document.querySelector('.pd-main'), thumbsBox = document.querySelector('.pd-thumbs');
     if (!main || !thumbsBox || !items.length) return null;
     var count = document.getElementById('pd-count');
+    // Légende par-dessus la photo principale, en bas à gauche, façon couverture de magazine.
+    // Texte = « Texte alternatif » de la photo dans Shopify ; à défaut, le nombre de zones sur la photo des zones chauffantes.
+    function captionOf(it) {
+      var a = String(it.rawAlt || '').trim();
+      if (a && !/^zones?[\s_-]*chauffantes?\s*\d*$/i.test(a)) return a;
+      if (it.zones && it.zonesN) return it.zonesN + ' zones chauffantes';
+      return '';
+    }
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    var cap = document.querySelector('.pd-cap');
+    if (!cap) { cap = document.createElement('div'); cap.className = 'pd-cap'; cap.innerHTML = '<span class="pd-cap-n"></span>'; main.insertAdjacentElement('afterend', cap); }
     function render(i) {
       var it = items[i];
       [].slice.call(main.children).forEach(function (c) { if (c !== count && !c.classList.contains('pd-arrow')) c.remove(); });
@@ -985,9 +1016,22 @@
       }
       main.classList.add('has-media');
       main.insertBefore(node, main.firstChild);
-      var bd = badgeOf(it); if (bd) { var wt = document.createElement('span'); wt.className = bd.cls + ' is-on'; wt.innerHTML = bd.html; main.appendChild(wt); }
       if (it.type === 'video') { var pr = node.play(); if (pr && pr.catch) pr.catch(function () {}); }
       if (count) { count.textContent = (i + 1) + ' / ' + items.length; count.hidden = items.length < 2; }
+      cap.querySelector('.pd-cap-n').textContent = pad(i + 1) + ' — ' + pad(items.length); cap.hidden = items.length < 2;
+      var ct = captionOf(it);
+      main.classList.toggle('has-cover', !!ct);
+      if (ct) {
+        var cv = document.createElement('div'); cv.className = 'pd-cover'; cv.setAttribute('aria-hidden', 'true');
+        var mm = /^(\d{1,3})\s+(.+)$/.exec(ct);
+        // grand chiffre en SVG : contour rouge brillant + reflet lumineux qui tourne le long du contour
+        var big = mm ? '<svg class="pd-cover-big" aria-hidden="true"><text class="b0" x="0" y="0">' + esc(mm[1]) + '</text><text class="b1" x="0" y="0">' + esc(mm[1]) + '</text><text class="b2" x="0" y="0">' + esc(mm[1]) + '</text></svg>' : '';
+        cv.innerHTML = mm ? big + '<span class="pd-cover-t">' + esc(mm[2]) + '</span>' : '<span class="pd-cover-t pd-cover-solo">' + esc(ct) + '</span>';
+        main.appendChild(cv);
+        var sv = cv.querySelector('svg.pd-cover-big');
+        if (sv) { try { var bb = sv.querySelector('text').getBBox(), pd = 8, top = -0.74 * 120 - pd, h = -top + pd; sv.setAttribute('viewBox', (bb.x - pd) + ' ' + top + ' ' + (bb.width + pd * 2) + ' ' + h); sv.style.aspectRatio = (bb.width + pd * 2) + ' / ' + h; /* hauteur = chiffre seul (de la ligne de base au haut du chiffre) */ } catch (e) {} }
+        requestAnimationFrame(function () { cv.classList.add('is-in'); });
+      }
       cur = i; if (i < start || i >= start + PER) { start = Math.floor(i / PER) * PER; drawThumbs(); }
       if (api.onChange) api.onChange(i);
       [].slice.call(thumbsBox.querySelectorAll('[data-i]')).forEach(function (b) { b.classList.toggle('is-active', +b.dataset.i === i); });
