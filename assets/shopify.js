@@ -298,10 +298,48 @@
     '.pd-main.has-cover > img{margin-top:0;height:calc(100% - var(--cov-h)) !important;transition:none}' +
     '.pd-cover{position:absolute;left:0;right:0;top:auto;bottom:0;height:var(--cov-h);z-index:3;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:clamp(12px,1.6vw,18px);padding:0 16px;background:transparent;color:#14212B;pointer-events:none;opacity:0;transition:opacity .45s ease}' +
     '.pd-cover.is-in{opacity:1}' +
-    '.pd-main.has-cover{--cov-h:clamp(64px,6.6vw,80px)}@media (max-width:560px){.pd-main.has-cover{--cov-h:86px}.pd-cover .pd-cover-t{white-space:normal;text-align:left}}' +
+    '.pd-main.has-cover{--cov-h:clamp(64px,6.6vw,80px)}@media (max-width:560px){.pd-main.has-cover{--cov-h:86px}.pd-cover .pd-cover-t{white-space:normal;text-align:center}}' +
     '.pd-cover-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 42% 40% at 50% 50%,rgba(8,13,18,.55) 0%,rgba(8,13,18,.28) 55%,rgba(8,13,18,0) 100%);opacity:0;transition:opacity .5s ease}' +
     '.pd-cover-scrim.is-in{opacity:1}' +
     '.pd-main .pd-count,#pd-count{display:none !important}' +
+    '.pd-gallery.has-story{display:grid !important;grid-template-columns:minmax(200px,.5fr) minmax(0,1fr);grid-template-rows:auto auto auto;grid-template-areas:"story main" ". cap" ". thumbs";column-gap:clamp(16px,2vw,28px);margin-left:max(-110px, calc(16px - max(0px, (100vw - 1600px) / 2) - clamp(16px,4vw,64px)));row-gap:12px;align-items:start}' +
+    '.pd-gallery.has-story > .pd-story{grid-area:story;align-self:center}.pd-gallery.has-story > .pd-main{grid-area:main;width:100%}.pd-gallery.has-story > .pd-cap{grid-area:cap}.pd-gallery.has-story > .pd-thumbs{grid-area:thumbs}' +
+    '@media (min-width:901px){main.pd:has(.pd-gallery.has-story){max-width:1600px}.pd-top:has(> .pd-gallery.has-story:not(.story-below)){grid-template-columns:minmax(0,1.55fr) minmax(400px,1fr) !important;gap:clamp(24px,3vw,48px) !important}}' +
+    '.pd-story{color:#14212B}' +
+    '.pd-story{transition:opacity .28s ease}.pd-story.is-swap{opacity:0}' +
+    '.pd-gallery.has-story .pd-story-h{min-height:2.16em}.pd-gallery.has-story .pd-story-p{min-height:3em}.pd-gallery.has-story .pd-story-l{margin-top:14px !important}.pd-gallery.has-story .pd-story-l li{height:54px}' +
+    '.pd-story-l{width:100% !important;text-align:center !important}.pd-story-l li{justify-content:center !important;text-align:center}.pd-story-l li::before{content:none !important}' +
+    '.pd-story{text-align:center}.pd-story-p{margin-left:auto !important;margin-right:auto !important}.pd-story-l{width:fit-content;max-width:100%;margin-left:auto !important;margin-right:auto !important;text-align:left}' +
+    '@media (min-width:1360px){' +
+      'main.pd:has(.pd-gallery.has-story){max-width:1880px;padding-left:24px !important;padding-right:24px !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story){position:relative;grid-template-columns:clamp(300px,22vw,420px) minmax(0,1fr) minmax(490px,clamp(490px,27vw,560px)) !important;grid-template-rows:auto auto auto 1fr !important;grid-template-areas:"story main info" ". cap info" ". thumbs info" ". . info" !important;column-gap:clamp(22px,1.8vw,36px) !important;row-gap:12px !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info{grid-area:info;order:0 !important;padding-left:30px}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-title{font-size:clamp(44px,3.4vw,66px) !important;line-height:1 !important;letter-spacing:-.02em}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-price{margin:14px 0 24px !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-batt-field{margin-top:0 !important}' +
+      '.pd-gallery.has-story{display:contents !important}' +
+      '.pd-gallery.has-story > .pd-main{grid-area:main;width:min(100%, calc(100vh - 150px)) !important;justify-self:center;align-self:start;margin-top:clamp(24px,1.8vw,34px)}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) .pd-story-h{font-weight:500 !important;font-size:clamp(32px,2.5vw,48px) !important;line-height:1 !important;letter-spacing:-.02em !important}' +
+      '.pd-gallery.has-story > .pd-story{grid-area:story;align-self:start;justify-self:stretch;margin-top:clamp(90px,6.8vw,130px);margin-left:34px;width:auto;max-width:none;min-width:0}main.pd .pd-top:has(> .pd-gallery.has-story) .pd-faq-row *{white-space:normal !important}main.pd .pd-top:has(> .pd-gallery.has-story) .pd-faq-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important}main.pd .pd-top:has(> .pd-gallery.has-story) .pd-faq-row > .pd-faq-field{padding:0 12px !important;min-width:0}' +
+    '}' +
+    '.pd-gallery.has-story{padding-left:40px}' +
+    '.pd-gallery.has-story > .pd-arrow{position:absolute;margin-top:-20px;opacity:.9 !important;pointer-events:auto !important}' +
+    '.pd-gallery.has-story > .pd-arrow-prev{left:0 !important}.pd-gallery.has-story > .pd-arrow-next{right:-40px !important;left:auto !important}' +
+    '.pd-gallery.has-story > .pd-arrow:hover{opacity:1 !important}' +
+    '.pd-gallery.has-story.story-below > .pd-arrow-prev{left:4px !important}.pd-gallery.has-story.story-below > .pd-arrow-next{right:4px !important}' +
+    '.pd-story-k{margin:0 0 10px;font:600 12.5px/1 Manrope,Arial,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#6F7A82}' +
+    '.pd-story-h{margin:0;color:#3A4650;font:600 clamp(24px,2.1vw,32px)/1.08 Manrope,Arial,sans-serif;letter-spacing:-.01em;text-transform:uppercase}' +
+    '.pd-story-p{margin:10px 0 0;max-width:280px;font-size:14.5px;line-height:1.5;color:#55616B}' +
+    '.pd-story-l{list-style:none;margin:clamp(14px,1.6vw,22px) 0 0;padding:0;display:flex;flex-direction:column;gap:clamp(8px,1vw,14px)}' +
+    '.pd-story-l li{display:flex;align-items:center;gap:13px}' +
+    '.pd-story-i{flex:none;width:clamp(40px,3.4vw,48px);height:clamp(40px,3.4vw,48px);border-radius:0;background:rgba(255,255,255,.72);box-shadow:0 6px 18px -10px rgba(20,33,43,.35);display:flex;align-items:center;justify-content:center}' +
+    '.pd-story-i svg{width:46%;height:46%;fill:none;stroke:#14212B;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}' +
+    '.pd-story-l strong{display:block;font:600 14px/1.25 Manrope,Arial,sans-serif;color:#14212B}' +
+    '.pd-story-l small{display:block;margin-top:2px;font-size:12.5px;line-height:1.4;color:#6F7A82}' +
+    '.pd-gallery.story-snug .pd-story-k{margin-bottom:6px}.pd-gallery.story-snug .pd-story-p{margin-top:8px;font-size:13.5px}.pd-gallery.story-snug .pd-story-l{margin-top:12px;gap:7px}.pd-gallery.story-snug .pd-story-i{width:38px;height:38px}' +
+    '.pd-gallery.story-tight .pd-story-p{display:none}.pd-gallery.story-tight .pd-story-l{margin-top:14px;gap:8px}.pd-gallery.story-tight .pd-story-l small{font-size:12px}' +
+    '.pd-gallery.has-story.story-below{margin-left:0;padding-left:0;grid-template-columns:minmax(0,1fr);grid-template-areas:"main" "cap" "thumbs" "story"}.pd-gallery.story-below > .pd-story{margin-top:18px;align-self:start}.pd-gallery.story-below .pd-story-p{display:block;max-width:none}' +
+    '@media (max-width:900px){.pd-gallery.has-story{position:relative !important;top:auto !important}.pd-gallery.has-story > .pd-arrow-prev{left:4px !important}.pd-gallery.has-story > .pd-arrow-next{right:4px !important}.pd-gallery.has-story{margin-left:0;padding-left:0;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"main" "cap" "thumbs" "story"}.pd-gallery.has-story > .pd-story{margin-top:18px;align-self:start}.pd-story-p{max-width:none}}' +
     '.pd-cap{display:flex;justify-content:center;margin:12px 0 2px}.pd-cap[hidden]{display:none}' +
     '.pd-cap-n{font:500 11.5px/1 \'DM Mono\',monospace;letter-spacing:.2em;color:#8A6A3B}' +
     'svg.pd-cover-big{display:block;height:calc(clamp(30px,3vw,42px) * .873);margin:0;width:auto;overflow:visible}' +
@@ -311,7 +349,7 @@
     'svg.pd-cover-big .b2{fill:none;stroke:#FFE3C2;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:34 242;opacity:.75;filter:drop-shadow(0 0 3px rgba(255,160,90,.7));animation:pdTrace 3.6s linear infinite}' +
     '@keyframes pdTrace{to{stroke-dashoffset:-276}}' +
     '@media (prefers-reduced-motion:reduce){svg.pd-cover-big .b2{animation:none;opacity:0}}' +
-    '.pd-cover-t{margin:0;padding:2px 0 2px clamp(12px,1.6vw,18px);border-left:2px solid #D9792B;font:600 clamp(30px,3vw,42px)/1.05 Manrope,Arial,sans-serif;letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap}' +
+    '.pd-cover-t{margin:0;padding:0;border:0;font:600 clamp(30px,3vw,42px)/1.05 Manrope,Arial,sans-serif;letter-spacing:-.01em;text-transform:uppercase;white-space:nowrap}' +
     '.pd-cover-t.pd-cover-solo{margin:0;padding:0;border:0;white-space:normal;overflow:hidden;text-overflow:ellipsis;font:700 clamp(15px,1.7vw,20px)/1.2 Manrope,Arial,sans-serif;letter-spacing:.02em;text-transform:none;max-width:70%}' +
     '.pc-wash.pc-heat{border-color:#FF8A4C;box-shadow:0 0 10px rgba(255,120,60,.6),inset 0 0 8px rgba(255,120,60,.25);color:#FFB27A;text-shadow:0 0 6px rgba(255,130,60,.9),0 0 14px rgba(240,80,30,.6)}' +
     '.pc-wash.pc-heat svg{width:18px;height:18px;stroke:#FFB27A;filter:drop-shadow(0 0 4px rgba(255,130,60,.9))}' +
@@ -367,6 +405,9 @@
     '.pd-main.is-ui .pd-arrow,.pd-main.is-ui .pd-count{opacity:.9;pointer-events:auto}' +
     '@media (hover:hover){.pd-main:hover .pd-arrow,.pd-main:hover .pd-count{opacity:.9;pointer-events:auto}}' +
     '.pd-main .pd-arrow:hover{opacity:1}' +
+    '.pd-arrow{background:transparent !important;box-shadow:none !important;border:0 !important;border-radius:0 !important;width:36px !important}.pd-arrow:hover{background:transparent !important}' +
+    '.pd-arrow svg{width:22px !important;height:22px !important;stroke:#000000 !important;stroke-width:2.2 !important;filter:drop-shadow(0 0 1px #FFFFFF) drop-shadow(0 0 3px #FFFFFF) drop-shadow(0 0 8px rgba(255,255,255,.95)) drop-shadow(0 0 16px rgba(255,255,255,.8))}' +
+    '.pd-arrow-prev{left:4px !important}.pd-arrow-next{right:4px !important}' +
     '.pd-thumbs{display:flex !important;flex-wrap:nowrap;gap:8px;overflow:hidden}' +
     '.pd-thumbs .pd-thumb{position:relative;flex:0 0 auto;width:68px;height:68px;aspect-ratio:auto}' +
     '.pd-thumb-more{font:700 20px/1 Manrope,sans-serif;letter-spacing:.05em;color:#14212B;background:transparent !important;border:1.5px solid #E4DFD5 !important}' +
@@ -590,7 +631,104 @@
     if (pdInfo) { try { initProductPage(null); } finally { pdReady(); } }
   });
 
+  /* ---------- page produit : texte à gauche de la photo (zones chauffantes) ---------- */
+  // Contenu par produit. Les produits absents n'affichent que le titre (nombre de zones) et la phrase d'accroche.
+  var STORY_ICONS = { wash: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6l2 13h14l2-13"/><path d="M3.8 10c1.4-1.2 2.8-1.2 4.2 0s2.8 1.2 4.2 0 2.8-1.2 4.2 0 2.8 1.2 3.8.2"/></svg>', drop: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c3.5 4.4 5.5 7.6 5.5 10.2a5.5 5.5 0 0 1-11 0c0-2.6 2-5.8 5.5-10.2z"/></svg>', air: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h11a3 3 0 1 0-3-3"/><path d="M3 14h15a3 3 0 1 1-3 3"/></svg>', batt: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="16" height="10" rx="1.5"/><path d="M21 10.5v3"/><path d="M6.5 10v4M9.5 10v4M12.5 10v4"/></svg>', bolt: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg>', phone: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>', clock: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>', lvl1: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8 15h8"/></svg>', lvl2: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8 15h8M8 11.5h8"/></svg>', lvl3: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8 15h8M8 11.5h8M8 8h8"/></svg>', heat: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 20c-2-2.5-2-4.5 0-7s2-4.5 0-7"/><path d="M12.5 20c-2-2.5-2-4.5 0-7s2-4.5 0-7"/><path d="M17 20c-2-2.5-2-4.5 0-7s2-4.5 0-7"/></svg>', thermo: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14.5V5a2 2 0 0 1 4 0v9.5a4 4 0 1 1-4 0z"/><path d="M12 9v7.5"/><circle cx="12" cy="17.5" r="1.4"/></svg>' };
+  var PD_STORY = {
+    'veste-otreau': {
+      items: [
+        { ico: 'heat', t: '2 zones à l’avant', d: 'Chaleur au niveau du ventre et des poches' },
+        { ico: 'heat', t: '1 zone dans le dos', d: 'Chaleur homogène du haut du dos' },
+        { ico: 'heat', t: '1 zone dans la capuche', d: 'Protège la tête et la nuque' },
+        { ico: 'thermo', t: 'Réglage de la température', d: '3 niveaux de chaleur selon vos besoins' }
+      ]
+    }
+  };
+  var STORY_TEXT = 'Une chaleur ciblée et homogène pour rester au chaud, par tous les temps.';
+  // Températures des niveaux de chaleur (seulement quand elles sont connues pour le produit)
+  var LEVEL_TEMPS = { 'veste-otreau': ['voyant bleu · 40 – 45 °C', 'voyant blanc · 45 – 50 °C', 'voyant rouge · 50 – 55 °C'] };
+  // Contenu du bloc de gauche selon la photo affichée
+  function storyContent(it, handle) {
+    var h = String(handle || ''), base = h.replace(/-otreau$/, '');
+    var n = ZONES_COUNT[h] || ZONES_COUNT[base] || 0;
+    var f = it ? decodeURIComponent(String(it.src || '').split('?')[0].split('/').pop()).replace(/[_-]+/g, ' ') : '';
+    if (it && it.zones && n) {
+      var cfg = PD_STORY[h] || PD_STORY[base] || {};
+      return { h: n + ' zone' + (n > 1 ? 's' : '') + ' chauffante' + (n > 1 ? 's' : ''), p: cfg.text || STORY_TEXT, items: cfg.items || [] };
+    }
+    if (it && it.water) return { h: 'Lavable en machine', p: 'Retirez la batterie : le vêtement se lave comme les autres.', items: [
+      { ico: 'batt', t: 'Batterie retirée', d: 'Sortez-la et refermez la poche avant le lavage' },
+      { ico: 'wash', t: 'Programme délicat', d: '30 °C max., dans un filet de lavage, lessive douce' },
+      { ico: 'air', t: 'Séchage à l’air libre', d: 'Ni essorage, ni repassage, ni javel' },
+      { ico: 'drop', t: 'Tissu déperlant', d: 'La pluie fine et les éclaboussures glissent' } ] };
+    if (/batterie|powerbank/i.test(f)) return { h: 'Batterie 20 000 mAh', p: 'Une seule charge pour toute votre journée dehors.', items: [
+      { ico: 'clock', t: 'Jusqu’à 10 h d’autonomie', d: 'Selon le niveau de chaleur choisi' },
+      { ico: 'bolt', t: 'Charge rapide 22,5 W', d: 'Compatible PD et QC' },
+      { ico: 'phone', t: 'Recharge aussi votre téléphone', d: 'Charge bidirectionnelle' },
+      { ico: 'batt', t: 'Écran numérique', d: 'La charge restante, en un coup d’œil' } ] };
+    var t = LEVEL_TEMPS[h] || LEVEL_TEMPS[base] || null;
+    return { h: '3 niveaux de chaleur', p: 'Un appui sur le bouton suffit pour passer d’un niveau à l’autre.', items: [
+      { ico: 'lvl1', t: 'Doux', d: t ? t[0] : 'Pour les journées fraîches' },
+      { ico: 'lvl2', t: 'Moyen', d: t ? t[1] : 'Pour le froid de tous les jours' },
+      { ico: 'lvl3', t: 'Élevé', d: t ? t[2] : 'Pour les grands froids' },
+      { ico: 'clock', t: 'Jusqu’à 10 h d’autonomie', d: 'Avec la batterie 20 000 mAh' } ] };
+  }
+  function storyHtml(c) {
+    return '<h2 class="pd-story-h">' + esc(c.h).replace(/mAh/g, '<span style="text-transform:none">mAh</span>') + '</h2>' + '<p class="pd-story-p">' + esc(c.p) + '</p>' +
+      (c.items.length ? '<ul class="pd-story-l">' + c.items.map(function (x) {
+        return '<li><span><strong>' + esc(x.t) + '</strong><small>' + esc(x.d) + '</small></span></li>';
+      }).join('') + '</ul>' : '');
+  }
+  var storyHandle = '';
+  function updateStory(it) {
+    var box = document.querySelector('.pd-gallery .pd-story'); if (!box) return;
+    var html = storyHtml(storyContent(it, storyHandle)); if (box._html === html) return;
+    box._html = html; clearTimeout(box._t);
+    if (!box.innerHTML) { box.innerHTML = html; return; }
+    box.classList.add('is-swap');   // fondu sortant…
+    box._t = setTimeout(function () { box.innerHTML = html; void box.offsetWidth; box.classList.remove('is-swap'); }, 280);   // …puis fondu entrant
+  }
+  function buildStory(handle) {
+    var gal = document.querySelector('.pd-gallery'); if (!gal || gal.querySelector('.pd-story')) return;
+    var n = ZONES_COUNT[handle] || ZONES_COUNT[String(handle || '').replace(/-otreau$/, '')] || 0;
+    if (!n) return;
+    storyHandle = handle;
+    var box = document.createElement('aside'); box.className = 'pd-story'; box.setAttribute('aria-live', 'polite');
+    box.innerHTML = storyHtml(storyContent({ zones: true }, handle));
+    gal.insertBefore(box, gal.firstChild); gal.classList.add('has-story');
+    // le texte ne doit jamais dépasser la hauteur de la photo : on le resserre, puis on le passe sous la photo si besoin
+    function fit() {
+      var main = gal.querySelector('.pd-main'); if (!main) return;
+      gal.classList.remove('story-snug', 'story-tight', 'story-below');
+      var wide = getComputedStyle(gal).display === 'contents';
+      if (!wide && getComputedStyle(gal).gridTemplateAreas.indexOf('story main') < 0) return;
+      (wide ? ['story-snug', 'story-tight'] : ['story-snug', 'story-tight', 'story-below']).some(function (c) { if (box.offsetHeight <= main.offsetHeight) return true; gal.classList.add(c); return false; });
+    }
+    fit(); window.addEventListener('resize', fit); window.addEventListener('load', fit);
+    if (window.ResizeObserver) new ResizeObserver(fit).observe(gal.querySelector('.pd-main') || gal);
+  }
+  // Photo + texte = un seul bloc : les flèches encadrent le bloc (texte à gauche de la photo sur grand écran)
+  function placeStoryArrows() {
+    var gal = document.querySelector('.pd-gallery.has-story'); if (!gal) return;
+    var main = gal.querySelector('.pd-main'); if (!main) return;
+    [].slice.call(main.querySelectorAll('.pd-arrow')).forEach(function (a) { gal.appendChild(a); });
+    function pos() {
+      var cs = getComputedStyle(gal), t = main.offsetTop + main.offsetHeight / 2, wide = cs.display === 'contents' || cs.gridTemplateAreas.indexOf('story main') > -1;
+      var story = gal.querySelector('.pd-story');
+      [].slice.call(gal.querySelectorAll(':scope > .pd-arrow')).forEach(function (a) {
+        a.style.top = t + 'px';
+        if (wide && story) {
+          var prev = a.classList.contains('pd-arrow-prev');
+          a.style.setProperty('left', Math.max(0, prev ? main.offsetLeft - a.offsetWidth + 4 : main.offsetLeft + main.offsetWidth + 6) + 'px', 'important');
+          a.style.setProperty('right', 'auto', 'important');
+        } else { a.style.removeProperty('left'); a.style.removeProperty('right'); }
+      });
+    }
+    pos(); window.addEventListener('resize', pos); window.addEventListener('load', pos);
+    if (window.ResizeObserver) new ResizeObserver(pos).observe(gal);
+  }
   function initProductPage(p) {
+    if (pdInfo) buildStory(pdInfo.dataset.shopifyHandle);
     var addBtn = document.querySelector('.pd-add'), priceEl = document.getElementById('pd-price'), qtyEl = document.getElementById('pd-qty');
     var msg = document.createElement('p'); msg.className = 'oc-msg'; msg.hidden = true;
     addBtn.parentNode.insertAdjacentElement('afterend', msg);
@@ -614,6 +752,7 @@
     }
     // Règle : pas de vidéo sur la page produit (la vidéo est réservée à la page d'accueil)
     var gallery = buildGallery(mediaList(p).filter(function (x) { return x.type !== 'video'; }));
+    placeStoryArrows();
     // « Puis-je laver la veste / le gilet ? » selon le produit
     var packItem = document.getElementById('pd-pack-item');
     if (packItem && p.title) packItem.textContent = '1 ' + baseTitle(p.title).toLocaleLowerCase('fr-FR');
@@ -991,11 +1130,11 @@
     if (!main || !thumbsBox || !items.length) return null;
     var count = document.getElementById('pd-count');
     // Légende par-dessus la photo principale, en bas à gauche, façon couverture de magazine.
-    // Texte = « Texte alternatif » de la photo dans Shopify ; à défaut, le nombre de zones sur la photo des zones chauffantes.
+    // Texte = « Texte alternatif » de la photo dans Shopify ; à défaut, le nombre de zones (photo des zones chauffantes) ou « Lavable en machine » (photo avec de l'eau).
     function captionOf(it) {
       var a = String(it.rawAlt || '').trim();
       if (a && !/^zones?[\s_-]*chauffantes?\s*\d*$/i.test(a)) return a;
-      if (it.zones && it.zonesN) return it.zonesN + ' zones chauffantes';
+      if (it.water && !document.querySelector('.pd-gallery.has-story')) return 'Lavable en machine';
       return '';
     }
     function pad(n) { return (n < 10 ? '0' : '') + n; }
@@ -1026,13 +1165,14 @@
         var mm = /^(\d{1,3})\s+(.+)$/.exec(ct);
         // grand chiffre en SVG : contour rouge brillant + reflet lumineux qui tourne le long du contour
         var big = mm ? '<svg class="pd-cover-big" aria-hidden="true"><text class="b0" x="0" y="0">' + esc(mm[1]) + '</text><text class="b1" x="0" y="0">' + esc(mm[1]) + '</text><text class="b2" x="0" y="0">' + esc(mm[1]) + '</text></svg>' : '';
-        cv.innerHTML = mm ? big + '<span class="pd-cover-t">' + esc(mm[2]) + '</span>' : '<span class="pd-cover-t pd-cover-solo">' + esc(ct) + '</span>';
+        cv.innerHTML = (mm || (it.water && ct === 'Lavable en machine')) ? '<span class="pd-cover-t">' + esc(ct) + '</span>' : '<span class="pd-cover-t pd-cover-solo">' + esc(ct) + '</span>';
         main.appendChild(cv);
         var sv = cv.querySelector('svg.pd-cover-big');
         if (sv) { try { var bb = sv.querySelector('text').getBBox(), pd = 8, top = -0.74 * 120 - pd, h = -top + pd; sv.setAttribute('viewBox', (bb.x - pd) + ' ' + top + ' ' + (bb.width + pd * 2) + ' ' + h); sv.style.aspectRatio = (bb.width + pd * 2) + ' / ' + h; /* hauteur = chiffre seul (de la ligne de base au haut du chiffre) */ } catch (e) {} }
         requestAnimationFrame(function () { cv.classList.add('is-in'); });
       }
       cur = i; if (i < start || i >= start + PER) { start = Math.floor(i / PER) * PER; drawThumbs(); }
+      updateStory(it);
       if (api.onChange) api.onChange(i);
       [].slice.call(thumbsBox.querySelectorAll('[data-i]')).forEach(function (b) { b.classList.toggle('is-active', +b.dataset.i === i); });
     }
