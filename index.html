@@ -797,6 +797,23 @@ a{color:#14212B}a:hover{color:#B5650F}
 #tailles .pt-nav{display:none !important}
 /* Batterie : Entrées / Sorties / Dimensions, en bas de « Composition & entretien », même style que Composition */
 .acc-ports-note{margin:12px 0 0 !important;font-size:12.5px !important;color:#8C969D !important}
+/* Filtres de la Sélection : angles droits */
+.type-btn,.type-btn::before,.type-btn::after{border-radius:0 !important}
+/* Sélecteur : valeur sélectionnée agrandie avec un léger halo */
+#tailles .pt-col .wheel-list li[aria-selected="true"]{font-size:19px !important;font-weight:800 !important;color:#14212B !important;text-shadow:0 0 10px rgba(217,121,43,.45),0 0 22px rgba(217,121,43,.25);transition:font-size .2s ease,text-shadow .2s ease}
+@media (max-width:640px){#tailles .pt-col .wheel-list li[aria-selected="true"]{font-size:16.5px !important}}
+/* Batterie : vidéo au centre, chiffres et volets en dessous */
+#batterie div:has(> .batt-v2){flex-direction:column !important;flex-wrap:nowrap !important;align-items:center !important;gap:28px !important}
+#batterie .batt-col:has(.batt-media){order:-1 !important;flex:0 0 auto !important;width:100%;justify-content:center !important}
+#batterie .batt-v2{order:0;flex:0 0 auto !important;width:100%;max-width:620px}
+#batterie .batt-media{--bx:0px;width:clamp(320px,42vw,620px) !important;max-width:100%;height:auto;aspect-ratio:9/12 !important;margin:0 !important;-webkit-mask-image:radial-gradient(ellipse 75% 72% at 50% 50%,#000 60%,transparent 100%);mask-image:radial-gradient(ellipse 75% 72% at 50% 50%,#000 60%,transparent 100%)}
+/* Batterie : volets sous « Pensée pour vos journées dehors » */
+#batterie .bt-more > .bv-more{width:100%;max-width:620px;margin:6px auto 0}
+#batterie .bt-more > .bv-more .spec-acc summary h3{font:300 clamp(20px,2vw,26px)/1.2 Manrope,sans-serif !important;letter-spacing:.01em !important;text-transform:uppercase;color:#FFFFFF}
+/* Tableau Taille / Poids */
+#size-fit .size-fit-t{margin:30px 0 8px;font-family:Manrope,sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#14212B;text-align:left}
+#size-fit .size-fit td{color:#3D4A54}
+@media (max-width:640px){#size-fit .size-fit th,#size-fit .size-fit td{padding:9px 2px !important;font-size:11px !important;letter-spacing:-.02em;white-space:nowrap}#size-fit .size-fit thead th{letter-spacing:.02em;white-space:normal}}
 </style>
 </head>
 <body>
@@ -1018,7 +1035,23 @@ a{color:#14212B}a:hover{color:#B5650F}
 <div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="0" data-to="22.5" data-dec="1">22,5</span><small>W</small></span><span class="bv-lab">Charge rapide PD</span></div>
 <div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="500" data-to="190" data-dec="0">190</span><small>g</small></span><span class="bv-lab">Poids</span></div>
 </div>
-<div class="bv-more">
+</div>
+<div class="batt-col"><div class="batt-media">
+<video src="assets/batterie-3.mp4" poster="assets/batterie-3-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Batterie externe 20 000 mAh Otreau en rotation, écran de charge allumé"></video>
+</div></div>
+</div>
+<!-- Batterie : ce qu'elle sait faire (même style que les principes de la marque) -->
+<div class="bt-more">
+<h3 class="bt-t">Pensée pour <span>vos journées dehors</span></h3>
+<ul class="bt-crit">
+<li><span>01</span>Votre vêtement et votre téléphone<small>4 sorties et 2 entrées : la batterie chauffe votre vêtement et recharge en même temps votre téléphone ou vos écouteurs.</small></li>
+<li><span>02</span>Six protections, au plus près du corps<small>Glissée dans la poche, elle est protégée contre la surtension, la surintensité, le court-circuit, la surcharge, la surpuissance et la décharge profonde.</small></li>
+<li><span>03</span>Votre chaleur restante, au % près<small>L’écran affiche la charge restante et l’état de la charge rapide : vous savez combien de temps vous restez au chaud.</small></li>
+<li><span>04</span>Une seule batterie pour tout<small>Elle chauffe votre vêtement et recharge vos autres appareils : PD, QC 2.0 / 3.0, PPS, AFC, SCP / FCP, pour iOS, Android, tablettes, montres et écouteurs.</small></li>
+<li><span>05</span>Rien qui dépasse de la poche<small>Câbles plats et souples en TPE, rangés dans leur logement : plus de câbles emmêlés dans votre veste.</small></li>
+<li><span>06</span>Au chaud jusqu’en voyage<small>Acceptée en cabine : conforme aux normes aériennes internationales, selon le règlement de chaque compagnie.</small></li>
+</ul>
+<div class="bv-more bt-acc">
 <details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#3E9BEA" stroke-width="2" stroke-linecap="round"><path d="M6 6h28M6 13h28M6 20h20M6 27h14"></path></svg><h3>Description</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
 <p class="spec-text">Batterie externe 20 000 mAh conçue pour alimenter vos vêtements Otreau toute la journée. Charge rapide PD 22,5 W et bidirectionnelle, câbles USB-C, Lightning et USB-A intégrés, écran numérique pour suivre la charge restante et lampe LED intégrée. Elle peut aussi recharger votre téléphone en déplacement.</p>
 </div></details>
@@ -1033,22 +1066,6 @@ a{color:#14212B}a:hover{color:#B5650F}
 <p class="spec-text acc-ports-note">Quand plusieurs appareils chargent en même temps, la charge rapide se désactive automatiquement, par sécurité.</p>
 </div></details>
 </div>
-</div>
-<div class="batt-col"><div class="batt-media">
-<video src="assets/batterie-2.mp4#t=0.1" autoplay muted loop playsinline preload="metadata" aria-label="Batterie externe 20 000 mAh Otreau en rotation, écran de charge allumé"></video>
-</div></div>
-</div>
-<!-- Batterie : ce qu'elle sait faire (même style que les principes de la marque) -->
-<div class="bt-more">
-<h3 class="bt-t">Pensée pour <span>vos journées dehors</span></h3>
-<ul class="bt-crit">
-<li><span>01</span>Quatre appareils à la fois<small>4 sorties et 2 entrées : votre vêtement, votre téléphone et vos écouteurs en même temps.</small></li>
-<li><span>02</span>Six protections<small>Surtension, surintensité, court-circuit, surcharge, surpuissance et décharge profonde.</small></li>
-<li><span>03</span>Écran précis au % près<small>La charge restante et l’état de la charge rapide, en un coup d’œil.</small></li>
-<li><span>04</span>Compatible avec presque tout<small>PD, QC 2.0 / 3.0, PPS, AFC, SCP / FCP : iOS, Android, tablettes, montres, écouteurs.</small></li>
-<li><span>05</span>Câbles intégrés et souples<small>Câbles plats en TPE, rangés dans leur logement : plus de câbles emmêlés.</small></li>
-<li><span>06</span>Acceptée en cabine<small>Conforme aux normes aériennes internationales, selon le règlement de chaque compagnie.</small></li>
-</ul>
 </div>
 <div class="bv-marquee"><ul class="bv-feats bv-feats-row">
 <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v5M11 3v5"/><rect x="5" y="8" width="8" height="5" rx="1"/><path d="M9 13v3a4 4 0 0 0 4 4h6"/></svg><div><strong>Câbles intégrés</strong><span>USB-C · Lightning · USB-A</span></div></li>
@@ -1133,10 +1150,11 @@ a{color:#14212B}a:hover{color:#B5650F}
 <img class="flat flat-photo" data-product="gilet-photo" src="assets/patron-gilet-v3.webp" alt="Gilet avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" width="477" height="820" loading="lazy" hidden>
 <img class="flat flat-photo" data-product="gilet-fin" src="assets/patron-ultra-fin.webp" width="587" height="820" alt="Gilet ultra fin avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
 <img class="flat flat-photo" data-product="parka" src="assets/patron-parka.webp" width="773" height="820" alt="Parka avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="parka-ad" src="assets/patron-parka-ad.webp" width="730" height="820" alt="Parka avec les mesures A (tour de poitrine) et D (longueur manche)" hidden>
 <img class="flat flat-photo" data-product="softshell" src="assets/patron-softshell.webp" width="716" height="820" alt="Softshell avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
 <img class="flat flat-photo" data-product="sweat" src="assets/patron-sweat.webp" width="783" height="820" alt="Sweat à capuche avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
 <img class="flat flat-photo" data-product="gilet-camouflage" src="assets/patron-camouflage.webp" width="556" height="820" alt="Gilet camouflage avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="gilet-bicolore" src="assets/patron-bicolore.webp" width="510" height="820" alt="Gilet bicolore avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
+<img class="flat flat-photo" data-product="gilet-bicolore" src="assets/patron-bicolore.webp" width="510" height="820" alt="Gilet bicolore avec les mesures A (tour de poitrine), B (longueur du corps) et C (largeur épaules)" loading="lazy" hidden>
 <img class="flat flat-photo" data-product="veste-polaire" src="assets/patron-veste-polaire.webp" width="776" height="820" alt="Veste polaire avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
 <img class="flat flat-photo" data-product="gilet-capuche" src="assets/patron-gilet-capuche.webp" width="522" height="820" alt="Gilet avec capuche avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
 <img class="flat flat-photo" data-product="veste" src="assets/patron-veste-v3.webp" width="771" height="820" alt="Veste avec les mesures A (largeur poitrine), B (longueur), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
@@ -1417,7 +1435,7 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
     curtainBand.style.transform=lift?'translateY('+(-lift)+'px)':'';
     var top=curtainBand.getBoundingClientRect().top;
     var t=(vhh-bh-top)/Math.max(vhh-bh-hh,1); t=Math.min(Math.max(t,0),1);
-    curtainBand.style.backgroundColor='rgba(18,63,114,'+t.toFixed(3)+')'; curtainBand.firstElementChild.style.opacity=t.toFixed(3); }
+    curtainBand.style.backgroundColor='rgba(0,0,0,'+t.toFixed(3)+')'; curtainBand.firstElementChild.style.opacity=t.toFixed(3); }
   var lastW=window.innerWidth; window.addEventListener('resize',function(){if(window.innerWidth!==lastW){lastW=window.innerWidth;layout()}bandFade()}); window.addEventListener('orientationchange',function(){setTimeout(layout,250)}); if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout); window.addEventListener('load',layout); layout(); bandFade();
   var ticking=false; window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(function(){place();videoState();bandFade();ticking=false})}},{passive:true});
 })();
@@ -1446,6 +1464,11 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
 // Une entrée par article. "flat" = le patron affiché (gilet sans manches, ou doudoune avec manches).
 // Remplacez les null par les mesures en cm.
   var SIZE_NOTE='<div class="size-tip" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div>';
+// Mesures du gilet doudoune (reprises pour le gilet camouflage : mêmes dimensions)
+var SIZE_GUIDE_GILET = { sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] };
 var SIZE_GUIDE = {
   'gilet': { name: 'GILET DOUDOUNE', flat: 'gilet-photo', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
@@ -1465,43 +1488,45 @@ var SIZE_GUIDE = {
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['59 cm','61 cm','62 cm','63 cm','64 cm','66 cm','66 cm','67 cm'] } ] },
-  'parka': { name: 'PARKA HOMME', flat: 'parka', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
-    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
-  'parka-femme': { name: 'PARKA FEMME', flat: 'parka', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
-    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
-  'softshell': { name: 'SOFTSHELL', flat: 'softshell', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
-    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
-  'veste-polaire': { name: 'VESTE POLAIRE', flat: 'veste-polaire', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
-    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
-  'sweat': { name: 'SWEET', flat: 'sweat', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
-    { k: 'A', label: 'Largeur poitrine',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'B', label: 'Longueur du corps', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'C', label: 'Largeur épaules',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'D', label: 'Longueur manche',   values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
-  'gilet-capuche': { name: 'GILET AVEC CAPUCHE', flat: 'gilet-capuche', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'B', label: 'Longueur dos',     values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'C', label: 'Largeur épaules',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
-  'gilet-camouflage': { name: 'GILET CAMOUFLAGE', flat: 'gilet-camouflage', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'B', label: 'Longueur dos',     values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'C', label: 'Largeur épaules',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] },
-  'gilet-bicolore': { name: 'GILET BICOLORE', flat: 'gilet-bicolore', sizes: ['[S]','[M]','[L]','[XL]','[XXL]','[3XL]'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'B', label: 'Longueur dos',     values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] },
-    { k: 'C', label: 'Largeur épaules',  values: ['[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm','[XX] cm'] } ] }
+  'parka': { name: 'PARKA HOMME', flat: 'parka-ad', sizes: ['S','M','L','XL','XXL','3XL'], rows: [
+    { k: 'A', label: 'Tour de poitrine', values: ['116 cm','120 cm','124 cm','128 cm','132 cm','134 cm'] },
+    { k: 'D', label: 'Longueur manche',  values: ['58,5 cm','61 cm','63,5 cm','65 cm','66,5 cm','68 cm'] } ],
+    fit: [['S','165 – 170 cm','45 – 55 kg'],['M','170 – 175 cm','55 – 65 kg'],['L','175 – 180 cm','65 – 75 kg'],['XL','180 – 185 cm','75 – 85 kg'],['XXL','185 – 190 cm','85 – 95 kg'],['3XL','190 – 195 cm','95 – 105 kg']] },
+  'parka-femme': { name: 'PARKA FEMME', flat: 'parka-ad', sizes: ['S','M','L','XL','XXL','3XL'], rows: [
+    { k: 'A', label: 'Tour de poitrine', values: ['104 cm','108 cm','112 cm','118 cm','124 cm','130 cm'] },
+    { k: 'D', label: 'Longueur manche',  values: ['58 cm','59,5 cm','61 cm','62,5 cm','64 cm','65,5 cm'] } ],
+    fit: [['S','153 – 158 cm','38 – 43 kg'],['M','158 – 162 cm','43 – 50 kg'],['L','160 – 165 cm','50 – 58 kg'],['XL','163 – 168 cm','58 – 66 kg'],['XXL','165 – 173 cm','66 – 74 kg'],['3XL','167 – 179 cm','74 – 82 kg']] },
+  'softshell': { name: 'SOFTSHELL', flat: 'softshell', tol: '<p class="size-tol">Tolérance : 1 à 3 cm, mesures prises à la main.</p>', sizes: ['M','L','XL','XXL'], rows: [
+    { k: 'A', label: 'Tour de poitrine',  values: ['108 cm','113 cm','118 cm','123 cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['68 cm','69 cm','70 cm','71 cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['49 cm','51 cm','53 cm','55 cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['63 cm','65 cm','66 cm','68 cm'] } ] },
+  'veste-polaire': { name: 'VESTE POLAIRE', flat: 'veste-polaire', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+    { k: 'A', label: 'Tour de poitrine',  values: ['109 cm','113 cm','117 cm','121 cm','125 cm','129 cm','133 cm','137 cm','141 cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['68 cm','70 cm','72 cm','74 cm','76 cm','78 cm','80 cm','82 cm','82 cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['44 cm','44,5 cm','47 cm','48,5 cm','50 cm','51,5 cm','53 cm','54,5 cm','56 cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['60 cm','61,5 cm','63 cm','64,5 cm','66 cm','67,5 cm','69 cm','70,5 cm','70,5 cm'] } ],
+    fitHead: ['Taille','Équivalent EU','Votre taille','Votre poids'],
+    fit: [['S','XXS','155 – 160 cm','45 – 57 kg'],['M','XS','160 – 170 cm','57 – 65 kg'],['L','S','165 – 175 cm','62 – 70 kg'],['XL','M','170 – 180 cm','67 – 75 kg'],['2XL','L','175 – 185 cm','72 – 80 kg'],['3XL','XL','180 – 190 cm','77 – 85 kg'],['4XL','2XL','185 – 195 cm','82 – 90 kg'],['5XL','3XL','190 – 200 cm','87 – 95 kg'],['6XL','4XL','195 – 205 cm','92 – 100 kg']] },
+  'sweat': { name: 'SWEET', flat: 'sweat', tol: '<p class="size-tol">Tolérance : 1 à 3 cm selon la méthode de mesure.</p>', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+    { k: 'A', label: 'Tour de poitrine',  values: ['110 cm','114 cm','118 cm','122 cm','126 cm','130 cm','134 cm','138 cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['68 cm','70 cm','72 cm','74 cm','76 cm','78 cm','80 cm','80 cm'] },
+    { k: 'C', label: 'Largeur épaules',   values: ['46,5 cm','48 cm','49,5 cm','51 cm','52,5 cm','54 cm','55,5 cm','57 cm'] },
+    { k: 'D', label: 'Longueur manche',   values: ['59 cm','60,5 cm','62 cm','63,5 cm','65 cm','66,5 cm','68 cm','69,5 cm'] },
+    { k: '',  label: 'Tour de bas',       values: ['92 cm','96 cm','100 cm','104 cm','108 cm','112 cm','116 cm','120 cm'] } ] },
+  'gilet-capuche': { name: 'GILET AVEC CAPUCHE', flat: 'gilet-capuche', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL','7XL'], rows: [
+    { k: 'A', label: 'Tour de poitrine', values: ['106 cm','110 cm','114 cm','118 cm','122 cm','128 cm','134 cm','140 cm','146 cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','72,5 cm','74 cm','75 cm','76 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['40 cm','41,5 cm','43 cm','44,5 cm','46 cm','48 cm','50 cm','52 cm','54 cm'] },
+    { k: '',  label: 'Tour de bas',      values: ['98 cm','102 cm','106 cm','110 cm','114 cm','120 cm','126 cm','132 cm','138 cm'] } ],
+    fit: [['M','155 – 165 cm','47,5 – 57,5 kg'],['L','160 – 170 cm','57,5 – 65 kg'],['XL','165 – 175 cm','65 – 72,5 kg'],['2XL','170 – 180 cm','72,5 – 80 kg'],['3XL','170 – 185 cm','80 – 87,5 kg'],['4XL','170 – 190 cm','90 – 100 kg'],['5XL','175 – 190 cm','100 – 110 kg'],['6XL','180 – 195 cm','110 – 120 kg'],['7XL','180 – 200 cm','120 – 130 kg']] },
+  'gilet-camouflage': { name: 'GILET CAMOUFLAGE', flat: 'gilet-camouflage', sizes: SIZE_GUIDE_GILET.sizes, rows: SIZE_GUIDE_GILET.rows },
+  'gilet-bicolore': { name: 'GILET BICOLORE', flat: 'gilet-bicolore', tol: '<p class="size-tol">Chaque case donne deux mesures : veste extérieure / doublure intérieure.</p>', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
+    { k: 'A', label: 'Tour de poitrine', values: ['116 / 106 cm','120 / 110 cm','124 / 114 cm','128 / 118 cm','132 / 122 cm','136 / 126 cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['68 / 64 cm','70 / 66 cm','72 / 68 cm','74 / 70 cm','76 / 72 cm','78 / 74 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['46 / 43 cm','47,5 / 44,5 cm','49 / 46 cm','50,5 / 47,5 cm','52 / 49 cm','53,5 / 50,5 cm'] },
+    { k: '',  label: 'Longueur manche',  values: ['62 / 59,5 cm','63,5 / 61 cm','65 / 62,5 cm','66,5 / 64 cm','68 / 65,5 cm','69,5 / 67 cm'] } ],
+    fit: [['M','165 cm','50 – 60 kg'],['L','170 cm','60 – 65 kg'],['XL','175 cm','70 – 75 kg'],['2XL','180 cm','80 – 85 kg'],['3XL','185 cm','90 – 95 kg'],['4XL','190 cm','100 – 105 kg']] }
 };
 (function(){
   var head=document.getElementById('size-head'), body=document.getElementById('size-body'), label=document.getElementById('patron-label');
@@ -1517,11 +1542,16 @@ var SIZE_GUIDE = {
     var sn=document.getElementById('size-note'); if(sn) sn.innerHTML=SIZE_NOTE; var st=document.getElementById('size-tol'); if(st) st.innerHTML=g.tol||'';
     flats.forEach(function(f){if(f.dataset.product===g.flat)f.removeAttribute('hidden');else f.setAttribute('hidden','')});
     head.innerHTML='<th scope="col">Taille</th>'+g.rows.map(function(r){
-      return '<th scope="col" data-k="'+r.k+'"><span class="key">'+r.k+'</span><span class="col-label">'+r.label+'</span></th>'}).join('');
+      return '<th scope="col" data-k="'+r.k+'">'+(r.k?'<span class="key">'+r.k+'</span>':'')+'<span class="col-label">'+r.label+'</span></th>'}).join('');
     body.innerHTML=g.sizes.map(function(z,i){
       return '<tr><th scope="row">'+z+'</th>'+g.rows.map(function(r){var v=r.values[i];
         return v==null?'<td class="empty" data-k="'+r.k+'">—</td>':'<td data-k="'+r.k+'">'+v+'</td>'}).join('')+'</tr>';
     }).join('');
+    // Tableau Taille / Poids, quand l'info est connue pour le produit
+    var fitBox=document.getElementById('size-fit');
+    if(!fitBox){fitBox=document.createElement('div');fitBox.id='size-fit';document.getElementById('size-table').insertAdjacentElement('afterend',fitBox)}
+    fitBox.innerHTML=g.fit?'<p class="size-fit-t">Quelle taille choisir ?</p><table class="size-table size-fit"><thead><tr>'+(g.fitHead||['Taille','Votre taille','Votre poids']).map(function(h){return '<th scope="col">'+h+'</th>'}).join('')+'</tr></thead><tbody>'+
+      g.fit.map(function(r){return '<tr><th scope="row">'+r[0]+'</th>'+r.slice(1).map(function(c){return '<td>'+c+'</td>'}).join('')+'</tr>'}).join('')+'</tbody></table>':'';
     highlight(null);
   }
   render();
@@ -1536,37 +1566,38 @@ var SIZE_GUIDE = {
       li.style.opacity=String(Math.max(0.25,1-Math.abs(a)*0.3));
     });
     var n=Math.max(0,Math.min(opts.length-1,Math.round(list.scrollLeft/ITEM)));
-    if(n!==idx){idx=n;opts.forEach(function(li,i){li.setAttribute('aria-selected',i===n?'true':'false')})}
+    if(n!==idx){idx=n;opts.forEach(function(li,i){li.setAttribute('aria-selected',i===n?'true':'false')});if(typeof choose==='function')choose()}
   }
   var hinting=false;
-  function choose(){if(hinting)return;var k=opts[idx].dataset.product; if(k!==current){current=k;render()}}
+  function choose(){if(hinting)return;var k=opts[tgt!=null?tgt:idx].dataset.product; if(k!==current){current=k;render()}}
   list.addEventListener('scroll',function(){
     if(!raf)raf=requestAnimationFrame(paint);
-    clearTimeout(settle); settle=setTimeout(choose,140);
+    clearTimeout(settle); settle=setTimeout(choose,30);
   },{passive:true});
   function go(i,smooth){i=Math.max(0,Math.min(opts.length-1,i));list.scrollTo({left:i*ITEM,behavior:smooth?'smooth':'auto'})}
   // petites flèches haut / bas pour parcourir les articles
   var arrows=document.querySelectorAll('.wheel-arrow');
   var tgt=null,tgtT=0;
-  arrows.forEach(function(b){b.addEventListener('click',function(){touched=true;hinting=false;tgt=Math.max(0,Math.min(opts.length-1,(tgt==null?idx:tgt)+parseInt(b.dataset.dir,10)));go(tgt,true);clearTimeout(tgtT);tgtT=setTimeout(function(){tgt=null},700)})});
+  arrows.forEach(function(b){b.addEventListener('click',function(){touched=true;hinting=false;tgt=Math.max(0,Math.min(opts.length-1,(tgt==null?idx:tgt)+parseInt(b.dataset.dir,10)));var k=opts[tgt].dataset.product;if(k!==current){current=k;render()}go(tgt,true);clearTimeout(tgtT);tgtT=setTimeout(function(){tgt=null},700)})});
   document.querySelectorAll('.pt-nav').forEach(function(b){b.addEventListener('click',function(){var w=document.querySelector('.wheel-arrow[data-dir="'+b.dataset.dir+'"]'); if(w&&!w.disabled) w.click();})});
   function arrowState(){arrows.forEach(function(b){var d=parseInt(b.dataset.dir,10);b.disabled=(d<0&&idx<=0)||(d>0&&idx>=opts.length-1)});
     document.querySelectorAll('.pt-nav').forEach(function(b){var d=parseInt(b.dataset.dir,10);b.disabled=(d<0&&idx<=0)||(d>0&&idx>=opts.length-1)})}
   list.addEventListener('scroll',function(){requestAnimationFrame(arrowState)},{passive:true});
   setTimeout(arrowState,50);
-  opts.forEach(function(li,i){li.addEventListener('click',function(){go(i,true)})});
+  opts.forEach(function(li,i){li.addEventListener('click',function(){var k=li.dataset.product;if(k!==current){current=k;render()}go(i,true)})});
   list.addEventListener('keydown',function(e){
     if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();go(idx+1,true)}
     else if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();go(idx-1,true)}
   });
+  document.querySelectorAll('#tailles img.flat-photo[loading="lazy"]').forEach(function(im){im.loading='eager'});
   // Départ sur l'article du milieu
   idx=Math.floor(opts.length/2);
   opts.forEach(function(li,i){li.setAttribute('aria-selected',i===idx?'true':'false')});
   go(idx,false); paint();
-  // Petit défilement automatique la première fois que la section apparaît, pour montrer que la roue se fait défiler
+  // (Ancien petit défilement automatique de démonstration : désactivé)
   var touched=false;
   ['pointerdown','wheel','touchstart','keydown'].forEach(function(ev){list.addEventListener(ev,function(){touched=true;hinting=false},{passive:true})});
-  if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  if(false){ // défilement automatique de démonstration désactivé
     var hio=new IntersectionObserver(function(es){
       if(!es[0].isIntersecting) return; hio.disconnect();
       var start=idx; hinting=true;
