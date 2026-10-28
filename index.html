@@ -1506,26 +1506,23 @@ var SIZE_GUIDE = {
     { k: 'B', label: 'Longueur du corps', values: ['68 cm','70 cm','72 cm','74 cm','76 cm','78 cm','80 cm','82 cm','82 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['44 cm','44,5 cm','47 cm','48,5 cm','50 cm','51,5 cm','53 cm','54,5 cm','56 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['60 cm','61,5 cm','63 cm','64,5 cm','66 cm','67,5 cm','69 cm','70,5 cm','70,5 cm'] } ],
-    fitHead: ['Taille','Équivalent EU','Votre taille','Votre poids'],
-    fit: [['S','XXS','155 – 160 cm','45 – 57 kg'],['M','XS','160 – 170 cm','57 – 65 kg'],['L','S','165 – 175 cm','62 – 70 kg'],['XL','M','170 – 180 cm','67 – 75 kg'],['2XL','L','175 – 185 cm','72 – 80 kg'],['3XL','XL','180 – 190 cm','77 – 85 kg'],['4XL','2XL','185 – 195 cm','82 – 90 kg'],['5XL','3XL','190 – 200 cm','87 – 95 kg'],['6XL','4XL','195 – 205 cm','92 – 100 kg']] },
+    fit: [['S','155 – 160 cm','45 – 57 kg'],['M','160 – 170 cm','57 – 65 kg'],['L','165 – 175 cm','62 – 70 kg'],['XL','170 – 180 cm','67 – 75 kg'],['2XL','175 – 185 cm','72 – 80 kg'],['3XL','180 – 190 cm','77 – 85 kg'],['4XL','185 – 195 cm','82 – 90 kg'],['5XL','190 – 200 cm','87 – 95 kg'],['6XL','195 – 205 cm','92 – 100 kg']] },
   'sweat': { name: 'SWEET', flat: 'sweat', tol: '<p class="size-tol">Tolérance : 1 à 3 cm selon la méthode de mesure.</p>', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Tour de poitrine',  values: ['110 cm','114 cm','118 cm','122 cm','126 cm','130 cm','134 cm','138 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['68 cm','70 cm','72 cm','74 cm','76 cm','78 cm','80 cm','80 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['46,5 cm','48 cm','49,5 cm','51 cm','52,5 cm','54 cm','55,5 cm','57 cm'] },
-    { k: 'D', label: 'Longueur manche',   values: ['59 cm','60,5 cm','62 cm','63,5 cm','65 cm','66,5 cm','68 cm','69,5 cm'] },
-    { k: '',  label: 'Tour de bas',       values: ['92 cm','96 cm','100 cm','104 cm','108 cm','112 cm','116 cm','120 cm'] } ] },
+    { k: 'D', label: 'Longueur manche',   values: ['59 cm','60,5 cm','62 cm','63,5 cm','65 cm','66,5 cm','68 cm','69,5 cm'] } ] },
   'gilet-capuche': { name: 'GILET AVEC CAPUCHE', flat: 'gilet-capuche', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL','7XL'], rows: [
     { k: 'A', label: 'Tour de poitrine', values: ['106 cm','110 cm','114 cm','118 cm','122 cm','128 cm','134 cm','140 cm','146 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','72,5 cm','74 cm','75 cm','76 cm'] },
-    { k: 'C', label: 'Largeur épaules',  values: ['40 cm','41,5 cm','43 cm','44,5 cm','46 cm','48 cm','50 cm','52 cm','54 cm'] },
-    { k: '',  label: 'Tour de bas',      values: ['98 cm','102 cm','106 cm','110 cm','114 cm','120 cm','126 cm','132 cm','138 cm'] } ],
+    { k: 'C', label: 'Largeur épaules',  values: ['40 cm','41,5 cm','43 cm','44,5 cm','46 cm','48 cm','50 cm','52 cm','54 cm'] } ],
     fit: [['M','155 – 165 cm','47,5 – 57,5 kg'],['L','160 – 170 cm','57,5 – 65 kg'],['XL','165 – 175 cm','65 – 72,5 kg'],['2XL','170 – 180 cm','72,5 – 80 kg'],['3XL','170 – 185 cm','80 – 87,5 kg'],['4XL','170 – 190 cm','90 – 100 kg'],['5XL','175 – 190 cm','100 – 110 kg'],['6XL','180 – 195 cm','110 – 120 kg'],['7XL','180 – 200 cm','120 – 130 kg']] },
   'gilet-camouflage': { name: 'GILET CAMOUFLAGE', flat: 'gilet-camouflage', sizes: SIZE_GUIDE_GILET.sizes, rows: SIZE_GUIDE_GILET.rows },
-  'gilet-bicolore': { name: 'GILET BICOLORE', flat: 'gilet-bicolore', tol: '<p class="size-tol">Chaque case donne deux mesures : veste extérieure / doublure intérieure.</p>', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
-    { k: 'A', label: 'Tour de poitrine', values: ['116 / 106 cm','120 / 110 cm','124 / 114 cm','128 / 118 cm','132 / 122 cm','136 / 126 cm'] },
-    { k: 'B', label: 'Longueur du corps', values: ['68 / 64 cm','70 / 66 cm','72 / 68 cm','74 / 70 cm','76 / 72 cm','78 / 74 cm'] },
-    { k: 'C', label: 'Largeur épaules',  values: ['46 / 43 cm','47,5 / 44,5 cm','49 / 46 cm','50,5 / 47,5 cm','52 / 49 cm','53,5 / 50,5 cm'] },
-    { k: '',  label: 'Longueur manche',  values: ['62 / 59,5 cm','63,5 / 61 cm','65 / 62,5 cm','66,5 / 64 cm','68 / 65,5 cm','69,5 / 67 cm'] } ],
+  'gilet-bicolore': { name: 'GILET BICOLORE', flat: 'gilet-bicolore', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
+    { k: 'A', label: 'Tour de poitrine', values: ['111 cm','115 cm','119 cm','123 cm','127 cm','131 cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['66 cm','68 cm','70 cm','72 cm','74 cm','76 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['44,5 cm','46 cm','47,5 cm','49 cm','50,5 cm','52 cm'] },
+    { k: '',  label: 'Longueur manche',  values: ['60,75 cm','62,25 cm','63,75 cm','65,25 cm','66,75 cm','68,25 cm'] } ],
     fit: [['M','165 cm','50 – 60 kg'],['L','170 cm','60 – 65 kg'],['XL','175 cm','70 – 75 kg'],['2XL','180 cm','80 – 85 kg'],['3XL','185 cm','90 – 95 kg'],['4XL','190 cm','100 – 105 kg']] }
 };
 (function(){
