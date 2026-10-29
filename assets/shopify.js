@@ -319,12 +319,17 @@
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-trust-panel{margin-top:6px !important;padding:12px 16px !important;font-size:13.5px !important;line-height:1.5 !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-faq-row .pd-q{font-size:14px !important;line-height:1.25 !important}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-faq-row .pd-a{font-size:13px !important;line-height:1.35 !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-size-field .pd-size-link{margin-top:2px !important}' +
-      'main.pd .pd-top:has(> .pd-gallery.has-story) + .pd-details{margin-top:clamp(36px,3vw,56px) !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story) + .pd-details{margin-top:clamp(64px,6.7vw,96px) !important}' +
       'main.pd .pd-top > .pd-info.is-fit{display:flex;flex-direction:column;justify-content:space-between;row-gap:2px;align-self:start}' +
       'main.pd .pd-top > .pd-info.is-fit > *{margin-top:0 !important;margin-bottom:0 !important;flex:none}' +
       'main.pd .pd-top > .pd-info.is-fit > [hidden],main.pd .pd-top > .pd-info.is-fit > .oc-msg[hidden]{display:none !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-title{font-size:clamp(44px,3.4vw,66px) !important;line-height:.92 !important;letter-spacing:-.02em}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-price{margin:14px 0 24px !important}' +
+      'main.pd .pd-top > .pd-info.pd-left-buy{grid-area:story !important;height:auto !important;align-self:start;margin-top:clamp(24px,1.8vw,34px);padding-left:34px !important;display:flex;flex-direction:column;align-items:stretch;gap:clamp(26px,2.2vw,40px);min-width:0}' +
+      'main.pd .pd-top > .pd-left-buy > .pd-title{margin:0;text-align:center;font-size:clamp(44px,3.4vw,66px) !important;line-height:.92 !important;letter-spacing:-.02em}' +
+      'main.pd .pd-top > .pd-left-buy > .pd-price{margin:0 !important;text-align:center;line-height:1 !important}' +
+      'main.pd .pd-top > .pd-left-buy > .pd-field{margin:0 !important}' +
+      'main.pd .pd-top > .pd-left-buy > .pd-story-right{margin:clamp(-14px,-.73vw,-11px) 0 0 !important;width:auto;max-width:none}main.pd .pd-top > .pd-info:not(.pd-left-buy){padding-top:clamp(64px,5vw,96px) !important}main.pd .pd-top > .pd-left-buy > .pd-story-right .pd-story-h{min-height:0 !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info .pd-batt-field{margin-top:0 !important}' +
       '.pd-gallery.has-story{display:contents !important}' +
       '.pd-gallery.has-story > .pd-main{grid-area:main;width:min(100%, calc(100vh - 150px)) !important;justify-self:center;align-self:start;margin-top:clamp(24px,1.8vw,34px)}' +
@@ -351,6 +356,14 @@
     '@media (max-width:900px){.pd-gallery.has-story{position:relative !important;top:auto !important}.pd-gallery.has-story > .pd-arrow-prev{left:4px !important}.pd-gallery.has-story > .pd-arrow-next{right:4px !important}.pd-gallery.has-story{margin-left:0;padding-left:0;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-template-areas:"main" "cap" "thumbs" "story"}.pd-gallery.has-story > .pd-story{margin-top:18px;align-self:start}.pd-story-p{max-width:none}}' +
     '.pd-trust-tab,.pd-trust-tab:hover,.pd-trust-tab[aria-selected="true"]{background:transparent !important;border-color:transparent !important;box-shadow:none !important;transform:none !important}.pd-trust-tab::before,.pd-trust-tab::after{display:none !important}' +
     '.pd-trust-panel{background:transparent !important;border:0 !important;box-shadow:none !important}' +
+    'main.pd .pd-story-h{color:#14212B !important}' +
+    '@media (min-width:1360px){main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-left-buy .pd-story-h{font-size:clamp(20px,1.45vw,26px) !important;line-height:1.1 !important;font-weight:500 !important;letter-spacing:.01em !important}main.pd .pd-top > .pd-left-buy > .pd-price{font-size:clamp(28px,2.1vw,36px) !important}}' +
+    '@media (min-width:1360px){main.pd .pd-top > .pd-info.is-fit:not(.pd-left-buy):not(:has(> .pd-color-field:not([hidden]))){justify-content:flex-start !important;row-gap:clamp(22px,1.9vw,34px) !important}}' +
+    'main.pd .pd-details,main.pd .pd-top + .pd-details{margin-top:clamp(64px,6.7vw,96px) !important}main.pd .pd-details + section{margin-top:clamp(64px,6.7vw,96px) !important}' +
+    '.pd-batt-q{margin:0 0 12px;text-align:center;font:800 13px/1.2 Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8A949B}' +
+    'main.pd .pd-info .pd-opt,main.pd .pd-info .pd-opt::before,main.pd .pd-info .pd-opt::after{border-radius:0 !important}' +
+    '.pd-trust-tabs .pd-trust-tab{color:#8A949B !important;opacity:.85;transition:color .2s,opacity .2s,box-shadow .25s !important}.pd-trust-tabs .pd-trust-tab:hover{color:#14212B !important;opacity:1}' +
+    '.pd-trust-tabs .pd-trust-tab[aria-selected="true"]{color:#14212B !important;opacity:1;box-shadow:inset 0 -2px 0 #E8641F !important}.pd-trust-tabs .pd-trust-tab[aria-selected="true"] svg{stroke:#E8641F !important}' +
     '.pd-crumb{display:none !important}' +
     '@media (max-width:900px){' +
       '.pd-gallery.has-story{grid-template-areas:"story" "main" "cap" "thumbs" !important}' +
@@ -548,7 +561,7 @@
       // filtres par type inutiles tant qu'il n'y a qu'un produit
       if (n < 2) { var tf = document.querySelector('.type-filters'); if (tf) tf.style.display = 'none'; }
     }
-    document.querySelectorAll('.pd-cross-grid').forEach(function (g) { if (!g.querySelector('.pd-x')) { var sec = g.closest('section'); if (sec) sec.remove(); } });
+    document.querySelectorAll('.pd-cross-grid').forEach(function (g) { if (!g.querySelector('.pd-x,a[data-handle]')) { var sec = g.closest('section'); if (sec) sec.remove(); } });
   }
 
   /* ---------- page produit ---------- */
@@ -566,7 +579,8 @@
     var c = ((p.category && p.category.name) || '') + ' ' + (p.productType || '') + ' ' + (p.title || '');
     if (/vest\b|vests|gilet/i.test(c)) return 'gilet';
     if (/parka/i.test(c)) return 'parka';
-    if (/glove|mitten|sock|gant|chaussette/i.test(c)) return 'accessoire';
+    if (/glove|mitten|gant/i.test(c)) return 'gants';
+    if (/sock|chaussette/i.test(c)) return 'chaussettes';
     return 'veste';
   }
   function pageOf(h) { return PRODUCT_PAGES[h] || ('produit.html?p=' + encodeURIComponent(h)); }
@@ -679,6 +693,14 @@
         { ico: 'heat', t: '1 zone dans la capuche', d: 'Protège la tête et la nuque' },
         { ico: 'thermo', t: 'Réglage de la température', d: '3 niveaux de chaleur selon vos besoins' }
       ]
+    },
+    'sweet': {
+      items: [
+        { ico: 'heat', t: '2 zones dans la poche avant', d: 'Pour se réchauffer les mains' },
+        { ico: 'heat', t: '6 zones dans le dos', d: 'Chaleur répartie du haut au bas du dos' },
+        { ico: 'heat', t: '1 zone dans la capuche', d: 'Protège la tête et la nuque' },
+        { ico: 'thermo', t: 'Réglage de la température', d: '3 niveaux de chaleur selon vos besoins' }
+      ]
     }
   };
   var STORY_TEXT = 'Une chaleur ciblée et homogène pour rester au chaud, par tous les temps.';
@@ -704,7 +726,13 @@
     var f = it ? decodeURIComponent(String(it.src || '').split('?')[0].split('/').pop()).replace(/[_-]+/g, ' ') : '';
     if (it && it.zones && n) {
       var cfg = PD_STORY[h] || PD_STORY[base] || {};
-      return { h: n + ' zone' + (n > 1 ? 's' : '') + ' chauffante' + (n > 1 ? 's' : ''), p: cfg.text || STORY_TEXT, items: cfg.items || [] };
+      // sans détail des emplacements pour ce produit : points clés communs à tous nos vêtements
+      var gen = [
+        { ico: 'heat', t: n + ' zone' + (n > 1 ? 's' : '') + ' chauffante' + (n > 1 ? 's' : ''), d: 'Intégrées dans le vêtement' },
+        { ico: 'thermo', t: '3 niveaux de chaleur', d: 'Un appui sur le bouton pour changer' },
+        { ico: 'clock', t: 'Jusqu’à 10 h d’autonomie', d: 'Avec la batterie 20 000 mAh' }
+      ];
+      return { h: n + ' zone' + (n > 1 ? 's' : '') + ' chauffante' + (n > 1 ? 's' : ''), p: cfg.text || STORY_TEXT, items: cfg.items || gen };
     }
     if (it && it.water) return { h: 'Lavable en machine', p: 'Retirez la batterie : le vêtement se lave comme les autres.', items: [
       { ico: 'batt', t: 'Batterie retirée', d: 'Sortez-la et refermez la poche avant le lavage' },
@@ -739,7 +767,7 @@
   }
   var storyHandle = '';
   function updateStory(it) {
-    var box = document.querySelector('.pd-gallery .pd-story'); if (!box) return;
+    var box = document.querySelector('.pd-story'); if (!box) return;
     var html = storyHtml(storyContent(it, storyHandle)); if (box._html === html) return;
     box._html = html; clearTimeout(box._t);
     if (!box.innerHTML) { box.innerHTML = html; return; }
@@ -772,7 +800,7 @@
     [].slice.call(main.querySelectorAll('.pd-arrow')).forEach(function (a) { gal.appendChild(a); });
     function pos() {
       var cs = getComputedStyle(gal), t = main.offsetTop + main.offsetHeight / 2, wide = (cs.display === 'contents' && window.innerWidth >= 1360) || cs.gridTemplateAreas.indexOf('story main') > -1;
-      var story = gal.querySelector('.pd-story');
+      var story = document.querySelector('.pd-story');
       [].slice.call(gal.querySelectorAll(':scope > .pd-arrow')).forEach(function (a) {
         a.style.top = t + 'px';
         if (wide && story) {
@@ -786,6 +814,30 @@
     if (window.ResizeObserver) new ResizeObserver(pos).observe(gal);
     // Bloc d'achat (titre → onglets) : réparti pour finir exactement au niveau du bas des miniatures
     var info = document.querySelector('.pd-top > .pd-info'), thumbs = gal.querySelector('.pd-thumbs');
+    // grand écran : titre + prix + texte de la photo à gauche ; options d'achat (batterie → guide des tailles) à droite
+    var leftBox = null, swapMq = window.matchMedia('(min-width:1360px)'), swapped = false, storyHome = null, moved = [];
+    function swapBlocks() {
+      if (!info) return;
+      if (swapMq.matches && !swapped) {
+        var st = gal.querySelector('.pd-story'); if (!st) return;
+        leftBox = leftBox || document.createElement('div'); leftBox.className = 'pd-info pd-left-buy';
+        moved = [];
+        var kids = [].slice.call(info.children);
+        for (var i = 0; i < kids.length; i++) { if (kids[i].classList.contains('pd-field')) break; moved.push(kids[i]); }
+        moved.forEach(function (k) { leftBox.appendChild(k); });
+        storyHome = { parent: st.parentNode, next: st.nextSibling };
+        leftBox.appendChild(st); st.classList.add('pd-story-right');
+        info.parentNode.insertBefore(leftBox, info);
+        swapped = true;
+      } else if (!swapMq.matches && swapped) {
+        var st2 = leftBox.querySelector('.pd-story');
+        if (st2 && storyHome) { storyHome.parent.insertBefore(st2, storyHome.next); st2.classList.remove('pd-story-right'); }
+        moved.slice().reverse().forEach(function (k) { info.insertBefore(k, info.firstChild); });
+        leftBox.remove(); swapped = false;
+      }
+    }
+    // après l'association des options Shopify (même tour d'exécution), puis à chaque changement de largeur
+    setTimeout(function () { swapBlocks(); fitInfo(); window.dispatchEvent(new Event('resize')); }, 0); (swapMq.addEventListener ? swapMq.addEventListener('change', function () { swapBlocks(); fitInfo(); }) : swapMq.addListener(function () { swapBlocks(); fitInfo(); }));
     function fitInfo() {
       if (!info || !thumbs) return;
       info.classList.remove('is-fit'); info.style.height = '';

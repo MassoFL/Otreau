@@ -109,7 +109,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .menu-btn,.menu-close{width:44px;height:44px;padding:0;border:0;background:transparent;color:#FFFFFF;cursor:pointer;display:none;align-items:center;justify-content:center}
 .menu-btn{display:flex;margin-left:-10px}
 .menu-btn svg path{transition:d .3s ease}
-.menu-btn[aria-expanded="true"] svg path{d:path("M6 6L18 18M18 6L6 18")}
+
 .site-header.is-solid .menu-btn{color:#14212B}
 .menu-close{display:flex}
 .mobile-menu{position:fixed;inset:0;z-index:60;background:#0B1218;color:#FFFFFF;display:flex;flex-direction:column;padding:8px clamp(16px,4vw,64px) 32px;overflow-y:auto;visibility:hidden;opacity:0;transform:translateY(-12px);transition:opacity .3s ease,transform .3s ease,visibility 0s linear .3s}
@@ -549,6 +549,312 @@ body{background:#F8F6F1}
 .pd-trust-tab,.pd-trust-tab::before,.pd-trust-tab::after,.pd-trust-panel{border-radius:0 !important}
 /* Contenu du pack : volet des Détails du produit */
 .pd-acc-pack .pd-pack-items{max-width:620px;margin:6px auto 4px}
+/* ===== Menu (maquette) : tuiles produits avec photo, liens en cartes avec icônes, accents dorés ===== */
+#mobile-menu{--mg-gold:#D9A35B;background:radial-gradient(ellipse 60% 70% at 85% 100%,rgba(120,84,40,.22),transparent 70%),#0C0E10 !important;-webkit-backdrop-filter:none;backdrop-filter:none}
+#mobile-menu .mobile-links{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+#mobile-menu .menu-group{border:0}
+#mobile-menu .menu-group > summary{display:flex;align-items:center;justify-content:space-between;padding:6px 0 14px;border:0;font:500 13px/1 Manrope,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--mg-gold);opacity:1}
+#mobile-menu .menu-group > summary .mg-ico{width:7px;height:7px;border-right:1.4px solid currentColor;border-bottom:1.4px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+#mobile-menu .menu-group > summary .mg-ico::before,#mobile-menu .menu-group > summary .mg-ico::after{display:none}
+#mobile-menu .menu-group[open] > summary .mg-ico{transform:translateY(2px) rotate(-135deg)}
+#mobile-menu .menu-sub{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 0 14px;border:0}
+#mobile-menu .menu-sub a.mg-tile{position:relative;display:block;aspect-ratio:4 / 5;overflow:hidden;padding:0;border:1px solid rgba(255,255,255,.12);border-radius:4px;background:radial-gradient(ellipse 90% 70% at 50% 18%,rgba(196,140,72,.38),rgba(40,30,22,.6) 55%,#121314 100%);text-decoration:none;transition:border-color .25s}
+#mobile-menu .mg-tile img{position:absolute;inset:6% 6% 18%;width:88%;height:76%;object-fit:contain;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));transition:transform .5s ease}
+#mobile-menu .mg-tile::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(180deg,transparent,rgba(8,8,9,.85));pointer-events:none}
+#mobile-menu .mg-tile .mg-lbl{position:absolute;z-index:1;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,1.6vw,26px) clamp(14px,1.6vw,26px);font:400 clamp(13px,1.15vw,17px)/1 Manrope,sans-serif;letter-spacing:.26em;text-transform:uppercase;color:#FFFFFF}
+#mobile-menu .mg-tile .mg-lbl svg{color:var(--mg-gold)}
+#mobile-menu .menu-sub a.mg-tile:hover{border-color:var(--mg-gold)}
+#mobile-menu .mg-tile:hover img{transform:scale(1.04)}
+#mobile-menu .menu-sub a.mg-all{grid-column:1 / -1;display:flex;align-items:center;justify-content:space-between;min-height:64px;padding:0 clamp(18px,2vw,32px);border:1px solid rgba(217,163,91,.7);border-radius:4px;background:linear-gradient(90deg,rgba(217,163,91,.18),rgba(217,163,91,.06));font:500 15px/1 Manrope,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--mg-gold);text-decoration:none;transition:background .25s}
+#mobile-menu .menu-sub a.mg-all:hover{background:linear-gradient(90deg,rgba(217,163,91,.3),rgba(217,163,91,.12))}
+#mobile-menu .mobile-links > a{display:flex;align-items:center;gap:18px;min-height:64px;padding:0 clamp(16px,1.8vw,28px);border:1px solid rgba(255,255,255,.12);border-radius:4px;background:rgba(255,255,255,.02);font:400 14px/1.2 Manrope,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#FFFFFF;text-decoration:none;transition:border-color .25s,background .25s}
+#mobile-menu .mobile-links > a::after{display:none}
+#mobile-menu .mobile-links > a .mg-i{flex:none;width:26px;height:26px;fill:none;stroke:rgba(255,255,255,.85);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}
+#mobile-menu .mobile-links > a .mg-t{flex:1}
+#mobile-menu .mg-arr{flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.75;transition:transform .25s,opacity .25s}
+#mobile-menu .mobile-links > a:hover{border-color:var(--mg-gold);background:linear-gradient(90deg,rgba(217,163,91,.14),rgba(217,163,91,.03))}
+#mobile-menu .mobile-links > a:hover .mg-i{stroke:var(--mg-gold)}
+#mobile-menu .mobile-links > a:hover .mg-arr,#mobile-menu .mg-all:hover .mg-arr,#mobile-menu .mg-tile:hover .mg-arr{transform:translateX(4px);opacity:1;color:var(--mg-gold)}
+@media (max-width:860px){
+#mobile-menu .mobile-links > a{min-height:56px;font-size:13px;letter-spacing:.18em}
+#mobile-menu .menu-sub{gap:8px}
+#mobile-menu .mg-tile .mg-lbl{letter-spacing:.14em;font-size:11px}
+#mobile-menu .mg-tile .mg-lbl svg{display:none}
+#mobile-menu .menu-sub a.mg-all{min-height:52px;font-size:13px}
+}
+@media (min-width:861px){
+#mobile-menu{left:0;right:0;width:auto;padding:40px clamp(24px,5vw,96px) 48px;max-height:calc(100vh - 100px)}
+#mobile-menu .mobile-links{display:grid;max-width:1500px;margin:0 auto;width:100%;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:repeat(4,76px) 1fr;grid-auto-flow:column;column-gap:clamp(20px,2.4vw,40px);row-gap:16px}
+#mobile-menu .menu-group{grid-column:1;grid-row:1 / -1;padding-right:clamp(20px,2.6vw,48px);border-right:1px solid rgba(255,255,255,.1)}
+#mobile-menu .menu-group > summary{pointer-events:none}
+#mobile-menu .menu-group > summary .mg-ico{display:none}
+#mobile-menu .menu-sub{gap:14px}
+#mobile-menu .mobile-links > a{grid-row:auto;min-height:0;height:76px}
+#mobile-menu .mobile-links > a{font-size:13px;letter-spacing:.2em}
+#mobile-menu .mobile-links > a .mg-t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mobile-menu .menu-sub a.mg-tile{aspect-ratio:3 / 4}
+#mobile-menu .mg-tile .mg-lbl{font-size:clamp(12px,1vw,15px);letter-spacing:.2em}
+#mobile-menu .menu-sub a.mg-all{min-height:76px}
+#mobile-menu .mobile-links > a:nth-of-type(n+5){grid-column:3}
+#mobile-menu .mobile-links > a:nth-of-type(-n+4){grid-column:2}
+}
+@media (min-width:861px){
+#mobile-menu{z-index:19;inset:auto;left:0;right:0;bottom:auto;width:auto;border:0;border-bottom:1px solid rgba(255,255,255,.08);border-radius:0;box-shadow:0 0 0 100vmax rgba(0,0,0,.45);transform:translateY(-100%);opacity:1;transition:transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s linear .45s}
+#mobile-menu.is-open{transform:none;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+}
+@media (min-width:861px) and (prefers-reduced-motion: reduce){#mobile-menu,#mobile-menu.is-open{transition:none}}
+/* Menu : tout le texte en blanc */
+#mobile-menu .menu-group > summary,#mobile-menu .menu-sub a.mg-all,#mobile-menu .mg-tile .mg-lbl svg,#mobile-menu .mobile-links > a:hover .mg-arr,#mobile-menu .mg-all:hover .mg-arr,#mobile-menu .mg-tile:hover .mg-arr{color:#FFFFFF !important}
+/* Menu : tuiles produits sans cadre ni fond, photo détourée + titre dessous */
+#mobile-menu .menu-sub a.mg-tile{border:0 !important;background:none !important;border-radius:0 !important;overflow:visible;display:flex !important;flex-direction:column;aspect-ratio:auto !important}
+#mobile-menu .mg-tile::after{display:none !important}
+#mobile-menu .mg-tile img{position:static !important;inset:auto;width:100% !important;height:auto !important;aspect-ratio:1 / 1;object-fit:contain;filter:drop-shadow(0 14px 18px rgba(0,0,0,.6))}
+#mobile-menu .mg-tile .mg-lbl{position:static !important;padding:12px 0 0 !important;justify-content:center !important;gap:10px}
+#mobile-menu .mg-tile:hover .mg-lbl{color:#FFFFFF}
+#mobile-menu .menu-sub a.mg-all{margin-top:14px !important}
+/* Menu : « Voir tous » sans cadre */
+#mobile-menu .menu-sub a.mg-all{border:0 !important;background:none !important;min-height:0 !important;padding:10px 0 !important;justify-content:center !important;gap:12px}
+#mobile-menu .menu-sub a.mg-all:hover{background:none !important;text-decoration:underline;text-underline-offset:6px}
+/* Menu : 6 produits sur 2 lignes, photos plus basses pour tenir dans l’espace */
+@media (min-width:861px){#mobile-menu .menu-sub{row-gap:14px !important}#mobile-menu .mg-tile img{aspect-ratio:4 / 3 !important}#mobile-menu .mg-tile .mg-lbl{padding-top:8px !important}#mobile-menu .menu-sub a.mg-all{margin-top:4px !important}}
+/* Menu : « Voir tous » en face de « Toutes les collections » */
+#mobile-menu .menu-group{position:relative}
+@media (min-width:861px){#mobile-menu .menu-sub a.mg-all{position:absolute !important;top:0;right:clamp(20px,2.6vw,48px);margin:0 !important;padding:2px 0 !important;font-size:12px !important;letter-spacing:.24em !important}}
+/* Menu : liens de droite comme les produits (sans cadre, grande icône, titre dessous) */
+#mobile-menu .mobile-links > a,#mobile-menu .mobile-links > a:last-child,#mobile-menu .mobile-links > a:hover{border:0 !important;background:none !important;border-radius:0 !important}
+#mobile-menu .mobile-links > a{flex-direction:column;justify-content:center;align-items:center;gap:12px !important;padding:8px 4px !important;text-align:center}
+#mobile-menu .mobile-links > a .mg-i{width:40px !important;height:40px !important;stroke-width:1.1 !important;padding:0;transition:transform .3s,stroke .25s}
+#mobile-menu .mobile-links > a:hover .mg-i{transform:translateY(-3px)}
+#mobile-menu .mobile-links > a .mg-t{flex:none !important;display:inline-flex;align-items:center;gap:10px;white-space:normal !important;overflow:visible !important;line-height:1.35}
+#mobile-menu .mobile-links > a > .mg-arr{display:none}
+#mobile-menu .mobile-links > a .mg-t::after{content:"→";font-size:15px;letter-spacing:0;opacity:.75;transition:transform .25s}
+#mobile-menu .mobile-links > a:hover .mg-t::after{transform:translateX(4px);opacity:1}
+@media (max-width:860px){
+#mobile-menu .mobile-links{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:8px;row-gap:18px}
+#mobile-menu .menu-group{grid-column:1 / -1}
+#mobile-menu .mobile-links > a{min-height:0 !important;font-size:11px !important;letter-spacing:.14em !important;gap:10px !important}
+#mobile-menu .mobile-links > a .mg-i{width:32px !important;height:32px !important}
+#mobile-menu .mobile-links > a .mg-t::after{display:none}
+}
+@media (min-width:861px){
+#mobile-menu .mobile-links{grid-template-columns:minmax(0,1.5fr) repeat(4,minmax(0,.5fr)) !important;grid-template-rows:auto auto !important;grid-auto-flow:row !important;row-gap:14px !important;column-gap:clamp(8px,1.4vw,24px) !important;align-items:stretch}
+#mobile-menu .menu-group{grid-column:1 !important;grid-row:1 / span 2 !important}
+#mobile-menu .mobile-links > a,#mobile-menu .mobile-links > a:nth-of-type(n){grid-column:auto !important;height:auto !important;font-size:12px !important;letter-spacing:.18em !important}
+#mobile-menu .mobile-links > a:nth-of-type(1){grid-column:2 !important}
+#mobile-menu .mobile-links > a:nth-of-type(5){grid-column:2 !important}
+#mobile-menu .mobile-links > a,#mobile-menu .mobile-links > a:nth-of-type(n){justify-content:flex-start !important;padding:44px 4px 0 !important}
+#mobile-menu .mobile-links > a:nth-of-type(n+5){padding-top:20px !important}
+#mobile-menu .mobile-links > a .mg-i{width:48px !important;height:48px !important}
+#mobile-menu .mobile-links > a .mg-t::after{display:none}
+}
+/* ===== Menu v3 (maquette) : cartes produits, Guides & support en liste, encart marque ===== */
+html #mobile-menu .menu-sub a.mg-tile{display:flex !important;flex-direction:column;justify-content:space-between;aspect-ratio:auto !important;padding:14px 18px 16px !important;border:1px solid rgba(255,255,255,.07) !important;border-radius:4px !important;background:linear-gradient(180deg,#171A1D,#111315) !important;overflow:hidden;transition:border-color .25s}
+html #mobile-menu .menu-sub a.mg-tile:hover{border-color:rgba(217,163,91,.7) !important}
+html #mobile-menu .mg-tile img{position:static !important;width:100% !important;height:auto !important;aspect-ratio:4 / 3 !important;object-fit:contain;filter:drop-shadow(0 12px 16px rgba(0,0,0,.6))}
+html #mobile-menu .mg-tile .mg-lbl{position:static !important;justify-content:flex-start !important;gap:12px;padding:10px 0 0 !important;font:400 clamp(13px,1.05vw,16px)/1 Manrope,sans-serif !important;letter-spacing:.22em !important;color:#FFFFFF}
+html #mobile-menu .mg-tile .mg-lbl svg{display:block !important;color:#FFFFFF}
+html #mobile-menu .mg-h{margin:0;font:500 13px/1 Manrope,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#FFFFFF}
+html #mobile-menu .menu-group > summary{font-size:13px !important;letter-spacing:.3em !important;color:#FFFFFF !important}
+/* Guides & support : lignes avec icône, texte, flèche */
+html #mobile-menu .mobile-links > a,html #mobile-menu .mobile-links > a:nth-of-type(n){flex-direction:row !important;justify-content:flex-start !important;align-items:center !important;gap:22px !important;height:auto !important;min-height:0 !important;padding:12px 4px !important;text-align:left !important;border:0 !important;border-bottom:1px solid rgba(255,255,255,.1) !important;border-radius:0 !important;background:none !important;font:400 13px/1.35 Manrope,sans-serif !important;letter-spacing:.2em !important}
+html #mobile-menu .mobile-links > a:last-of-type{border-bottom:0 !important}
+html #mobile-menu .mg-promo-a{position:absolute;inset:0;z-index:1}
+html #mobile-menu .mg-promo-a{border:0 !important;padding:0 !important;font-size:0 !important}
+html #mobile-menu .mg-promo{transition:border-color .25s}html #mobile-menu .mg-promo:hover{border-color:rgba(217,163,91,.7)}
+html #mobile-menu .mobile-links > a .mg-i{width:34px !important;height:34px !important;stroke-width:1.2 !important;stroke:#FFFFFF !important;transform:none !important}
+html #mobile-menu .mobile-links > a:hover .mg-i{stroke:#D9A35B !important}
+html #mobile-menu .mobile-links > a .mg-t{flex:1 !important;display:block}
+html #mobile-menu .mobile-links > a .mg-t::after{display:none !important}
+html #mobile-menu .mobile-links > a > .mg-arr{display:block !important;width:18px;height:18px}
+/* Encart marque */
+html #mobile-menu .mg-promo{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border-radius:4px;overflow:hidden;text-decoration:none;color:#FFFFFF;background:linear-gradient(180deg,rgba(10,10,12,.25),rgba(10,10,12,.55)),url(assets/hero-6.jpg) center / cover no-repeat;border:1px solid rgba(255,255,255,.07);text-align:center;padding:24px}
+html #mobile-menu .mg-promo .mg-pl{font:800 30px/1 Manrope,sans-serif;letter-spacing:-.02em}
+html #mobile-menu .mg-promo .mg-pl sup{font-size:.4em;font-weight:600;vertical-align:1.2em}
+html #mobile-menu .mg-promo .mg-ps{font:500 13px/1.6 Manrope,sans-serif;letter-spacing:.3em;text-transform:uppercase;max-width:22ch}
+html #mobile-menu .mg-promo .mg-ps::after{content:"";display:block;width:64px;height:2px;margin:16px auto 0;background:#E8641F}
+@media (max-width:860px){
+html #mobile-menu .mobile-links{display:flex !important;flex-direction:column;gap:0 !important}
+html #mobile-menu .menu-sub{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:8px !important}
+html #mobile-menu .menu-sub a.mg-tile{padding:8px 8px 10px !important}
+html #mobile-menu .mg-tile .mg-lbl{font-size:10px !important;letter-spacing:.12em !important;justify-content:center !important}
+html #mobile-menu .mg-tile .mg-lbl svg{display:none !important}
+html #mobile-menu .mg-h{margin:22px 0 8px}
+html #mobile-menu .mobile-links > a,html #mobile-menu .mobile-links > a:nth-of-type(n){padding:12px 2px !important;font-size:12px !important;letter-spacing:.16em !important}
+html #mobile-menu .mobile-links > a .mg-i{width:28px !important;height:28px !important}
+html #mobile-menu .mg-promo{display:none}
+}
+@media (min-width:861px){
+html #mobile-menu .mobile-links{display:grid !important;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr) minmax(0,.78fr) !important;grid-template-rows:auto repeat(7,auto) !important;grid-auto-flow:row !important;column-gap:clamp(24px,3vw,56px) !important;row-gap:0 !important;align-items:stretch}
+html #mobile-menu .menu-group{grid-column:1 !important;grid-row:1 / -1 !important;padding-right:clamp(24px,3vw,56px) !important;border-right:1px solid rgba(255,255,255,.1) !important}
+html #mobile-menu .menu-group > summary{padding:4px 0 22px !important}
+html #mobile-menu .menu-sub{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:16px !important;padding:0 !important}
+html #mobile-menu .menu-sub a.mg-all{top:2px !important;right:clamp(24px,3vw,56px) !important;font-size:11px !important;letter-spacing:.2em !important}
+html #mobile-menu .menu-group > summary{letter-spacing:.24em !important}
+html #mobile-menu .mg-h{grid-column:2;grid-row:1;padding:4px 0 14px}
+html #mobile-menu .mobile-links > a,html #mobile-menu .mobile-links > a:nth-of-type(n){grid-column:2 !important}
+html #mobile-menu .mg-promo{grid-column:3;grid-row:1 / -1;min-height:100%}
+}
+@media (min-width:861px){html #mobile-menu .mg-tile img{aspect-ratio:1 / 1 !important}html #mobile-menu .mg-tile .mg-lbl{letter-spacing:.16em !important;font-size:clamp(12px,.95vw,15px) !important;gap:8px !important;white-space:nowrap}}
+/* Menu : photo de l’encart en noir et blanc */
+html #mobile-menu .mg-promo{background:#111 !important}
+html #mobile-menu .mg-promo::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,12,.2),rgba(10,10,12,.55)),url(assets/hero-6.jpg) center / cover no-repeat;filter:grayscale(1) contrast(1.05);z-index:0}
+html #mobile-menu .mg-promo > span{position:relative;z-index:1}
+/* Bouton menu ouvert : flèche vers le haut (compatible tous navigateurs) */
+.menu-btn{position:relative}
+.menu-btn[aria-expanded="true"] svg{visibility:hidden}
+.menu-btn[aria-expanded="true"]::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;border-left:1.8px solid currentColor;border-top:1.8px solid currentColor;border-radius:1px;transform:translate(-50%,-25%) rotate(45deg)}
+/* Menu : collections = photo + titre centré, sans cadre ni flèche */
+html #mobile-menu .menu-sub a.mg-tile,html #mobile-menu .menu-sub a.mg-tile:hover{border:0 !important;background:none !important;padding:0 !important}
+html #mobile-menu .mg-tile .mg-lbl,html #mobile-menu .mg-tile .mg-lbl{justify-content:center !important;text-align:center}
+html #mobile-menu .mg-tile .mg-lbl svg{display:none !important}
+html #mobile-menu .mg-tile:hover img{transform:translateY(-4px) scale(1.03)}
+/* Menu ouvert : la page derrière ne défile pas */
+html.menu-lock,html.menu-lock body{overflow:hidden !important}
+#mobile-menu{overscroll-behavior:contain}
+/* Menu : « Toutes les collections » cliquable */
+html #mobile-menu .menu-group > summary{pointer-events:auto !important}
+html #mobile-menu .mg-all-link{color:inherit !important;text-decoration:none;border:0 !important;padding:0 !important;font:inherit !important;letter-spacing:inherit !important;text-transform:inherit !important;transition:color .2s}
+html #mobile-menu .mg-all-link:hover{color:#D9A35B !important}
+@media (min-width:861px){html #mobile-menu .menu-group > summary{cursor:default}html #mobile-menu .mg-all-link{cursor:pointer}}
+/* Menu : la photo agrandie au survol n’est plus coupée en haut */
+html #mobile-menu .menu-sub,html #mobile-menu .menu-sub a.mg-tile{overflow:visible !important}
+html #mobile-menu .mg-tile img{transform-origin:50% 60%}
+html #mobile-menu .mg-tile:hover img{transform:scale(1.05) !important}
+/* Menu : le titre grandit avec la photo au survol */
+html #mobile-menu .mg-tile .mg-lbl{transition:transform .5s ease}
+html #mobile-menu .mg-tile:hover .mg-lbl{transform:scale(1.05)}
+/* Menu : fond noir mat uniforme */
+html #mobile-menu{background:#0A0A0A !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important}
+/* ===== Comment ça marche ? (maquette) : photos rondes numérotées, flèches, textes centrés ===== */
+.pd-how{--pic:clamp(190px,17vw,290px);--gap:clamp(28px,4.4vw,80px)}
+.pd-how > .pd-h2{font:300 clamp(34px,3.6vw,52px)/1.1 Manrope,sans-serif !important;letter-spacing:.01em;text-transform:uppercase;color:#14212B}
+.pd-how > .pd-h2::after{content:"";display:block;width:64px;height:2px;margin:26px auto 0;background:#C9A36A}
+.pd-how .pd-steps.hw-steps{display:flex !important;justify-content:center;align-items:flex-start;gap:var(--gap) !important;margin-top:clamp(36px,4vw,60px)}
+.pd-how .pd-steps.hw-steps{max-width:1320px;margin-left:auto !important;margin-right:auto !important;padding:0 clamp(8px,1.5vw,24px)}
+.pd-how .pd-step p{padding:0 6px}
+.pd-how .pd-step{position:relative;flex:1 1 0;max-width:360px;min-width:0;padding:0 !important;background:none !important;border:0 !important;border-radius:0 !important;box-shadow:none !important;overflow:visible !important;text-align:center}
+.pd-how .hw-pic{width:var(--pic) !important;height:var(--pic) !important;aspect-ratio:1 !important;margin:0 auto 30px !important;border-radius:50%;object-fit:cover;border:4px solid #FFFFFF;box-shadow:0 20px 44px -20px rgba(20,33,43,.5);background:#1A1C1E}
+.pd-how .pd-num{position:absolute;top:calc(var(--pic) * .02);left:calc(50% - var(--pic) / 2 + var(--pic) * .02);z-index:2;width:56px;height:56px;margin:0 !important;border-radius:50%;background:#FFFFFF;color:#3E9BEA !important;display:flex;align-items:center;justify-content:center;font:700 28px/1 Manrope,sans-serif !important;box-shadow:0 6px 18px -6px rgba(20,33,43,.35);border:0 !important}
+.pd-how .pd-step:not(:last-child)::after{content:"";position:absolute;top:calc(var(--pic) / 2 - 12px);right:calc(var(--gap) / -2 - 15px);width:30px;height:24px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 24' fill='none' stroke='%2314212B' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 12h25M19 4l8 8-8 8'/%3E%3C/svg%3E") center/contain no-repeat;opacity:.7}
+.pd-how .pd-step h3{margin:0 0 12px !important;font:800 clamp(14px,1.05vw,17px)/1.3 Manrope,sans-serif !important;letter-spacing:.16em !important;text-transform:uppercase;color:#14212B}
+.pd-how .pd-step p{margin:0 auto !important;max-width:34ch;font-size:16px !important;line-height:1.6 !important;color:#55616B}
+@media (max-width:900px){
+.pd-how{--pic:min(62vw,260px)}
+.pd-how .pd-steps.hw-steps{flex-direction:column;align-items:center;gap:56px !important}
+.pd-how .pd-step{max-width:420px;width:100%}
+.pd-how .pd-step:not(:last-child)::after{top:auto;bottom:-44px;right:auto;left:calc(50% - 15px);transform:rotate(90deg)}
+.pd-how .pd-num{width:48px;height:48px;font-size:24px !important}
+}
+.pc-feats{list-style:none;margin:4px 0 0;padding:0;width:100%;max-width:220px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.pc-feats li{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:11px;line-height:1.2;color:#B3BAC0;text-align:center}
+.pc-feats svg{width:19px;height:19px;fill:none;stroke:#B3BAC0;stroke-width:1.5;stroke-linecap:round}
+.pc-sizes{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.pc-sizes li{width:36px;height:36px;padding:0;border-radius:50%;letter-spacing:-.02em;display:flex;align-items:center;justify-content:center;border:1px solid #E4DFD5;font-family:Manrope,sans-serif;font-size:12px;font-weight:600;color:#55616B}
+.pc-feats{margin-top:16px !important}
+.pc-price{margin:-2px 0 0;font-family:Manrope,sans-serif;font-weight:500;font-size:16px;color:#55616B}
+.pd-cross a[data-handle] > div:last-child{position:relative;box-shadow:inset 0 0 0 1.5px #9AA2A8;margin-top:26px}
+.pd-cross a[data-handle] > div:last-child::after{content:"";position:absolute;inset:0;padding:1px;pointer-events:none;z-index:0;opacity:.55;
+  background:conic-gradient(from var(--glow-a),transparent 0 70%,#3E9BEA 78%,#B9E0FF 84%,#FFD27A 89%,#F5A623 94%,#E8641F 98%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:glow-spin 5s linear infinite}
+.pd-cross a[data-handle]:nth-child(4n+2) > div:last-child::after{animation-delay:-1.25s}
+.pd-cross a[data-handle]:nth-child(4n+3) > div:last-child::after{animation-delay:-2.5s}
+.pd-cross a[data-handle]:nth-child(4n+4) > div:last-child::after{animation-delay:-3.75s}
+@media (prefers-reduced-motion: reduce){.pd-cross a[data-handle] > div:last-child::after{animation:none}}
+/* Bouton « Découvrir » des cartes : lumière noire qui tourne (essai) */
+.pc-cta{position:relative}
+.pc-cta::after{content:"";position:absolute;inset:-2.5px;padding:2.5px;z-index:1;pointer-events:none;border-radius:0;filter:drop-shadow(0 0 3px rgba(0,0,0,.6)) drop-shadow(0 0 8px rgba(0,0,0,.35));
+  background:conic-gradient(from var(--glow-a),transparent 0 55%,rgba(20,33,43,.25) 66%,#5A636B 76%,#2A3640 86%,#000000 94%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  animation:glow-spin 4.5s linear infinite}
+@media (prefers-reduced-motion: reduce){.pc-cta::after{animation:none}}
+/* Bas de carte en face de prisme : on devine le départ de la face du dessus, qui s'estompe */
+.pd-cross a[data-handle]{overflow:visible !important}
+.pc-side{position:absolute;left:0;right:0;bottom:100%;height:22px;pointer-events:none;z-index:0;transform-origin:50% 100%;transform:perspective(380px) rotateX(62deg);-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+.pc-side::before{content:"";position:absolute;inset:0;border-left:1px solid rgba(154,162,168,.6);border-right:1px solid rgba(154,162,168,.6);background:linear-gradient(90deg,rgba(74,83,90,.06),rgba(74,83,90,.12))}
+/* Complétez votre tenue : cartes identiques à la sélection de l’accueil */
+.pc-sizes{display:none !important}
+.pd-cross .pd-cross-grid{display:grid !important;grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:20px !important;max-width:1100px;margin:28px auto 0}
+.pd-cross a[data-handle]{overflow:visible !important}
+.pd-cross .pc-price{color:#2A3640 !important}
+.pd-cross .pc-feats li{color:#2A3640 !important;font-size:12px}
+.pd-cross .pc-feats svg{stroke:#2A3640 !important}
+@media (max-width:900px){.pd-cross .pd-cross-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}
+@media (max-width:560px){.pd-cross .pd-cross-grid{grid-template-columns:minmax(0,1fr) !important}}
+@media (max-width:760px){.pc-cta::after{display:none !important;animation:none !important}}
+/* Détails du produit : titres des volets en gras */
+.pd-acc summary,.pd-acc summary > span{font-weight:700 !important}
+/* Pied de page : colonnes de liens centrées */
+.site-footer .f-col{text-align:center}
+.site-footer .f-col ul{padding-left:0;align-items:center}
+.site-footer .f-col li{justify-content:center}
+/* Pied de page : grand « Otreau » derrière les montagnes */
+.f-mont{position:relative;overflow:hidden;margin:-72px calc(-1 * clamp(16px,4vw,64px)) clamp(40px,4vw,64px);aspect-ratio:1800 / 691;max-height:78vh;isolation:isolate}
+.f-mont-bg,.f-mont-fg{position:absolute;inset:0;background:url(assets/footer-mont.webp) center top / cover no-repeat}
+.f-mont-fg{background-image:url(assets/footer-mont-avant.webp);z-index:2}
+.f-mont::after{content:"";position:absolute;left:0;right:0;bottom:0;height:45%;z-index:3;background:linear-gradient(180deg,rgba(5,5,5,0),#050505)}
+.f-mont-k{position:absolute;z-index:1;left:0;right:0;top:4%;margin:0;text-align:center;font:300 clamp(18px,2.6vw,44px)/1 Manrope,sans-serif;letter-spacing:.01em;color:rgba(255,255,255,.92)}
+.f-mont-t{position:absolute;z-index:1;left:0;right:0;top:9%;margin:0;text-align:center;font:800 clamp(84px,16vw,300px)/1 Manrope,sans-serif;letter-spacing:-.04em;color:#FFFFFF}
+@media (max-width:640px){.f-mont{aspect-ratio:auto;height:300px}.f-mont-k{top:7%;font-size:16px}.f-mont-t{top:15%;font-size:25vw}}
+/* Pied de page : les éléments remontent par-dessus la photo des montagnes */
+.f-mont{margin-bottom:calc(-1 * min(19vw, 39vh)) !important}
+.f-mont-bg,.f-mont-fg{-webkit-mask-image:linear-gradient(180deg,#000 50%,transparent 100%);mask-image:linear-gradient(180deg,#000 50%,transparent 100%)}
+.f-mont::after{height:55% !important;background:linear-gradient(180deg,rgba(5,5,5,0),rgba(5,5,5,.45)) !important}
+.site-footer > :not(.f-mont){position:relative;z-index:4}
+.site-footer .f-rise{opacity:0;transform:translateY(60px);transition:opacity .9s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+.site-footer .f-rise.is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.site-footer .f-rise{opacity:1;transform:none;transition:none}}
+@media (max-width:640px){.f-mont{margin-bottom:-120px !important}}
+/* Pied de page : comme la vidéo du hero, la photo reste immobile et le contenu défile par-dessus */
+.site-footer{clip-path:inset(0)}
+.f-mont{position:relative !important;z-index:0;height:100vh !important;aspect-ratio:auto !important;max-height:none !important;overflow:visible !important;margin-bottom:-28vh !important}
+.f-mont-stage{position:fixed;top:100px;left:0;right:0;aspect-ratio:1800 / 691}
+.f-mont-bg,.f-mont-fg{top:60px !important;bottom:-60px !important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 70px,#000 50%,transparent 100%) !important;mask-image:linear-gradient(180deg,transparent 0,#000 70px,#000 50%,transparent 100%) !important}
+.f-mont-stage::before{content:"";position:absolute;left:-40px;right:-40px;top:-40px;height:190px;background:url(assets/footer-mont.webp) center top / 100% 900% no-repeat;filter:blur(18px) saturate(1.1);z-index:0}
+@media (max-width:640px){.f-mont-stage{top:92px}}
+.f-mont::after{display:none !important}
+@media (max-width:640px){.f-mont-stage{aspect-ratio:auto;height:300px}.f-mont{margin-bottom:calc(-100vh + 180px) !important}}
+/* Pied de page resserré en bas, sous le grand « Otreau » */
+@media (min-width:641px){
+.site-footer{padding-bottom:22px !important}
+.site-footer .f-top{display:grid !important;grid-template-columns:minmax(300px,1fr) minmax(0,2.4fr);gap:24px clamp(32px,4vw,72px) !important;align-items:start}
+.site-footer .f-brand{max-width:none !important;display:flex !important;flex-direction:row !important;flex-wrap:wrap;gap:10px 16px !important;align-items:center}
+.site-footer .f-logo,.site-footer .f-brand > p,.site-footer .f-contact{flex:0 0 100%}
+.site-footer .f-brand > p{font-size:14px !important;line-height:1.55 !important}
+.site-footer .f-contact{margin:2px 0 0 !important;font-size:14px !important}
+.site-footer .f-social{flex:none}
+.site-footer .f-selects{flex:none;margin:0 !important;gap:10px !important}
+.site-footer .f-select select{min-height:42px !important}
+.site-footer .f-cols{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:24px !important}
+.site-footer .f-col h3{margin-bottom:14px !important}
+.site-footer .f-col ul{gap:9px !important}
+.site-footer .f-selects{margin-top:4px !important}
+.site-footer .f-bottom{margin-top:20px !important;padding-top:14px !important}
+.f-mont{margin-bottom:-12vh !important}
+}
+@media (min-width:641px) and (max-width:1100px){.site-footer .f-top{grid-template-columns:1fr !important}}
+@media (min-width:641px) and (max-height:860px){.f-mont-t{font-size:min(16vw,22vh) !important}}
+/* Mobile : le grand « Otreau » reste en haut du pied de page, au-dessus des liens */
+@media (max-width:640px){.f-mont{height:300px !important;margin-bottom:-40px !important}.f-mont-stage{position:absolute !important;top:0 !important}}
+/* Pied de page : « Otreau » plus bas, derrière la montagne */
+.f-mont-fg{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 70px) !important;mask-image:linear-gradient(180deg,transparent 0,#000 70px) !important}
+.f-mont-stage::after{content:"";position:absolute;left:0;right:0;bottom:-60px;height:95%;z-index:3;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0) 46%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.8) 76%,#000 90%);pointer-events:none}
+.f-mont-bg{filter:brightness(.9)}
+@media (min-width:641px){.f-mont-t{top:calc(9% + 135px) !important}}
+@media (min-width:641px) and (max-height:860px){.f-mont-t{top:calc(9% + 55px) !important}}
+/* Pied de page : noir uniforme sous la photo (le dégradé se fond sans ligne de coupure) */
+.site-footer{background:#000 !important}
+/* Pied de page : présentation et coordonnées en blanc */
+.site-footer .f-brand p,.site-footer .f-contact,.site-footer .f-contact li,.site-footer .f-contact a{color:#FFFFFF !important}
+.site-footer{position:relative}
+/* Pied de page : vague depuis la FAQ (crème au-dessus, photo en dessous) */
+.site-footer .f-wave{position:absolute;left:0;right:0;top:-2px;bottom:auto;z-index:3;transform:scaleY(-1)}
+/* Pied de page : grand « Otreau » avec le dégradé animé du mot « chaleur » du hero */
+.f-mont-t{background-image:linear-gradient(90deg,#FFD9A0 0%,#FFB347 14%,#F5A623 28%,#E8641F 42%,#C9480F 50%,#E8641F 58%,#F5A623 72%,#FFB347 86%,#FFD9A0 100%);background-size:200% 100%;background-repeat:repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent !important;-webkit-text-fill-color:transparent;animation:fOtreauFlow 4s linear infinite}
+@keyframes fOtreauFlow{from{background-position:0% 50%}to{background-position:200% 50%}}
+@media (prefers-reduced-motion: reduce){.f-mont-t{animation:none}}
 </style>
 </head>
 <body>
@@ -582,27 +888,28 @@ body{background:#F8F6F1}
 <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu">
 <div class="menu-top" style="display: flex; align-items: center; justify-content: space-between; min-height: 64px">
 <span style="font-family: Manrope, sans-serif; font-weight: 800; font-size: 20px; letter-spacing: -0.02em">Otreau<sup class="tm" aria-hidden="true">™</sup></span>
-<button type="button" class="menu-close" aria-label="Fermer le menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+<button type="button" class="menu-close" aria-label="Fermer le menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15.5l7-7 7 7"></path></svg></button>
 </div>
 <nav aria-label="Navigation mobile" class="mobile-links">
-<details class="menu-group"><summary>Toutes les collections<span class="mg-ico" aria-hidden="true"></span></summary>
+<details class="menu-group"><summary><a href="collection.html" class="mg-all-link">Toutes les collections</a><span class="mg-ico" aria-hidden="true"></span></summary>
 <div class="menu-sub">
-<a href="veste-otreau.html" data-shop-handle="veste-otreau">Veste</a>
-<a href="doudoune-otreau.html" data-shop-handle="doudoune-otreau">Doudoune</a>
-<a href="gilet-otreau.html" data-shop-handle="gilet-otreau">Gilet</a>
-<a href="index.html#collection" data-shop-handle="gilet-fin-otreau">Gilet fin</a>
-<a href="index.html#collection" data-shop-handle="gilet-polaire-otreau">Gilet polaire</a>
-<a href="index.html#collection" data-shop-handle="gants-otreau">Gants</a>
-<a href="index.html#toutes-collections" class="mg-all">Voir tous<span aria-hidden="true">→</span></a>
+<a class="mg-tile" href="veste-otreau.html" data-shop-handle="veste-otreau"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_d_hiver_noire_isolee.png?v=1792739125&width=480" alt="" loading="lazy"><span class="mg-lbl">Vestes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
+<a class="mg-tile" href="doudoune-otreau.html" data-shop-handle="doudoune"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Doudoune_noire_matelassee_a_capuche.png?v=1792740172&width=480" alt="" loading="lazy"><span class="mg-lbl">Doudounes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
+<a class="mg-tile" href="gilet-otreau.html" data-shop-handle="gilet"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_chauffant_noir_matelasse.png?v=1792739891&width=480" alt="" loading="lazy"><span class="mg-lbl">Gilets<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
+<a class="mg-tile" href="produit.html?p=parka" data-shop-handle="parka"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_parka_noire_impermeable_isolee.png?v=1792743656&width=480" alt="" loading="lazy"><span class="mg-lbl">Parkas<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
+<a class="mg-tile" href="produit.html?p=chaussettes-chauffantes" data-shop-handle="chaussettes-chauffantes"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Chaussettes_chauffantes_grises_en_tricot.png?v=1792746477&width=480" alt="" loading="lazy"><span class="mg-lbl">Chaussettes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
+<a class="mg-tile" href="produit.html?p=gants-chauffants" data-shop-handle="gants-chauffants"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gants_chauffants_noirs_assortis.png?v=1792746050&width=480" alt="" loading="lazy"><span class="mg-lbl">Gants<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 </div>
 </details>
-<a href="index.html#batterie">Batterie &amp; autonomie</a>
-<a href="index.html#tailles">Tailles &amp; mesures</a>
-<a href="suivi-commande.html">Suivre ma commande</a>
-<a href="a-propos.html">À propos</a>
-<a href="blog.html">Blog</a>
-<a href="contact.html">Contact</a>
-<a href="index.html#faq">FAQ</a>
+<p class="mg-h" aria-hidden="true">Guides &amp; support</p>
+<a href="index.html#batterie"><svg class="mg-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><span class="mg-t">Batterie &amp; autonomie</span><svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a href="index.html#tailles"><svg class="mg-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16.5 16.5 3 21 7.5 7.5 21z"/><path d="M7 12.5l2 2M10 9.5l2.5 2.5M13 6.5l2 2"/></svg><span class="mg-t">Tailles &amp; mesures</span><svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a href="suivi-commande.html"><svg class="mg-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 7.5 12 3 3 7.5v9L12 21l9-4.5z"/><path d="M3 7.5l9 4.5 9-4.5M12 12v9"/></svg><span class="mg-t">Suivre ma commande</span><svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a href="a-propos.html"><svg class="mg-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8.5L19 7v14.5H6z"/><path d="M14.5 2.5V7H19M9 12h7M9 15.5h7"/></svg><span class="mg-t">À propos</span><svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a href="blog.html"><svg class="mg-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2.5h8.5L19 7v14.5H6z"/><path d="M14.5 2.5V7H19M9 11h7M9 14h7M9 17h4"/></svg><span class="mg-t">Blog</span><svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a href="contact.html"><svg class="mg-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4.5h16v11H10l-4.5 4v-4H4z"/><path d="M8 8.5h8M8 11.5h5"/></svg><span class="mg-t">Contact</span><svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a href="index.html#faq"><svg class="mg-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4M12 16.8v.2"/></svg><span class="mg-t">FAQ</span><svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<div class="mg-promo"><a href="a-propos.html" class="mg-promo-a" aria-label="À propos d’Otreau"></a><span class="mg-pl">Otreau<sup>™</sup></span><span class="mg-ps">Notre histoire</span></div>
 </nav>
 </div>
 <main class="pd">
@@ -621,6 +928,7 @@ body{background:#F8F6F1}
 <h1 class="pd-title">&nbsp;</h1>
 <p class="pd-price" id="pd-price">[XXX,XX] €</p>
 <div class="pd-field pd-batt-field">
+<p class="pd-batt-q">Avec ou sans batterie ?</p>
 <div class="pd-opts" role="group" aria-label="Batterie"><button type="button" class="pd-opt" data-group="batterie" aria-pressed="true">Avec batterie</button><button type="button" class="pd-opt" data-group="batterie" aria-pressed="false">Sans batterie</button></div>
 </div>
 
@@ -687,36 +995,93 @@ body{background:#F8F6F1}
 
 <section class="pd-how">
 <h2 class="pd-h2 pd-center">Comment ça marche ?</h2>
-<div class="pd-steps">
-<div class="pd-step"><span class="pd-num">1</span><h3>Branchez la batterie</h3><p>Reliez le câble USB à la batterie chargée, puis glissez-la dans sa poche intérieure.</p></div>
-<div class="pd-step"><span class="pd-num">2</span><h3>Maintenez le bouton</h3><p>Un appui long, jusqu’à ce que le voyant s’allume. Un appui court ne suffit pas.</p></div>
-<div class="pd-step"><span class="pd-num">3</span><h3>Choisissez le niveau</h3><p>Appuis courts pour passer d’un niveau à l’autre. Comptez quelques minutes pour une chaleur optimale.</p></div>
+<div class="pd-steps hw-steps">
+<div class="pd-step"><img class="hw-pic" src="assets/how-step-1.webp" alt="Batterie Otreau branchée et glissée dans la poche intérieure" width="560" height="560" loading="lazy"><span class="pd-num">1</span><h3>Branchez la batterie</h3><p>Reliez le câble USB à la batterie chargée, puis glissez-la dans sa poche intérieure.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/how-step-2.webp" alt="Bouton de chauffe allumé en rouge sur la poitrine" width="560" height="560" loading="lazy"><span class="pd-num">2</span><h3>Allumez le chauffage</h3><p>Un appui long, jusqu’à ce que le voyant s’allume. Un appui court ne suffit pas.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/how-step-3.webp" alt="Les trois couleurs du voyant : rouge élevé, blanc moyen, bleu faible" width="560" height="560" loading="lazy"><span class="pd-num">3</span><h3>Choisissez le niveau</h3><p>Appuis courts pour passer d’un niveau à l’autre. Comptez quelques minutes pour une chaleur optimale.</p></div>
+<div class="pd-step"><img class="hw-pic" src="assets/how-step-4.webp" alt="Bouton de chauffe éteint" width="560" height="560" loading="lazy"><span class="pd-num">4</span><h3>Éteignez le chauffage</h3><p>Un appui long, jusqu’à ce que le voyant s’éteigne.</p></div>
 </div>
 </section>
 
 <section class="pd-cross">
 <h2 class="pd-h2 pd-center">Complétez votre tenue</h2>
 <div class="pd-cross-grid">
-<a href="gilet-otreau.html" class="pd-x" data-shop-handle="gilet-otreau">
-<video src="assets/gilet-2.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
-<div class="pd-x-info"><h3><span style="font-weight: 600">GILET</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
-<a href="index.html#collection" class="pd-x" data-shop-handle="gilet-fin-otreau">
-<video src="assets/gilet-fin.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
-<div class="pd-x-info"><h3><span style="font-weight: 600">GILET FIN</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
-<a href="veste-otreau.html" class="pd-x" data-shop-handle="veste-otreau">
-<video src="assets/veste-otreau.mp4#t=0.1" muted loop playsinline preload="metadata" class="hover-video" aria-hidden="true"></video>
-<div class="pd-x-info"><h3><span style="font-weight: 600">VESTE</span></h3><p>Dès [XX,XX] €</p><span class="pd-x-btn">Découvrir</span></div></a>
+<a data-handle="veste-otreau" href="veste-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">VESTE</span></h3>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
 </div>
-<p class="pd-cross-more"><a class="pd-all" href="index.html#collection">Découvrir tout<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+</a>
+<a data-handle="doudoune" href="doudoune-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">DOUDOUNE</span></h3>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
+</div>
+</a>
+<a data-handle="gilet" href="gilet-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET</span></h3>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
+</div>
+</a>
+<a data-handle="parka" href="produit.html?p=parka" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">PARKA</span></h3>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+<ul class="pc-feats" aria-label="Inclus avec l’article">
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="7" width="17" height="10" rx="2"/><path d="M21.5 10.5v3"/><path d="M11.5 9l-2.5 3.5h3.5L10 15.5" stroke-linejoin="round"/></svg><span>Batterie incluse</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4.5M14 8v3M18 8v4.5"/></svg><span>Guide des tailles</span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8l2.2 11h13.6L21 8" stroke-linejoin="round"/><path d="M4 11c1.3-1.2 2.7-1.2 4 0s2.7 1.2 4 0 2.7-1.2 4 0 2.7 1.2 4 0"/></svg><span>Guide de lavage</span></li>
+</ul>
+</div>
+</a>
+</div>
+<p class="pd-cross-more"><a class="pd-all" href="collection.html">Découvrir tout<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
 </section>
 
 </main>
 <footer class="site-footer">
+<div class="wave-sep f-wave" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
+<defs>
+<linearGradient id="wvf-sheen" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".35" stop-color="#D4D4D4" stop-opacity=".55"/><stop offset=".6" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset="1" stop-color="#CFCFCF" stop-opacity=".65"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;.5 0;0 0" dur="16s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wvf-glint" x1="0" x2="1" y1="0" y2="0" spreadMethod="reflect"><stop offset="0" stop-color="#A89B84" stop-opacity=".04"/><stop offset=".22" stop-color="#A89B84" stop-opacity=".5"/><stop offset=".5" stop-color="#A89B84" stop-opacity=".1"/><stop offset=".8" stop-color="#A89B84" stop-opacity=".55"/><stop offset="1" stop-color="#A89B84" stop-opacity=".06"/>
+<animateTransform attributeName="gradientTransform" type="translate" values="0 0;-.6 0;0 0" dur="11s" repeatCount="indefinite"/></linearGradient>
+<linearGradient id="wvf-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#F8F6F1"/></linearGradient>
+<filter id="wvf-soft" x="-5%" y="-50%" width="110%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="#14212B" stroke-width="16" filter="url(#wvf-soft)" opacity=".13" transform="translate(0,-10)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z" fill="url(#wvf-fill)"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z"/></path>
+<path d="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66" fill="none" stroke="url(#wvf-sheen)" stroke-width="2.2" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="14s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66"/></path>
+<path d="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92" fill="none" stroke="url(#wvf-glint)" stroke-width="1" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="10.5s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92;M0,102 C238,74 458,138 700,196 C900,244 1138,176 1440,106;M0,108 C250,80 470,126 720,190 C920,240 1150,184 1440,100;M0,118 C262,94 500,114 742,180 C942,230 1162,194 1440,92"/></path>
+<path d="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128" fill="none" stroke="url(#wvf-glint)" stroke-width=".8" opacity=".6" vector-effect="non-scaling-stroke"><animate attributeName="d" dur="17s" repeatCount="indefinite" keyTimes="0;.33;.66;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1" values="M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128;M0,130 C250,102 470,148 720,212 C920,262 1150,206 1440,122;M0,140 C262,116 500,136 742,202 C942,252 1162,216 1440,114;M0,124 C238,96 458,160 700,218 C900,266 1138,198 1440,128"/></path>
+</svg></div>
+<div class="f-mont" aria-hidden="true"><div class="f-mont-stage"><div class="f-mont-bg"></div><p class="f-mont-t">Otreau</p><div class="f-mont-fg"></div></div></div>
+
 <div class="f-wrap">
 <div class="f-top">
 <div class="f-brand">
 <a href="index.html" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
-<p>Otreau est une aventure entrepreneuriale, avec une ambition : devenir le meilleur fabricant de vêtements chauffants. Pour cette première saison, nous avons sélectionné avec exigence des modèles existants ; la suite, nous la concevrons à partir de vos retours.</p>
+<p>Otreau est née d’une conviction : le froid ne devrait jamais décider de la durée de vos journées dehors. Nous concevons des vêtements chauffants pensés d’abord comme de vrais vêtements : sûrs, simples à vivre et à entretenir, avec une chaleur qui vous suit du matin au soir.</p>
 <ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li><a href="mailto:contact@otreau.com">contact@otreau.com</a></li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
 <div class="f-social">
 <a href="index.html" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
@@ -727,7 +1092,7 @@ body{background:#F8F6F1}
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul><h3 style="margin-top:36px">Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul></div><div class="f-col"><h3>Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
 <div class="f-pay" aria-hidden="true"></div>
@@ -761,8 +1126,8 @@ body{background:#F8F6F1}
   var desk=window.matchMedia('(min-width:861px)');
   function isOpen(){return menu.classList.contains('is-open')}
   function placeMenu(){menu.style.top=desk.matches?Math.round(hdr.getBoundingClientRect().bottom)+'px':''}
-  function open(){placeMenu();menu.classList.add('is-open');btn.setAttribute('aria-expanded','true');btn.setAttribute('aria-label','Fermer le menu');if(!desk.matches){document.body.style.overflow='hidden';close.focus()}}
-  function shut(focusBtn){menu.classList.remove('is-open');btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','Ouvrir le menu');document.body.style.overflow='';if(focusBtn)btn.focus({preventScroll:true})}
+  function open(){placeMenu();menu.classList.add('is-open');btn.setAttribute('aria-expanded','true');btn.setAttribute('aria-label','Fermer le menu');var sw=window.innerWidth-document.documentElement.clientWidth;document.documentElement.classList.add('menu-lock');if(sw>0)document.body.style.paddingRight=sw+'px';if(!desk.matches){close.focus()}}
+  function shut(focusBtn){menu.classList.remove('is-open');btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-label','Ouvrir le menu');document.documentElement.classList.remove('menu-lock');document.body.style.paddingRight='';if(focusBtn)btn.focus({preventScroll:true})}
   btn.setAttribute('aria-label','Ouvrir le menu');
   btn.addEventListener('click',function(e){e.stopPropagation();if(isOpen())shut(false);else open()});
   close.addEventListener('click',function(){shut(true)});
@@ -872,5 +1237,24 @@ document.querySelectorAll('.pd-cross [data-shop-handle]').forEach(function(a){if
   addEventListener('resize',size); size(); requestAnimationFrame(frame);
 })();
 </script>
+<script>
+/* Menu ordinateur : la liste des collections est toujours dépliée */
+(function(){var g=document.querySelector('#mobile-menu .menu-group'),mq=window.matchMedia('(min-width:861px)');if(!g)return;function s(){if(mq.matches)g.open=true}s();(mq.addEventListener?mq.addEventListener('change',s):mq.addListener(s));var b=document.querySelector('.menu-btn');if(b)b.addEventListener('click',s)})();
+</script>
+<script>/* pd-cross-dedup : retire le produit affiché et garde 3 cartes */(function(){var h=new URLSearchParams(location.search).get("p")||"";var g=document.querySelector(".pd-cross-grid");if(!g)return;var c=g.querySelector('[data-handle="'+h+'"]');if(c)c.remove();var a=g.querySelectorAll("a[data-handle]");for(var i=3;i<a.length;i++)a[i].remove();})();</script>
+<script>/* faces du prisme sous les cartes « Complétez votre tenue » */(function(){document.querySelectorAll(".pd-cross a[data-handle] > div:last-child").forEach(function(d){if(d.querySelector(":scope > .pc-side"))return;var e=document.createElement("i");e.className="pc-side pc-side-t";e.setAttribute("aria-hidden","true");d.appendChild(e);});})();</script>
+<script>/* Pied de page : les blocs remontent un à un à l’apparition */(function(){var f=document.querySelector('.site-footer');if(!f)return;var els=[].slice.call(f.querySelectorAll('.f-brand,.f-col,.f-bottom,.f-legal'));if(!els.length)els=[].slice.call(f.querySelectorAll(':scope > :not(.f-mont)'));els.forEach(function(e,i){e.classList.add('f-rise');e.style.transitionDelay=(i*0.12)+'s'});if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('is-in')});return;}var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){els.forEach(function(e){e.classList.add('is-in')});io.disconnect()}},{threshold:0,rootMargin:'0px 0px -15% 0px'});io.observe(f);})();</script>
+<script>/* Pied de page : hauteur ajustée à l’écran, la FAQ réapparaît dès qu’on remonte */(function(){var f=document.querySelector('.site-footer'),m=document.querySelector('.f-mont');if(!f||!m)return;function fit(){if(innerWidth<=640){m.style.removeProperty('height');m.style.removeProperty('margin-bottom');return;}m.style.setProperty('margin-bottom','0px','important');m.style.setProperty('height','0px','important');var rest=f.offsetHeight;m.style.setProperty('height',Math.max(0,innerHeight-rest)+'px','important');window.dispatchEvent(new Event('otreau:footerfit'));}fit();addEventListener('resize',fit);addEventListener('load',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);})();</script>
+<script>/* Pied de page : la présentation de la marque remonte au plus haut sans toucher le grand « Otreau » */(function(){var br=document.querySelector('.site-footer .f-brand'),t=document.querySelector('.f-mont-t');if(!br||!t)return;
+var cols=document.querySelector('.site-footer .f-cols'),fb=document.querySelector('.site-footer .f-bottom');
+function place(){/* colonnes en escalier */if(cols)[].forEach.call(cols.children,function(c){c.style.position='';c.style.top='';});br.style.position='';br.style.top='';if(cols){cols.style.position='';cols.style.top='';}br.style.removeProperty('max-width');if(innerWidth<=1100)return;
+var r=document.createRange();r.selectNodeContents(t);var g=r.getBoundingClientRect(),gap=24;
+var w=Math.floor(g.left-br.getBoundingClientRect().left-gap);
+var end=document.documentElement.scrollHeight-innerHeight,top=br.getBoundingClientRect().top+scrollY-end;
+var hdr=document.querySelector('.site-header'),bd=document.getElementById('bandeau'),minTop=Math.max(hdr?hdr.getBoundingClientRect().bottom:0,bd?bd.getBoundingClientRect().bottom:0)+28;
+var clear=br.getBoundingClientRect().right+gap<=g.left;var target=clear?minTop:g.bottom+16;
+var d=Math.max(0,top-target);br.style.position='relative';br.style.top=(-d)+'px';if(cols&&fb){var free=fb.getBoundingClientRect().top-cols.getBoundingClientRect().bottom-28;var dn=Math.max(0,Math.min(free,110));cols.style.position='relative';cols.style.top=dn+'px';}
+if(cols){var cs=[].slice.call(cols.children),bt=br.getBoundingClientRect().top,ct=cols.getBoundingClientRect().top,diff=Math.max(0,ct-bt),n=cs.length-1;if(n>0&&cs[0].getBoundingClientRect().top!==cs[n].getBoundingClientRect().top)return;cs.forEach(function(c,i){c.style.position='relative';var b0=Math.min(22,diff);c.style.top=(-Math.round(b0+(diff-b0)*i/n))+'px';});}}
+place();addEventListener('resize',place);addEventListener('load',place);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(place);})();</script>
 </body>
 </html>
