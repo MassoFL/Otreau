@@ -675,6 +675,8 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){.f-mont-t{top:27% !important}}
 /* Mobile : vague du footer sans liseré + « Otreau » entier */
 @media (max-width:640px){.site-footer .f-wave{top:-6px !important}.f-mont-t{font-size:21vw !important}}
+/* Menu mobile : pas de titre « Guides & support », les liens suivent directement */
+@media (max-width:860px){html #mobile-menu .mg-h{display:none !important}}
 </style>
 </head>
 <body>
@@ -710,7 +712,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <button type="button" class="menu-close" aria-label="Fermer le menu"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15.5l7-7 7 7"></path></svg></button>
 </div>
 <nav aria-label="Navigation mobile" class="mobile-links">
-<details class="menu-group"><summary><a href="collection.html" class="mg-all-link">Toutes les collections</a><span class="mg-ico" aria-hidden="true"></span></summary>
+<details class="menu-group" open><summary><a href="collection.html" class="mg-all-link">Toutes les collections</a><span class="mg-ico" aria-hidden="true"></span></summary>
 <div class="menu-sub">
 <a class="mg-tile" href="veste-otreau.html" data-shop-handle="veste-otreau"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_d_hiver_noire_isolee.png?v=1792739125&width=480" alt="" loading="lazy"><span class="mg-lbl">Vestes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="doudoune-otreau.html" data-shop-handle="doudoune"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Doudoune_noire_matelassee_a_capuche.png?v=1792740172&width=480" alt="" loading="lazy"><span class="mg-lbl">Doudounes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
@@ -852,7 +854,7 @@ Toute <strong>utilisation non autorisée</strong> du contenu peut constituer une
 <script src="assets/shopify.js"></script>
 <script>
 /* Menu ordinateur : la liste des collections est toujours dépliée */
-(function(){var g=document.querySelector('#mobile-menu .menu-group'),mq=window.matchMedia('(min-width:861px)');if(!g)return;function s(){if(mq.matches)g.open=true}s();(mq.addEventListener?mq.addEventListener('change',s):mq.addListener(s));var b=document.querySelector('.menu-btn');if(b)b.addEventListener('click',s)})();
+(function(){var g=document.querySelector('#mobile-menu .menu-group'),mq=window.matchMedia('(min-width:861px)');if(!g)return;function s(){g.open=true}s();(mq.addEventListener?mq.addEventListener('change',s):mq.addListener(s));var b=document.querySelector('.menu-btn');if(b)b.addEventListener('click',s)})();
 </script>
 <script>/* Pied de page : les blocs remontent un à un à l’apparition */(function(){var f=document.querySelector('.site-footer');if(!f)return;var els=[].slice.call(f.querySelectorAll('.f-brand,.f-col,.f-bottom,.f-legal'));if(!els.length)els=[].slice.call(f.querySelectorAll(':scope > :not(.f-mont)'));els.forEach(function(e,i){e.classList.add('f-rise');e.style.transitionDelay=(i*0.12)+'s'});if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('is-in')});return;}var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){els.forEach(function(e){e.classList.add('is-in')});io.disconnect()}},{threshold:0,rootMargin:'0px 0px -15% 0px'});io.observe(f);})();</script>
 <script>/* Pied de page : hauteur ajustée à l’écran, la FAQ réapparaît dès qu’on remonte */(function(){var f=document.querySelector('.site-footer'),m=document.querySelector('.f-mont');if(!f||!m)return;function fit(){if(innerWidth<=640){m.style.removeProperty('height');m.style.removeProperty('margin-bottom');return;}m.style.setProperty('margin-bottom','0px','important');m.style.setProperty('height','0px','important');var rest=f.offsetHeight;m.style.setProperty('height',Math.max(0,innerHeight-rest)+'px','important');window.dispatchEvent(new Event('otreau:footerfit'));}fit();addEventListener('resize',fit);addEventListener('load',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);})();</script>
