@@ -414,7 +414,9 @@
     '.pc-view.is-on{opacity:1}' +
     '.pc-car-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transition:opacity .35s ease;pointer-events:none}' +
     '.pc-car-slide.is-on{opacity:1}' +
-    '.pc-car.no-fade > *{transition:none !important}.pc-car.is-drag > .pc-wash,.pc-car.is-drag > .pc-thermal,.pc-car.is-drag > .pc-view{opacity:0 !important}' +
+    '.pc-snap .pc-track{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x pan-y}.pc-snap .pc-track::-webkit-scrollbar{display:none}' +
+    '.pc-snap .pc-track > *{position:relative !important;inset:auto !important;flex:0 0 100%;width:100% !important;height:100% !important;opacity:1 !important;visibility:visible !important;scroll-snap-align:start;scroll-snap-stop:always;transition:none !important;object-fit:contain}' +
+    '.pc-snap .pc-arrow{display:none !important}' +
     '.pc-dots{display:none !important}' +
     '.pc-arrow{background:transparent !important;box-shadow:none !important;border:0 !important;border-radius:0 !important;width:28px !important}.pc-arrow:hover{background:transparent !important}.pc-arrow svg{width:18px !important;height:18px !important;stroke:#000000 !important;stroke-width:2.2 !important;filter:drop-shadow(0 0 1px #FFFFFF) drop-shadow(0 0 3px #FFFFFF) drop-shadow(0 0 8px rgba(255,255,255,.95)) drop-shadow(0 0 16px rgba(255,255,255,.8))}.pc-arrow-prev{left:2px !important}.pc-arrow-next{right:2px !important}' +
     '.pc-car::after{content:"\\2019Otreau";position:absolute;top:10px;right:12px;z-index:3;font:300 13px/1 Manrope,sans-serif;letter-spacing:.01em;color:#8A949B;pointer-events:none}' +
@@ -1175,6 +1177,7 @@
       var done = false; function end() { if (done) return; done = true; wrap.remove(); box.classList.remove('is-swing'); }
       inn.addEventListener('transitionend', end); setTimeout(end, 1400);
     }
+    var snap = !!(window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches), progScroll = false, snapIdle = false;
     var autoMove = false; // effet socle tournant : seulement pour le défilement automatique
     function show(i) {
       var from = cur, dir = i > cur ? 1 : -1;
@@ -1188,6 +1191,7 @@
       if (from !== cur && autoMove && !reduceMo) { var c0 = cur; tagTimer = setTimeout(function () { tagFor(c0); }, 500); } else tagFor(cur);
       if (opts.onChange) opts.onChange(cur);
       if (hasVideo) { if (cur === 0) { var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } else first.pause(); }
+      if (snap) { var tr = box.querySelector('.pc-track'); if (tr && !snapIdle) { progScroll = true; tr.scrollTo({ left: cur * tr.clientWidth, behavior: (autoMove && !reduceMo) ? 'smooth' : 'auto' }); } return; }
       if (from !== cur && autoMove) prism(from, cur, dir);
     }
     ['prev', 'next'].forEach(function (dir) {
@@ -1199,52 +1203,20 @@
     });
     box.appendChild(dots);
     if (opts.noLoop || opts.start) show(opts.start || 0);
-    // Mobile : la photo suit le doigt et la suivante / précédente glisse depuis le bord (vrai défilement)
-    if (window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches) {
-      box.style.touchAction = 'pan-y';
-      var sx = 0, sy = 0, swiping = false, locked = false, swiped = false, dxNow = 0, nb = -1, W = 1;
-      function idx(k) { return opts.noLoop ? (k >= 0 && k < slides.length ? k : -1) : (k + slides.length) % slides.length; }
-      function put(el, x, anim) {
-        if (!el) return;
-        el.style.setProperty('transition', anim ? 'transform .32s cubic-bezier(.2,.7,.2,1)' : 'none', 'important');
-        el.style.setProperty('opacity', '1', 'important');
-        el.style.setProperty('visibility', 'visible', 'important');
-        el.style.transform = 'translate3d(' + x + 'px,0,0)';
-      }
-      function clear(el) { if (!el) return; ['transition', 'opacity', 'visibility'].forEach(function (pp) { el.style.removeProperty(pp); }); el.style.transform = ''; el.style.zIndex = ''; }
-      box.addEventListener('touchstart', function (e) {
-        var t = e.touches[0]; sx = t.clientX; sy = t.clientY; swiping = true; locked = false; swiped = false; dxNow = 0; nb = -1; W = box.clientWidth || 1;
-        var sw = box.querySelector('.pc-swing'); if (sw) { sw.remove(); box.classList.remove('is-swing'); }
+    // Mobile : défilement natif des photos (comme une galerie de téléphone), avec aimantation sur chaque photo
+    if (snap) {
+      var track = document.createElement('div'); track.className = 'pc-track';
+      slides.forEach(function (sl) { track.appendChild(sl); });
+      box.insertBefore(track, box.firstChild); box.classList.add('pc-snap');
+      var st = 0;
+      track.addEventListener('scroll', function () {
+        clearTimeout(st);
+        st = setTimeout(function () {
+          var k = Math.round(track.scrollLeft / (track.clientWidth || 1));
+          if (k !== cur) { if (!progScroll) manual(); snapIdle = true; show(k); snapIdle = false; }
+          progScroll = false;
+        }, 90);
       }, { passive: true });
-      box.addEventListener('touchmove', function (e) {
-        if (!swiping) return; var t = e.touches[0], dx = t.clientX - sx, dy = t.clientY - sy;
-        if (!locked) {
-          if (Math.abs(dy) > 8 && Math.abs(dy) > Math.abs(dx)) { swiping = false; return; }
-          if (Math.abs(dx) < 8) return;
-          locked = true; manual(); box.classList.add('is-drag');
-        }
-        if (e.cancelable) e.preventDefault();
-        var want = idx(cur + (dx < 0 ? 1 : -1));
-        if (want !== nb) { if (nb >= 0) clear(slides[nb]); nb = want; }
-        dxNow = nb < 0 ? dx * 0.3 : dx;
-        put(slides[cur], dxNow, false);
-        if (nb >= 0) { slides[nb].style.zIndex = '1'; put(slides[nb], dxNow + (dx < 0 ? W : -W), false); }
-      }, { passive: false });
-      box.addEventListener('touchend', function () {
-        if (!swiping) return; swiping = false; if (!locked) return;
-        var a = slides[cur], go = nb >= 0 && Math.abs(dxNow) > W * 0.18, dir = dxNow < 0 ? -1 : 1, target = nb;
-        swiped = true; setTimeout(function () { swiped = false; }, 450);
-        if (go) { put(a, dir * W, true); put(slides[target], 0, true); }
-        else { put(a, 0, true); if (nb >= 0) put(slides[nb], dxNow < 0 ? W : -W, true); }
-        setTimeout(function () {
-          box.classList.add('no-fade');
-          if (go) show(target);
-          clear(a); if (nb >= 0) clear(slides[nb]);
-          void box.offsetWidth; box.classList.remove('no-fade', 'is-drag');
-        }, 330);
-      }, { passive: true });
-      // un glissement ne doit pas ouvrir la fiche produit
-      (box.closest('a') || box).addEventListener('click', function (e) { if (swiped) { e.preventDefault(); e.stopPropagation(); } }, true);
     }
 
     // Défilement automatique tant que l'utilisateur ne touche à rien :
