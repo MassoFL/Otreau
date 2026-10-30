@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <!-- Écran d'attente de la page produit : le logo s'affiche tant que les données Shopify ne sont pas chargées -->
 <style>
 html.pd-loading body::before{content:"Otreau\2122";position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#F8F6F1;color:#14212B;font:800 34px/1 Manrope,Arial,sans-serif;letter-spacing:-.02em;animation:pdPulse 1.4s ease-in-out infinite;transition:opacity .4s ease}
@@ -822,7 +822,7 @@ html #mobile-menu{background:#0A0A0A !important;-webkit-backdrop-filter:none !im
 .f-mont{position:relative !important;z-index:0;height:100vh !important;aspect-ratio:auto !important;max-height:none !important;overflow:visible !important;margin-bottom:-28vh !important}
 .f-mont-stage{position:fixed;top:100px;left:0;right:0;aspect-ratio:1800 / 691}
 .f-mont-bg,.f-mont-fg{top:60px !important;bottom:-60px !important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 70px,#000 50%,transparent 100%) !important;mask-image:linear-gradient(180deg,transparent 0,#000 70px,#000 50%,transparent 100%) !important}
-.f-mont-stage::before{content:"";position:absolute;left:-40px;right:-40px;top:-40px;height:190px;background:url(assets/footer-mont.webp) center top / 100% 900% no-repeat;filter:blur(18px) saturate(1.1);z-index:0}
+.f-mont-stage::before{content:"";position:absolute;left:0;right:0;top:-40px;height:190px;background:url(assets/footer-mont.webp) center top / 100% 900% no-repeat;filter:blur(18px) saturate(1.1);z-index:0}
 @media (max-width:640px){.f-mont-stage{top:92px}}
 .f-mont::after{display:none !important}
 @media (max-width:640px){.f-mont-stage{aspect-ratio:auto;height:300px}.f-mont{margin-bottom:calc(-100vh + 180px) !important}}
@@ -865,6 +865,9 @@ html #mobile-menu{background:#0A0A0A !important;-webkit-backdrop-filter:none !im
 .f-mont-t{background-image:linear-gradient(90deg,#FFD9A0 0%,#FFB347 14%,#F5A623 28%,#E8641F 42%,#C9480F 50%,#E8641F 58%,#F5A623 72%,#FFB347 86%,#FFD9A0 100%);background-size:200% 100%;background-repeat:repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent !important;-webkit-text-fill-color:transparent;animation:fOtreauFlow 4s linear infinite}
 @keyframes fOtreauFlow{from{background-position:0% 50%}to{background-position:200% 50%}}
 @media (prefers-reduced-motion: reduce){.f-mont-t{animation:none}}
+/* Mobile : pas de débordement horizontal, pas de zoom au double appui */
+html,body{overflow-x:clip;max-width:100%}
+html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 </style>
 </head>
 <body>
