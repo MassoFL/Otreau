@@ -1158,6 +1158,18 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){#faq{background:#E6E8EA !important}.site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill:#E6E8EA !important;fill-opacity:1 !important}}
 /* Mobile : vague du footer sans liseré + « Otreau » entier */
 @media (max-width:640px){.site-footer .f-wave{top:-6px !important}.site-footer .f-mont{clip-path:inset(3px -10px -300px -10px)}.site-footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:#E6E8EA;z-index:4;pointer-events:none}.f-mont-t{font-size:21vw !important}}
+/* Tailles : patron au centre, tableau en dessous ; seul le tableau garde le fond beige */
+#tailles .patron{background:none !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important;box-shadow:none !important;padding:0 !important}
+#tailles .patron::after,#tailles .patron-pin{display:none !important}
+#tailles .patron > div[style*="flex-wrap"]{flex-direction:column !important;align-items:center !important;gap:clamp(24px,3vw,40px) !important}
+#tailles .pt-col{flex:none !important;width:min(100%,600px) !important}
+/* patron hors du cadre : textes clairs et traits lisibles sur la vidéo */
+#tailles .pt-col .wheel-list li{color:rgba(255,255,255,.55) !important}
+#tailles .pt-col .wheel-list li[aria-selected="true"]{color:#FFFFFF !important;text-shadow:0 0 12px rgba(245,166,35,.55),0 0 26px rgba(232,100,31,.3) !important}
+#tailles .wheel-arrow,#tailles .pt-col .wheel-arrow,#tailles .pt-nav,#tailles .wheel-arrow:hover:not(:disabled){color:#FFFFFF !important}
+#tailles .wheel-arrow:disabled,#tailles .pt-nav:disabled{opacity:.3}
+#tailles .pt-col .flat{filter:drop-shadow(0 0 1px rgba(255,255,255,.75)) drop-shadow(0 0 10px rgba(255,255,255,.18))}
+#tailles .table-scroll{flex:none !important;width:100% !important;max-width:980px;margin:0 auto !important;box-sizing:border-box;background:rgba(251,248,242,.66);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:6px;padding:clamp(18px,3vw,40px);box-shadow:0 1px 0 rgba(20,33,43,.08),0 18px 40px -18px rgba(20,33,43,.35);outline:1.5px dashed rgba(140,122,91,.55);outline-offset:-10px}
 </style>
 </head>
 <body>
