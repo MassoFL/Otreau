@@ -417,6 +417,8 @@
     '.pc-snap .pc-track{position:absolute;inset:0;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:none;touch-action:pan-x pan-y}.pc-snap .pc-track::-webkit-scrollbar{display:none}' +
     '.pc-snap .pc-track > *{position:relative !important;inset:auto !important;flex:0 0 100%;width:100% !important;height:100% !important;opacity:1 !important;visibility:visible !important;scroll-snap-align:start;scroll-snap-stop:always;transition:none !important;object-fit:contain}' +
     '.pc-snap .pc-arrow{display:none !important}' +
+    '.pc-snap .pc-cell > img{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;opacity:1 !important;visibility:visible !important;object-fit:contain;transition:none !important}' +
+    '.pc-snap > .pc-wash,.pc-snap > .pc-thermal,.pc-snap > .pc-view{display:none !important}' +
     '.pc-dots{display:none !important}' +
     '.pc-arrow{background:transparent !important;box-shadow:none !important;border:0 !important;border-radius:0 !important;width:28px !important}.pc-arrow:hover{background:transparent !important}.pc-arrow svg{width:18px !important;height:18px !important;stroke:#000000 !important;stroke-width:2.2 !important;filter:drop-shadow(0 0 1px #FFFFFF) drop-shadow(0 0 3px #FFFFFF) drop-shadow(0 0 8px rgba(255,255,255,.95)) drop-shadow(0 0 16px rgba(255,255,255,.8))}.pc-arrow-prev{left:2px !important}.pc-arrow-next{right:2px !important}' +
     '.pc-car::after{content:"\\2019Otreau";position:absolute;top:10px;right:12px;z-index:3;font:300 13px/1 Manrope,sans-serif;letter-spacing:.01em;color:#8A949B;pointer-events:none}' +
@@ -1206,7 +1208,16 @@
     // Mobile : défilement natif des photos (comme une galerie de téléphone), avec aimantation sur chaque photo
     if (snap) {
       var track = document.createElement('div'); track.className = 'pc-track';
-      slides.forEach(function (sl) { track.appendChild(sl); });
+      // chaque photo emporte ses propres mentions (zones, lavable, carte thermique) : elles défilent avec elle
+      slides.forEach(function (sl, k) {
+        var cell = document.createElement('div'); cell.className = 'pc-cell'; cell.appendChild(sl); track.appendChild(cell);
+        var it = imgs[k - (hasVideo ? 1 : 0)]; if (!it) return;
+        var bw = badgeOf(it); if (bw) { var t = document.createElement('span'); t.className = bw.cls + ' is-on'; t.innerHTML = bw.html; cell.appendChild(t); }
+        if (it.thermal) {
+          var th = document.createElement('span'); th.className = 'pc-thermal is-on'; th.textContent = 'Carte thermique'; cell.appendChild(th);
+          if (it.view) { var vw = document.createElement('span'); vw.className = 'pc-view is-on'; vw.textContent = it.view; cell.appendChild(vw); }
+        }
+      });
       box.insertBefore(track, box.firstChild); box.classList.add('pc-snap');
       var st = 0;
       track.addEventListener('scroll', function () {
