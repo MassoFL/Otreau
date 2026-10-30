@@ -1152,6 +1152,12 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){#tailles .table-scroll{overflow-x:visible !important}#size-table{width:100% !important;table-layout:fixed}#size-table th,#size-table td{padding:10px 2px !important;font-size:12.5px !important;letter-spacing:-.01em;white-space:normal !important;word-break:normal}#size-table thead th{font-size:11px !important;line-height:1.25}#size-table thead th:first-child,#size-table tbody th{width:44px}#size-table .key{width:20px !important;height:20px !important;margin:0 auto 4px !important;font-size:11px !important;display:flex !important}}
 /* Mobile : vidéo de la batterie sur toute la largeur de l’écran */
 @media (max-width:760px){#batterie .batt-media{width:100vw !important;max-width:none !important;margin:0 calc(50% - 50vw) !important;border-radius:0 !important}}
+/* Mobile : grand « Otreau » qui passe derrière la montagne */
+@media (max-width:640px){.f-mont-t{top:27% !important}}
+/* Mobile : FAQ et vagues sans raccord visible */
+@media (max-width:640px){#faq{background:#E6E8EA !important}.site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill:#E6E8EA !important;fill-opacity:1 !important}}
+/* Mobile : vague du footer sans liseré + « Otreau » entier */
+@media (max-width:640px){.site-footer .f-wave{top:-6px !important}.site-footer .f-mont{clip-path:inset(3px -10px -300px -10px)}.site-footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:#E6E8EA;z-index:4;pointer-events:none}.f-mont-t{font-size:21vw !important}}
 </style>
 </head>
 <body>

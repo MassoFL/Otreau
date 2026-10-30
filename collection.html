@@ -1132,6 +1132,10 @@ body{padding-top:calc(var(--bh,36px) + var(--hh,64px))}
 /* Mobile : pas de débordement horizontal, pas de zoom au double appui */
 html,body{overflow-x:clip;max-width:100%}
 html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* Mobile : grand « Otreau » qui passe derrière la montagne */
+@media (max-width:640px){.f-mont-t{top:27% !important}}
+/* Mobile : vague du footer sans liseré + « Otreau » entier */
+@media (max-width:640px){.site-footer .f-wave{top:-6px !important}.f-mont-t{font-size:21vw !important}}
 </style>
 </head>
 <body>
