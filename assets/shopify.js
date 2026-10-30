@@ -1198,6 +1198,28 @@
     });
     box.appendChild(dots);
     if (opts.noLoop || opts.start) show(opts.start || 0);
+    // Mobile : glisser le doigt sur la photo passe à la photo suivante / précédente
+    if (window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches) {
+      box.style.touchAction = 'pan-y';
+      var sx = 0, sy = 0, swiping = false, swiped = false;
+      box.addEventListener('touchstart', function (e) { var t = e.touches[0]; sx = t.clientX; sy = t.clientY; swiping = true; swiped = false; }, { passive: true });
+      box.addEventListener('touchmove', function (e) {
+        if (!swiping) return; var t = e.touches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+        if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 10) { swiping = false; return; }
+        if (Math.abs(dx) > 10 && e.cancelable) e.preventDefault();
+      }, { passive: false });
+      box.addEventListener('touchend', function (e) {
+        if (!swiping) return; swiping = false;
+        var t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy;
+        if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+          var to = cur + (dx < 0 ? 1 : -1);
+          if (!opts.noLoop || (to >= 0 && to < slides.length)) { manual(); show(to); }
+          swiped = true; setTimeout(function () { swiped = false; }, 400);
+        }
+      }, { passive: true });
+      // un glissement ne doit pas ouvrir la fiche produit
+      (box.closest('a') || box).addEventListener('click', function (e) { if (swiped) { e.preventDefault(); e.stopPropagation(); } }, true);
+    }
 
     // Défilement automatique tant que l'utilisateur ne touche à rien :
     // la vidéo joue jusqu'au bout, puis chaque photo ~2,5 s, puis retour à la vidéo… en boucle.
