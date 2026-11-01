@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Contact · Otreau</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500&amp;family=Instrument+Serif:ital@1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
@@ -722,6 +725,34 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){.site-footer .f-wave{top:-6px !important}.f-mont-t{font-size:21vw !important}}
 /* Menu mobile : pas de titre « Guides & support », les liens suivent directement */
 @media (max-width:860px){html #mobile-menu .mg-h{display:none !important}}
+/* Raccord page / vague du footer : pas de liseré sombre */
+.site-footer .f-wave{top:-8px !important}
+@media (max-width:640px){.site-footer .f-mont{clip-path:inset(3px -10px -300px -10px)}}
+/* Contact : même fond que la FAQ de l’accueil (sans vidéo) */
+.ct-bg{display:none !important}
+html body{background:linear-gradient(rgba(248,246,241,.86),rgba(248,246,241,.86)),url(assets/footer-mont.webp) center top / cover no-repeat fixed,#0b1a33 !important}
+.site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill-opacity:0 !important}
+.site-footer::after{content:"";position:absolute;left:0;right:0;top:0;height:15.2778vw;z-index:2;pointer-events:none;background:linear-gradient(rgba(248,246,241,.86),rgba(248,246,241,.86)),url(assets/footer-mont.webp) center top / cover no-repeat fixed,#0b1a33;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat}
+@media (max-width:640px){html body{background:#E6E8EA !important}.site-footer::after{background:#E6E8EA}}
+/* Textes et cartes en version claire (fond clair) */
+html body .ct .pd-crumb,html body .ct .pd-crumb a{color:#5A6670 !important}
+html body .ct-head h1{color:#14212B !important}
+html body .ct-head p{color:#3D4A54 !important}
+html body .ct-card,html body .ct-form,html body .ct-help{background:rgba(255,255,255,.9) !important;border:1px solid #E4DFD5 !important;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 18px 40px -26px rgba(20,33,43,.35)}
+html body .ct-card h2,html body .ct-help h2{color:#14212B !important}
+html body .ct-card p,html body .ct-note{color:#5A6670 !important}
+html body .ct-card a,html body .ct-help a{color:#14212B !important}
+html body .ct-card svg{stroke:#14212B !important}
+html body .ct-field label{color:#14212B !important}
+html body .ct-field label small{color:#7A858D !important}
+html body .ct-field input,html body .ct-field select,html body .ct-field textarea{background-color:#FBFAF7 !important;border-color:#D9D3C7 !important;color:#14212B !important}
+html body .ct-field input:focus,html body .ct-field select:focus,html body .ct-field textarea:focus{background-color:#FFFFFF !important;border-color:#14212B !important}
+html body .ct-submit{background:#14212B !important;color:#FFFFFF !important}
+html body .ct-submit:hover{background:#2A3A46 !important}
+html body .ct-field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2314212B' stroke-width='1.6'/%3E%3C/svg%3E") !important}
+html body .ct-msg{color:#14212B !important}
+html body .ct-list{color:#5A6670 !important}
+html body .ct-list strong,html body .ct-list a{color:#14212B !important}
 </style>
 </head>
 <body>
@@ -778,7 +809,6 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div class="mg-promo"><a href="a-propos.html" class="mg-promo-a" aria-label="À propos d’Otreau"></a><span class="mg-pl">Otreau<sup>™</sup></span><span class="mg-ps">Notre histoire</span></div>
 </nav>
 </div>
-<div class="ct-bg" aria-hidden="true"><video src="assets/contact-bg.mp4" poster="assets/contact-bg-poster.jpg" autoplay muted loop playsinline preload="auto"></video></div>
 <main class="ct">
 <nav class="pd-crumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">›</span><span aria-current="page">Contact</span></nav>
 

@@ -14,6 +14,9 @@ html.pd-loading.pd-ready body{overflow:auto}
 </style>
 <script>document.documentElement.classList.add('pd-loading');setTimeout(function(){var h=document.documentElement;h.classList.add('pd-ready');setTimeout(function(){h.classList.remove('pd-loading','pd-ready')},450)},8000);</script>
 <title>Veste chauffante | Otreau</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500&amp;family=Instrument+Serif:ital@1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
@@ -910,6 +913,9 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){.site-footer .f-wave{top:-6px !important}.f-mont-t{font-size:21vw !important}}
 /* Menu mobile : pas de titre « Guides & support », les liens suivent directement */
 @media (max-width:860px){html #mobile-menu .mg-h{display:none !important}}
+/* Raccord page / vague du footer : pas de liseré sombre */
+.site-footer .f-wave{top:-8px !important}
+@media (max-width:640px){.site-footer .f-mont{clip-path:inset(3px -10px -300px -10px)}}
 </style>
 </head>
 <body>

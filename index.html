@@ -4,6 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Otreau — Emportez la chaleur de chez vous, dehors.</title>
+<meta name="description" content="Otreau, vêtements chauffants pensés comme de vrais vêtements : vestes, doudounes, gilets, gants et chaussettes chauffants, avec batterie 20 000 mAh. Livraison suivie en France, retours sous 30 jours.">
+<link rel="canonical" href="https://www.otreau.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0A0A0A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Otreau">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://www.otreau.com/">
+<meta property="og:title" content="Otreau — Emportez la chaleur de chez vous, dehors.">
+<meta property="og:description" content="Otreau, vêtements chauffants pensés comme de vrais vêtements : vestes, doudounes, gilets, gants et chaussettes chauffants, avec batterie 20 000 mAh. Livraison suivie en France, retours sous 30 jours.">
+<meta property="og:image" content="https://www.otreau.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500&amp;family=Instrument+Serif:ital@1&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
@@ -1173,6 +1189,19 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 #tailles .table-scroll{flex:none !important;width:100% !important;max-width:980px;margin:0 auto !important;box-sizing:border-box;background:rgba(251,248,242,.66);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:6px;padding:clamp(18px,3vw,40px);box-shadow:0 1px 0 rgba(20,33,43,.08),0 18px 40px -18px rgba(20,33,43,.35);outline:1.5px dashed rgba(140,122,91,.55);outline-offset:-10px}
 /* Menu mobile : pas de titre « Guides & support », les liens suivent directement */
 @media (max-width:860px){html #mobile-menu .mg-h{display:none !important}}
+/* Patron photo réelle (veste) : même hauteur que les autres dessins */
+#tailles svg.flat-real{display:block;height:clamp(300px,34vw,430px);width:auto;max-width:100%;margin:0 auto;overflow:visible}
+#tailles svg.flat-real[hidden]{display:none}
+#tailles .pt-col svg.flat-real{filter:drop-shadow(0 0 22px rgba(255,255,255,.16)) drop-shadow(0 0 2px rgba(255,255,255,.25))}
+#tailles svg.flat-real .dim line,#tailles svg.flat-real .dim path{stroke-width:3.5}
+#tailles svg.flat-real .dim.is-active line,#tailles svg.flat-real .dim.is-active path{stroke:#F5A623 !important;stroke-width:5}
+#tailles svg.flat-real .dim .ext{stroke-dasharray:8 8}
+#tailles svg.flat-real .dim text{font-size:26px;font-weight:600}
+#tailles svg.flat-real .dim.is-active circle{fill:#F5A623 !important}
+/* Patrons : photo seule, sans lignes de mesure */
+#tailles svg.flat-real .dim{display:none !important}
+/* Raccord page / vague du footer : pas de liseré sombre */
+.site-footer .f-wave{top:-8px !important}
 </style>
 </head>
 <body>
@@ -1418,7 +1447,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 </div></details>
 <details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 3c6 7 10 12 10 18a10 10 0 0 1-20 0c0-6 4-11 10-18z"></path><path d="M15 22a5 5 0 0 0 5 5"></path></svg><h3>Composition &amp; entretien</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
 <div class="spec-row"><span>Composition</span><strong>Lithium-polymère haute densité · coque ABS + PC</strong></div>
-<p class="spec-text">Rangez la batterie à température ambiante et évitez de la laisser en plein soleil ou près d’une source de chaleur. Retirez-la toujours du vêtement avant lavage. Pour la préserver, rechargez-la au moins une fois tous les [3 mois] si vous ne l’utilisez pas.</p>
+<p class="spec-text">Rangez la batterie à température ambiante et évitez de la laisser en plein soleil ou près d’une source de chaleur. Retirez-la toujours du vêtement avant lavage.</p>
 </div></details>
 <details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h20l-6-6M36 22H16l6 6"></path></svg><h3>Entrées &amp; sorties</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
 <div class="spec-row"><span>Entrées</span><strong>USB-C 18 W · Micro-USB 18 W</strong></div>
@@ -1507,18 +1536,81 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 </g>
 </svg>
 
-<img class="flat flat-photo" data-product="doudoune" src="assets/patron-doudoune-blanc.webp" width="783" height="820" alt="Doudoune avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="gilet-photo" src="assets/patron-gilet-v3-blanc.webp" alt="Gilet avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" width="477" height="820" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="gilet-fin" src="assets/patron-ultra-fin-blanc.webp" width="587" height="820" alt="Gilet ultra fin avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="parka" src="assets/patron-parka-blanc.webp" width="773" height="820" alt="Parka avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="parka-ad" src="assets/patron-parka-ad-blanc.webp" width="730" height="820" alt="Parka avec les mesures A (largeur poitrine) et D (longueur manche)" hidden>
-<img class="flat flat-photo" data-product="softshell" src="assets/patron-softshell-blanc.webp" width="716" height="820" alt="Softshell avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="sweat" src="assets/patron-sweat-blanc.webp" width="783" height="820" alt="Sweat à capuche avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="gilet-camouflage" src="assets/patron-camouflage-blanc.webp" width="556" height="820" alt="Gilet camouflage avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="gilet-bicolore" src="assets/patron-bicolore-blanc.webp" width="510" height="820" alt="Gilet bicolore avec les mesures A (largeur poitrine), B (longueur du corps) et C (largeur épaules)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="veste-polaire" src="assets/patron-veste-polaire-blanc.webp" width="776" height="820" alt="Veste polaire avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="gilet-capuche" src="assets/patron-gilet-capuche-blanc.webp" width="522" height="820" alt="Gilet avec capuche avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" loading="lazy" hidden>
-<img class="flat flat-photo" data-product="veste" src="assets/patron-veste-v3-blanc.webp" width="771" height="820" alt="Veste avec les mesures A (largeur poitrine), B (longueur), C (largeur épaules) et D (longueur manche)" loading="lazy" hidden>
+<svg class="flat flat-real" data-product="veste" viewBox="0 0 900 930" role="img" aria-label="La veste avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules) et D (longueur manche)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_d_hiver_noire_isolee.png?v=1792739125&amp;width=900" x="70" y="60" width="820" height="820" preserveAspectRatio="xMidYMid meet"/>
+<g class="dim" data-k="C"><line class="ext" x1="245" y1="251" x2="245" y2="28"/><line class="ext" x1="717" y1="251" x2="717" y2="28"/><line x1="245" y1="36" x2="717" y2="36"/><path d="M259 27 L245 36 L259 45 M703 27 L717 36 L703 45"/><circle cx="481" cy="36" r="20"/><text x="481" y="36">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="245" y1="251" x2="22" y2="251"/><line class="ext" x1="290" y1="855" x2="22" y2="855"/><line x1="34" y1="251" x2="34" y2="855"/><path d="M25 265 L34 251 L43 265 M25 841 L34 855 L43 841"/><circle cx="34" cy="553" r="20"/><text x="34" y="553">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="292" y1="858" x2="292" y2="910"/><line class="ext" x1="668" y1="858" x2="668" y2="910"/><line x1="292" y1="900" x2="668" y2="900"/><path d="M306 891 L292 900 L306 909 M654 891 L668 900 L654 909"/><circle cx="480" cy="900" r="20"/><text x="480" y="900">A</text></g>
+<g class="dim" data-k="D"><line class="ext" x1="717" y1="251" x2="760" y2="244"/><line class="ext" x1="817" y1="864" x2="860" y2="857"/><line x1="752" y1="245" x2="852" y2="858"/><path d="M745 260 L752 245 L762 258 M843 845 L852 858 L860 842"/><circle cx="802" cy="552" r="20"/><text x="802" y="552">D</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-gilet" viewBox="0 0 910 1524" role="img" aria-label="Gilet doudoune avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_chauffant_noir_matelasse.png?v=1792739891&amp;width=900" x="70" y="60" width="820" height="1391"/>
+<g class="dim" data-k="C"><line class="ext" x1="110" y1="310" x2="110" y2="28"/><line class="ext" x1="850" y1="310" x2="850" y2="28"/><line x1="110" y1="36" x2="850" y2="36"/><path d="M124 45 L110 36 L124 27 M836 45 L850 36 L836 27"/><circle cx="480" cy="36" r="20"/><text x="480" y="36">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="110" y1="310" x2="32" y2="310"/><line class="ext" x1="103" y1="1445" x2="32" y2="1445"/><line x1="42" y1="310" x2="42" y2="1445"/><path d="M33 324 L42 310 L51 324 M33 1431 L42 1445 L51 1431"/><circle cx="42" cy="878" r="20"/><text x="42" y="878">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="103" y1="1448" x2="103" y2="1500"/><line class="ext" x1="855" y1="1448" x2="855" y2="1500"/><line x1="103" y1="1490" x2="855" y2="1490"/><path d="M117 1499 L103 1490 L117 1481 M841 1499 L855 1490 L841 1481"/><circle cx="479" cy="1490" r="20"/><text x="479" y="1490">A</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-gilet-fin" viewBox="0 0 910 939" role="img" aria-label="Gilet ultra fin avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_chauffant_noir_mat_matelasse.png?v=1792745112&amp;width=900" x="70" y="60" width="820" height="820"/>
+<g class="dim" data-k="C"><line class="ext" x1="220" y1="170" x2="220" y2="46"/><line class="ext" x1="740" y1="170" x2="740" y2="46"/><line x1="220" y1="54" x2="740" y2="54"/><path d="M234 63 L220 54 L234 45 M726 63 L740 54 L726 45"/><circle cx="480" cy="54" r="20"/><text x="480" y="54">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="220" y1="170" x2="165" y2="170"/><line class="ext" x1="241" y1="860" x2="165" y2="860"/><line x1="175" y1="170" x2="175" y2="860"/><path d="M166 184 L175 170 L184 184 M166 846 L175 860 L184 846"/><circle cx="175" cy="515" r="20"/><text x="175" y="515">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="241" y1="863" x2="241" y2="915"/><line class="ext" x1="718" y1="863" x2="718" y2="915"/><line x1="241" y1="905" x2="718" y2="905"/><path d="M255 914 L241 905 L255 896 M704 914 L718 905 L704 896"/><circle cx="480" cy="905" r="20"/><text x="480" y="905">A</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-doudoune" viewBox="0 0 910 939" role="img" aria-label="Doudoune avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules), D (longueur manche)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Doudoune_noire_matelassee_a_capuche.png?v=1792740172&amp;width=900" x="70" y="60" width="820" height="820"/>
+<g class="dim" data-k="C"><line class="ext" x1="265" y1="299" x2="265" y2="32"/><line class="ext" x1="695" y1="299" x2="695" y2="32"/><line x1="265" y1="40" x2="695" y2="40"/><path d="M279 49 L265 40 L279 31 M681 49 L695 40 L681 31"/><circle cx="480" cy="40" r="20"/><text x="480" y="40">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="265" y1="299" x2="87" y2="299"/><line class="ext" x1="285" y1="860" x2="87" y2="860"/><line x1="97" y1="299" x2="97" y2="860"/><path d="M88 313 L97 299 L106 313 M88 846 L97 860 L106 846"/><circle cx="97" cy="580" r="20"/><text x="97" y="580">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="285" y1="863" x2="285" y2="915"/><line class="ext" x1="674" y1="863" x2="674" y2="915"/><line x1="285" y1="905" x2="674" y2="905"/><path d="M299 914 L285 905 L299 896 M660 914 L674 905 L660 896"/><circle cx="480" cy="905" r="20"/><text x="480" y="905">A</text></g>
+<g class="dim" data-k="D"><line class="ext" x1="695" y1="299" x2="739" y2="289"/><line class="ext" x1="816" y1="858" x2="860" y2="848"/><line x1="730" y1="291" x2="851" y2="850"/><path d="M724 307 L730 291 L742 303 M839 839 L851 850 L857 835"/><circle cx="791" cy="571" r="20"/><text x="791" y="571">D</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-parka" viewBox="0 0 910 932" role="img" aria-label="Parka homme avec les mesures A (largeur poitrine), D (longueur manche)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_parka_noire_impermeable_isolee.png?v=1792743656&amp;width=900" x="70" y="60" width="820" height="820"/>
+<g class="dim" data-k="A"><line class="ext" x1="282" y1="856" x2="282" y2="908"/><line class="ext" x1="674" y1="856" x2="674" y2="908"/><line x1="282" y1="898" x2="674" y2="898"/><path d="M296 907 L282 898 L296 889 M660 907 L674 898 L660 889"/><circle cx="478" cy="898" r="20"/><text x="478" y="898">A</text></g>
+<g class="dim" data-k="D"><line class="ext" x1="697" y1="245" x2="741" y2="237"/><line class="ext" x1="812" y1="845" x2="856" y2="837"/><line x1="732" y1="238" x2="847" y2="838"/><path d="M726 254 L732 238 L744 250 M836 826 L847 838 L854 823"/><circle cx="790" cy="538" r="20"/><text x="790" y="538">D</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-parka-femme" viewBox="0 0 913 934" role="img" aria-label="Parka femme avec les mesures A (largeur poitrine), D (longueur manche)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_d_hiver_rose_isolee.png?v=1792743906&amp;width=900" x="70" y="60" width="820" height="820"/>
+<g class="dim" data-k="A"><line class="ext" x1="271" y1="858" x2="271" y2="910"/><line class="ext" x1="689" y1="858" x2="689" y2="910"/><line x1="271" y1="900" x2="689" y2="900"/><path d="M285 909 L271 900 L285 891 M675 909 L689 900 L675 891"/><circle cx="480" cy="900" r="20"/><text x="480" y="900">A</text></g>
+<g class="dim" data-k="D"><line class="ext" x1="701" y1="241" x2="745" y2="231"/><line class="ext" x1="838" y1="848" x2="882" y2="838"/><line x1="736" y1="233" x2="873" y2="840"/><path d="M730 249 L736 233 L748 245 M861 828 L873 840 L879 824"/><circle cx="805" cy="537" r="20"/><text x="805" y="537">D</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-softshell" viewBox="0 0 951 1105" role="img" aria-label="Softshell avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules), D (longueur manche)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_polaire_chauffante_noire_isolee.png?v=1792743147&amp;width=900" x="70" y="60" width="820" height="979"/>
+<g class="dim" data-k="C"><line class="ext" x1="199" y1="241" x2="199" y2="32"/><line class="ext" x1="756" y1="241" x2="756" y2="32"/><line x1="199" y1="40" x2="756" y2="40"/><path d="M213 49 L199 40 L213 31 M742 49 L756 40 L742 31"/><circle cx="478" cy="40" r="20"/><text x="478" y="40">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="199" y1="241" x2="22" y2="241"/><line class="ext" x1="244" y1="1026" x2="22" y2="1026"/><line x1="32" y1="241" x2="32" y2="1026"/><path d="M23 255 L32 241 L41 255 M23 1012 L32 1026 L41 1012"/><circle cx="32" cy="634" r="20"/><text x="32" y="634">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="244" y1="1029" x2="244" y2="1081"/><line class="ext" x1="715" y1="1029" x2="715" y2="1081"/><line x1="244" y1="1071" x2="715" y2="1071"/><path d="M258 1080 L244 1071 L258 1062 M701 1080 L715 1071 L701 1062"/><circle cx="480" cy="1071" r="20"/><text x="480" y="1071">A</text></g>
+<g class="dim" data-k="D"><line class="ext" x1="756" y1="241" x2="800" y2="234"/><line class="ext" x1="876" y1="1005" x2="920" y2="998"/><line x1="792" y1="235" x2="912" y2="999"/><path d="M785 251 L792 235 L803 248 M901 987 L912 999 L918 984"/><circle cx="852" cy="617" r="20"/><text x="852" y="617">D</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-veste-polaire" viewBox="0 0 910 934" role="img" aria-label="Veste polaire avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules), D (longueur manche)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_d_hiver_technique_kaki_et_noire_1.png?v=1792744459&amp;width=900" x="70" y="60" width="820" height="820"/>
+<g class="dim" data-k="C"><line class="ext" x1="261" y1="245" x2="261" y2="31"/><line class="ext" x1="701" y1="245" x2="701" y2="31"/><line x1="261" y1="39" x2="701" y2="39"/><path d="M275 48 L261 39 L275 30 M687 48 L701 39 L687 30"/><circle cx="481" cy="39" r="20"/><text x="481" y="39">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="261" y1="245" x2="94" y2="245"/><line class="ext" x1="285" y1="855" x2="94" y2="855"/><line x1="104" y1="245" x2="104" y2="855"/><path d="M95 259 L104 245 L113 259 M95 841 L104 855 L113 841"/><circle cx="104" cy="550" r="20"/><text x="104" y="550">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="285" y1="858" x2="285" y2="910"/><line class="ext" x1="676" y1="858" x2="676" y2="910"/><line x1="285" y1="900" x2="676" y2="900"/><path d="M299 909 L285 900 L299 891 M662 909 L676 900 L662 891"/><circle cx="480" cy="900" r="20"/><text x="480" y="900">A</text></g>
+<g class="dim" data-k="D"><line class="ext" x1="701" y1="245" x2="745" y2="237"/><line class="ext" x1="814" y1="835" x2="858" y2="827"/><line x1="736" y1="238" x2="849" y2="828"/><path d="M730 254 L736 238 L748 250 M838 816 L849 828 L856 813"/><circle cx="793" cy="533" r="20"/><text x="793" y="533">D</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-sweat" viewBox="0 0 910 934" role="img" aria-label="Sweat à capuche avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules), D (longueur manche)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Sweat_a_capuche_noir_en_polaire_douillette.png?v=1792743421&amp;width=900" x="70" y="60" width="820" height="820"/>
+<g class="dim" data-k="C"><line class="ext" x1="230" y1="265" x2="230" y2="41"/><line class="ext" x1="730" y1="265" x2="730" y2="41"/><line x1="230" y1="49" x2="730" y2="49"/><path d="M244 58 L230 49 L244 40 M716 58 L730 49 L716 40"/><circle cx="480" cy="49" r="20"/><text x="480" y="49">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="230" y1="265" x2="76" y2="265"/><line class="ext" x1="273" y1="855" x2="76" y2="855"/><line x1="86" y1="265" x2="86" y2="855"/><path d="M77 279 L86 265 L95 279 M77 841 L86 855 L95 841"/><circle cx="86" cy="560" r="20"/><text x="86" y="560">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="273" y1="858" x2="273" y2="910"/><line class="ext" x1="687" y1="858" x2="687" y2="910"/><line x1="273" y1="900" x2="687" y2="900"/><path d="M287 909 L273 900 L287 891 M673 909 L687 900 L673 891"/><circle cx="480" cy="900" r="20"/><text x="480" y="900">A</text></g>
+<g class="dim" data-k="D"><line class="ext" x1="730" y1="265" x2="774" y2="258"/><line class="ext" x1="820" y1="845" x2="864" y2="838"/><line x1="766" y1="259" x2="856" y2="839"/><path d="M759 275 L766 259 L777 272 M845 827 L856 839 L862 824"/><circle cx="811" cy="549" r="20"/><text x="811" y="549">D</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-gilet-capuche" viewBox="0 0 910 934" role="img" aria-label="Gilet avec capuche avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_noir_matelasse_a_capuche.png?v=1792744702&amp;width=900" x="70" y="60" width="820" height="820"/>
+<g class="dim" data-k="C"><line class="ext" x1="270" y1="265" x2="270" y2="37"/><line class="ext" x1="690" y1="265" x2="690" y2="37"/><line x1="270" y1="45" x2="690" y2="45"/><path d="M284 54 L270 45 L284 36 M676 54 L690 45 L676 36"/><circle cx="480" cy="45" r="20"/><text x="480" y="45">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="270" y1="265" x2="205" y2="265"/><line class="ext" x1="268" y1="855" x2="205" y2="855"/><line x1="215" y1="265" x2="215" y2="855"/><path d="M206 279 L215 265 L224 279 M206 841 L215 855 L224 841"/><circle cx="215" cy="560" r="20"/><text x="215" y="560">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="268" y1="858" x2="268" y2="910"/><line class="ext" x1="691" y1="858" x2="691" y2="910"/><line x1="268" y1="900" x2="691" y2="900"/><path d="M282 909 L268 900 L282 891 M677 909 L691 900 L677 891"/><circle cx="480" cy="900" r="20"/><text x="480" y="900">A</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-gilet-camouflage" viewBox="0 0 910 944" role="img" aria-label="Gilet camouflage avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_camouflage_gris_matelasse.png?v=1792744904&amp;width=900" x="70" y="60" width="820" height="820"/>
+<g class="dim" data-k="C"><line class="ext" x1="242" y1="230" x2="242" y2="49"/><line class="ext" x1="718" y1="230" x2="718" y2="49"/><line x1="242" y1="57" x2="718" y2="57"/><path d="M256 66 L242 57 L256 48 M704 66 L718 57 L704 48"/><circle cx="480" cy="57" r="20"/><text x="480" y="57">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="242" y1="230" x2="188" y2="230"/><line class="ext" x1="267" y1="865" x2="188" y2="865"/><line x1="198" y1="230" x2="198" y2="865"/><path d="M189 244 L198 230 L207 244 M189 851 L198 865 L207 851"/><circle cx="198" cy="548" r="20"/><text x="198" y="548">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="267" y1="868" x2="267" y2="920"/><line class="ext" x1="691" y1="868" x2="691" y2="920"/><line x1="267" y1="910" x2="691" y2="910"/><path d="M281 919 L267 910 L281 901 M677 919 L691 910 L677 901"/><circle cx="479" cy="910" r="20"/><text x="479" y="910">A</text></g>
+</svg>
+<svg class="flat flat-real" data-product="real-gilet-bicolore" viewBox="0 0 910 1354" role="img" aria-label="Gilet bicolore avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules)" hidden>
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_chauffant_matelasse_noir_et_gris.png?v=1792742932&amp;width=900" x="70" y="60" width="820" height="1230"/>
+<g class="dim" data-k="C"><line class="ext" x1="155" y1="280" x2="155" y2="41"/><line class="ext" x1="810" y1="280" x2="810" y2="41"/><line x1="155" y1="49" x2="810" y2="49"/><path d="M169 58 L155 49 L169 40 M796 58 L810 49 L796 40"/><circle cx="482" cy="49" r="20"/><text x="482" y="49">C</text></g>
+<g class="dim" data-k="B"><line class="ext" x1="155" y1="280" x2="94" y2="280"/><line class="ext" x1="144" y1="1275" x2="94" y2="1275"/><line x1="104" y1="280" x2="104" y2="1275"/><path d="M95 294 L104 280 L113 294 M95 1261 L104 1275 L113 1261"/><circle cx="104" cy="778" r="20"/><text x="104" y="778">B</text></g>
+<g class="dim" data-k="A"><line class="ext" x1="144" y1="1278" x2="144" y2="1330"/><line class="ext" x1="820" y1="1278" x2="820" y2="1330"/><line x1="144" y1="1320" x2="820" y2="1320"/><path d="M158 1329 L144 1320 L158 1311 M806 1329 L820 1320 L806 1311"/><circle cx="482" cy="1320" r="20"/><text x="482" y="1320">A</text></g>
+</svg>
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
 <table class="size-table" id="size-table">
@@ -1840,15 +1932,15 @@ var SIZE_GUIDE_GILET = { sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL']
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] };
 var SIZE_GUIDE = {
-  'gilet': { name: 'GILET DOUDOUNE', flat: 'gilet-photo', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'gilet': { name: 'GILET DOUDOUNE', flat: 'real-gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] },
-  'gilet-fin': { name: 'GILET ULTRA FIN', flat: 'gilet-fin', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe :</strong> prenez votre taille habituelle.</li><li><strong>Une taille pour trois :</strong> chaque taille couvre trois tailles standard (par exemple S, M et L).</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S – L','XL – 3XL','4XL – 6XL','7XL – 9XL'], rows: [
+  'gilet-fin': { name: 'GILET ULTRA FIN', flat: 'real-gilet-fin', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe :</strong> prenez votre taille habituelle.</li><li><strong>Une taille pour trois :</strong> chaque taille couvre trois tailles standard (par exemple S, M et L).</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S – L','XL – 3XL','4XL – 6XL','7XL – 9XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['53 cm','58 cm','63 cm','68 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['67 cm','72 cm','76 cm','80 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['44 cm','46 cm','48 cm','50 cm'] } ] },
-  'doudoune': { name: 'DOUDOUNE', flat: 'doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'doudoune': { name: 'DOUDOUNE', flat: 'real-doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm','66 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
@@ -1858,37 +1950,37 @@ var SIZE_GUIDE = {
     { k: 'B', label: 'Longueur du corps', values: ['63 cm','66 cm','67 cm','69 cm','71 cm','73 cm','76 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['43 cm','45 cm','46 cm','48 cm','49 cm','51 cm','53 cm','55 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['59 cm','61 cm','62 cm','63 cm','64 cm','66 cm','66 cm','67 cm'] } ] },
-  'parka': { name: 'PARKA HOMME', flat: 'parka-ad', sizes: ['S','M','L','XL','2XL','3XL'], rows: [
+  'parka': { name: 'PARKA HOMME', flat: 'real-parka', sizes: ['S','M','L','XL','2XL','3XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['58 cm','60 cm','62 cm','64 cm','66 cm','67 cm'] },
     { k: 'D', label: 'Longueur manche',  values: ['58,5 cm','61 cm','63,5 cm','65 cm','66,5 cm','68 cm'] } ],
     fit: [['S','165 – 170 cm','45 – 55 kg'],['M','170 – 175 cm','55 – 65 kg'],['L','175 – 180 cm','65 – 75 kg'],['XL','180 – 185 cm','75 – 85 kg'],['2XL','185 – 190 cm','85 – 95 kg'],['3XL','190 – 195 cm','95 – 105 kg']] },
-  'parka-femme': { name: 'PARKA FEMME', flat: 'parka-ad', sizes: ['S','M','L','XL','2XL','3XL'], rows: [
+  'parka-femme': { name: 'PARKA FEMME', flat: 'real-parka-femme', sizes: ['S','M','L','XL','2XL','3XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['52 cm','54 cm','56 cm','59 cm','62 cm','65 cm'] },
     { k: 'D', label: 'Longueur manche',  values: ['58 cm','59,5 cm','61 cm','62,5 cm','64 cm','65,5 cm'] } ],
     fit: [['S','153 – 158 cm','38 – 43 kg'],['M','158 – 162 cm','43 – 50 kg'],['L','160 – 165 cm','50 – 58 kg'],['XL','163 – 168 cm','58 – 66 kg'],['2XL','165 – 173 cm','66 – 74 kg'],['3XL','167 – 179 cm','74 – 82 kg']] },
-  'softshell': { name: 'SOFTSHELL', flat: 'softshell', tol: '<p class="size-tol">Tolérance : 1 à 3 cm, mesures prises à la main.</p>', sizes: ['M','L','XL','2XL'], rows: [
+  'softshell': { name: 'SOFTSHELL', flat: 'real-softshell', tol: '<p class="size-tol">Tolérance : 1 à 3 cm, mesures prises à la main.</p>', sizes: ['M','L','XL','2XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['54 cm','56,5 cm','59 cm','61,5 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['68 cm','69 cm','70 cm','71 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['49 cm','51 cm','53 cm','55 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['63 cm','65 cm','66 cm','68 cm'] } ] },
-  'veste-polaire': { name: 'VESTE POLAIRE', flat: 'veste-polaire', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'veste-polaire': { name: 'VESTE POLAIRE', flat: 'real-veste-polaire', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['54,5 cm','56,5 cm','58,5 cm','60,5 cm','62,5 cm','64,5 cm','66,5 cm','68,5 cm','70,5 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['68 cm','70 cm','72 cm','74 cm','76 cm','78 cm','80 cm','82 cm','82 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['44 cm','44,5 cm','47 cm','48,5 cm','50 cm','51,5 cm','53 cm','54,5 cm','56 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['60 cm','61,5 cm','63 cm','64,5 cm','66 cm','67,5 cm','69 cm','70,5 cm','70,5 cm'] } ],
     fit: [['S','155 – 160 cm','45 – 57 kg'],['M','160 – 170 cm','57 – 65 kg'],['L','165 – 175 cm','62 – 70 kg'],['XL','170 – 180 cm','67 – 75 kg'],['2XL','175 – 185 cm','72 – 80 kg'],['3XL','180 – 190 cm','77 – 85 kg'],['4XL','185 – 195 cm','82 – 90 kg'],['5XL','190 – 200 cm','87 – 95 kg'],['6XL','195 – 205 cm','92 – 100 kg']] },
-  'sweat': { name: 'SWEAT', flat: 'sweat', tol: '<p class="size-tol">Tolérance : 1 à 3 cm selon la méthode de mesure.</p>', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'sweat': { name: 'SWEAT', flat: 'real-sweat', tol: '<p class="size-tol">Tolérance : 1 à 3 cm selon la méthode de mesure.</p>', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['55 cm','57 cm','59 cm','61 cm','63 cm','65 cm','67 cm','69 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['68 cm','70 cm','72 cm','74 cm','76 cm','78 cm','80 cm','80 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['46,5 cm','48 cm','49,5 cm','51 cm','52,5 cm','54 cm','55,5 cm','57 cm'] },
     { k: 'D', label: 'Longueur manche',   values: ['59 cm','60,5 cm','62 cm','63,5 cm','65 cm','66,5 cm','68 cm','69,5 cm'] } ] },
-  'gilet-capuche': { name: 'GILET AVEC CAPUCHE', flat: 'gilet-capuche', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL','7XL'], rows: [
+  'gilet-capuche': { name: 'GILET AVEC CAPUCHE', flat: 'real-gilet-capuche', sizes: ['M','L','XL','2XL','3XL','4XL','5XL','6XL','7XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['53 cm','55 cm','57 cm','59 cm','61 cm','64 cm','67 cm','70 cm','73 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','72,5 cm','74 cm','75 cm','76 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['40 cm','41,5 cm','43 cm','44,5 cm','46 cm','48 cm','50 cm','52 cm','54 cm'] } ],
     fit: [['M','155 – 165 cm','47,5 – 57,5 kg'],['L','160 – 170 cm','57,5 – 65 kg'],['XL','165 – 175 cm','65 – 72,5 kg'],['2XL','170 – 180 cm','72,5 – 80 kg'],['3XL','170 – 185 cm','80 – 87,5 kg'],['4XL','170 – 190 cm','90 – 100 kg'],['5XL','175 – 190 cm','100 – 110 kg'],['6XL','180 – 195 cm','110 – 120 kg'],['7XL','180 – 200 cm','120 – 130 kg']] },
-  'gilet-camouflage': { name: 'GILET CAMOUFLAGE', flat: 'gilet-camouflage', sizes: SIZE_GUIDE_GILET.sizes, rows: SIZE_GUIDE_GILET.rows },
-  'gilet-bicolore': { name: 'GILET BICOLORE', flat: 'gilet-bicolore', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
+  'gilet-camouflage': { name: 'GILET CAMOUFLAGE', flat: 'real-gilet-camouflage', sizes: SIZE_GUIDE_GILET.sizes, rows: SIZE_GUIDE_GILET.rows },
+  'gilet-bicolore': { name: 'GILET BICOLORE', flat: 'real-gilet-bicolore', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['55,5 cm','57,5 cm','59,5 cm','61,5 cm','63,5 cm','65,5 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['66 cm','68 cm','70 cm','72 cm','74 cm','76 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['44,5 cm','46 cm','47,5 cm','49 cm','50,5 cm','52 cm'] },

@@ -177,7 +177,7 @@
     return c ? 'background:' + c : '';
   }
   // tailles toujours dans l'ordre XS → 3XL, quel que soit l'ordre saisi dans Shopify
-  var SIZE_ORDER = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '2XL', 'XXXL', '3XL', '4XL'];
+  var SIZE_ORDER = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', '2XL', 'XXXL', '3XL', '4XL', '5XL', '6XL', '7XL', '8XL', '9XL'];
   function isBlack(n) { n = norm(n); return n === 'noir' || n === 'black' || n.indexOf('noir') === 0 || n.indexOf('black') === 0; }
   function sortSizes(p) {
     (p.options || []).forEach(function (o) {
