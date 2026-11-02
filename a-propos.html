@@ -131,7 +131,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .cta-heat{position:relative;overflow:hidden;isolation:isolate;transition:border-color .45s ease,color .3s ease,box-shadow .45s ease}
 .cta-heat::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,#FFD27A 0%,#F5A623 35%,#E8641F 70%,#C2361F 100%);transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.65,0,.35,1)}
 .cta-heat span{position:relative}
-.cta-heat:hover,.cta-heat:focus-visible{border-color:#F5A623 !important;color:#FFFFFF !important;box-shadow:0 8px 30px -8px rgba(232,100,31,.55)}
+.cta-heat:hover,.cta-heat:focus-visible{border-color:#F5A623 !important;color:#FFFFFF !important;box-shadow:0 8px 30px -8px rgba(245,166,35,.45)}
 .cta-heat:hover::before,.cta-heat:focus-visible::before{transform:scaleX(1)}
 @media (prefers-reduced-motion: reduce){.cta-heat::before{transition:none}}
 /* ===== Header : logo centré ===== */
@@ -523,7 +523,7 @@ main.ap{position:relative;z-index:1;color:#14212B}
 .lm-path-v{display:none}
 .lm-road li{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:53px 6px 0}
 .lm-road li:nth-child(even){padding-top:5px}
-.lm-dot{width:42px;height:42px;margin-bottom:10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 15px Manrope,sans-serif;color:#FFFFFF;background:linear-gradient(135deg,#173A2C,#1F5A3E);border:1.5px solid rgba(127,209,164,.7);box-shadow:0 0 0 5px rgba(127,209,164,.1)}
+.lm-dot{width:42px;height:42px;margin-bottom:10px;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 15px Manrope,sans-serif;color:#FFFFFF;background:linear-gradient(135deg,#E8641F,#F5A623);border:1.5px solid rgba(245,166,35,.7);box-shadow:0 0 0 5px rgba(245,166,35,.1)}
 .lm-road strong{font-family:Manrope,sans-serif;font-weight:700;font-size:15px;color:#FFFFFF}
 .lm-road li > span:not(.lm-dot){font-size:13.5px;line-height:1.4;color:#BFCDC5}
 @media (max-width:640px){
@@ -546,7 +546,7 @@ main.ap{position:relative;z-index:1;color:#14212B}
 .lm-steps{grid-template-columns:repeat(4,minmax(0,1fr)) minmax(0,.72fr) minmax(0,.54fr) minmax(0,.4fr)}
 .lm-far .lm-dot{margin-bottom:8px}
 .lm-road li.lm-f1{padding-top:50px;opacity:.82}.lm-f1 .lm-dot{width:32px;height:32px;font-size:12px}.lm-f1 strong{font-size:13px !important}
-.lm-road li.lm-f2{padding-top:22px;opacity:.6}.lm-f2 .lm-dot{width:24px;height:24px;font-size:10px;box-shadow:0 0 0 3px rgba(127,209,164,.12)}.lm-f2 strong{font-size:11.5px !important}
+.lm-road li.lm-f2{padding-top:22px;opacity:.6}.lm-f2 .lm-dot{width:24px;height:24px;font-size:10px;box-shadow:0 0 0 3px rgba(245,166,35,.12)}.lm-f2 strong{font-size:11.5px !important}
 .lm-road li.lm-f3{padding-top:50px;opacity:.42}.lm-f3 .lm-dot{width:18px;height:18px;font-size:0;box-shadow:none}.lm-f3 strong{font-size:10.5px !important}
 @media (max-width:640px){
 .lm-path-js{-webkit-mask-image:linear-gradient(180deg,#000 75%,transparent 100%);mask-image:linear-gradient(180deg,#000 75%,transparent 100%)}
@@ -871,7 +871,7 @@ html #mobile-menu{background:#0A0A0A !important;-webkit-backdrop-filter:none !im
 /* Pied de page : présentation et coordonnées en blanc */
 .site-footer .f-brand p,.site-footer .f-contact,.site-footer .f-contact li,.site-footer .f-contact a{color:#FFFFFF !important}
 /* Trajectoire : pastilles orange au lieu du vert */
-.lm-dot{background:linear-gradient(135deg,#E8641F,#F5A623) !important;border-color:rgba(255,210,122,.75) !important;box-shadow:0 0 0 4px rgba(245,166,35,.16),0 6px 16px -6px rgba(232,100,31,.6) !important}
+.lm-dot{background:linear-gradient(135deg,#E8641F,#F5A623) !important;border-color:rgba(255,210,122,.75) !important;box-shadow:0 0 0 4px rgba(245,166,35,.16),0 6px 16px -6px rgba(245,166,35,.45) !important}
 .lm-f2 .lm-dot{box-shadow:0 0 0 3px rgba(245,166,35,.12) !important}
 .lm-f3 .lm-dot{box-shadow:none !important}
 .site-footer{position:relative}
@@ -894,8 +894,10 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 .site-footer .f-wave{top:-8px !important}
 @media (max-width:640px){.site-footer .f-mont{clip-path:inset(3px -10px -300px -10px)}}
 /* Bas de page : la vague du footer laisse voir le marbre de la page (pas de bandeau crème) */
-.site-footer::after{content:"";position:absolute;left:0;right:0;top:0;height:15.2778vw;z-index:2;pointer-events:none;background:linear-gradient(rgba(40,38,34,.33),rgba(40,38,34,.33)),url(assets/collection-bg.jpg) center / cover no-repeat fixed,#B0ADAB;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,220 L0,220 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,220 L0,220 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,220 L0,220 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat}
+.site-footer::after{content:"";position:absolute;left:0;right:0;top:0;height:15.2778vw;z-index:2;pointer-events:none;background:linear-gradient(rgba(40,38,34,.33),rgba(40,38,34,.33)),url(assets/collection-bg.jpg) center / cover no-repeat fixed,#B0ADAB;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,240 L0,240 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,240 L0,240 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,240 L0,240 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,240 L0,240 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,240 L0,240 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,240 L0,240 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,240 L0,240 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,240 L0,240 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,240 L0,240 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,240 L0,240 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 100% no-repeat}
 .site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill-opacity:0 !important}
+/* Comment ça marche : numéros dans le style orange des options sélectionnées */
+.pd-how .pd-num{background:#14212B !important;color:#FFFFFF !important;box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #F5A623,0 8px 20px -8px rgba(20,33,43,.5) !important}
 </style>
 </head>
 <body>

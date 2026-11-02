@@ -131,7 +131,7 @@ a{color:#14212B}a:hover{color:#B5650F}
 .cta-heat{position:relative;overflow:hidden;isolation:isolate;transition:border-color .45s ease,color .3s ease,box-shadow .45s ease}
 .cta-heat::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,#FFD27A 0%,#F5A623 35%,#E8641F 70%,#C2361F 100%);transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.65,0,.35,1)}
 .cta-heat span{position:relative}
-.cta-heat:hover,.cta-heat:focus-visible{border-color:#F5A623 !important;color:#FFFFFF !important;box-shadow:0 8px 30px -8px rgba(232,100,31,.55)}
+.cta-heat:hover,.cta-heat:focus-visible{border-color:#F5A623 !important;color:#FFFFFF !important;box-shadow:0 8px 30px -8px rgba(245,166,35,.45)}
 .cta-heat:hover::before,.cta-heat:focus-visible::before{transform:scaleX(1)}
 @media (prefers-reduced-motion: reduce){.cta-heat::before{transition:none}}
 /* ===== Header : logo centré ===== */
@@ -730,6 +730,8 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 .tr-help > *{position:relative;z-index:3}
 .site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill-opacity:.86}
 @media (max-width:640px){.tr-help{background:#E6E8EA !important}.site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill:#E6E8EA !important;fill-opacity:1 !important}}
+/* Comment ça marche : numéros dans le style orange des options sélectionnées */
+.pd-how .pd-num{background:#14212B !important;color:#FFFFFF !important;box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #F5A623,0 8px 20px -8px rgba(20,33,43,.5) !important}
 </style>
 </head>
 <body>

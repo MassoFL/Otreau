@@ -281,6 +281,17 @@
     '.oc-note{margin:0;font-size:12.5px;color:#8A949B}' +
     '.oc-btn{display:flex;align-items:center;justify-content:center;min-height:54px;border:0;border-radius:999px;background:#14212B;color:#fff;font:700 16px Manrope,sans-serif;cursor:pointer;text-decoration:none;padding:0 28px}' +
     '.oc-btn[disabled]{opacity:.5;cursor:default}' +
+    /* « Passer la commande » : même style que « Ajouter au panier » (lueur qui tourne, chaleur au survol) */
+    '@property --oc-glow-a{syntax:"<angle>";inherits:false;initial-value:0deg}' +
+    '.oc-btn.oc-btn-heat{position:relative;isolation:isolate;overflow:visible;border:2px solid #14212B;transition:border-color .45s ease,box-shadow .45s ease}' +
+    '.oc-btn.oc-btn-heat span{position:relative;z-index:2;color:#FFFFFF}' +
+    '.oc-btn.oc-btn-heat::before{content:"";position:absolute;inset:0;z-index:0;border-radius:999px;background:linear-gradient(100deg,#9E3A0C 0%,#C9480F 45%,#E8641F 80%,#F5A623 100%);clip-path:inset(0 100% 0 0 round 999px);transition:clip-path .5s cubic-bezier(.65,0,.35,1)}' +
+    '.oc-btn.oc-btn-heat:hover::before,.oc-btn.oc-btn-heat:focus-visible::before{clip-path:inset(0 0 0 0 round 999px)}' +
+    '.oc-btn.oc-btn-heat::after{content:"";position:absolute;inset:-2.5px;padding:2.5px;z-index:1;pointer-events:none;border-radius:999px;filter:drop-shadow(0 0 4px rgba(245,166,35,.8)) drop-shadow(0 0 10px rgba(232,100,31,.45));background:conic-gradient(from var(--oc-glow-a),transparent 0 55%,#F5A623 65%,#FFC15E 75%,#FFE8C2 84%,#FFF4E0 89%,#FFD27A 95%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);animation:oc-glow-spin 4.5s linear infinite}' +
+    '@keyframes oc-glow-spin{to{--oc-glow-a:360deg}}' +
+    '.oc-btn.oc-btn-heat:hover,.oc-btn.oc-btn-heat:focus-visible{color:#FFFFFF !important;border-color:#F5A623;box-shadow:0 8px 30px -10px rgba(245,166,35,.45)}' +
+    '.oc-btn.oc-btn-heat:hover::after,.oc-btn.oc-btn-heat:focus-visible::after{opacity:0;transition:opacity .3s}' +
+    '@media (prefers-reduced-motion: reduce){.oc-btn.oc-btn-heat::after{animation:none}}' +
     '.oc-busy{opacity:.55;pointer-events:none}' +
     '.oc-msg{margin:8px 0 0;font-size:13px;color:#C2361F}' +
     '.pc-car{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;background:transparent}' +
@@ -363,7 +374,7 @@
     '.pd-batt-q{margin:0 0 12px;text-align:center;font:800 13px/1.2 Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8A949B}' +
     'main.pd .pd-info .pd-opt,main.pd .pd-info .pd-opt::before,main.pd .pd-info .pd-opt::after{border-radius:0 !important}' +
     '.pd-trust-tabs .pd-trust-tab{color:#8A949B !important;opacity:.85;transition:color .2s,opacity .2s,box-shadow .25s !important}.pd-trust-tabs .pd-trust-tab:hover{color:#14212B !important;opacity:1}' +
-    '.pd-trust-tabs .pd-trust-tab[aria-selected="true"]{color:#14212B !important;opacity:1;box-shadow:inset 0 -2px 0 #E8641F !important}.pd-trust-tabs .pd-trust-tab[aria-selected="true"] svg{stroke:#E8641F !important}' +
+    '.pd-trust-tabs .pd-trust-tab[aria-selected="true"]{color:#14212B !important;opacity:1;box-shadow:inset 0 -2px 0 #F5A623 !important}.pd-trust-tabs .pd-trust-tab[aria-selected="true"] svg{stroke:#E8641F !important}' +
     '.pd-crumb{display:none !important}' +
     '@media (max-width:900px){' +
       '.pd-gallery.has-story{grid-template-areas:"story" "main" "cap" "thumbs" !important}' +
@@ -438,7 +449,7 @@
     '.pc-colors{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:6px;padding:4px}' +
     '.pc-color{width:22px;height:22px;padding:0;border-radius:50%;border:0;box-shadow:0 0 0 1px rgba(20,33,43,.12);cursor:pointer;font:700 10px Manrope,sans-serif;color:#14212B;background:#F4F3EF;transition:transform .15s,box-shadow .15s}' +
     '.pc-color:hover{transform:scale(1.12)}' +
-    '.pc-color[aria-pressed="true"]{transform:scale(1.08);box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #1F6342,0 4px 10px rgba(20,33,43,.25)}' +
+    '.pc-color[aria-pressed="true"]{transform:scale(1.08);box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #F5A623,0 4px 10px rgba(20,33,43,.25)}' +
     '.pc-arrow[hidden]{display:none !important}' +
     'html.shop-pending [data-handle],html.shop-pending .pd-x[data-shop-handle]{visibility:hidden}' +
     '@media (min-width:561px){.product-grid.is-few{grid-template-columns:repeat(var(--n),minmax(0,300px)) !important;justify-content:center}}' +
@@ -522,7 +533,7 @@
     foot.innerHTML = '<div class="oc-sub"><span>Sous-total</span><span>' + ttc(cart.cost.subtotalAmount) + '</span></div>' +
       '<div class="oc-ship"><span>Livraison</span><span>3,20 € ' + TTC + '</span></div>' +
       '<p class="oc-note">Prix TTC. Les frais de livraison sont ajoutés à l’étape du paiement.</p>' +
-      '<a class="oc-btn" href="' + esc(cart.checkoutUrl) + '">Paiement sécurisé</a>';
+      '<a class="oc-btn oc-btn-heat" href="' + esc(cart.checkoutUrl) + '"><span>Passer la commande</span></a>';
     body.querySelectorAll('.oc-line').forEach(function (row) {
       var id = row.dataset.line, line = cart.lines.nodes.filter(function (l) { return l.id === id; })[0];
       function change(q) {
