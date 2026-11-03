@@ -710,6 +710,28 @@
         { ico: 'thermo', t: 'Réglage de la température', d: '3 niveaux de chaleur selon vos besoins' }
       ]
     },
+    'parka': {
+      items: [
+        { ico: 'heat', t: '2 zones à l’avant', d: 'Une chaleur de chaque côté, à l’avant' },
+        { ico: 'heat', t: '1 grande zone dans le dos', d: 'Chaleur répartie sur tout le dos' },
+        { ico: 'thermo', t: 'Réglage de la température', d: '3 niveaux de chaleur selon vos besoins' }
+      ]
+    },
+    'parka-femme': {
+      items: [
+        { ico: 'heat', t: '2 zones à l’avant', d: 'Une chaleur de chaque côté, à l’avant' },
+        { ico: 'heat', t: '1 grande zone dans le dos', d: 'Chaleur répartie sur tout le dos' },
+        { ico: 'thermo', t: 'Réglage de la température', d: '3 niveaux de chaleur selon vos besoins' }
+      ]
+    },
+    'softshell': {
+      items: [
+        { ico: 'heat', t: '2 zones à l’avant', d: 'En bas du ventre, au niveau des poches' },
+        { ico: 'heat', t: '6 zones dans le dos', d: 'Du haut au bas du dos' },
+        { ico: 'heat', t: '1 zone dans le col', d: 'Garde la nuque au chaud' },
+        { ico: 'thermo', t: 'Écran de température', d: '3 niveaux : 39, 45 ou 55 °C' }
+      ]
+    },
     'sweet': {
       items: [
         { ico: 'heat', t: '2 zones dans la poche avant', d: 'Pour se réchauffer les mains' },
