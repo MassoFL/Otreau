@@ -732,6 +732,22 @@
         { ico: 'thermo', t: 'Écran de température', d: '3 niveaux : 39, 45 ou 55 °C' }
       ]
     },
+    'veste-polaire': {
+      items: [
+        { ico: 'heat', t: '2 zones à l’avant', d: 'En bas du ventre, une de chaque côté' },
+        { ico: 'heat', t: '1 grande zone dans le dos', d: 'Chaleur répartie sur tout le dos' },
+        { ico: 'heat', t: '1 zone dans la capuche', d: 'Protège la tête et la nuque' },
+        { ico: 'thermo', t: 'Température constante', d: '3 niveaux : 45, 55 ou 65 °C' }
+      ]
+    },
+    'gilet-avec-capuche': {
+      items: [
+        { ico: 'heat', t: 'Cou et épaules', d: 'La chaleur remonte jusqu’au col' },
+        { ico: 'heat', t: 'Ventre', d: 'Zones à l’avant, réglage « ventre »' },
+        { ico: 'heat', t: 'Dos et bas du dos', d: 'Zones à l’arrière, réglage « dos »' },
+        { ico: 'thermo', t: '3 niveaux de chaleur', d: '38, 46 ou 53 °C' }
+      ]
+    },
     'sweet': {
       items: [
         { ico: 'heat', t: '2 zones dans la poche avant', d: 'Pour se réchauffer les mains' },
