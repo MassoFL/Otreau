@@ -93,7 +93,7 @@
   var ZONES_FILES = ['Hoodie_chauffant_en_polaire_lumineuse', 'Gilet_chauffant_noir_avec_zones_lumineuses', 'Gants_chauffants_noirs_a_lueur_rouge', 'Chaussettes_chauffantes_a_effet_thermique'];
   // Nombre de zones chauffantes par produit (affiché sur la photo des zones : « 21 Zones »).
   // Un nombre écrit dans le texte alternatif Shopify (« Zones chauffantes 6 ») est prioritaire.
-  var ZONES_COUNT = { 'veste-otreau': 4, 'veste': 4, 'doudoune': 19, 'gilet': 21, 'gilet-femmes': 15, 'gilet-bicolore-hommes': 15, 'softshell': 9, 'sweet': 9, 'parka': 3, 'parka-femme': 3, 'veste-polaire': 4, 'gilet-avec-capuche': 9, 'gilet-ultra-fin': 5 };
+  var ZONES_COUNT = { 'veste-otreau': 4, 'veste': 4, 'doudoune': 19, 'gilet': 21, 'gilet-femmes': 15, 'gilet-bicolore-hommes': 15, 'softshell': 9, 'sweet': 9, 'parka': 3, 'parka-femme': 3, 'veste-polaire': 4, 'gilet-avec-capuche': 9, 'gilet-ultra-fin': 5, 'gilet-camouflage': 21 };
   function zonesCount(handle, alt) {
     var m = /zones?[\s_-]*chauffantes?\D{0,3}(\d{1,2})/i.exec(String(alt || ''));
     return m ? parseInt(m[1], 10) : (ZONES_COUNT[handle] || ZONES_COUNT[String(handle || '').replace(/-otreau$/, '')] || 0);

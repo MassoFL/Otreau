@@ -2010,10 +2010,11 @@ var SIZE_GUIDE = {
     { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] },
-  'gilet-fin': { name: 'GILET ULTRA FIN', flat: 'real-gilet-fin', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe :</strong> prenez votre taille habituelle.</li><li><strong>Une taille pour trois :</strong> chaque taille couvre trois tailles standard (par exemple S, M et L).</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S – L','XL – 3XL','4XL – 6XL','7XL – 9XL'], rows: [
-    { k: 'A', label: 'Largeur poitrine', values: ['53 cm','58 cm','63 cm','68 cm'] },
-    { k: 'B', label: 'Longueur dos',     values: ['67 cm','72 cm','76 cm','80 cm'] },
-    { k: 'C', label: 'Largeur épaules',  values: ['44 cm','46 cm','48 cm','50 cm'] } ] },
+  'gilet-fin': { name: 'GILET ULTRA FIN', flat: 'real-gilet-fin', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe, taille petit :</strong> ce sont des tailles asiatiques, plus petites que les tailles européennes. Suivez bien le tableau, et prenez la taille au-dessus en cas de doute.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['47 cm','49 cm','51 cm','53 cm','55 cm','57 cm'] },
+    { k: 'B', label: 'Longueur dos',     values: ['58 cm','60 cm','62 cm','64 cm','66 cm','68 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['36 cm','38 cm','41 cm','43 cm','45 cm','47 cm'] } ],
+    fit: [['M','155 – 160 cm','45 – 50 kg'],['L','160 – 165 cm','55 – 60 kg'],['XL','170 – 175 cm','62,5 – 67,5 kg'],['2XL','175 – 180 cm','67,5 – 72,5 kg'],['3XL','180 – 185 cm','75 – 80 kg'],['4XL','185 – 190 cm','82,5 – 87,5 kg']] },
   'doudoune': { name: 'DOUDOUNE', flat: 'real-doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm','66 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
@@ -2053,7 +2054,12 @@ var SIZE_GUIDE = {
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','72,5 cm','74 cm','75 cm','76 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['40 cm','41,5 cm','43 cm','44,5 cm','46 cm','48 cm','50 cm','52 cm','54 cm'] } ],
     fit: [['M','155 – 165 cm','47,5 – 57,5 kg'],['L','160 – 170 cm','57,5 – 65 kg'],['XL','165 – 175 cm','65 – 72,5 kg'],['2XL','170 – 180 cm','72,5 – 80 kg'],['3XL','170 – 185 cm','80 – 87,5 kg'],['4XL','170 – 190 cm','90 – 100 kg'],['5XL','175 – 190 cm','100 – 110 kg'],['6XL','180 – 195 cm','110 – 120 kg'],['7XL','180 – 200 cm','120 – 130 kg']] },
-  'gilet-camouflage': { name: 'GILET CAMOUFLAGE', flat: 'real-gilet-camouflage', sizes: SIZE_GUIDE_GILET.sizes, rows: SIZE_GUIDE_GILET.rows },
+  'gilet-camouflage': { name: 'GILET CAMOUFLAGE', flat: 'real-gilet-camouflage', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+    { k: 'A', label: 'Largeur poitrine', values: ['51 cm','53 cm','55 cm','57 cm','59 cm','61 cm','63 cm','65 cm','67 cm'] },
+    { k: 'B', label: 'Longueur du corps', values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','77 cm','79 cm'] },
+    { k: 'C', label: 'Largeur épaules',  values: ['39,1 cm','40,3 cm','41,5 cm','42,7 cm','43,9 cm','45,1 cm','46,3 cm','47,5 cm','48,7 cm'] } ],
+    tol: '<p class="size-tol">Tolérance : 1 à 3 cm. Vous mesurez plus de 175 cm ? Prenez la taille au-dessus.</p>',
+    fit: [['S','160 – 170 cm','jusqu’à 55 kg'],['M','166 – 175 cm','55 – 60 kg'],['L','166 – 175 cm','60 – 70 kg'],['XL','166 – 175 cm','70 – 75,5 kg'],['2XL','166 – 175 cm','75,5 – 87,5 kg'],['3XL','166 – 175 cm','87,5 – 95 kg'],['4XL','166 – 175 cm','95 – 102,5 kg'],['5XL','166 – 175 cm','102,5 – 110 kg'],['6XL','166 – 200 cm','110 – 117,5 kg']] },
   'gilet-bicolore': { name: 'GILET BICOLORE', flat: 'real-gilet-bicolore', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['55,5 cm','57,5 cm','59,5 cm','61,5 cm','63,5 cm','65,5 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['66 cm','68 cm','70 cm','72 cm','74 cm','76 cm'] },
