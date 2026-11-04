@@ -732,10 +732,18 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){.tr-help{background:#E6E8EA !important}.site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill:#E6E8EA !important;fill-opacity:1 !important}}
 /* Comment ça marche : numéros dans le style orange des options sélectionnées */
 .pd-how .pd-num{background:#14212B !important;color:#FFFFFF !important;box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #F5A623,0 8px 20px -8px rgba(20,33,43,.5) !important}
+/* Suivre ma commande : un seul fond pour toute la page (celui de « Besoin d’aide ? ») */
+html body{background:linear-gradient(rgba(248,246,241,.86),rgba(248,246,241,.86)),url(assets/footer-mont.webp) center top / cover no-repeat fixed,#0b1a33 !important}
+.tr-help{background:none !important}
+.tr-help::before{display:none !important}
+.page-after-hero{background:transparent !important}
+.site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill-opacity:0 !important}
+.site-footer{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,-30 L0,-30 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,-30 L0,-30 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 15.2778vw no-repeat,linear-gradient(#000,#000) 0 calc(15.2778vw - 2px) / 100% calc(100% - 15.2778vw + 2px) no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,-30 L0,-30 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,-30 L0,-30 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 15.2778vw no-repeat,linear-gradient(#000,#000) 0 calc(15.2778vw - 2px) / 100% calc(100% - 15.2778vw + 2px) no-repeat}
+@media (max-width:640px){html body{background:#E6E8EA !important}}
 </style>
 </head>
 <body>
-<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: #F8F6F1; font-size: 17px; line-height: 1.6">
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: transparent; font-size: 17px; line-height: 1.6">
 <div id="bandeau" style="position: absolute; top: 0; left: 0; right: 0; z-index: 21; background: rgba(0,0,0,0.5); color: #FFFFFF; font-size: 14px; text-align: center; padding: 14px 24px">
 <div class="bandeau-track" aria-live="polite">
 <!-- Messages du bandeau : ajoute ou retire une ligne <span class="bandeau-msg">…</span> -->

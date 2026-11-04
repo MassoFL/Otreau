@@ -685,10 +685,26 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){.site-footer .f-mont{clip-path:inset(3px -10px -300px -10px)}}
 /* Comment ça marche : numéros dans le style orange des options sélectionnées */
 .pd-how .pd-num{background:#14212B !important;color:#FFFFFF !important;box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #F5A623,0 8px 20px -8px rgba(20,33,43,.5) !important}
+/* Politique de retour : un seul fond pour toute la page (celui de « Besoin d’aide ? ») */
+html body{background:linear-gradient(rgba(248,246,241,.86),rgba(248,246,241,.86)),url(assets/footer-mont.webp) center top / cover no-repeat fixed,#0b1a33 !important}
+.page-after-hero{background:transparent !important}
+.site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill-opacity:0 !important}
+.site-footer{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,-30 L0,-30 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,-30 L0,-30 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 15.2778vw no-repeat,linear-gradient(#000,#000) 0 calc(15.2778vw - 2px) / 100% calc(100% - 15.2778vw + 2px) no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,-30 L0,-30 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,-30 L0,-30 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 15.2778vw no-repeat,linear-gradient(#000,#000) 0 calc(15.2778vw - 2px) / 100% calc(100% - 15.2778vw + 2px) no-repeat}
+@media (max-width:640px){html body{background:#E6E8EA !important}}
+.lg-toc,.lg-doc{background:rgba(255,255,255,.88) !important;border:1px solid #E4DFD5 !important;border-radius:20px;box-shadow:0 20px 50px -30px rgba(20,33,43,.35) !important}
+.lg-doc{padding:30px clamp(20px,4vw,40px)}
+.lg-doc .lg-table th{background:#14212B !important;color:#FFFFFF !important;box-shadow:inset 0 -3px 0 #F5A623}
+.lg-dl{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 10px}
+main.lg a.lg-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;font-family:Manrope,sans-serif;font-weight:700;font-size:15px;text-decoration:none;border:1.5px solid #14212B;transition:background .2s ease,color .2s ease}
+main.lg a.lg-btn:not(.line){background:#14212B;color:#FFFFFF !important;box-shadow:inset 0 -3px 0 #F5A623}
+main.lg a.lg-btn.line{background:transparent;color:#14212B !important}
+main.lg a.lg-btn.line:hover{background:#14212B;color:#FFFFFF !important}
+main.lg a.lg-btn:not(.line):hover{color:#F5A623 !important}
+@media (max-width:640px){.lg-dl a.lg-btn{flex:1 1 100%}}
 </style>
 </head>
 <body>
-<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: #F8F6F1; font-size: 17px; line-height: 1.6">
+<div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: transparent; font-size: 17px; line-height: 1.6">
 <div id="bandeau" style="position: absolute; top: 0; left: 0; right: 0; z-index: 21; background: rgba(0,0,0,0.5); color: #FFFFFF; font-size: 14px; text-align: center; padding: 14px 24px">
 <div class="bandeau-track" aria-live="polite">
 <!-- Messages du bandeau : ajoute ou retire une ligne <span class="bandeau-msg">…</span> -->
@@ -744,55 +760,44 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <main class="lg">
 <nav class="pd-crumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">›</span><span aria-current="page">Politique de retour</span></nav>
 <header class="lg-head"><h1>Politique de retour</h1></header>
-<nav class="lg-toc" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#conditions-generales-de-retour">Conditions générales de retour</a></li><li><a href="#frais-de-traitement-des-retours">Frais de traitement des retours</a></li><li><a href="#comment-retourner-un-article">Comment retourner un article ?</a></li><li><a href="#frais-et-responsabilite-de-lexpedition-retour">Frais et responsabilité de l’expédition retour</a></li><li><a href="#articles-non-eligibles-au-retour">Articles non éligibles au retour</a></li><li><a href="#remboursements-et-echanges">Remboursements et échanges</a></li><li><a href="#remboursements-en-retard-ou-non-recus">Remboursements en retard ou non reçus</a></li><li><a href="#echanges">Échanges</a></li><li><a href="#formulaire-de-retractation">Formulaire de rétractation</a></li></ol></nav>
+<nav class="lg-toc" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#conditions-generales-de-retour">Conditions générales de retour</a></li><li><a href="#frais-de-traitement-des-retours">Frais de traitement des retours</a></li><li><a href="#comment-retourner-un-article">Comment retourner un article ?</a></li><li><a href="#frais-et-responsabilite-de-lexpedition-retour">Frais et responsabilité de l’expédition retour</a></li><li><a href="#articles-non-eligibles-au-retour">Articles non éligibles au retour</a></li><li><a href="#remboursements-et-echanges">Remboursements et échanges</a></li><li><a href="#remboursements-en-retard-ou-non-recus">Remboursements en retard ou non reçus</a></li><li><a href="#echanges">Article défectueux ou non conforme</a></li><li><a href="#retractation">Formulaire de rétractation</a></li></ol></nav>
 <div class="lg-doc">
 <h2 id="conditions-generales-de-retour">Conditions générales de retour</h2>
-<p>Nous offrons la possibilité de retourner les articles sous <strong>30 jours</strong> suivant leur réception. Passé ce délai, aucun remboursement ou échange ne pourra être effectué.</p>
-<p>Nous acceptons les retours d’articles neufs et usés dans ce délai de 30 jours.</p>
-<p>Nous acceptons les échanges d’articles neufs et usés dans ce délai de 30 jours.</p>
+<p>Vous disposez de <strong>30 jours</strong> à compter de la réception de votre commande pour nous informer de votre souhait de retourner ou d’échanger un article, sans avoir à justifier de motif. Vous avez ensuite <strong>14 jours</strong> pour nous renvoyer l’article.</p>
+<p>Nous acceptons les retours et les échanges d’articles <strong>neufs ou simplement essayés</strong>. Vous pouvez manipuler l’article comme vous le feriez en magasin ; en cas d’usure ou de dégradation allant au-delà, une somme correspondant à la perte de valeur pourra être déduite du remboursement.</p>
 <h2 id="frais-de-traitement-des-retours">Frais de traitement des retours</h2>
-<p>Il n'y a aucun frais de remise en stock.</p>
+<p>Il n’y a aucun frais de remise en stock.</p>
 <h2 id="comment-retourner-un-article">Comment retourner un article ?</h2>
-<p>1️⃣ Contactez notre service client à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a> ou au +33 7 53 86 26 68</strong> pour initier votre demande de retour.<br />
-2️⃣ Vous pouvez utiliser le formulaire de rétractation mis à disposition sur notre site.<br />
-3️⃣ Après validation, renvoyez l’article à l’adresse suivante :</p>
-<p>📍 <strong>Adresse de retour</strong> : <strong>[à compléter] (communiquée par e-mail après validation de votre demande)</strong></p>
+<ol>
+<li>Contactez notre service client à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong> ou au <strong>+33 7 53 86 26 68</strong> en indiquant votre numéro de commande. Vous pouvez aussi utiliser le <a href="#retractation">formulaire de rétractation</a> ci-dessous.</li>
+<li>Après validation, nous vous communiquons par e-mail l’adresse de retour. <strong>Ne renvoyez aucun article sans nous avoir demandé cette adresse au préalable</strong> : un colis envoyé à une autre adresse ne pourra pas être traité.</li>
+<li>Renvoyez l’article, de préférence dans son emballage d’origine ou dans un emballage qui le protège, en indiquant votre <strong>numéro de commande</strong> dans le colis.</li>
+</ol>
 <h2 id="frais-et-responsabilite-de-lexpedition-retour">Frais et responsabilité de l’expédition retour</h2>
 <ul>
-<li>Les frais d’expédition liés au retour sont à la charge du client.</li>
+<li>Les frais d’expédition liés au retour sont à la charge du client, sauf si l’article est défectueux ou non conforme (voir <a href="#echanges">Article défectueux</a>).</li>
 <li>L’expédition du colis retour est sous votre responsabilité, nous ne pouvons garantir sa réception par nos équipes.</li>
-<li>Si la valeur du produit retourné dépasse <strong>[à compléter] €</strong>, nous recommandons un envoi avec numéro de suivi et/ou une assurance colis.</li>
+<li>Nous vous recommandons un envoi avec numéro de suivi.</li>
 </ul>
 <h2 id="articles-non-eligibles-au-retour">Articles non éligibles au retour</h2>
-<p>Les articles suivants ne peuvent pas être retournés :</p>
-<ul>
-<li><strong>[à compléter]</strong></li>
-<li><strong>Cartes cadeaux</strong></li>
-<li><strong>Produits ayant été visiblement endommagés ou trop utilisés</strong></li>
-</ul>
+<p>Tous nos articles, chaussettes comprises, peuvent être retournés dans les conditions ci-dessus. Seuls les produits ayant été <strong>visiblement endommagés ou trop utilisés</strong> par le client peuvent faire l’objet d’une déduction pour perte de valeur, voire d’un refus d’échange.</p>
 <h2 id="remboursements-et-echanges">Remboursements et échanges</h2>
-<h3>Conditions d’acceptation d’un remboursement ou échange</h3>
-<ul>
-<li>Toute demande de retour effectuée après <strong>30 jours</strong> suivant la réception de la commande ne sera pas acceptée.</li>
-<li>Si des défauts ou dommages sont constatés sur l’article retourné sans preuve fournie à l’avance (photos ou vidéos), la demande de remboursement ou d’échange sera automatiquement annulée.</li>
-<li>L’article doit être retourné <strong>dans son emballage d’origine</strong>. Tout retour contenant des articles tachés ou marqués ne sera ni échangé ni remboursé.</li>
-<li><strong>Le mail de confirmation de commande imprimé doit être joint dans le colis</strong>. Sans ce document, le retour ne pourra pas être traité et sera considéré comme perdu.</li>
-</ul>
 <h3>Traitement du remboursement</h3>
-<p>Une fois l’article retourné reçu et inspecté, nous enverrons un e-mail pour confirmer sa réception et valider ou refuser le remboursement.</p>
-<p>Si le remboursement est approuvé, celui-ci sera effectué via le moyen de paiement initial sous un délai de <strong>[à compléter] jours</strong> (variable selon les banques).</p>
+<p>Une fois l’article retourné reçu et inspecté, nous vous envoyons un e-mail pour confirmer sa réception.</p>
+<p>Le remboursement comprend le prix de l’article et les <strong>frais de livraison standard</strong> de la commande initiale. Il est effectué via le moyen de paiement initial, au plus tard <strong>14 jours</strong> après que vous nous avez informés de votre rétractation. Nous pouvons attendre la réception de l’article, ou la preuve de son expédition, avant de procéder au remboursement. Le délai d’apparition sur votre compte peut varier selon les banques.</p>
+<h3>Échange de taille ou de modèle</h3>
+<p>L’échange est direct : contactez-nous à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong> en précisant l’article souhaité. Dès réception de l’article retourné, nous vous expédions le nouvel article, sous réserve de disponibilité.</p>
 <h2 id="remboursements-en-retard-ou-non-recus">Remboursements en retard ou non reçus</h2>
 <p>Si vous ne recevez pas votre remboursement dans les délais indiqués :</p>
-<p>1️⃣ Vérifiez votre relevé bancaire.<br />
-2️⃣ Contactez l’émetteur de votre carte.<br />
-3️⃣ Contactez votre banque.<br />
-4️⃣ Si le problème persiste, contactez notre service client à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong>.</p>
-<h2 id="echanges">Échanges</h2>
-<p>Les articles <strong>défectueux ou endommagés</strong> lors de la livraison peuvent être remplacés.</p>
-<p>Pour prouver que le dommage n’a pas été causé après réception, nous demandons une <strong>photo du produit dans son emballage d’origine au moment du déballage</strong>, avec l’étiquette et les informations de livraison visibles.</p>
-<p>Si un échange est nécessaire, veuillez nous contacter à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong>.</p>
-<p>📅 <strong>Dernière mise à jour de cette page</strong> : <strong>16 octobre 2026</strong></p>
-
+<ol>
+<li>Vérifiez votre relevé bancaire.</li>
+<li>Contactez votre banque ou l’émetteur de votre carte : le délai d’apparition d’un remboursement peut varier.</li>
+<li>Si le problème persiste, contactez notre service client à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong>.</li>
+</ol>
+<h2 id="echanges">Article défectueux ou non conforme</h2>
+<p>Tous nos articles bénéficient de la <strong>garantie légale de conformité</strong> pendant <strong>2 ans</strong> à compter de la livraison (articles L217-3 et suivants du Code de la consommation). En cas de défaut, vous pouvez choisir entre la réparation et le remplacement de l’article, <strong>sans frais</strong> pour vous, frais de port compris. Si ni l’un ni l’autre n’est possible, vous pouvez obtenir le remboursement ou une réduction du prix.</p>
+<p>Pour accélérer le traitement, nous vous invitons à nous envoyer à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong> une <strong>photo ou une vidéo</strong> du défaut, ainsi que votre numéro de commande.</p>
+<p><strong>Dernière mise à jour de cette page</strong> : <strong>4 novembre 2026</strong></p>
 <h2 id="retractation">Formulaire de rétractation</h2>
 <p>Vous pouvez, si vous le souhaitez, utiliser le modèle de formulaire ci-dessous, à compléter et à nous renvoyer par e-mail ou par courrier :</p>
 <div class="lg-form">
@@ -802,7 +807,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <ul class="lg-fields">
 <li>Référence/Nom du Produit :</li>
 <li>N° de la commande :</li>
-<li>Commandé le : &amp; Délivrée le :</li>
+<li>Commandé le : / Reçu le :</li>
 <li>Moyen de paiement utilisé :</li>
 <li>Nom du client et le cas échéant du bénéficiaire de la commande :</li>
 <li>Adresse du Client :</li>

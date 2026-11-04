@@ -706,6 +706,22 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){.site-footer .f-mont{clip-path:inset(3px -10px -300px -10px)}}
 /* Comment ça marche : numéros dans le style orange des options sélectionnées */
 .pd-how .pd-num{background:#14212B !important;color:#FFFFFF !important;box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #F5A623,0 8px 20px -8px rgba(20,33,43,.5) !important}
+/* Livraison : un seul fond pour toute la page (celui de « Besoin d’aide ? ») */
+html body{background:linear-gradient(rgba(248,246,241,.86),rgba(248,246,241,.86)),url(assets/footer-mont.webp) center top / cover no-repeat fixed,#0b1a33 !important}
+.page-after-hero{background:transparent !important}
+.site-footer .f-wave path[fill^="url(#wvf-fill)"]{fill-opacity:0 !important}
+.site-footer{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,-30 L0,-30 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,-30 L0,-30 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 15.2778vw no-repeat,linear-gradient(#000,#000) 0 calc(15.2778vw - 2px) / 100% calc(100% - 15.2778vw + 2px) no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 220' preserveAspectRatio='none'%3E%3Cg transform='matrix(1 0 0 -1 0 220)'%3E%3Cpath fill='%23fff' d='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'%3E%3Canimate attributeName='d' dur='14s' repeatCount='indefinite' keyTimes='0;.33;.66;1' calcMode='spline' keySplines='.45 0 .55 1;.45 0 .55 1;.45 0 .55 1' values='M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z;M0,84 C262,60 500,80 742,146 C942,196 1162,160 1440,58 L1440,-30 L0,-30 Z;M0,68 C238,40 458,104 700,162 C900,210 1138,142 1440,72 L1440,-30 L0,-30 Z;M0,74 C250,46 470,92 720,156 C920,206 1150,150 1440,66 L1440,-30 L0,-30 Z'/%3E%3C/path%3E%3C/g%3E%3C/svg%3E") 0 0 / 100% 15.2778vw no-repeat,linear-gradient(#000,#000) 0 calc(15.2778vw - 2px) / 100% calc(100% - 15.2778vw + 2px) no-repeat}
+@media (max-width:640px){html body{background:#E6E8EA !important}}
+/* Livraison : version claire des textes sur le fond FAQ */
+main.lg,main.lg *{color:#3D4A54 !important}
+main.lg h1,main.lg h2,main.lg h3,main.lg strong,main.lg a,main.lg th,.lg-toc p{color:#14212B !important}
+main.lg a{text-decoration-color:rgba(20,33,43,.45)}
+.lg-toc,.lg-doc{background:rgba(255,255,255,.88) !important;-webkit-backdrop-filter:none;backdrop-filter:none;border:1px solid #E4DFD5 !important;box-shadow:0 20px 50px -30px rgba(20,33,43,.35) !important}
+.lg-doc section{border-top-color:#E4DFD5 !important}
+.lg-doc .lg-table{background:#FFFFFF !important;border-color:#E4DFD5 !important}
+.lg-doc .lg-table th{background:#14212B !important;color:#FFFFFF !important;box-shadow:inset 0 -3px 0 #F5A623}
+.lg-doc .lg-table td{border-bottom-color:#EFEAE0 !important}
+main.lg li::marker,main.lg ol li::marker{color:#14212B !important}
 </style>
 </head>
 <body>
@@ -762,42 +778,43 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div class="mg-promo"><a href="a-propos.html" class="mg-promo-a" aria-label="À propos d’Otreau"></a><span class="mg-pl">Otreau<sup>™</sup></span><span class="mg-ps">Notre histoire</span></div>
 </nav>
 </div>
-<div class="pg-bg" aria-hidden="true"><video src="assets/livraison-bg.mp4" poster="assets/livraison-bg-poster.jpg" autoplay muted loop playsinline preload="auto"></video></div>
+
 <main class="lg">
 <nav class="pd-crumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span aria-hidden="true">›</span><span aria-current="page">Livraison</span></nav>
 <header class="lg-head"><h1>Livraison</h1></header>
-<nav class="lg-toc" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#delais-de-traitement-et-livraison">Délais de traitement et livraison</a></li><li><a href="#frais-d-expedition">Frais d'expédition</a></li><li><a href="#changement-d-adresse-de-livraison">Changement d'adresse de livraison</a></li><li><a href="#politique-d-annulation-et-erreurs-d-adresse">Politique d'annulation et erreurs d'adresse</a></li><li><a href="#colis-endommages-en-transit">Colis endommagés en transit</a></li><li><a href="#contact">Contact</a></li></ol></nav>
+<nav class="lg-toc" aria-label="Sommaire"><p>Sommaire</p><ol><li><a href="#delais-de-traitement-et-livraison">Délais de traitement et livraison</a></li><li><a href="#frais-d-expedition">Frais d'expédition</a></li><li><a href="#changement-d-adresse-de-livraison">Changement d'adresse de livraison</a></li><li><a href="#politique-d-annulation-et-erreurs-d-adresse">Politique d'annulation et erreurs d'adresse</a></li><li><a href="#colis-endommages-en-transit">Colis endommagé, perdu ou en retard</a></li><li><a href="#contact">Contact</a></li></ol></nav>
 <div class="lg-doc">
 <h2 id="delais-de-traitement-et-livraison">Délais de traitement et livraison :</h2>
 <ul>
-<li><strong>Temps de traitement</strong>: <strong>1 à 2 jours</strong> du Lundi au Vendredi.</li>
-<li><strong>Délai d'acheminement (France)</strong>: <strong>6 à 8 jours</strong> du Lundi au Vendredi</li>
+<li><strong>Temps de traitement</strong> : <strong>1 à 2 jours</strong> du Lundi au Vendredi.</li>
+<li><strong>Délai d'acheminement (France)</strong> : <strong>6 à 8 jours</strong> du Lundi au Vendredi</li>
 </ul>
-<p><strong>Délai de livraison total (France): 7 à 10 jours ouvrés</strong> (du Lundi au Vendredi)</p>
-<p>Si vous souhaitez vérifier la disponibilité de la livraison dans votre région, vous pouvez nous contacter à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong>.</p>
-<p>Les commandes passées du Lundi au Vendredi avant 17h (GMT+1) sont traitées le jour même.</p>
-<p>Les commandes passées après Vendredi 17h (GMT+1) seront traitées dés le Lundi suivant.</p>
+<p><strong>Délai de livraison total (France) : 7 à 10 jours ouvrés</strong> (du Lundi au Vendredi)</p>
+<p>Nous livrons uniquement en <strong>France métropolitaine</strong>.</p>
+<p>Les commandes passées le week-end ou un jour férié sont traitées à partir du jour ouvré suivant.</p>
 <p>Dès l’expédition de votre commande, vous recevrez un e-mail de confirmation avec les informations de suivi. Il est également possible de suivre votre commande via <strong>notre page <a href="suivi-commande.html">Suivre ma commande</a></strong>.</p>
 <h2 id="frais-d-expedition">Frais d'expédition :</h2>
-<table class="lg-table"><thead><tr><th>Pays</th><th>Prix Livraison Standard</th><th>Transporteur</th></tr></thead><tbody>
-<tr><td><strong>France métropolitaine</strong></td><td><strong>3,20 € TTC</strong></td><td><strong>[à compléter]</strong></td></tr>
+<table class="lg-table"><thead><tr><th>Pays</th><th>Prix Livraison Standard</th></tr></thead><tbody>
+<tr><td><strong>France métropolitaine</strong></td><td><strong>3,20 € TTC</strong></td></tr>
 </tbody></table>
+<p>Aucun frais de douane ne vous sera demandé à la livraison.</p>
 <h2 id="changement-d-adresse-de-livraison">Changement d'adresse de livraison :</h2>
 <p>Une fois qu'une commande est en transit, nous ne sommes plus en mesure de modifier l’adresse de destination. Si un changement d’adresse est nécessaire, veuillez nous contacter dans les <strong>24 heures suivant votre commande</strong> à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong>.</p>
 <h2 id="politique-d-annulation-et-erreurs-d-adresse">Politique d'annulation et erreurs d'adresse :</h2>
-<p>Les annulations sont possibles tant que la commande n’a pas encore été préparée pour l’expédition. Nous recommandons de faire votre demande <strong>dans les 24 heures</strong> après l’achat. Une fois l’article expédié, veuillez consulter notre <strong>politique de retour</strong> pour toute demande de remboursement.</p>
+<p>Les annulations sont possibles tant que la commande n’a pas encore été préparée pour l’expédition. Nous recommandons de faire votre demande <strong>dans les 24 heures</strong> après l’achat. Une fois l’article expédié, veuillez consulter notre <strong><a href="politique-de-retour.html">politique de retour</a></strong> pour toute demande de remboursement.</p>
 <p>Nous vous encourageons à vérifier soigneusement votre adresse avant de finaliser votre commande. Toute correction d’adresse ne sera envisageable que si la commande est encore en cours de traitement.</p>
 <p><strong>Otreau</strong> ne pourra être tenu responsable des commandes retournées en raison d’informations erronées fournies par le client.</p>
-<h2 id="colis-endommages-en-transit">Colis endommagés en transit :</h2>
-<p>Si votre colis arrive visiblement détérioré, nous vous conseillons de refuser la livraison et d’informer immédiatement notre service client.</p>
+<h2 id="colis-endommages-en-transit">Colis endommagé, perdu ou en retard :</h2>
+<p>Si votre colis arrive visiblement détérioré, nous vous conseillons de refuser la livraison ou d’émettre des réserves auprès du livreur, puis d’informer immédiatement notre service client.</p>
 <p>Dans le cas où le colis aurait été livré en votre absence, merci de nous contacter à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong> en joignant des photos du produit et de son emballage.</p>
+<p>Si votre colis n’est pas arrivé dans le délai annoncé, contactez-nous à <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a></strong> avec votre numéro de commande : nous ouvrons une réclamation auprès du transporteur et revenons vers vous avec une solution.</p>
 <h2 id="contact">Contact :</h2>
 <p><strong>Adresse</strong> : <strong>Massoali OÜ, Ahtri tn 12, 15551 Tallinn, Estonie<br />
 E-mail</strong> : <strong><a href="mailto:contact@otreau.com">contact@otreau.com</a><br />
 Numéro</strong> : <strong>+33 7 53 86 26 68</strong></p>
 <p><strong>Service client :<br />
 </strong>Disponible du <strong>Lundi au Vendredi</strong> de <strong>10h00 à 18h00</strong>.</p>
-<p><strong>Date de dernière modification de la page</strong> : <strong>16 octobre 2026</strong></p>
+<p><strong>Date de dernière modification de la page</strong> : <strong>4 novembre 2026</strong></p>
 
 </div>
 </main>
