@@ -117,7 +117,10 @@
   }
   function isTechPhoto(src, alt) {
     var f = ''; try { f = decodeURIComponent(String(src || '').split('?')[0].split('/').pop()); } catch (e) { f = String(src || ''); }
-    return TECH_RE.test((alt || '') + ' ' + f.replace(/[_-]+/g, ' '));
+    var txt = (alt || '') + ' ' + f.replace(/[_-]+/g, ' ');
+    // une photo du vêtement ouvert reste une photo produit, même si son nom parle des détails intérieurs
+    if (/ouvert/i.test(txt) && !/collage|infograph|sch[eé]ma|captur/i.test(txt)) return false;
+    return TECH_RE.test(txt);
   }
   // Photo du produit seul : fond transparent sur les bords, et pas de peau dans le haut (pas de mannequin).
   var cutCache = {};
