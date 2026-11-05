@@ -1263,9 +1263,9 @@ a.hero-cta:hover::after{transform:scaleX(1.06)}
 #tailles .size-tol{color:rgba(255,255,255,.8) !important;text-shadow:0 1px 3px rgba(0,0,0,.4)}
 #tailles #size-fit{margin-top:22px}
 /* Tailles : ligne de titres des colonnes en noir + trait orange (comme les options des pages produit) */
-#tailles #size-table thead th,#tailles .table-scroll #size-table thead th{background:#14212B !important;color:#FFFFFF !important;border-bottom:0 !important;box-shadow:inset 0 -3px 0 #F5A623}
+#tailles #size-table thead th,#tailles .table-scroll #size-table thead th{background:#000000 !important;color:#FFFFFF !important;border-bottom:0 !important;box-shadow:inset 0 -3px 0 #F5A623}
 #tailles #size-table thead .col-label{color:#FFFFFF !important}
-#tailles #size-fit .size-fit thead th{background:#14212B !important;color:#FFFFFF !important;box-shadow:inset 0 -3px 0 #F5A623}
+#tailles #size-fit .size-fit thead th{background:#000000 !important;color:#FFFFFF !important;box-shadow:inset 0 -3px 0 #F5A623}
 /* Tailles : colonne TAILLE centrée */
 #tailles #size-table thead th:first-child,#tailles #size-table tbody th,#tailles #size-fit .size-fit thead th:first-child,#tailles #size-fit .size-fit tbody th{text-align:center !important;padding-left:10px !important}
 #tailles #size-table tbody tr:hover th{box-shadow:none}
@@ -1303,6 +1303,42 @@ a.hero-cta .hero-cta-glow{display:block;position:absolute;left:0;right:0;bottom:
 @keyframes hdLine{0%{background-position:-44px 0}60%,100%{background-position:calc(100% + 44px) 0}}
 }
 @media (prefers-reduced-motion:reduce){a.hero-cta .hero-cta-glow{animation:none}}
+/* « Pensée pour vos journées dehors » : titres sur deux lignes, texte réduit à une première partie, la suite au clic */
+.bt-crit li .bt-name{font:inherit;color:inherit;display:flex;align-items:center;justify-content:center;min-height:calc(2 * 1.35em);text-wrap:balance}
+.bt-crit li small{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.bt-crit li.is-open small{-webkit-line-clamp:unset;display:block}
+.bt-more-btn{margin-top:2px;padding:4px 2px;border:0;background:none;cursor:pointer;font:700 10.5px/1 Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#B3BAC0;display:inline-flex;align-items:center;gap:5px}
+.bt-more-btn::after{content:"";width:5px;height:5px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .25s}
+.bt-crit li.is-open .bt-more-btn::after{transform:translateY(1px) rotate(-135deg)}
+.bt-more-btn:hover,.bt-more-btn:focus-visible{color:#FFFFFF}
+@media (max-width:640px){.bt-crit li{padding:4px 10px !important;font-size:14px !important}.bt-crit li small{font-size:13px}}
+/* Batterie : volets (Description, Composition & entretien, Entrées & sorties) plus compacts */
+#batterie .bt-more > .bv-more.bt-acc{margin-top:14px !important;margin-bottom:-8px !important}
+.bt-acc .spec-acc > summary{padding:12px 10px !important;font-size:14px !important}
+#batterie .bt-more > .bv-more.bt-acc .spec-acc summary h3{font:500 15px/1.2 Manrope,sans-serif !important;letter-spacing:.1em !important}
+.bt-acc .spec-acc > summary svg{width:20px !important;height:17px !important}
+#batterie .bt-more > .bv-more.bt-acc .spec-row{padding:9px 0 !important;font-size:13px !important;gap:14px}
+#batterie .bt-more > .bv-more.bt-acc .spec-row span{font-size:11.5px !important;letter-spacing:.06em}
+#batterie .bt-more > .bv-more.bt-acc .spec-row strong{font-size:13px !important;font-weight:600 !important;text-transform:none !important;letter-spacing:0 !important;line-height:1.45}
+#batterie .bt-more > .bv-more.bt-acc .spec-text{font-size:14px !important;line-height:1.6 !important}
+@media (max-width:640px){#batterie .bt-more > .bv-more.bt-acc .spec-acc summary h3{font-size:13.5px !important}#batterie .bt-more > .bv-more.bt-acc .spec-text{font-size:13.5px !important}}
+/* Tailles & mesures : même orange que la section Batterie (#F5A623) */
+#tailles .size-tip{background:rgba(0,0,0,.85) !important;border-color:rgba(245,166,35,.55) !important;color:#E6E8EA !important}
+#tailles .size-tip,#tailles .size-tip *{color:#E6E8EA}
+#tailles .size-tip b{color:#F5A623 !important}
+#tailles .size-tip-ico{stroke:#F5A623 !important}
+#tailles .wheel-box:focus-within .wheel-band{border-color:#F5A623 !important}
+#tailles .patron-pin{background:#F5A623 !important}
+#tailles .size-table tbody tr.is-active .key,#tailles .size-table th.is-active .key{background:#F5A623 !important}
+/* Tailles & mesures : fonds bleu nuit remplacés par du noir */
+#tailles .size-table thead th{background:#000000 !important}
+#tailles .howto .note-card{background:#000000 !important}
+/* Mobile : « Batterie & autonomie » et « Tailles & mesures » sur une seule ligne */
+@media (max-width:640px){
+#batterie h2.sec-title,#tailles-titre{white-space:nowrap;font-size:min(30px,calc((100vw - 92px) / 12.6)) !important;gap:10px !important}
+#batterie h2.sec-title::before,#batterie h2.sec-title::after,#tailles-titre::before,#tailles-titre::after{flex-basis:18px !important}
+#batterie h2.sec-title.is-fit,#tailles-titre.is-fit{font-size:var(--sec-fs) !important}
+}
 </style>
 </head>
 <body>
@@ -1522,8 +1558,8 @@ a.hero-cta .hero-cta-glow{display:block;position:absolute;left:0;right:0;bottom:
 <div style="display: flex; flex-wrap: wrap; gap: 40px clamp(32px, 5vw, 72px); align-items: center">
 <div class="spec-card batt-v2">
 <div class="bv-stats">
+<div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="0" data-to="22.5" data-dec="1">22,5</span><small>W</small></span><span class="bv-lab">Charge</span></div>
 <div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="0" data-to="20000" data-dec="0">20 000</span><small>mAh</small></span><span class="bv-lab">Capacité</span></div>
-<div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="0" data-to="22.5" data-dec="1">22,5</span><small>W</small></span><span class="bv-lab">Charge rapide PD</span></div>
 <div class="bv-stat"><span class="bv-num"><span class="bv-count" data-from="500" data-to="190" data-dec="0">190</span><small>g</small></span><span class="bv-lab">Poids</span></div>
 </div>
 </div>
@@ -1553,7 +1589,7 @@ a.hero-cta .hero-cta-glow{display:block;position:absolute;left:0;right:0;bottom:
 <details class="spec-acc"><summary><svg aria-hidden="true" width="26" height="22" viewBox="0 0 40 34" fill="none" stroke="#F5A623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h20l-6-6M36 22H16l6 6"></path></svg><h3>Entrées &amp; sorties</h3><span class="faq-icon" aria-hidden="true"></span></summary><div class="spec-body">
 <div class="spec-row"><span>Entrées</span><strong>USB-C 18 W · Micro-USB 18 W</strong></div>
 <div class="spec-row"><span>Sorties</span><strong>USB-C 20 W · USB-A 22,5 W · Câble USB-C 22,5 W · Câble Lightning 12 W</strong></div>
-<div class="spec-row"><span>Dimensions</span><strong>149,5 × 67 × 29,1 mm · 74 Wh</strong></div>
+<div class="spec-row"><span>Dimensions</span><strong>149,5 × 67 × 29,1 mm · 74&nbsp;Wh</strong></div>
 <p class="spec-text acc-ports-note">Quand plusieurs appareils chargent en même temps, la charge rapide se désactive automatiquement, par sécurité.</p>
 </div></details>
 </div>
@@ -1605,7 +1641,7 @@ a.hero-cta .hero-cta-glow{display:block;position:absolute;left:0;right:0;bottom:
 <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
 <h2 id="tailles-titre" class="sec-title" style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">Tailles &amp; mesures</h2>
-<p style="margin: 0; font-size: 18px; color: #55616B; max-width: 560px">Un guide qui rend <span style="color: #14212B; text-decoration: underline; text-decoration-color: #D9792B; text-decoration-thickness: 2px; text-underline-offset: 5px">impossible de se tromper de taille.</span></p>
+<p style="margin: 0; font-size: 18px; color: #55616B; max-width: 560px">Un guide qui rend <span style="color: #14212B; text-decoration: underline; text-decoration-color: #F5A623; text-decoration-thickness: 2px; text-underline-offset: 5px">impossible de se tromper de taille.</span></p>
 </div>
 <div class="patron">
 <span class="patron-pin" style="left: 28px" aria-hidden="true"></span>
@@ -2375,6 +2411,20 @@ function vis(e){var r=document.createRange();r.selectNodeContents(e);var q=r.get
 function fit(){pairs.forEach(function(pr){pr.forEach(function(e){e.style.letterSpacing='';e.style.marginRight=''});if(innerWidth>760)return;
 var a=pr[0],b=pr[1],wa=vis(a),wb=vis(b);if(!wa||!wb)return;var s=wa<wb?a:b,big=Math.max(wa,wb),small=Math.min(wa,wb),n=s.textContent.length;if(n<2||big-small<1)return;
 var base=parseFloat(getComputedStyle(s).letterSpacing)||0,ex=(big-small)/(n-1);s.style.letterSpacing=(base+ex)+'px';s.style.marginRight=(-(base+ex))+'px';});}
+fit();addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);addEventListener('load',fit);})();</script>
+<script>/* « Pensée pour vos journées dehors » : la suite du texte s'affiche au clic */
+(function(){[].forEach.call(document.querySelectorAll('.bt-crit li'),function(li){var sm=li.querySelector('small');if(!sm)return;
+var n=[].slice.call(li.childNodes).filter(function(x){return x.nodeType===3&&x.textContent.trim()})[0];if(n){var t=document.createElement('b');t.className='bt-name';t.textContent=n.textContent.trim();li.replaceChild(t,n);}
+var b=document.createElement('button');b.type='button';b.className='bt-more-btn';b.setAttribute('aria-expanded','false');b.textContent='Suite ...';li.appendChild(b);
+function need(){if(li.classList.contains('is-open'))return;b.hidden=sm.scrollHeight<=sm.clientHeight+2;}
+b.addEventListener('click',function(){var o=li.classList.toggle('is-open');b.setAttribute('aria-expanded',o?'true':'false');b.textContent=o?'Réduire':'Suite ...';});
+need();addEventListener('resize',need);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(need);});})();</script>
+<script>/* Mobile : « Batterie & autonomie » et « Tailles & mesures » sur une ligne, à la largeur de l'écran */
+(function(){var ts=[].slice.call(document.querySelectorAll('#batterie h2.sec-title,#tailles-titre'));if(!ts.length)return;
+function fit(){ts.forEach(function(t){t.classList.remove('is-fit');if(innerWidth>640)return;
+var r=document.createRange();r.selectNodeContents(t);var tw=r.getBoundingClientRect().width,fs=parseFloat(getComputedStyle(t).fontSize);
+var cs=getComputedStyle(t,'::before'),side=(parseFloat(cs.flexBasis)||18)+(parseFloat(getComputedStyle(t).columnGap)||10);
+var pe=t.parentElement,pcs=getComputedStyle(pe),pw=pe.clientWidth-parseFloat(pcs.paddingLeft)-parseFloat(pcs.paddingRight);var avail=Math.min(pw,innerWidth-32)-2*side-2;if(!tw||avail<=0)return;t.style.setProperty('--sec-fs',Math.floor(fs*avail/tw*10)/10+'px');t.classList.add('is-fit');});}
 fit();addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);addEventListener('load',fit);})();</script>
 </body>
 </html>
