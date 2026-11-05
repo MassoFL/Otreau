@@ -686,6 +686,13 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 @media (max-width:640px){.site-footer .f-mont{clip-path:inset(3px -10px -300px -10px)}}
 /* Comment ça marche : numéros dans le style orange des options sélectionnées */
 .pd-how .pd-num{background:#14212B !important;color:#FFFFFF !important;box-shadow:0 0 0 3px #FFFFFF,0 0 0 5px #F5A623,0 8px 20px -8px rgba(20,33,43,.5) !important}
+/* Footer : horaires et moyens de paiement */
+.site-footer .f-hours{color:#D5DADD}
+.site-footer .f-bottom{display:flex !important;justify-content:center;align-items:center}.site-footer .f-paym{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px 16px;margin:0}.site-footer .f-paym-t{margin:0 !important}
+.site-footer .f-paym-t{display:block;margin:0 0 10px;font:700 12px/1 Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#FFFFFF}
+.site-footer .f-paym ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.site-footer .f-paym li{display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);font:700 12.5px/1 Manrope,sans-serif;letter-spacing:.02em;color:#FFFFFF}
+@media (max-width:640px){.site-footer .f-paym{flex-direction:column}.site-footer .f-paym ul{justify-content:center}}
 </style>
 </head>
 <body>
@@ -805,7 +812,7 @@ Toute <strong>utilisation non autorisée</strong> du contenu peut constituer une
 <div class="f-brand">
 <a href="index.html" class="f-logo">Otreau<sup class="tm" aria-hidden="true">™</sup></a>
 <p>Otreau est née d’une conviction : le froid ne devrait jamais décider de la durée de vos journées dehors. Nous concevons des vêtements chauffants pensés d’abord comme de vrais vêtements : sûrs, simples à vivre et à entretenir, avec une chaleur qui vous suit du matin au soir.</p>
-<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li><a href="mailto:contact@otreau.com">contact@otreau.com</a></li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li></ul>
+<ul class="f-contact"><li><a href="tel:+33753862668">+33 7 53 86 26 68</a></li><li><a href="mailto:contact@otreau.com">contact@otreau.com</a></li><li>Massoali OÜ · Ahtri tn 12, 15551 Tallinn, Estonie</li><li class="f-hours">Du lundi au vendredi, de 10h00 à 18h00 (GMT+1)</li></ul>
 <div class="f-social">
 <a href="index.html" aria-label="Instagram"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg></a>
 <a href="index.html" aria-label="Facebook"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6.5v3.5H9V21h3.5v-7.5H15l.5-3.5h-3V7a1 1 0 0 1 1-1H15z"></path></svg></a>
@@ -815,10 +822,10 @@ Toute <strong>utilisation non autorisée</strong> du contenu peut constituer une
 <label class="f-select"><span class="sr-only">Langue</span><select><option>Français</option></select></label>
 </div>
 </div>
-<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul></div><div class="f-col"><h3>Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div><div class="f-col"><h3>Informations légales</h3><ul><li><a href="politique-de-retour.html">Politique de retour</a></li><li><a href="politique-de-confidentialite.html">Politique de confidentialité</a></li><li><a href="conditions-generales.html">Conditions générales</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="mentions-legales.html">Mentions légales</a></li></ul></div></div>
+<div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul></div><div class="f-col"><h3>Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div><div class="f-col"><h3>Informations légales</h3><ul><li><a href="politique-de-retour.html">Politique de retour</a></li><li><a href="politique-de-confidentialite.html">Politique de confidentialité</a></li><li><a href="politique-de-paiement.html">Politique de paiement</a></li><li><a href="politique-de-cookies.html">Politique de cookies</a></li><li><a href="conditions-generales.html">Conditions générales</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="mentions-legales.html">Mentions légales</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
-<div class="f-pay" aria-hidden="true"></div>
+<div class="f-paym" aria-label="Moyens de paiement acceptés"><span class="f-paym-t">Paiement sécurisé</span><ul><li>Visa</li><li>Mastercard</li><li>PayPal</li><li>Apple Pay</li></ul></div>
 </div>
 </div>
 </footer>
