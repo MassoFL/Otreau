@@ -488,6 +488,9 @@
     '.pd-thumb.has-img.is-active{border-color:#14212B}' +
     '.ttc{font-size:.62em;font-weight:600;letter-spacing:.04em;opacity:.7;margin-left:2px}' +
     '.is-out{position:relative;opacity:.45;text-decoration:line-through}' +
+    '.pd-stock{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 0;font:700 14px/1.2 Manrope,sans-serif;color:#1E8E4E}' +
+    '.pd-stock-dot{width:8px;height:8px;border-radius:50%;background:#22A35A;box-shadow:0 0 0 4px rgba(34,163,90,.16)}' +
+    '.pd-stock.is-out{color:#8A949B}.pd-stock.is-out .pd-stock-dot{background:#8A949B;box-shadow:0 0 0 4px rgba(138,148,155,.16)}' +
     'body.oc-lock{overflow:hidden}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
@@ -1053,6 +1056,17 @@
         priceEl.innerHTML = (same ? '' : 'Dès ') + ttc(min.price);
       }
       addBtn.querySelector('span').textContent = v && !v.availableForSale ? 'Épuisé' : 'Ajouter au panier';
+      // mention de stock sous la taille (d'après la disponibilité Shopify de la variante choisie)
+      var sizeG = groups.filter(function (g) { return norm(g.name) === 'taille'; })[0];
+      if (sizeG) {
+        var stk = sizeG.field.querySelector('.pd-stock');
+        if (!stk) { stk = document.createElement('p'); stk.className = 'pd-stock'; stk.setAttribute('aria-live', 'polite'); sizeG.field.appendChild(stk); }
+        var inStock = v ? v.availableForSale : p.variants.nodes.some(function (x) {
+          return x.availableForSale && groups.every(function (g) { return !g.selected || x.selectedOptions.some(function (o) { return norm(o.name) === norm(g.name) && o.value === g.selected; }); });
+        });
+        stk.classList.toggle('is-out', !inStock);
+        stk.innerHTML = '<span class="pd-stock-dot" aria-hidden="true"></span>' + (inStock ? 'En stock' : (v ? 'Cette taille est épuisée' : 'Épuisé'));
+      }
       addBtn.disabled = !!(v && !v.availableForSale);
     }
 

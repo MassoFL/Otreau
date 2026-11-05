@@ -750,11 +750,18 @@ main.lg li::marker,main.lg ol li::marker{color:#14212B !important}
 .cp .oc-empty .oc-btn{padding:0 32px}
 .cp-continue{display:block;text-align:center;font-size:14px;color:#14212B;text-underline-offset:3px;margin-top:2px}
 .cp-continue:hover{color:#C9480F}
-.cp-trust{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.cp-trust li{display:flex;align-items:center;gap:12px;padding:16px 18px;background:rgba(255,255,255,.7);border:1px solid #E4DFD5;border-radius:16px;font-size:14px;color:#3D4A54}
-.cp-trust strong{color:#14212B}
-.cp-trust svg{flex:none;width:24px;height:24px;fill:none;stroke:#E8641F;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-@media (max-width:900px){.cp{grid-template-columns:minmax(0,1fr)}.cp-sum{position:static}.cp-trust{grid-template-columns:minmax(0,1fr)}}
+.cp-trust-wrap{margin-top:28px}
+.cp-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cp-tab{display:flex;align-items:center;gap:12px;padding:16px 18px;background:rgba(255,255,255,.7);border:1px solid #E4DFD5;border-radius:16px;font:inherit;font-size:14px;color:#3D4A54;text-align:left;cursor:pointer;transition:background .2s,box-shadow .2s}
+.cp-tab:hover{background:rgba(255,255,255,.9)}
+.cp-tab[aria-selected="true"]{background:#FFFFFF;box-shadow:inset 0 -3px 0 #F5A623,0 10px 24px -16px rgba(20,33,43,.35)}
+.cp-tab strong{color:#14212B}
+.cp-tab svg{flex:none;width:24px;height:24px;fill:none;stroke:#E8641F;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cp-trust-panel{margin-top:12px;padding:18px 22px;background:rgba(255,255,255,.9);border:1px solid #E4DFD5;border-radius:16px;font-size:14.5px;line-height:1.6;color:#3D4A54;text-align:center;animation:cpIn .25s ease}
+.cp-trust-panel p{margin:0 0 6px}.cp-trust-panel p:last-child{margin:0}
+.cp-trust-panel a{color:#14212B;text-underline-offset:3px}
+@keyframes cpIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+@media (max-width:900px){.cp{grid-template-columns:minmax(0,1fr)}.cp-sum{position:static}.cp-trust{grid-template-columns:minmax(0,1fr);gap:10px}}
 @media (max-width:560px){.cp .oc-line{grid-template-columns:80px 1fr;}.cp .oc-line > div:last-child{grid-column:2;display:flex;justify-content:space-between;align-items:center}.cp .oc-line > div:last-child .oc-rm{margin-top:0}.cp .oc-img{width:80px;height:80px}.cp-title{margin-bottom:22px}}
 </style>
 </head>
@@ -820,11 +827,21 @@ main.lg li::marker,main.lg ol li::marker{color:#14212B !important}
 <section class="cp-lines" aria-label="Articles du panier"><p class="cp-loading">Chargement du panier…</p></section>
 <aside class="cp-sum" aria-label="Récapitulatif" hidden></aside>
 </div>
-<ul class="cp-trust">
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h12v9H3zM15 10h3.5l2.5 3v3h-6"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><span><strong>Livraison suivie</strong> en France métropolitaine</span></li>
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg><span><strong>30 jours</strong> pour changer d’avis</span></li>
-<li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><span><strong>Paiement sécurisé</strong> par Shopify</span></li>
-</ul>
+<div class="cp-trust-wrap">
+<div class="cp-trust" role="tablist" aria-label="Services">
+<button type="button" class="cp-tab" role="tab" aria-selected="true" aria-controls="cp-trust-panel" data-panel="livraison"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h12v9H3zM15 10h3.5l2.5 3v3h-6"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg><span><strong>Livraison suivie</strong> en France métropolitaine</span></button>
+<button type="button" class="cp-tab" role="tab" aria-selected="false" aria-controls="cp-trust-panel" data-panel="retour"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg><span><strong>30 jours</strong> pour changer d’avis</span></button>
+<button type="button" class="cp-tab" role="tab" aria-selected="false" aria-controls="cp-trust-panel" data-panel="paiement"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg><span><strong>Paiement sécurisé</strong> par Shopify</span></button>
+</div>
+<div class="cp-trust-panel" id="cp-trust-panel" role="tabpanel">
+<div data-content="livraison"><p><strong>Livraison en France en 7 à 10 jours ouvrés</strong> (du lundi au vendredi) : 1 à 2 jours de traitement, puis 6 à 8 jours d’acheminement. <strong>Frais de livraison : 3,20 € TTC.</strong></p><p>Vous recevez un e-mail de suivi dès l’expédition et pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. <a href="livraison.html">Voir la politique d’expédition</a></p></div>
+<div data-content="retour" hidden><p><strong>Vous disposez de 30 jours</strong> après réception pour retourner ou échanger votre article.</p><p>Contactez-nous pour lancer votre retour ; les frais d’expédition du retour sont à la charge du client. <a href="politique-de-retour.html">Voir la politique de retour</a></p></div>
+<div data-content="paiement" hidden><p><strong>Paiement 100&nbsp;% sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
+</div>
+</div>
+<script>(function(){var tabs=[].slice.call(document.querySelectorAll('.cp-tab')),panel=document.getElementById('cp-trust-panel');if(!panel)return;
+tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.setAttribute('aria-selected',x===t?'true':'false')});
+panel.querySelectorAll('[data-content]').forEach(function(c){c.hidden=c.dataset.content!==t.dataset.panel});panel.style.animation='none';panel.offsetHeight;panel.style.animation='';});});})();</script>
 </main>
 <footer class="site-footer">
 <div class="wave-sep f-wave" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
