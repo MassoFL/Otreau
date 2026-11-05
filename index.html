@@ -1296,6 +1296,13 @@ a.hero-cta .hero-cta-arr{font-size:16px !important}
 a.hero-cta{margin-top:20px !important;text-align:left;line-height:1.5}
 a.hero-cta .hero-cta-arr{display:none !important}
 }
+/* Hero mobile : une lumière parcourt le trait sous le bouton */
+.hero-cta-glow{display:none}
+@media (max-width:640px){
+a.hero-cta .hero-cta-glow{display:block;position:absolute;left:0;right:0;bottom:-1px;height:4px;pointer-events:none;background:linear-gradient(90deg,rgba(255,217,160,0),#FFF1D6 50%,rgba(255,217,160,0)) no-repeat;background-size:44px 100%;background-position:-44px 0;filter:drop-shadow(0 0 4px rgba(245,166,35,.95)) drop-shadow(0 0 9px rgba(232,100,31,.65));animation:hdLine 4s linear infinite}
+@keyframes hdLine{0%{background-position:-44px 0}60%,100%{background-position:calc(100% + 44px) 0}}
+}
+@media (prefers-reduced-motion:reduce){a.hero-cta .hero-cta-glow{animation:none}}
 </style>
 </head>
 <body>
@@ -1371,7 +1378,7 @@ a.hero-cta .hero-cta-arr{display:none !important}
 <div class="hero-content" style="position: absolute; left: 0; right: 0; top: 60vh; z-index: 2; padding: 0 clamp(16px, 4vw, 64px); color: #FFFFFF; display: flex; flex-direction: column; align-items: flex-start; gap: 28px">
 <h1 class="hero-title" style="margin: 0; max-width: 980px; font-family: Manrope, sans-serif; font-size: clamp(36px, 4.6vw, 68px); line-height: 1.04; letter-spacing: -0.01em; text-transform: uppercase"><span class="hero-l1">Emportez la <span class="heat-text">chaleur</span></span><br><span class="hero-l2">de chez vous, <span class="heat-text heat-text-rev">dehors.</span></span></h1>
 <p class="hero-sub" style="margin: -12px 0 0; max-width: 520px; font-size: clamp(19px, 1.7vw, 23px); line-height: 1.45; font-weight: 500; letter-spacing: 0.01em; color: #FFFFFF"><span class="sub-w1">Vêtements chauffants</span><br class="br-mobile"> <span class="sub-w2">pensés pour durer.</span></p>
-<a href="#collection" class="cta-heat cta-glow hero-cta" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 0; font-family: Manrope, sans-serif; font-size: 18px; text-transform: uppercase; letter-spacing: 0.02em; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span><span class="cta-w1">Découvrir</span><br class="br-mobile"> <span class="cta-w2">la collection</span></span><span class="hero-cta-arr" aria-hidden="true">→</span></a>
+<a href="#collection" class="cta-heat cta-glow hero-cta" style="text-decoration: none; color: #FFFFFF; border: 2px solid #FFFFFF; border-radius: 0; font-family: Manrope, sans-serif; font-size: 18px; text-transform: uppercase; letter-spacing: 0.02em; padding: 0 56px; min-height: 56px; display: inline-flex; align-items: center"><span><span class="cta-w1">Découvrir</span><br class="br-mobile"> <span class="cta-w2">la collection</span></span><span class="hero-cta-arr" aria-hidden="true">→</span><i class="hero-cta-glow" aria-hidden="true"></i></a>
 </div>
 </section>
 
