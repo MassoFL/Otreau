@@ -944,6 +944,160 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 .site-footer .f-paym ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .site-footer .f-paym li{display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);font:700 12.5px/1 Manrope,sans-serif;letter-spacing:.02em;color:#FFFFFF}
 @media (max-width:640px){.site-footer .f-paym{flex-direction:column}.site-footer .f-paym ul{justify-content:center}}
+/* Footer : bloc de présentation de la marque plus à gauche (grand écran) */
+@media (min-width:1101px){.site-footer .f-brand{margin-left:calc(32px - max(clamp(16px,4vw,64px),(100vw - 1320px) / 2)) !important;max-width:440px !important}}
+
+/* Détails du produit : la description devient une introduction, toujours visible */
+.pd-details .pd-intro{max-width:680px;margin:0 auto 44px;text-align:center;font-family:Manrope,sans-serif;font-size:17px;line-height:1.75;color:#3D4A54}
+.pd-details .pd-intro p{margin:0 0 14px}
+.pd-details .pd-intro p:last-child{margin-bottom:0}
+.pd-details .pd-intro strong{color:#14212B}
+@media (max-width:640px){.pd-details .pd-intro{font-size:15.5px;line-height:1.7;margin-bottom:32px}}
+
+/* Détails du produit : description en ouverture façon magazine, sur toute la largeur */
+.pd-details .pd-intro{width:min(1240px,calc(100vw - 64px));max-width:none;margin:0 0 56px calc(50% - min(620px,50vw - 32px));columns:3 280px;column-gap:56px;text-align:left;font-size:16.5px;line-height:1.75}
+.pd-details .pd-intro p{margin:0 0 14px;break-inside:avoid-column}
+.pd-details .pd-intro > p:first-child::first-letter{float:left;font-family:Manrope,sans-serif;font-weight:300;font-size:4.7em;line-height:.82;margin:.08em .12em 0 0;color:#14212B}
+.pd-details .pd-intro:has(> p:only-child){columns:auto;width:min(760px,calc(100vw - 64px));margin-left:calc(50% - min(380px,50vw - 32px))}
+@media (max-width:640px){.pd-details .pd-intro{width:calc(100vw - 40px);margin-left:calc(50% - 50vw + 20px);columns:1;font-size:15.5px;margin-bottom:36px}.pd-details .pd-intro > p:first-child::first-letter{font-size:4.2em}}
+
+/* Détails du produit : niveaux de chaleur dans un carré, au milieu de l'écran */
+.pd-details .pd-heat{width:min(440px,100%);aspect-ratio:1/1;margin:0 auto 56px;padding:40px 36px;box-sizing:border-box;border:1px solid rgba(20,33,43,.22);display:flex;flex-direction:column;justify-content:center;text-align:center}
+.pd-details .pd-heat-t{margin:0 0 6px;font-family:Manrope,sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#14212B}
+.pd-details .pd-heat-n{margin:0 0 26px;font-size:14px;line-height:1.5;color:#55616B}
+.pd-details .pd-heat .lvls{margin:0 !important;padding:0 !important;border:0 !important;gap:18px}
+.pd-details .pd-heat .lvl{grid-template-columns:1fr;gap:8px;justify-items:center}
+.pd-details .pd-heat .lvl-bar{width:100%}
+.pd-details .pd-heat .lvl p{text-align:center !important}
+@media (max-width:640px){.pd-details .pd-heat{width:min(340px,100%);padding:28px 22px;margin-bottom:40px}}
+
+
+/* Détails du produit : description à gauche, rectangle vertical (niveaux de chaleur + caractéristiques) */
+.pd-details .pd-mag{position:relative;width:min(1240px,calc(100vw - 64px));margin:0 0 56px calc(50% - min(620px,50vw - 32px));--sq:440px}
+.pd-details .pd-mag .pd-intro{width:100% !important;margin:0 0 40px !important}
+.pd-details .pd-mag .pd-heat{aspect-ratio:auto;justify-content:flex-start;padding:28px 36px 34px;margin:0 auto}
+.pd-details .pd-heat-sep{width:36px;height:1px;margin:30px auto 26px;background:rgba(245,166,35,.6)}
+.pd-details .pd-heat .pd-heat-t + .pd-props{margin-top:16px}
+.pd-details .pd-props .pd-row{max-width:none;margin:0;display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid rgba(20,33,43,.12);text-align:left;font-size:14px}
+.pd-details .pd-props .pd-row:last-child{border-bottom:0}
+.pd-details .pd-props .pd-row span{color:#55616B}
+.pd-details .pd-props .pd-row strong{color:#14212B;text-align:right}
+@media (min-width:900px){
+.pd-details .pd-mag{display:grid;grid-template-columns:minmax(0,1fr) var(--sq) minmax(0,1fr);column-gap:56px;align-items:start}
+.pd-details .pd-mag .pd-intro{grid-column:1;margin:0 !important;columns:auto !important}
+.pd-details .pd-mag .pd-heat{grid-column:2;width:var(--sq);margin:0}}
+@media (min-width:900px) and (max-width:1179px){.pd-details .pd-mag{--sq:360px;column-gap:36px}.pd-details .pd-mag .pd-heat{padding:24px 24px 28px}}
+@media (max-width:640px){.pd-details .pd-mag{width:calc(100vw - 40px);margin-left:calc(50% - 50vw + 20px);margin-bottom:40px}.pd-details .pd-mag .pd-heat{padding:24px 22px 28px}}
+
+/* Caractéristiques : tuiles carrées, deux par ligne */
+.pd-details .pd-props{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.pd-details .pd-props .pd-row{aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px;border:1px solid rgba(20,33,43,.18) !important;text-align:center}
+.pd-details .pd-props .pd-row:last-child{border-bottom:1px solid rgba(20,33,43,.18) !important}
+.pd-details .pd-props .pd-row:last-child:nth-child(odd){grid-column:1 / -1;justify-self:center;width:calc(50% - 6px)}
+.pd-details .pd-props .pd-row span{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+.pd-details .pd-props .pd-row strong{text-align:center;font-size:14px;line-height:1.35}
+@media (max-width:640px){.pd-details .pd-props{gap:10px}.pd-details .pd-props .pd-row{padding:10px}.pd-details .pd-props .pd-row strong{font-size:13px}}
+
+/* Caractéristiques : tuiles plus petites, 3 par ligne, lignes incomplètes centrées */
+.pd-details .pd-props{display:flex !important;flex-wrap:wrap;justify-content:center;gap:10px}
+.pd-details .pd-props .pd-row{flex:0 0 calc((100% - 20px) / 3);width:auto !important;padding:8px !important;gap:6px !important}
+.pd-details .pd-props .pd-row:last-child:nth-child(odd){width:auto !important;grid-column:auto}
+.pd-details .pd-props .pd-row span{font-size:9.5px !important;letter-spacing:.06em}
+.pd-details .pd-props .pd-row strong{font-size:12px !important;line-height:1.3}
+@media (max-width:640px){.pd-details .pd-props{gap:8px}.pd-details .pd-props .pd-row{flex:0 0 calc((100% - 16px) / 3) !important;min-width:0;padding:5px !important;gap:4px !important}.pd-details .pd-props .pd-row span{font-size:8.5px !important;letter-spacing:.04em}.pd-details .pd-props .pd-row strong{font-size:10px !important;line-height:1.25}}
+
+/* Caractéristiques : 4 tuiles par ligne (3 sur mobile) */
+.pd-details .pd-props .pd-row{flex:0 0 calc((100% - 30px) / 4) !important;padding:6px !important;gap:5px !important}
+.pd-details .pd-props .pd-row span{font-size:8.5px !important;letter-spacing:.05em}
+.pd-details .pd-props .pd-row strong{font-size:9.5px !important;line-height:1.2;letter-spacing:0}
+.pd-details .pd-props .pd-row{min-width:0}
+@media (min-width:900px) and (max-width:1179px){.pd-details .pd-props .pd-row{flex:0 0 calc((100% - 20px) / 3) !important}}
+@media (max-width:640px){.pd-details .pd-props .pd-row{flex:0 0 calc((100% - 16px) / 3) !important;padding:5px !important}.pd-details .pd-props .pd-row span{font-size:8.5px !important}.pd-details .pd-props .pd-row strong{font-size:10px !important}}
+/* Entretien : à droite du rectangle, en miroir de la description */
+.pd-details .pd-ent{margin:40px 0 0}
+.pd-details .pd-ent-t{margin:0 0 12px;font-family:Manrope,sans-serif;font-weight:700;font-size:15px;letter-spacing:.08em;text-transform:uppercase;color:#14212B}
+.pd-details .pd-ent p{margin:0 0 14px;font-family:Manrope,sans-serif;font-size:16.5px;line-height:1.75;color:#3D4A54}
+.pd-details .pd-ent p:last-child{margin-bottom:0}
+@media (min-width:900px){.pd-details .pd-mag .pd-ent{grid-column:3;grid-row:1;margin:0}}
+@media (max-width:640px){.pd-details .pd-ent p{font-size:15.5px;line-height:1.7}}
+
+/* Entretien : même style magazine que la description, sans titre */
+.pd-details .pd-ent p{font-size:16.5px;line-height:1.75}
+@media (max-width:640px){.pd-details .pd-ent p{font-size:15.5px;line-height:1.7}}
+
+/* Caractéristiques : sans contour */
+.pd-details .pd-props .pd-row,.pd-details .pd-props .pd-row:last-child{border:0 !important}
+
+
+
+/* Détails du produit : texte justifié ; la largeur du rectangle s'ajuste pour que texte et rectangle aient la même hauteur */
+.pd-details .pd-mag .pd-intro,.pd-details .pd-mag .pd-ent{text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+
+/* Caractéristiques : tuiles de taille fixe (le rectangle peut s'élargir sans les agrandir) */
+@media (min-width:641px){.pd-details .pd-props .pd-row{flex:0 0 84px !important;width:84px !important}}
+
+/* Détails du produit : l'écart restant (moins d'une ligne) est absorbé entre les paragraphes */
+@media (min-width:900px){
+.pd-details .pd-mag.is-fit{align-items:stretch !important}
+.pd-details .pd-mag.is-fit .pd-intro,.pd-details .pd-mag.is-fit .pd-ent{display:flex;flex-direction:column;justify-content:space-between;row-gap:14px}
+.pd-details .pd-mag.is-fit .pd-intro p,.pd-details .pd-mag.is-fit .pd-ent p{margin:0 !important}}
+
+/* Rectangle du milieu : éléments répartis uniformément sur la hauteur */
+.pd-details .pd-mag .pd-heat{display:flex;flex-direction:column;justify-content:space-between;gap:18px;padding-top:32px !important;padding-bottom:32px !important}
+.pd-details .pd-mag .pd-heat > *{margin:0 !important}
+.pd-details .pd-mag .pd-heat .lvls{display:contents}
+.pd-details .pd-mag .pd-heat .pd-heat-sep{margin:0 auto !important;flex:none}
+.pd-details .pd-mag .pd-heat .pd-props{margin:0 !important}
+
+/* Rectangle du milieu : contour blanc */
+.pd-details .pd-heat{border-color:#FFFFFF !important}
+
+/* Caractéristiques : un peu plus grandes pour occuper la largeur du rectangle */
+@media (min-width:641px){.pd-details .pd-props .pd-row{flex:0 0 108px !important;width:108px !important;padding:8px !important}
+.pd-details .pd-props .pd-row span{font-size:10.5px !important}
+.pd-details .pd-props .pd-row strong{font-size:12.5px !important;line-height:1.25}}
+
+/* Article du produit : liens dans le texte */
+.pd-details .pd-mag .pd-intro a,.pd-details .pd-mag .pd-ent a:not(.pd-link){color:inherit;font-weight:inherit;text-decoration:underline;text-decoration-color:rgba(245,166,35,.85);text-decoration-thickness:1px;text-underline-offset:3px;transition:color .2s ease}
+.pd-details .pd-mag .pd-intro a:hover,.pd-details .pd-mag .pd-ent a:hover{color:#E8641F}
+.pd-details .pd-mag .pd-intro a strong{color:inherit}
+
+.pd-details .pd-mag .pd-ent a.pd-link{font:inherit;letter-spacing:inherit;color:inherit;text-decoration:underline;text-decoration-color:rgba(245,166,35,.85);text-decoration-thickness:1px;text-underline-offset:3px}
+.pd-details .pd-mag .pd-ent a.pd-link:hover{color:#E8641F}
+
+/* Article du produit : liens en gras, sans soulignement */
+.pd-details .pd-mag .pd-intro a,.pd-details .pd-mag .pd-ent a,.pd-details .pd-mag .pd-ent a.pd-link{font-weight:600 !important;text-decoration:none !important;color:#14212B !important}
+.pd-details .pd-mag .pd-intro a:hover,.pd-details .pd-mag .pd-ent a:hover,.pd-details .pd-mag .pd-intro a:focus-visible,.pd-details .pd-mag .pd-ent a:focus-visible{color:#E8641F !important}
+
+/* Article du produit : un seul texte qui coule de la colonne gauche à la colonne droite, autour du rectangle centré */
+.pd-details .pd-flow{margin:0 0 40px}
+.pd-details .pd-flow .pd-intro,.pd-details .pd-flow .pd-ent{display:block !important;margin:0 !important;width:auto !important}
+.pd-details .pd-flow p{margin:0 0 14px !important}
+.pd-details .pd-flow .pd-ent > p:last-child{margin-bottom:0 !important}
+@media (min-width:900px){
+.pd-details .pd-mag{display:block !important;position:relative;--g:28px}
+.pd-details .pd-mag .pd-flow{margin:0;columns:2;column-gap:calc(var(--sq) + 2 * var(--g));column-fill:balance;orphans:2;widows:2}
+.pd-details .pd-mag .pd-flow .pd-intro > p:first-child{break-inside:avoid}
+.pd-details .pd-mag .pd-heat{position:absolute !important;top:0;left:50%;width:var(--sq) !important;margin:0 0 0 calc(var(--sq) / -2) !important;box-sizing:border-box}}
+
+/* Article du produit : gras plus discret */
+.pd-details .pd-mag .pd-flow strong,.pd-details .pd-mag .pd-intro strong{font-weight:600 !important}
+
+/* Guide des tailles : la notice devient une bannière qui défile, sur la largeur du cadre */
+#guide-tailles .pd-size-ban{position:relative;z-index:2;margin:-35px -35px 36px;overflow:hidden;background:rgba(245,166,35,.10);border-top:1px solid rgba(245,166,35,.45);border-bottom:1px solid rgba(245,166,35,.45);padding:12px 0}
+#guide-tailles .pd-size-ban-row{display:flex;width:max-content;margin:0;padding:0;list-style:none;animation:pdSizeBan 36s linear infinite}
+#guide-tailles .pd-size-ban:hover .pd-size-ban-row{animation-play-state:paused}
+#guide-tailles .pd-size-ban li{display:flex;align-items:center;gap:12px;padding:0 32px;white-space:nowrap;font:400 13px/1.3 'DM Mono',monospace;color:#3D4A54;border-right:1px solid rgba(245,166,35,.45)}
+#guide-tailles .pd-size-ban li b{font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#C9480F}
+@keyframes pdSizeBan{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){#guide-tailles .pd-size-ban-row{animation:none}}
+@media (max-width:640px){#guide-tailles .pd-size-ban{margin:-11px -11px 28px}#guide-tailles .pd-size-ban li{font-size:12px;padding:0 22px}}
+
+/* Guide des tailles : cadre sur fond blanc */
+#guide-tailles .patron{background:#FFFFFF !important}
+#guide-tailles .patron{border-radius:0 !important}
+#guide-tailles .patron::after{content:none !important;display:none !important}
+#guide-tailles .pd-size-ban{margin-left:calc(clamp(-48px,-4vw,-24px) + 12px) !important;margin-right:calc(clamp(-48px,-4vw,-24px) + 12px) !important;margin-top:calc(clamp(-48px,-4vw,-24px) + 12px) !important}
 </style>
 </head>
 <body>
@@ -1034,18 +1188,17 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div class="pd-field pd-size-field">
 <div class="pd-label">Taille :</div>
 <div class="pd-opts" role="group" aria-label="Taille"><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XS</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">S</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="true">M</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">L</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">2XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">3XL</button></div>
-<a href="#guide-tailles" class="pd-link pd-size-link">Quelle taille choisir ?</a>
 </div>
 
 <div class="pd-faq-row">
+<div class="pd-field pd-faq-field pd-wash">
+<p class="pd-q">Quelle taille choisir&nbsp;?</p>
+<p class="pd-a"><a class="pd-link" href="#guide-tailles">Voir le guide des tailles</a></p>
+</div>
+
 <div class="pd-field pd-faq-field">
 <p class="pd-q">La batterie est-elle incluse&nbsp;?</p>
 <p class="pd-a">Vous avez le choix de l’inclure ou&nbsp;pas</p>
-</div>
-
-<div class="pd-field pd-faq-field pd-wash">
-<p class="pd-q" id="pd-wash-q">Puis-je laver la veste&nbsp;?</p>
-<p class="pd-a">Oui, manuel fourni</p>
 </div>
 </div>
 
@@ -1065,7 +1218,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div data-content="service" hidden><p><strong>Une question ? Notre service client vous répond du lundi au vendredi, de 10h00 à 18h00 (GMT+1).</strong></p><p>Écrivez-nous depuis la <a href="contact.html">page Contact</a> ou appelez le <a href="tel:+33753862668">+33 7 53 86 26 68</a> : nous nous efforçons de répondre sous 24 heures.</p></div>
 <div data-content="livraison"><p><strong>Livraison en France en 7 à 10 jours ouvrés</strong> (du lundi au vendredi) : 1 à 2 jours de traitement, puis 6 à 8 jours d’acheminement. <strong>Frais de livraison : 3,20 € TTC.</strong></p><p>Vous recevez un e-mail de suivi dès l’expédition et pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. <a href="livraison.html">Voir la politique d’expédition</a></p></div>
 <div data-content="retour" hidden><p><strong>Vous disposez de 30 jours</strong> après réception pour retourner ou échanger votre article.</p><p>Contactez-nous pour lancer votre retour ; les frais d’expédition du retour sont à la charge du client. <a href="politique-de-retour.html">Voir la politique de retour</a></p></div>
-<div data-content="paiement" hidden><p><strong>Paiement 100&nbsp;% sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
+<div data-content="paiement" hidden><p><strong>Paiement sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
 </div>
 </div>
 
@@ -1075,25 +1228,16 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 
 
 <section class="pd-details" aria-labelledby="pd-details-title">
-<h2 class="pd-h2 pd-center" id="pd-details-title">Détails du produit</h2>
-<details class="pd-acc"><summary><span>Description</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Dans la Collection Hiver ’26, la <strong>veste</strong> est votre bouclier contre le froid. Plus couvrante qu’une doudoune, plus légère qu’une parka, elle trouve le juste milieu pour affronter l’hiver sans s’alourdir.</p><p>Unisexe, elle se porte au quotidien comme lors des longues journées dehors, avec une chaleur réglable d’un simple bouton.</p><p>Ce modèle a déjà fait ses preuves au fil des hivers précédents : c’est pour cela que nous l’avons retenu. Et vos retours sur cette saison seront intégrés à sa version 2027.</p></div></details>
-<details class="pd-acc"><summary><span>Propriétés</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Genre</span><strong>Mixte</strong></div><div class="pd-row"><span>Matière</span><strong>Polyester</strong></div><div class="pd-row"><span>Zones chauffantes</span><strong>4 zones + capuche chauffante</strong></div><div class="pd-row"><span>Réglage</span><strong>3 niveaux de chaleur</strong></div><div class="pd-row"><span>Batterie</span><strong>USB 5 V · 20 000 mAh fournie en option</strong></div></div></details>
-<details class="pd-acc" open><summary><span>Niveaux de chaleur</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p style="margin:0 0 16px;font-size:14px;color:#55616B">Jusqu’à 10 h d’autonomie avec la batterie 20 000 mAh.</p><div class="lvls"><div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Doux</strong> (voyant bleu) : 40 – 45 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Moyen</strong> (voyant blanc) : 45 – 50 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Élevé</strong> (voyant rouge) : 50 – 55 °C</p></div></div></div></details>
-<details class="pd-acc"><summary><span>Usages</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><ul class="pd-uses"><li>Quotidien en hiver</li><li>Plein air</li><li>Sports d’hiver</li></ul></div></details>
-<details class="pd-acc"><summary><span>Entretien</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Retirez toujours la batterie avant le lavage et refermez la poche. Lavage à la main ou en machine en programme délicat (30 °C max.), dans un filet de lavage, avec une lessive douce. Séchage à l’air libre. Ni essorage, ni repassage, ni javel, ni nettoyage à sec.</p></div></details>
-<details class="pd-acc"><summary><span>Batterie</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Capacité</span><strong>20 000 mAh</strong></div><div class="pd-row"><span>Charge rapide</span><strong>PD 22,5 W</strong></div><div class="pd-row"><span>Câbles intégrés</span><strong>USB-C · Lightning · USB-A</strong></div><div class="pd-row"><span>Poids</span><strong>190 g</strong></div><p><a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p></div></details>
+<h2 class="sr-only" id="pd-details-title">Détails du produit</h2>
+<div class="pd-mag"><div class="pd-flow"><div class="pd-intro" data-pd-desc><p>Dans la <a href="collection.html">Collection Hiver ’26</a>, la <strong>veste</strong> est votre bouclier contre le froid. Plus couvrante qu’une <a href="doudoune-otreau.html">doudoune</a>, plus légère qu’une parka, elle trouve le juste milieu pour affronter l’hiver sans s’alourdir.</p><p>Unisexe, elle se porte au quotidien comme lors des longues journées dehors, avec une chaleur <a href="#mode-emploi">réglable d’un simple bouton</a>.</p><p>Ce modèle a déjà fait ses preuves au fil des hivers précédents : c’est pour cela que nous l’avons retenu. Et vos retours sur cette saison seront intégrés à sa <a href="a-propos.html">version 2027</a>.</p></div><div class="pd-ent"><p>Retirez toujours la batterie avant le lavage et refermez la poche. Lavage à la main ou en machine en programme délicat (30 °C max.), dans un filet de lavage, avec une lessive douce. Séchage à l’air libre. Ni essorage, ni repassage, ni javel, ni nettoyage à sec.</p><p>Elle vous accompagne au quotidien en hiver, en plein air comme pour les sports d’hiver. Pour trouver la bonne taille, consultez notre <a href="#guide-tailles">guide des tailles</a>&nbsp;: nos modèles taillent petit.</p><p>Proposée en option, la batterie 20&nbsp;000&nbsp;mAh est compatible charge rapide PD 22,5&nbsp;W, intègre ses câbles USB-C, Lightning et USB-A, et pèse 190&nbsp;g. <a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p><p>Livraison suivie en France métropolitaine. Retrouvez nos conditions de <a href="livraison.html">livraison</a> et de <a href="politique-de-retour.html">retour</a>.</p></div></div><div class="pd-heat"><h3 class="pd-heat-t">Niveaux de chaleur</h3><p class="pd-heat-n">Jusqu’à 10&nbsp;h d’autonomie avec la batterie 20&nbsp;000&nbsp;mAh.</p><div class="lvls"><div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Doux</strong> (voyant bleu) : 40 – 45 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Moyen</strong> (voyant blanc) : 45 – 50 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Élevé</strong> (voyant rouge) : 50 – 55 °C</p></div></div><div class="pd-heat-sep" aria-hidden="true"></div><div class="pd-props"><div class="pd-row"><span>Genre</span><strong>Mixte</strong></div><div class="pd-row"><span>Matière</span><strong>Polyester</strong></div><div class="pd-row"><span>Zones</span><strong>Quatre</strong></div><div class="pd-row"><span>Capuche</span><strong>Chauffante</strong></div></div></div></div>
 </section>
 
 <section class="pd-size" id="guide-tailles" aria-labelledby="pd-size-title">
 <h2 class="pd-h2 pd-center" id="pd-size-title">Guide des tailles</h2>
-<p class="pd-center pd-muted" style="margin:-8px 0 28px">Les mesures de la veste, posée à plat, en centimètres.</p>
 <div class="patron">
-<span class="patron-pin" style="left: 28px" aria-hidden="true"></span>
-<span class="patron-pin" style="right: 28px" aria-hidden="true"></span>
-<div class="size-tip size-tip-top" role="note"><svg class="size-tip-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.5 20h19L12 3.5z"/><path d="M12 10v4.5M12 17.2v.3"/></svg><div><p><b>Nos tailles taillent petit</b> Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</p></div></div>
+<div class="pd-size-ban" role="note"><ul class="pd-size-ban-row"><li><b>Nos tailles taillent petit</b>Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</li><li aria-hidden="true"><b>Nos tailles taillent petit</b>Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</li><li aria-hidden="true"><b>Nos tailles taillent petit</b>Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</li><li aria-hidden="true"><b>Nos tailles taillent petit</b>Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</li></ul></div>
 <div style="position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
 <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
-<span class="atelier-kicker" style="text-transform:none;letter-spacing:.06em">Patron · LA VESTE</span>
 <img class="flat flat-photo" data-product="veste" src="assets/patron-veste-v3.webp" width="771" height="820" alt="Veste avec les mesures A (largeur poitrine), B (longueur), C (largeur épaules) et D (longueur manche)" loading="lazy">
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
@@ -1378,5 +1522,20 @@ var clear=br.getBoundingClientRect().right+gap<=g.left;var target=clear?minTop:g
 var d=Math.max(0,top-target);br.style.position='relative';br.style.top=(-d)+'px';if(cols&&fb){var free=fb.getBoundingClientRect().top-cols.getBoundingClientRect().bottom-28;var dn=Math.max(0,Math.min(free,110));cols.style.position='relative';cols.style.top=dn+'px';}
 if(cols){var cs=[].slice.call(cols.children),bt=br.getBoundingClientRect().top,ct=cols.getBoundingClientRect().top,diff=Math.max(0,ct-bt),n=cs.length-1;if(n>0&&cs[0].getBoundingClientRect().top!==cs[n].getBoundingClientRect().top)return;cs.forEach(function(c,i){c.style.position='relative';var b0=Math.min(22,diff);c.style.top=(-Math.round(b0+(diff-b0)*i/n))+'px';});}}
 place();addEventListener('resize',place);addEventListener('load',place);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(place);})();</script>
+<script>/* Article du produit : remet les liens si la description est remplacée par celle de Shopify */
+(function(){var d=document.querySelector('[data-pd-desc]');if(!d)return;
+var R=[[/Collection Hiver [’']26/,'<a href="collection.html">$&</a>'],[/réglable d[’']un simple bouton/,'<a href="#mode-emploi">$&</a>'],[/version 2027/,'<a href="a-propos.html">$&</a>']];
+function link(){if(d.querySelector('a'))return;var h=d.innerHTML,n=h;R.forEach(function(r){n=n.replace(r[0],r[1])});if(n!==h)d.innerHTML=n;}
+new MutationObserver(link).observe(d,{childList:true,subtree:true});})();</script>
+<script>/* Article du produit : largeur du rectangle ajustée pour que l'article (2 colonnes) ait la hauteur du rectangle */
+(function(){var mag=document.querySelector('.pd-details .pd-mag');if(!mag)return;var box=mag.querySelector('.pd-heat'),fl=mag.querySelector('.pd-flow');if(!box||!fl)return;var t=0;
+function d(sq){mag.style.setProperty('--sq',sq+'px');box.style.height='';return fl.offsetHeight-box.offsetHeight}
+function fit(){mag.style.removeProperty('--sq');box.style.height='';mag.style.minHeight='';if(innerWidth<900)return;
+var W=mag.clientWidth,lo=Math.min(380,W*.3),hi=Math.max(lo,W-2*230-56);
+if(d(lo)>=0){d(Math.round(lo))}else if(d(hi)<=0){d(Math.round(hi))}else{for(var k=0;k<10;k++){var m=(lo+hi)/2;if(d(m)<0)lo=m;else hi=m;}d(Math.round(hi));}
+var h=Math.max(fl.offsetHeight,box.offsetHeight);box.style.height=h+'px';mag.style.minHeight=h+'px';}
+function req(){clearTimeout(t);t=setTimeout(fit,80)}
+addEventListener('resize',req);addEventListener('load',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+new MutationObserver(req).observe(fl,{childList:true,subtree:true,characterData:true});fit();})();</script>
 </body>
 </html>

@@ -27,7 +27,7 @@
   }
   function money(m) {
     if (!m) return '';
-    try { return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: m.currencyCode }).format(parseFloat(m.amount)); }
+    try { var v = parseFloat(m.amount), whole = Math.abs(v - Math.round(v)) < 0.005; return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: m.currencyCode, minimumFractionDigits: whole ? 0 : 2, maximumFractionDigits: whole ? 0 : 2 }).format(v); }
     catch (e) { return m.amount + ' ' + m.currencyCode; }
   }
   // prix affichés toutes taxes comprises (les prix Shopify sont saisis TTC)
@@ -372,6 +372,7 @@
     '.pd-trust-panel{background:transparent !important;border:0 !important;box-shadow:none !important}' +
     'main.pd .pd-story-h{color:#14212B !important}' +
     '@media (min-width:1360px){main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-left-buy .pd-story-h{font-size:clamp(20px,1.45vw,26px) !important;line-height:1.1 !important;font-weight:500 !important;letter-spacing:.01em !important}main.pd .pd-top > .pd-left-buy > .pd-price{font-size:clamp(28px,2.1vw,36px) !important}}' +
+    '@media (min-width:1360px){main.pd .pd-top:has(> .pd-left-buy) > .pd-info:not(.pd-left-buy) > .pd-price{margin:0 !important;text-align:center;line-height:1 !important;font-size:clamp(38px,2.8vw,52px) !important}main.pd .pd-top:has(> .pd-left-buy) > .pd-info:not(.pd-left-buy) > .pd-price small,main.pd .pd-top:has(> .pd-left-buy) > .pd-info:not(.pd-left-buy) > .pd-price span{font-size:.42em !important}}' +
     '@media (min-width:1360px){main.pd .pd-top > .pd-info.is-fit:not(.pd-left-buy):not(:has(> .pd-color-field:not([hidden]))){justify-content:flex-start !important;row-gap:clamp(22px,1.9vw,34px) !important}}' +
     'main.pd .pd-details,main.pd .pd-top + .pd-details{margin-top:clamp(64px,6.7vw,96px) !important}main.pd .pd-details + section{margin-top:clamp(64px,6.7vw,96px) !important}' +
     '.pd-batt-q{margin:0 0 12px;text-align:center;font:800 13px/1.2 Manrope,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#8A949B}' +
@@ -491,6 +492,12 @@
     '.pd-stock{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 0;font:700 14px/1.2 Manrope,sans-serif;color:#14212B}' +
     '.pd-stock-dot{width:8px;height:8px;border-radius:50%;background:#F5A623;box-shadow:0 0 0 4px rgba(245,166,35,.2)}' +
     '.pd-size-field > .pd-stock{flex:0 0 100%;width:100%;order:0}' +
+    '.pd-size-line{flex:0 0 100%;display:flex;flex-wrap:nowrap;align-items:center;justify-content:center;gap:4px;min-width:0}' +
+    '.pd-size-line > .pd-opts{flex:0 1 auto !important;min-width:0 !important;width:auto !important}' +
+    '.pd-size-line > .pd-size-link{flex:none !important;width:auto !important;margin:0 0 0 12px !important;white-space:nowrap;align-self:center;order:0}' +
+    '@media (max-width:640px){.pd-size-line{justify-content:space-between}.pd-size-line > .pd-label{flex:none}.pd-size-line > .pd-size-link{font-size:12px !important;line-height:1.3;margin-left:6px !important;white-space:normal !important;width:66px !important;text-align:left !important}}' +
+    '.pd-faq-row .pd-a a.pd-link{font:inherit !important;color:inherit !important;letter-spacing:inherit !important;text-transform:inherit !important;text-decoration:underline !important;text-decoration-color:rgba(20,33,43,.28) !important;text-decoration-thickness:1px !important;text-underline-offset:3px !important;transition:text-decoration-color .2s}' +
+    '.pd-faq-row .pd-a a.pd-link:hover,.pd-faq-row .pd-a a.pd-link:focus-visible{text-decoration-color:rgba(20,33,43,.7) !important}' +
     '.pd-stock.is-out{color:#8A949B}.pd-stock.is-out .pd-stock-dot{background:#8A949B;box-shadow:0 0 0 4px rgba(138,148,155,.16)}' +
     'body.oc-lock{overflow:hidden}';
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
@@ -894,7 +901,7 @@
         leftBox = leftBox || document.createElement('div'); leftBox.className = 'pd-info pd-left-buy';
         moved = [];
         var kids = [].slice.call(info.children);
-        for (var i = 0; i < kids.length; i++) { if (kids[i].classList.contains('pd-field')) break; moved.push(kids[i]); }
+        for (var i = 0; i < kids.length; i++) { if (kids[i].classList.contains('pd-field')) break; if (kids[i].classList.contains('pd-price')) continue; moved.push(kids[i]); } // le prix reste en haut de la colonne de droite
         moved.forEach(function (k) { leftBox.appendChild(k); });
         storyHome = { parent: st.parentNode, next: st.nextSibling };
         leftBox.appendChild(st); st.classList.add('pd-story-right');
@@ -944,6 +951,7 @@
         var s = d.querySelector('summary span');
         if (s && norm(s.textContent) === 'description') d.querySelector('.pd-acc-body').innerHTML = p.descriptionHtml;
       });
+      [].slice.call(document.querySelectorAll('[data-pd-desc]')).forEach(function (d) { d.innerHTML = p.descriptionHtml; });
     }
     // Règle : pas de vidéo sur la page produit (la vidéo est réservée à la page d'accueil)
     var gallery = buildGallery(mediaList(p).filter(function (x) { return x.type !== 'video'; }));
@@ -1061,7 +1069,7 @@
       var sizeG = groups.filter(function (g) { return norm(g.name) === 'taille'; })[0];
       if (sizeG) {
         var stk = sizeG.field.querySelector('.pd-stock');
-        if (!stk) { stk = document.createElement('p'); stk.className = 'pd-stock'; stk.setAttribute('aria-live', 'polite'); var szLink = sizeG.field.querySelector('.pd-size-link'); if (szLink) szLink.insertAdjacentElement('beforebegin', stk); else sizeG.field.appendChild(stk); }
+        if (!stk) { stk = document.createElement('p'); stk.className = 'pd-stock'; stk.setAttribute('aria-live', 'polite'); var szLink = sizeG.field.querySelector('.pd-size-link'), szOpts = sizeG.field.querySelector('.pd-opts'); if (szLink && szOpts) { var ow = szOpts.getBoundingClientRect().width; if (ow) szOpts.style.maxWidth = Math.ceil(ow) + 'px'; var szLine = document.createElement('div'); szLine.className = 'pd-size-line'; var szLab = sizeG.field.querySelector('.pd-label'); szOpts.insertAdjacentElement('beforebegin', szLine); if (szLab) szLine.appendChild(szLab); szLine.appendChild(szOpts); szLine.appendChild(szLink); sizeG.field.classList.add('has-side-link'); } sizeG.field.appendChild(stk); }
         var inStock = v ? v.availableForSale : p.variants.nodes.some(function (x) {
           return x.availableForSale && groups.every(function (g) { return !g.selected || x.selectedOptions.some(function (o) { return norm(o.name) === norm(g.name) && o.value === g.selected; }); });
         });
@@ -1203,6 +1211,21 @@
     if (it.water) return { cls: 'pc-wash', html: WASH_HTML, label: 'Lavable' };
     return null;
   }
+  // Pendant que le visiteur agit sur le site (clic, saisie, menu, recherche ou panier ouverts, survol d'une carte),
+  // les photos des produits ne défilent pas toutes seules ; le simple défilement de la page ne compte pas.
+  var userBusyUntil = 0, BUSY_MS = 5000;
+  function markBusy() { userBusyUntil = Date.now() + BUSY_MS; }
+  document.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'touch') markBusy(); }, true);
+  document.addEventListener('click', markBusy, true);
+  ['keydown', 'input', 'change'].forEach(function (t) { document.addEventListener(t, markBusy, true); });
+  var hoverMq = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)');
+  function busyWait(box) {
+    var left = userBusyUntil - Date.now(); if (left > 0) return left + 200;
+    if (document.body.classList.contains('oc-lock') || document.documentElement.classList.contains('menu-lock') || document.querySelector('.os-panel.is-open, .mobile-menu.is-open')) return 800;
+    var card = box.closest('a') || box;
+    if (hoverMq && hoverMq.matches && card.matches(':hover')) return 800;
+    return 0;
+  }
   function cardCarousel(first, imgs, hasVideo, opts) {
     opts = opts || {};
     var box = document.createElement('div'); box.className = 'pc-car';
@@ -1325,6 +1348,7 @@
     }
     function advance() {
       if (!auto || !running || !autoIdx.length) return;
+      var wait = busyWait(box); if (wait) { clearTimeout(timer); timer = setTimeout(advance, wait); return; }
       var n = nextAuto();
       if (n === cur) { if (hasVideo && cur === 0) { first.loop = true; var pr = first.play(); if (pr && pr.catch) pr.catch(function () {}); } return; }
       autoMove = true; show(n); autoMove = false; if (hasVideo && cur === 0) { try { first.currentTime = 0; } catch (e) {} } schedule();
@@ -1586,4 +1610,38 @@
   sPanel.querySelector('form').addEventListener('submit', function (e) { e.preventDefault(); clearTimeout(sTimer); runSearch(sInput.value); });
 
   window.OtreauCart = { open: function () { if (cartPage) return; window.location.href = CART_URL; }, close: closeCart };
+})();
+
+/* Pages produit : le bloc Service client / Livraison / Retour / Paiement garde toujours la même hauteur,
+   pour que la colonne d'achat ne bouge pas quand les onglets défilent ; un texte trop long est coupé avec « Afficher plus » */
+(function () {
+  var panel = document.getElementById('pd-trust-panel'); if (!panel) return;
+  var LINES = 4;
+  var st = document.createElement('style');
+  st.textContent = '.pd-trust-panel[hidden]{display:block !important;visibility:hidden}' +
+    '.pd-trust-panel [data-content]{overflow:hidden;max-height:var(--tp-h);min-height:var(--tp-h)}' +
+    '.pd-trust-panel [data-content] p{margin:0 !important}.pd-trust-panel [data-content] p + p{margin-top:0 !important}' +
+    '.pd-trust-panel.is-more [data-content]{max-height:none}' +
+    '.pd-trust-more{display:block;margin:6px auto 0;padding:2px 4px;border:0;background:none;cursor:pointer;font:600 12px/1.4 Manrope,sans-serif;letter-spacing:.04em;color:#55616B;text-decoration:underline;text-decoration-color:rgba(20,33,43,.28);text-underline-offset:3px}' +
+    '.pd-trust-more:hover{color:#14212B}.pd-trust-more.is-off{visibility:hidden}';
+  document.head.appendChild(st);
+  var btn = document.createElement('button'); btn.type = 'button'; btn.className = 'pd-trust-more'; btn.textContent = 'Afficher plus';
+  panel.appendChild(btn);
+  function cur() { return [].filter.call(panel.querySelectorAll('[data-content]'), function (c) { return !c.hidden; })[0]; }
+  function size() {
+    var lh = parseFloat(getComputedStyle(panel).lineHeight) || 21;
+    panel.style.setProperty('--tp-h', Math.round(lh * LINES) + 'px');
+    check();
+  }
+  function check() {
+    var c = cur(), over = false;
+    if (c && !panel.classList.contains('is-more')) over = c.scrollHeight > c.clientHeight + 2;
+    btn.classList.toggle('is-off', !over && !panel.classList.contains('is-more'));
+    btn.textContent = panel.classList.contains('is-more') ? 'Afficher moins' : 'Afficher plus';
+  }
+  btn.addEventListener('click', function (e) { e.stopPropagation(); panel.classList.toggle('is-more'); check(); });
+  // changement d'onglet : on revient à la hauteur fixe
+  new MutationObserver(function () { panel.classList.remove('is-more'); check(); }).observe(panel, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
+  size(); window.addEventListener('resize', size); window.addEventListener('load', size);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(size);
 })();

@@ -893,6 +893,22 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 .site-footer .f-paym ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .site-footer .f-paym li{display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);font:700 12.5px/1 Manrope,sans-serif;letter-spacing:.02em;color:#FFFFFF}
 @media (max-width:640px){.site-footer .f-paym{flex-direction:column}.site-footer .f-paym ul{justify-content:center}}
+/* Footer : bloc de présentation de la marque plus à gauche (grand écran) */
+@media (min-width:1101px){.site-footer .f-brand{margin-left:calc(32px - max(clamp(16px,4vw,64px),(100vw - 1320px) / 2)) !important;max-width:440px !important}}
+
+/* Détails du produit : la description devient une introduction, toujours visible */
+.pd-details .pd-intro{max-width:680px;margin:0 auto 44px;text-align:center;font-family:Manrope,sans-serif;font-size:17px;line-height:1.75;color:#3D4A54}
+.pd-details .pd-intro p{margin:0 0 14px}
+.pd-details .pd-intro p:last-child{margin-bottom:0}
+.pd-details .pd-intro strong{color:#14212B}
+@media (max-width:640px){.pd-details .pd-intro{font-size:15.5px;line-height:1.7;margin-bottom:32px}}
+
+/* Détails du produit : description en ouverture façon magazine, sur toute la largeur */
+.pd-details .pd-intro{width:min(1240px,calc(100vw - 64px));max-width:none;margin:0 0 56px calc(50% - min(620px,50vw - 32px));columns:3 280px;column-gap:56px;text-align:left;font-size:16.5px;line-height:1.75}
+.pd-details .pd-intro p{margin:0 0 14px;break-inside:avoid-column}
+.pd-details .pd-intro > p:first-child::first-letter{float:left;font-family:Manrope,sans-serif;font-weight:300;font-size:4.7em;line-height:.82;margin:.08em .12em 0 0;color:#14212B}
+.pd-details .pd-intro:has(> p:only-child){columns:auto;width:min(760px,calc(100vw - 64px));margin-left:calc(50% - min(380px,50vw - 32px))}
+@media (max-width:640px){.pd-details .pd-intro{width:calc(100vw - 40px);margin-left:calc(50% - 50vw + 20px);columns:1;font-size:15.5px;margin-bottom:36px}.pd-details .pd-intro > p:first-child::first-letter{font-size:4.2em}}
 </style>
 </head>
 <body>
@@ -978,18 +994,17 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div class="pd-field pd-size-field">
 <div class="pd-label">Taille :</div>
 <div class="pd-opts" role="group" aria-label="Taille"><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XS</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">S</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="true">M</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">L</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">2XL</button><button type="button" class="pd-opt" data-group="taille" aria-pressed="false">3XL</button></div>
-<a href="index.html#tailles" class="pd-link pd-size-link">Quelle taille choisir ?</a>
 </div>
 
 <div class="pd-faq-row">
+<div class="pd-field pd-faq-field pd-wash">
+<p class="pd-q">Quelle taille choisir&nbsp;?</p>
+<p class="pd-a"><a class="pd-link" href="index.html#tailles">Voir le guide des tailles</a></p>
+</div>
+
 <div class="pd-field pd-faq-field">
 <p class="pd-q">La batterie est-elle incluse&nbsp;?</p>
 <p class="pd-a">Vous avez le choix de l’inclure ou&nbsp;pas</p>
-</div>
-
-<div class="pd-field pd-faq-field pd-wash">
-<p class="pd-q" id="pd-wash-q">Puis-je laver ce vêtement&nbsp;?</p>
-<p class="pd-a">Oui, manuel fourni</p>
 </div>
 </div>
 
@@ -1009,7 +1024,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div data-content="service" hidden><p><strong>Une question ? Notre service client vous répond du lundi au vendredi, de 10h00 à 18h00 (GMT+1).</strong></p><p>Écrivez-nous depuis la <a href="contact.html">page Contact</a> ou appelez le <a href="tel:+33753862668">+33 7 53 86 26 68</a> : nous nous efforçons de répondre sous 24 heures.</p></div>
 <div data-content="livraison"><p><strong>Livraison en France en 7 à 10 jours ouvrés</strong> (du lundi au vendredi) : 1 à 2 jours de traitement, puis 6 à 8 jours d’acheminement. <strong>Frais de livraison : 3,20 € TTC.</strong></p><p>Vous recevez un e-mail de suivi dès l’expédition et pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. <a href="livraison.html">Voir la politique d’expédition</a></p></div>
 <div data-content="retour" hidden><p><strong>Vous disposez de 30 jours</strong> après réception pour retourner ou échanger votre article.</p><p>Contactez-nous pour lancer votre retour ; les frais d’expédition du retour sont à la charge du client. <a href="politique-de-retour.html">Voir la politique de retour</a></p></div>
-<div data-content="paiement" hidden><p><strong>Paiement 100&nbsp;% sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
+<div data-content="paiement" hidden><p><strong>Paiement sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
 </div>
 </div>
 
@@ -1019,8 +1034,8 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 
 
 <section class="pd-details" aria-labelledby="pd-details-title">
-<h2 class="pd-h2 pd-center" id="pd-details-title">Détails du produit</h2>
-<details class="pd-acc" open><summary><span>Description</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><p>Ce modèle de la Collection Hiver ’26 a été retenu avec exigence pour sa qualité, son entretien simple et son autonomie.</p></div></details>
+<h2 class="sr-only" id="pd-details-title">Détails du produit</h2>
+<div class="pd-intro" data-pd-desc><p>Ce modèle de la Collection Hiver ’26 a été retenu avec exigence pour sa qualité, son entretien simple et son autonomie.</p></div>
 <details class="pd-acc"><summary><span>Mode d’emploi</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><ol class="pd-howto"><li><strong>Branchez la batterie</strong> Reliez le câble USB à la batterie chargée, puis glissez-la dans sa poche intérieure.</li><li><strong>Allumez le chauffage</strong> Un appui long sur le bouton, jusqu’à ce que le voyant s’allume. Un appui court ne suffit pas.</li><li><strong>Choisissez le niveau</strong> Appuis courts pour passer d’un niveau à l’autre. Comptez quelques minutes pour une chaleur optimale.</li><li><strong>Éteignez le chauffage</strong> Un appui long, jusqu’à ce que le voyant s’éteigne.</li></ol></div></details>
 <details class="pd-acc"><summary><span>Batterie</span><span class="faq-icon" aria-hidden="true"></span></summary><div class="pd-acc-body"><div class="pd-row"><span>Capacité</span><strong>20 000 mAh</strong></div><div class="pd-row"><span>Charge rapide</span><strong>PD 22,5 W</strong></div><div class="pd-row"><span>Câbles intégrés</span><strong>USB-C · Lightning · USB-A</strong></div><div class="pd-row"><span>Poids</span><strong>190 g</strong></div><p><a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p></div></details>
 </section>
@@ -1290,7 +1305,7 @@ var PRODUCT_CONTENT = {
     desc: [
       'Dans la Collection Hiver ’26, le gilet à capuche est le compagnon des trajets d’hiver. Conçu d’abord pour la moto, il se porte aussi au quotidien comme pour la randonnée, le ski ou le vélo, avec une chaleur réglable d’un simple bouton.',
       'Ses 9 zones chauffantes en fibre de carbone ciblent les endroits qui ont froid le plus vite : le cou, les épaules, le ventre et le bas du dos. Deux commandes séparées règlent le dos et le ventre selon vos besoins.',
-      'Imperméable et respirant, il ne craint ni le vent ni la pluie. Sa capuche ajoute une protection contre le froid et sa coupe ample laisse toute liberté de mouvement. Attention : il taille petit, pensez à prendre une à deux tailles au-dessus.'
+      'Imperméable et respirant, il vous protège du vent et de la pluie. Sa capuche ajoute une protection contre le froid et sa coupe ample laisse toute liberté de mouvement. Attention : il taille petit, pensez à prendre une à deux tailles au-dessus.'
     ],
     props: [['Genre','Mixte'],['Matière','100 % polyester'],['Protection','Imperméable et respirant'],['Capuche','Oui'],['Col','Rond'],['Fermeture','Fermeture éclair (zip)'],['Coupe','Ample, style sport'],['Chauffage','Fibre de carbone, 9 zones'],['Commande','2 boutons : dos et ventre'],['Alimentation','USB 5 V']],
     levels: { autonomy: 'Jusqu’à 10 h d’autonomie avec la batterie 20 000 mAh.', list: [['Doux','voyant blanc','38 °C'],['Moyen','voyant bleu','46 °C'],['Élevé','voyant rouge','53 °C']] },

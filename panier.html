@@ -770,6 +770,8 @@ main.lg li::marker,main.lg ol li::marker{color:#14212B !important}
 .site-footer .f-paym ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .site-footer .f-paym li{display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);font:700 12.5px/1 Manrope,sans-serif;letter-spacing:.02em;color:#FFFFFF}
 @media (max-width:640px){.site-footer .f-paym{flex-direction:column}.site-footer .f-paym ul{justify-content:center}}
+/* Footer : bloc de présentation de la marque plus à gauche (grand écran) */
+@media (min-width:1101px){.site-footer .f-brand{margin-left:calc(32px - max(clamp(16px,4vw,64px),(100vw - 1320px) / 2)) !important;max-width:440px !important}}
 </style>
 </head>
 <body>
@@ -843,7 +845,7 @@ main.lg li::marker,main.lg ol li::marker{color:#14212B !important}
 <div class="cp-trust-panel" id="cp-trust-panel" role="tabpanel">
 <div data-content="livraison"><p><strong>Livraison en France en 7 à 10 jours ouvrés</strong> (du lundi au vendredi) : 1 à 2 jours de traitement, puis 6 à 8 jours d’acheminement. <strong>Frais de livraison : 3,20 € TTC.</strong></p><p>Vous recevez un e-mail de suivi dès l’expédition et pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. <a href="livraison.html">Voir la politique d’expédition</a></p></div>
 <div data-content="retour" hidden><p><strong>Vous disposez de 30 jours</strong> après réception pour retourner ou échanger votre article.</p><p>Contactez-nous pour lancer votre retour ; les frais d’expédition du retour sont à la charge du client. <a href="politique-de-retour.html">Voir la politique de retour</a></p></div>
-<div data-content="paiement" hidden><p><strong>Paiement 100&nbsp;% sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
+<div data-content="paiement" hidden><p><strong>Paiement sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
 </div>
 </div>
 <script>(function(){var tabs=[].slice.call(document.querySelectorAll('.cp-tab')),panel=document.getElementById('cp-trust-panel');if(!panel)return;

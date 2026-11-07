@@ -737,6 +737,8 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 .site-footer .f-paym ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .site-footer .f-paym li{display:inline-flex;align-items:center;height:30px;padding:0 12px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.06);font:700 12.5px/1 Manrope,sans-serif;letter-spacing:.02em;color:#FFFFFF}
 @media (max-width:640px){.site-footer .f-paym{flex-direction:column}.site-footer .f-paym ul{justify-content:center}}
+/* Footer : bloc de présentation de la marque plus à gauche (grand écran) */
+@media (min-width:1101px){.site-footer .f-brand{margin-left:calc(32px - max(clamp(16px,4vw,64px),(100vw - 1320px) / 2)) !important;max-width:440px !important}}
 </style>
 </head>
 <body>
