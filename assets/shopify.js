@@ -93,7 +93,7 @@
   var ZONES_FILES = ['Hoodie_chauffant_en_polaire_lumineuse', 'Gilet_chauffant_noir_avec_zones_lumineuses', 'Gants_chauffants_noirs_a_lueur_rouge', 'Chaussettes_chauffantes_a_effet_thermique'];
   // Nombre de zones chauffantes par produit (affiché sur la photo des zones : « 21 Zones »).
   // Un nombre écrit dans le texte alternatif Shopify (« Zones chauffantes 6 ») est prioritaire.
-  var ZONES_COUNT = { 'veste-otreau': 4, 'veste': 4, 'doudoune': 19, 'gilet': 21, 'gilet-femmes': 15, 'gilet-bicolore-hommes': 15, 'softshell': 9, 'sweet': 9, 'parka': 3, 'parka-femme': 3, 'veste-polaire': 4, 'gilet-avec-capuche': 9, 'gilet-ultra-fin': 5, 'gilet-camouflage': 21 };
+  var ZONES_COUNT = { 'veste-otreau': 4, 'veste': 4, 'doudoune': 19, 'gilet': 21, 'gilet-femmes': 15, 'gilet-bicolore-hommes': 15, 'softshell': 9, 'sweet': 9, 'parka': 3, 'parka-femme': 3, 'veste-polaire': 4, 'gilet-avec-capuche': 9, 'gilet-ultra-fin': 5, 'gilet-camouflage': 9 };
   function zonesCount(handle, alt) {
     var m = /zones?[\s_-]*chauffantes?\D{0,3}(\d{1,2})/i.exec(String(alt || ''));
     return m ? parseInt(m[1], 10) : (ZONES_COUNT[handle] || ZONES_COUNT[String(handle || '').replace(/-otreau$/, '')] || 0);
@@ -748,6 +748,21 @@
         { ico: 'heat', t: '2 zones à l’avant', d: 'Chaleur au niveau du ventre et des poches' },
         { ico: 'heat', t: '1 zone dans le dos', d: 'Chaleur homogène du haut du dos' },
         { ico: 'heat', t: '1 zone dans la capuche', d: 'Protège la tête et la nuque' },
+        { ico: 'thermo', t: 'Réglage de la température', d: '3 niveaux de chaleur selon vos besoins' }
+      ]
+    },
+    'gilet-camouflage': {
+      items: [
+        { ico: 'heat', t: '3 zones à l’avant', d: 'Une dans le col, deux sur le ventre' },
+        { ico: 'heat', t: '6 zones dans le dos', d: 'Épaules, colonne et taille' },
+        { ico: 'thermo', t: '3 niveaux de chaleur', d: 'Environ 25, 35 ou 45 °C' }
+      ]
+    },
+    'gilet-ultra-fin': {
+      items: [
+        { ico: 'heat', t: '2 zones à l’avant', d: 'Chaleur au niveau du ventre' },
+        { ico: 'heat', t: '1 zone entre les omoplates', d: 'Chaleur en haut du dos' },
+        { ico: 'heat', t: '2 zones en bas du dos', d: 'Chaleur au niveau des reins' },
         { ico: 'thermo', t: 'Réglage de la température', d: '3 niveaux de chaleur selon vos besoins' }
       ]
     },
@@ -1592,7 +1607,7 @@
 
   /* ---------- recherche (bouton loupe du menu) ---------- */
   // page dédiée de chaque produit (les autres renvoient vers la sélection de l'accueil)
-  var PRODUCT_PAGES = { 'veste-otreau': 'veste-otreau.html', 'veste': 'veste-otreau.html', 'doudoune-otreau': 'doudoune-otreau.html', 'doudoune': 'doudoune-otreau.html', 'gilet-otreau': 'gilet-otreau.html', 'gilet': 'gilet-otreau.html' };
+  var PRODUCT_PAGES = { 'veste-otreau': 'veste-otreau.html', 'veste': 'veste-otreau.html', 'doudoune-otreau': 'doudoune-otreau.html', 'doudoune': 'doudoune-otreau.html', 'gilet-otreau': 'gilet-otreau.html', 'gilet': 'gilet-otreau.html', 'gilet-ultra-fin': 'gilet-ultra-fin-otreau.html', 'gilet-avec-capuche': 'gilet-avec-capuche-otreau.html', 'gilet-camouflage': 'gilet-camouflage-otreau.html', 'softshell': 'softshell-otreau.html' };
   var SEARCH_Q = 'query S($q: String!) { predictiveSearch(query: $q, limit: 10, types: [PRODUCT], ' +
     'searchableFields: [TITLE, BODY, PRODUCT_TYPE, TAG, VARIANTS_TITLE, VENDOR], unavailableProducts: LAST) { products { ' +
     'handle title availableForSale featuredImage { url altText } priceRange { minVariantPrice { amount currencyCode } } ' +
