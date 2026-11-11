@@ -1571,7 +1571,63 @@ a.hero-cta{letter-spacing:.08em !important}
 #faq .faq-item[open] > summary{padding-bottom:8px !important}
 #faq .faq-item .faq-answer{padding:0 40px 18px !important}
 @media (max-width:640px){#faq .faq-list{gap:10px}#faq .faq-item summary{padding:12px 22px !important}#faq .faq-item[open] > summary{padding-bottom:6px !important}#faq .faq-item .faq-answer{padding:0 22px 16px !important}}
-</style>
+
+/* Hero : ligne sous le bouton plus fine */
+a.hero-cta::after{height:.5px !important;transform-origin:left;}
+@media (max-resolution:1.5dppx){a.hero-cta::after{height:1px !important;opacity:.6}}
+a.hero-cta .hero-cta-glow{height:2px !important;bottom:-.75px !important}
+a.hero-cta{padding-bottom:6px !important}
+
+/* Sélection : 5 cartes par ligne sur toute la largeur de l'écran */
+@media (min-width:1280px){
+.product-grid{--pgw:min(1760px,calc(100vw - 2 * clamp(24px,3.2vw,60px)));width:var(--pgw) !important;max-width:none !important;margin-left:calc(50% - var(--pgw) / 2) !important;grid-template-columns:repeat(5,minmax(0,1fr)) !important}}
+@media (max-width:1279px){.product-grid > a.pg-5th:not(.is-filtered-out){display:none !important}.product-grid.show-all > a.pg-5th:not(.is-filtered-out),.product-grid.is-filtering > a.pg-5th:not(.is-filtered-out){display:flex !important}}
+
+/* Marque : fond blanc simple */
+#la-marque{background:#FFFFFF !important}
+#la-marque > .sel-bg{display:none !important}
+#la-marque::before,#la-marque::after{display:none !important;content:none !important}
+
+/* Sélection : moins de 5 cartes affichées → centrées, même largeur de carte */
+@media (min-width:1280px){
+.product-grid.is-few-f{grid-template-columns:repeat(var(--nf),calc((var(--pgw) - 80px) / 5)) !important;justify-content:center !important}
+.product-grid.is-few{grid-template-columns:repeat(var(--n),calc((var(--pgw) - 80px) / 5)) !important;justify-content:center !important}}
+
+/* Sélection : la dernière ligne (incomplète) est toujours centrée */
+@media (min-width:1025px){
+.product-grid,.product-grid.is-few,.product-grid.is-few-f{display:flex !important;flex-wrap:wrap;justify-content:center !important;gap:20px}
+.product-grid > a{flex:0 0 calc((100% - 60px) / 4);min-width:0;max-width:calc((100% - 60px) / 4)}}
+@media (min-width:1280px){.product-grid > a{flex-basis:calc((100% - 80px) / 5);max-width:calc((100% - 80px) / 5)}}
+.f-paym li{background:transparent !important;border-color:transparent !important;padding:0 8px !important}.f-pay-visa img{height:13px;width:auto;display:block}.f-pay-mc img{height:22px;width:auto;display:block}.f-pay-pp img{height:15px;width:auto;display:block}.f-pay-ap img{height:19px;width:auto;display:block}.f-selects + .f-paym{flex-direction:column !important;justify-content:flex-start !important;align-items:flex-start !important;margin-top:22px !important}.f-selects + .f-paym ul{justify-content:flex-start !important;gap:6px 14px}.f-selects + .f-paym li:first-child{padding-left:0 !important}footer.site-footer{background:#001229 url(assets/footer-montagnes.webp) center top / max(100%, 1500px) auto no-repeat !important}footer.site-footer .f-mont-stage{display:none !important}@media (min-width:901px){footer.site-footer .f-top{grid-template-columns:minmax(270px,27%) minmax(0,1fr) !important}footer.site-footer .f-cols .f-col{flex:1 1 auto !important;padding:0 clamp(8px,1.2vw,28px) !important}footer.site-footer .f-cols .f-col a{white-space:nowrap;font-size:clamp(12px,.95vw,16px) !important}footer.site-footer .f-cols .f-col h3{font-size:clamp(12px,.95vw,17px) !important}}
+footer.site-footer .f-mont-t{display:none !important}
+footer.site-footer .f-mont-stage::after{background:linear-gradient(180deg,rgba(6,24,58,0) 0%,rgba(6,24,58,0) 40%,rgba(6,24,58,.5) 60%,rgba(6,24,58,.85) 76%,#06183A 90%) !important}
+footer.site-footer .f-col h3{position:relative;font-size:17px !important;letter-spacing:.03em !important;padding-bottom:14px;margin-bottom:20px !important;color:#FFFFFF !important}
+footer.site-footer .f-col h3::after{content:"";position:absolute;left:0;bottom:0;width:40px;height:3px;border-radius:2px;background:#F5A623}
+footer.site-footer .f-col a{text-decoration:none !important;color:rgba(255,255,255,.92) !important;font-size:16px !important;transition:color .2s}
+footer.site-footer .f-col a:hover{color:#F5A623 !important}
+footer.site-footer .f-col ul{gap:13px !important}
+footer.site-footer .f-social{gap:14px !important}
+footer.site-footer .f-social a{width:44px !important;height:44px !important;margin-left:0 !important;border-radius:10px;background:rgba(255,255,255,.1);color:#FFFFFF !important;transition:background .2s}
+footer.site-footer .f-social a:hover{background:rgba(255,255,255,.2)}
+footer.site-footer .f-bottom{display:flex !important;justify-content:center;align-items:center;border-top:1px solid rgba(255,255,255,.18) !important;margin-top:44px !important;padding-top:28px !important}
+footer.site-footer .f-bottom .f-paym{flex-direction:row !important;align-items:center !important;justify-content:center !important;gap:12px 30px !important}
+footer.site-footer .f-bottom .f-paym-t{font-size:13px !important;letter-spacing:.08em}
+footer.site-footer .f-bottom .f-paym ul{gap:10px 26px !important;justify-content:center !important}
+footer.site-footer .f-bottom .f-paym li{padding:0 !important}
+@media (min-width:901px){
+footer.site-footer .f-wrap{max-width:1640px !important}footer.site-footer .f-brand,footer.site-footer .f-cols,footer.site-footer .f-col{top:0 !important}
+footer.site-footer .f-top{grid-template-columns:minmax(320px,30%) minmax(0,1fr) !important;gap:0 !important;align-items:stretch !important}
+footer.site-footer .f-brand{margin-left:0 !important;max-width:none !important;padding-right:clamp(24px,2.6vw,44px);border-right:1px solid rgba(255,255,255,.14)}
+footer.site-footer .f-cols{gap:0 !important}
+footer.site-footer .f-col{flex:1 1 0 !important;padding:0 clamp(14px,1.8vw,30px);text-align:left !important}
+footer.site-footer .f-col + .f-col{border-left:1px solid rgba(255,255,255,.12)}
+footer.site-footer .f-col ul{align-items:flex-start !important}
+footer.site-footer .f-col li{justify-content:flex-start !important}
+}
+@media (max-width:900px){
+footer.site-footer .f-col h3::after{left:50%;transform:translateX(-50%)}
+}
+footer.site-footer{-webkit-mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !important;-webkit-mask-position:0 0,0 calc(5vw - 2px) !important;mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !important;mask-position:0 0,0 calc(5vw - 2px) !important}footer.site-footer .f-wave{display:none !important}@media (min-width:901px) and (max-width:1000px){footer.site-footer .f-cols .f-col.f-col a{font-size:13px !important}footer.site-footer .f-cols .f-col.f-col{padding:0 8px !important}}@media (min-width:901px) and (max-width:1300px){footer.site-footer .f-top{grid-template-columns:minmax(0,1fr) !important;row-gap:40px !important}footer.site-footer .f-brand{border-right:0 !important;padding-right:0 !important}footer.site-footer .f-cols .f-col:first-child{padding-left:0 !important}footer.site-footer .f-cols .f-col a{font-size:14px !important}footer.site-footer .f-cols .f-col h3{font-size:14px !important}}@media (min-width:901px){footer.site-footer .f-cols{align-items:flex-start !important}footer.site-footer .f-brand{border-right:0 !important}footer.site-footer .f-cols .f-col{align-self:flex-start !important;border-left:1px solid rgba(255,255,255,.14)}footer.site-footer .f-cols{margin-left:0 !important}}@media (min-width:901px) and (max-width:1300px){footer.site-footer .f-cols .f-col:first-child{border-left:0 !important}}@media (min-width:901px){footer.site-footer{background-attachment:fixed !important;background-position:center var(--fbg-y,0px) !important}}footer.site-footer .f-bottom .f-paym .f-paym-t{font-weight:400 !important}#mobile-menu .mg-tile .mg-ill{position:absolute;inset:6% 6% 18%;width:88%;height:76%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));transition:transform .5s ease}#mobile-menu .mg-tile:hover .mg-ill{transform:scale(1.04)}.hero-news{margin-top:clamp(26px,3vh,40px);width:min(100%,940px);display:flex;flex-direction:column;gap:12px}.hero-news[hidden]{display:none !important}.hn-h{margin:0;display:flex;align-items:center;gap:16px;font:400 11.5px/1 Manrope,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.78)}.hn-h::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.22);order:1}.hn-h a{order:2;color:#FFFFFF;text-decoration:none;border-bottom:1px solid rgba(245,166,35,.8);padding-bottom:3px;transition:color .2s}.hn-h a:hover{color:#F5A623}.hn-list{display:grid;grid-template-columns:repeat(var(--hn,3),minmax(0,1fr));gap:12px}.hn-card{display:flex;align-items:center;gap:14px;min-width:0;padding:10px 14px 10px 10px;text-decoration:none;color:#FFFFFF;background:rgba(10,14,18,.38);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);transition:border-color .25s,background .25s}.hn-card:hover{border-color:rgba(245,166,35,.85);background:rgba(10,14,18,.55)}.hn-pic{flex:none;width:64px;height:64px;overflow:hidden;background:rgba(255,255,255,.08)}.hn-pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}.hn-card:hover .hn-pic img{transform:scale(1.06)}.hn-txt{display:flex;flex-direction:column;gap:6px;min-width:0}.hn-meta{font:400 11px/1 Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#FFD9A0}.hn-title{font:500 14.5px/1.3 Manrope,sans-serif;color:#FFFFFF;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}@media (max-width:760px){.hn-list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0;padding:0}.hn-list::-webkit-scrollbar{display:none}.hn-card{flex:0 0 82%;scroll-snap-align:start}.hn-list:has(> :only-child) .hn-card{flex-basis:100%}}.hn-pic{display:flex;align-items:center;justify-content:center}.hn-pic svg{width:28px;height:28px;fill:none;stroke:#FFD9A0;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.fb-sec{background:#0A1A33;padding:96px 24px 112px}.fb-sec[hidden]{display:none !important}.fb-blog{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:40px}.fb-head{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}.fb-title{margin:0;font-family:Manrope,sans-serif;font-weight:300;font-size:clamp(30px,3.4vw,44px);line-height:1.1;letter-spacing:.01em;text-transform:uppercase;color:#FFFFFF}.fb-sub{margin:0;font-family:Manrope,sans-serif;font-weight:400;font-size:17px;line-height:1.6;letter-spacing:.06em;text-transform:uppercase;color:#C3CBD0;max-width:640px}.fb-sub span{color:#FFFFFF;text-decoration:underline;text-decoration-color:rgba(245,166,35,.8);text-decoration-thickness:.5px;text-underline-offset:6px}@media (max-width:640px){.fb-sub{font-size:14.5px;letter-spacing:.04em}}.fb-list{display:grid;grid-template-columns:repeat(var(--fb,3),minmax(0,360px));justify-content:center;gap:24px}.fb-card{display:flex;flex-direction:column;text-decoration:none;color:#FFFFFF;box-shadow:inset 0 0 0 .5px rgba(180,186,190,.35);transition:box-shadow .25s}.fb-card:hover{box-shadow:inset 0 0 0 1px #F5A623}.fb-pic{aspect-ratio:16/10;overflow:hidden;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center}.fb-pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}.fb-card:hover .fb-pic img{transform:scale(1.04)}.fb-pic svg{width:40px;height:40px;fill:none;stroke:rgba(255,217,160,.75);stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}.fb-txt{display:flex;flex-direction:column;gap:10px;padding:22px 24px 26px}.fb-meta{font:400 11.5px/1 Manrope,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#FFD9A0}.fb-t{font:500 19px/1.3 Manrope,sans-serif;color:#FFFFFF}.fb-ex{font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.68)}.fb-more{margin-top:4px;font:400 12.5px/1 Manrope,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF;align-self:flex-start;padding-bottom:5px;border-bottom:1px solid #F5A623}.fb-card:hover .fb-more{color:#F5A623}.fb-all{margin:0;text-align:center}.fb-btn{display:inline-flex;align-items:center;min-height:54px;padding:0 32px;border:1px solid #FFFFFF;color:#FFFFFF;text-decoration:none;font:300 clamp(15px,1.4vw,18px)/1 Manrope,sans-serif;letter-spacing:.01em;text-transform:uppercase;transition:background .2s,color .2s}.fb-btn:hover{background:#FFFFFF;color:#0A0A0A}@media (max-width:760px){.fb-sec{padding:64px 16px 80px}.fb-list{grid-template-columns:minmax(0,1fr)}.fb-t{font-size:17px}}footer.site-footer .f-col h3::after{display:none !important}/* Footer : les bois sont noirs et s'éclairent en montant vers les crêtes et le ciel */footer.site-footer{--fo:0px;--fih:calc(max(100vw, 1500px) / 3);background:linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) calc(var(--fo) + var(--fih) * .12),rgba(0,0,0,.55) calc(var(--fo) + var(--fih) * .3),rgba(0,0,0,.9) calc(var(--fo) + var(--fih) * .55),rgba(0,0,0,.97) calc(var(--fo) + var(--fih) * .9)),url(assets/footer-montagnes.webp) center top / max(100%, 1500px) auto no-repeat #001229 !important}@media (min-width:901px){footer.site-footer{--fo:var(--fbg-y,0px);background-attachment:fixed,fixed !important;background-position:0 0,center var(--fbg-y,0px) !important;background-size:100% 100%,max(100%, 1500px) auto !important}}</style>
 </head>
 <body>
 <div style="font-family: 'DM Sans', system-ui, sans-serif; color: #14212B; background: #F8F6F1; font-size: 17px; line-height: 1.6">
@@ -1616,7 +1672,7 @@ a.hero-cta{letter-spacing:.08em !important}
 <a class="mg-tile" href="veste-otreau.html" data-shop-handle="veste-otreau"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_d_hiver_noire_isolee.png?v=1792739125&width=480" alt="" loading="lazy"><span class="mg-lbl">Vestes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="doudoune-otreau.html" data-shop-handle="doudoune"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Doudoune_noire_matelassee_a_capuche.png?v=1792740172&width=480" alt="" loading="lazy"><span class="mg-lbl">Doudounes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="gilet-otreau.html" data-shop-handle="gilet"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_chauffant_noir_matelasse.png?v=1792739891&width=480" alt="" loading="lazy"><span class="mg-lbl">Gilets<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
-<a class="mg-tile" href="produit.html?p=parka" data-shop-handle="parka"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_parka_noire_impermeable_isolee.png?v=1792743656&width=480" alt="" loading="lazy"><span class="mg-lbl">Parkas<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
+<a class="mg-tile mg-tile-acc" href="collection.html#accessoires"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Ceinturechauffanteenpeluchegrise.png?v=1794240586&width=480" alt="" loading="lazy"><span class="mg-lbl">Accessoires<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="produit.html?p=chaussettes-chauffantes" data-shop-handle="chaussettes-chauffantes"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Chaussettes_chauffantes_grises_en_tricot.png?v=1792746477&width=480" alt="" loading="lazy"><span class="mg-lbl">Chaussettes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="produit.html?p=gants-chauffants" data-shop-handle="gants-chauffants"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gants_chauffants_noirs_assortis.png?v=1792746050&width=480" alt="" loading="lazy"><span class="mg-lbl">Gants<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 </div>
@@ -1661,11 +1717,12 @@ a.hero-cta{letter-spacing:.08em !important}
 <div style="display: flex; flex-direction: column; align-items: center; gap: 36px">
 <h2 class="sec-title" style="margin: 0; text-align: center; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(30px, 3.4vw, 44px); line-height: 1.1; letter-spacing: 0.01em; text-transform: uppercase">La sélection</h2>
 <div role="group" class="type-filters" aria-label="Filtrer par type de vêtement" style="width: 100%; max-width: 1040px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px">
-<button type="button" class="type-btn" data-filter="veste" aria-pressed="false">Vestes</button>
-<button type="button" class="type-btn" data-filter="parka" aria-pressed="false">Parkas</button>
+<button type="button" class="type-btn" data-filter="veste parka" aria-pressed="false">Vestes</button>
+
 <button type="button" class="type-btn" data-filter="gilet" aria-pressed="false">Gilets</button>
 <button type="button" class="type-btn" data-filter="gants" aria-pressed="false">Gants</button>
 <button type="button" class="type-btn" data-filter="chaussettes" aria-pressed="false">Chaussettes</button>
+<button type="button" class="type-btn" data-filter="accessoires" aria-pressed="false">Accessoires</button>
 </div>
 </div>
 <div class="product-grid">
@@ -1727,7 +1784,7 @@ a.hero-cta{letter-spacing:.08em !important}
 </a>
 
 
-<a data-handle="gilet-polaire-otreau" href="#collection" class="product-extra" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<a data-handle="gilet-polaire-otreau" href="#collection" class="pg-5th" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <video src="assets/gilet-polaire-rose.mp4#t=0.1" muted loop playsinline preload="none" class="hover-video" aria-label="Gilet polaire chauffant rose en rotation" style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 45%; background: transparent; display: block"></video>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
 <h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GILET POLAIRE</span></h3>
@@ -1818,7 +1875,7 @@ a.hero-cta{letter-spacing:.08em !important}
 
 <!-- Tailles & mesures -->
 <section id="tailles" class="atelier" aria-labelledby="tailles-titre">
-<div class="tl-clip" aria-hidden="true"><video class="tl-bg" src="assets/marque-bg.mp4" poster="assets/marque-bg-poster.jpg" autoplay muted loop playsinline preload="metadata"></video></div>
+<div class="tl-clip" aria-hidden="true"><img class="tl-bg" src="assets/marque-bg-debut.webp" alt="" width="720" height="1280" decoding="async"></div>
 <div class="tl-veil" aria-hidden="true"></div>
 <!-- Transition en vague depuis la section batterie -->
 <div class="wave-sep wave-top" aria-hidden="true"><svg viewBox="0 0 1440 220" preserveAspectRatio="none" focusable="false">
@@ -2008,6 +2065,10 @@ a.hero-cta{letter-spacing:.08em !important}
 </section>
 
 <!-- FAQ -->
+<!-- Blog : les 3 derniers articles Shopify (section masquée tant qu'aucun article n'est publié) -->
+<section id="blog-recent" class="fb-sec" hidden>
+<div class="fb-blog"><div class="fb-head"><h2 class="sec-title fb-title">Récemment sur le blog</h2><p class="fb-sub">Conseils et inspirations <span>pour profiter de l’hiver dehors.</span></p></div><div class="fb-list"></div><p class="fb-all"><a class="fb-btn" href="blog.html">Tous les articles</a></p></div>
+</section>
 <section id="faq" style="padding: 64px 24px 128px">
 <div style="max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 40px">
 <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px">
@@ -2065,7 +2126,7 @@ a.hero-cta{letter-spacing:.08em !important}
 <div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="#collection">Gilets chauffants</a></li><li><a href="#collection">Doudounes chauffantes</a></li><li><a href="#collection">Vestes parka chauffantes</a></li><li><a href="#collection">Gants chauffants</a></li><li><a href="#collection">Chaussettes chauffantes</a></li><li><a href="#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul></div><div class="f-col"><h3>Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="#faq">Questions fréquentes</a></li><li><a href="#tailles">Guide des tailles</a></li><li><a href="#batterie">Batterie &amp; autonomie</a></li><li><a href="#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div><div class="f-col"><h3>Informations légales</h3><ul><li><a href="politique-de-retour.html">Politique de retour</a></li><li><a href="politique-de-confidentialite.html">Politique de confidentialité</a></li><li><a href="politique-de-paiement.html">Politique de paiement</a></li><li><a href="politique-de-cookies.html">Politique de cookies</a></li><li><a href="conditions-generales.html">Conditions générales</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="mentions-legales.html">Mentions légales</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
-<div class="f-paym" aria-label="Moyens de paiement acceptés"><span class="f-paym-t">Paiement sécurisé</span><ul><li>Visa</li><li>Mastercard</li><li>PayPal</li><li>Apple Pay</li></ul></div>
+<div class="f-paym" aria-label="Moyens de paiement acceptés"><span class="f-paym-t">Mode de paiement</span><ul><li class="f-pay-visa"><img src="assets/visa.webp" alt="Visa" width="240" height="78" loading="lazy"></li><li class="f-pay-mc"><img src="assets/mastercard.webp" alt="Mastercard" width="133" height="80" loading="lazy"></li><li class="f-pay-pp"><img src="assets/paypal.webp" alt="PayPal" width="226" height="60" loading="lazy"></li><li class="f-pay-ap"><img src="assets/applepay.webp" alt="Apple Pay" width="146" height="60" loading="lazy"></li></ul></div>
 </div>
 </div>
 </footer>
@@ -2085,7 +2146,8 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
     {title:'Vestes', k:['veste','parka'], test:/^(VESTE|DOUDOUNE|PARKA|SOFTSHELL|SWEE?A?T)/},
     {title:'Gilets', k:['gilet'], test:/^GILET/},
     {title:'Gants', k:['gants'], test:/^GANT/},
-    {title:'Chaussettes', k:['chaussettes'], test:/^CHAUSSETTE/}
+    {title:'Chaussettes', k:['chaussettes'], test:/^CHAUSSETTE/},
+    {title:'Accessoires', k:['accessoires'], test:/^(CHAUFFE|ACCESSOIRE)/}
   ];
   function build(){
   rows.innerHTML='';
@@ -2121,7 +2183,7 @@ b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='t
       cards().forEach(function(a){a.classList.toggle('is-filtered-out', !!list && list.indexOf(a.dataset.cat)<0)});
       grid.classList.toggle('is-filtering', !!list);
       var n=cards().filter(function(x){return !x.classList.contains('is-filtered-out')}).length;
-      if(list&&n<4){grid.classList.add('is-few-f');grid.style.setProperty('--nf',n)}else grid.classList.remove('is-few-f');
+      if(list&&n<(innerWidth>=1280?5:4)){grid.classList.add('is-few-f');grid.style.setProperty('--nf',n)}else grid.classList.remove('is-few-f');
       if(wrap) wrap.classList.toggle('is-filtering', !!list);
     }
     function refresh(){
@@ -2232,16 +2294,16 @@ var SIZE_GUIDE_GILET = { sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL']
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] };
 var SIZE_GUIDE = {
-  'gilet': { name: 'GILET DOUDOUNE', flat: 'real-gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> elles taillent nettement plus petit que les tailles européennes.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'gilet': { name: 'GILET DOUDOUNE', flat: 'real-gilet', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Nos tailles sont petites :</strong> elles taillent nettement plus petit que les tailles habituelles.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Repère :</strong> le mannequin mesure 1,80 m pour 85 kg et porte du 4XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['48 cm','50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['63 cm','65 cm','67 cm','69 cm','71 cm','73 cm','75 cm','76 cm','77 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['37 cm','38 cm','39 cm','41 cm','43 cm','45 cm','46 cm','47 cm','48 cm'] } ] },
-  'gilet-fin': { name: 'GILET ULTRA FIN', flat: 'real-gilet-fin', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe, taille petit :</strong> ce sont des tailles asiatiques, plus petites que les tailles européennes. Suivez bien le tableau, et prenez la taille au-dessus en cas de doute.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
+  'gilet-fin': { name: 'GILET ULTRA FIN', flat: 'real-gilet-fin', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Coupe unisexe, taille petit :</strong> nos tailles sont petites. Suivez bien le tableau, et prenez la taille au-dessus en cas de doute.</li><li><strong>Mesures prises à la main :</strong> un écart de 1 à 3 cm est possible.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['M','L','XL','2XL','3XL','4XL'], rows: [
     { k: 'A', label: 'Largeur poitrine', values: ['47 cm','49 cm','51 cm','53 cm','55 cm','57 cm'] },
     { k: 'B', label: 'Longueur dos',     values: ['58 cm','60 cm','62 cm','64 cm','66 cm','68 cm'] },
     { k: 'C', label: 'Largeur épaules',  values: ['36 cm','38 cm','41 cm','43 cm','45 cm','47 cm'] } ],
     fit: [['M','155 – 160 cm','45 – 50 kg'],['L','160 – 165 cm','55 – 60 kg'],['XL','170 – 175 cm','62,5 – 67,5 kg'],['2XL','175 – 180 cm','67,5 – 72,5 kg'],['3XL','180 – 185 cm','75 – 80 kg'],['4XL','185 – 190 cm','82,5 – 87,5 kg']] },
-  'doudoune': { name: 'DOUDOUNE', flat: 'real-doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Tailles asiatiques :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
+  'doudoune': { name: 'DOUDOUNE', flat: 'real-doudoune', note: '<div class="size-alert" role="note"><p class="size-alert-t">Bon à savoir avant de choisir</p><ul><li><strong>Nos tailles sont petites :</strong> choisissez 3 à 4 tailles au-dessus de votre taille habituelle.</li><li><strong>Correspondances :</strong> EU XS = L · EU S = XL · EU M = 2XL · EU L = 3XL · EU XL = 4XL · EU 2XL = 5XL · EU 3XL = 6XL.</li><li><strong>Un doute sur votre taille ?</strong> <a href="contact.html">Écrivez-nous</a> votre taille et votre poids : nous vous conseillerons la taille qui vous convient.</li></ul></div>', sizes: ['S','M','L','XL','2XL','3XL','4XL','5XL','6XL'], rows: [
     { k: 'A', label: 'Largeur poitrine',  values: ['50 cm','52 cm','54 cm','56 cm','58 cm','60 cm','62 cm','64 cm','66 cm'] },
     { k: 'B', label: 'Longueur du corps', values: ['62 cm','63 cm','65 cm','67 cm','69 cm','71 cm','75 cm','77 cm','79 cm'] },
     { k: 'C', label: 'Largeur épaules',   values: ['42,5 cm','44 cm','45,2 cm','46,4 cm','47,6 cm','48,8 cm','50 cm','51,2 cm','52,4 cm'] },
@@ -2647,5 +2709,16 @@ function end(e){if(e)e.stopPropagation();if(!on)return;on=false;if(lock!=='x')re
 var n=Math.round(wl.scrollLeft/st);if(Math.abs(dx)>st*.15&&Math.round(s0/st)===n)n+=dx>0?-1:1;n=Math.max(0,Math.min(lis.length-1,n));
 var li=lis[n];if(li)li.click();else wl.style.scrollSnapType='';}
 track.addEventListener('touchend',end);track.addEventListener('touchcancel',end);})();</script>
+<script>/* footer : la photo reste fixe, le texte défile par-dessus */(function(){var f=document.querySelector('footer.site-footer');if(!f)return;function top(){var m=0;[].forEach.call(document.querySelectorAll('header,.site-header,.bandeau-curtain,[class*=announce]'),function(e){var c=getComputedStyle(e),r=e.getBoundingClientRect();if((c.position==='fixed'||c.position==='sticky')&&r.top<80&&r.bottom<200&&r.bottom>0)m=Math.max(m,r.bottom)});return m}function u(){f.style.setProperty('--fbg-y',Math.max(top(),innerHeight-f.offsetHeight)+'px')}u();var rq=0;addEventListener('scroll',function(){if(rq)return;rq=requestAnimationFrame(function(){rq=0;u()})},{passive:true});addEventListener('resize',u);addEventListener('load',u);if(window.ResizeObserver)new ResizeObserver(u).observe(f)})();</script>
+<script>/* Accueil : les 3 derniers articles du blog, sous la FAQ */(function(){var box=document.querySelector('.fb-sec');if(!box)return;
+function esc(t){return String(t==null?'':t).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function day(iso){try{return new Date(iso).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})}catch(e){return''}}
+var ICO='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3z"/><path d="M18 8h2v9a2 2 0 0 1-2 2"/><path d="M8 9h6M8 12.5h6M8 16h4"/></svg>';
+fetch('https://pcbvi7-ea.myshopify.com/api/2026-10/graphql.json',{method:'POST',headers:{'Content-Type':'application/json','X-Shopify-Storefront-Access-Token':'454c67e9623c56f1a73831ea0a3e76bf'},
+body:JSON.stringify({query:'{ articles(first: 3, sortKey: PUBLISHED_AT, reverse: true) { nodes { handle title publishedAt content excerpt image { url altText } } } }'})})
+.then(function(r){return r.json()}).then(function(j){var list=(j&&j.data&&j.data.articles&&j.data.articles.nodes)||[];if(!list.length)return;
+box.querySelector('.fb-list').innerHTML=list.map(function(a){var t=String(a.content||'').trim(),w=t.split(/\s+/).filter(Boolean).length,min=Math.max(1,Math.round(w/220)),ex=a.excerpt||t;if(ex.length>140)ex=ex.slice(0,137).replace(/\s+\S*$/,'').replace(/[\s.,;:!?…]+$/,'')+'…';
+return '<a class="fb-card" href="article.html?a='+encodeURIComponent(a.handle)+'"><span class="fb-pic">'+(a.image?'<img src="'+esc(a.image.url+(a.image.url.indexOf('?')<0?'?':'&')+'width=800')+'" alt="'+esc(a.image.altText||'')+'" loading="lazy">':ICO)+'</span><span class="fb-txt"><span class="fb-meta">'+esc(day(a.publishedAt))+' · '+min+' min de lecture</span><span class="fb-t">'+esc(a.title)+'</span><span class="fb-ex">'+esc(ex)+'</span><span class="fb-more">Lire l’article</span></span></a>'}).join('');
+box.style.setProperty('--fb',list.length);box.hidden=false}).catch(function(){})})();</script>
 </body>
 </html>

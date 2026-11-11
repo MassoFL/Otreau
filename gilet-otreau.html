@@ -602,7 +602,7 @@ html,body{overflow-x:clip}
 body{background:#F8F6F1}
 .pg-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 .pg-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:blur(26px) saturate(1.1) brightness(1.15);transform:scale(1.12)}
-.pg-bg::after{content:"";position:absolute;inset:0;background:#F8F6F1 url(assets/collection-bg.jpg) center / cover no-repeat;opacity:.86}
+.pg-bg::after{content:"";position:absolute;inset:0;background:#F8F6F1 url(assets/collection-bg.jpg) center / cover no-repeat;opacity:.93}
 .pg-bg + div{background:transparent !important}
 .pg-rain{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 .pd-trust-tab,.pd-trust-tab::before,.pd-trust-tab::after,.pd-trust-panel{border-radius:0 !important}
@@ -1098,7 +1098,131 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 #guide-tailles .patron{border-radius:0 !important}
 #guide-tailles .patron::after{content:none !important;display:none !important}
 #guide-tailles .pd-size-ban{margin-left:calc(clamp(-48px,-4vw,-24px) + 12px) !important;margin-right:calc(clamp(-48px,-4vw,-24px) + 12px) !important;margin-top:calc(clamp(-48px,-4vw,-24px) + 12px) !important}
-</style>
+
+
+/* Guide des tailles : message de la bannière en noir */
+#guide-tailles .pd-size-ban li{color:#0A0A0A !important}
+
+/* Options du produit : traits et cercle orange plus fins */
+.pd-info .pd-size-row > [aria-pressed="true"],.pd-size-field .pd-opt[aria-pressed="true"],.pd-batt-field .pd-opt[aria-pressed="true"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="Sans"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="sans"],.pd-batt-field .pd-opt[aria-pressed="true"]:nth-child(2):not([data-value]),.pd-info .pd-opt[data-group][aria-pressed="true"]{box-shadow:inset 0 -2px 0 #F5A623 !important}
+.pd-swatch[aria-pressed="true"]{box-shadow:0 0 0 3px #FFFFFF,0 0 0 4.5px #F5A623,0 6px 14px rgba(20,33,43,.25) !important}
+
+/* Taille sélectionnée : trait orange en haut, point vert en bas */
+.pd-info .pd-size-row > [aria-pressed="true"],.pd-size-field .pd-opt[aria-pressed="true"]{box-shadow:inset 0 2px 0 #F5A623 !important}
+.pd-size-field .pd-opt[aria-pressed="true"] .pd-sel-dot{top:auto !important;bottom:6px !important}
+
+/* Option batterie sélectionnée : trait orange en haut */
+.pd-batt-field .pd-opt[aria-pressed="true"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="Sans"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="sans"],.pd-batt-field .pd-opt[aria-pressed="true"]:nth-child(2):not([data-value]),.pd-info .pd-opt[data-group="batterie"][aria-pressed="true"]{box-shadow:inset 0 2px 0 #F5A623 !important}
+
+/* Taille sélectionnée : trait vert en bas (à la place du point) */
+.pd-size-field .pd-opt[aria-pressed="true"] .pd-sel-dot{top:auto !important;bottom:0 !important;left:0 !important;right:0 !important;margin:0 !important;width:auto !important;height:2px !important;border-radius:0 !important;background:#2FA05A !important;box-shadow:none !important;animation:pdSelBar 1.6s ease-in-out infinite !important}
+.pd-size-field .pd-opt[aria-pressed="true"] .pd-sel-dot.is-out{background:#8A949B !important;animation:none !important}
+@keyframes pdSelBar{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.pd-size-field .pd-opt[aria-pressed="true"] .pd-sel-dot{animation:none !important}}
+
+/* Taille sélectionnée : sans trait orange */
+.pd-info .pd-size-row > [aria-pressed="true"],.pd-size-field .pd-opt[aria-pressed="true"]{box-shadow:none !important}
+
+/* Option batterie sélectionnée : sans trait orange */
+.pd-batt-field .pd-opt[aria-pressed="true"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="Sans"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="sans"],.pd-batt-field .pd-opt[aria-pressed="true"]:nth-child(2):not([data-value]),.pd-info .pd-opt[data-group="batterie"][aria-pressed="true"]{box-shadow:none !important}
+
+/* Couleur sélectionnée : cercle noir */
+.pd-swatch[aria-pressed="true"]{box-shadow:0 0 0 3px #FFFFFF,0 0 0 4.5px #14212B,0 6px 14px rgba(20,33,43,.25) !important}
+
+/* Ajouter au panier : lumière du contour en vert */
+.pd-add.cta-glow-green::after{background:conic-gradient(from var(--glow-a),transparent 0 55%,#1E7A3C 65%,#2FA05A 75%,#8EE0AE 84%,#D8F5E3 89%,#5CC487 95%,transparent 100%) !important;filter:drop-shadow(0 0 4px rgba(47,160,90,.8)) drop-shadow(0 0 10px rgba(30,122,60,.45)) !important}
+
+/* Ajouter au panier : sans lumière autour du contour */
+.pd-add.cta-glow-green::after{content:none !important;display:none !important;animation:none !important}
+
+/* Rectangle du milieu : photo de la batterie et chiffres clés en haut */
+.pd-details .pd-batt{margin:0 auto !important;align-self:center;width:min(100%,280px);height:auto;overflow:visible;background:none;flex:none}
+.pd-details .pd-batt img{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 18px rgba(20,33,43,.22))}
+.pd-details .pd-batt-stats{display:flex;justify-content:center;align-items:stretch}
+.pd-details .pd-batt-stats > div{flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:4px;position:relative}
+.pd-details .pd-batt-stats > div + div::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:rgba(245,166,35,.6)}
+.pd-details .pd-batt-stats b{font:500 26px/1 Manrope,sans-serif;color:#14212B;white-space:nowrap}
+.pd-details .pd-batt-stats b small{margin-left:3px;font-size:13px;font-weight:600;color:#C9480F}
+.pd-details .pd-batt-stats span{font:500 11px/1.2 Manrope,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6F7A82}
+@media (max-width:640px){.pd-details .pd-batt-stats b{font-size:21px}.pd-details .pd-batt-stats span{font-size:10px}}
+
+/* Rectangle du milieu : éléments resserrés verticalement */
+.pd-details .pd-mag .pd-heat{gap:9px !important;padding-top:22px !important;padding-bottom:22px !important;justify-content:center !important}
+.pd-details .pd-mag .pd-heat .pd-batt{width:min(100%,230px) !important}
+.pd-details .pd-mag .pd-heat .pd-heat-sep{margin:6px auto !important}
+.pd-details .pd-mag .pd-heat .pd-heat-n{display:none !important}
+.pd-details .pd-mag .pd-heat .lvl{gap:5px !important}
+@media (min-width:641px){.pd-details .pd-mag .pd-heat .pd-props .pd-row{flex:0 0 96px !important;width:96px !important;height:auto !important;aspect-ratio:auto !important;padding:4px !important}}
+
+/* Guide des tailles : vraie photo du produit avec les mesures A, B, C, D */
+#guide-tailles svg.flat-real{display:block;width:100%;max-width:420px;height:auto;margin:0 auto;overflow:visible}
+#guide-tailles svg.flat-real .dim line,#guide-tailles svg.flat-real .dim path{stroke:#14212B;stroke-width:3.2;fill:none}
+#guide-tailles svg.flat-real .dim .ext{stroke-dasharray:9 8;opacity:.75}
+#guide-tailles svg.flat-real .dim circle{fill:#14212B}
+#guide-tailles svg.flat-real .dim text{font-family:'DM Mono',monospace;font-size:24px;font-weight:600;fill:#FFFFFF;text-anchor:middle;dominant-baseline:central}
+#guide-tailles svg.flat-real .dim.is-active line,#guide-tailles svg.flat-real .dim.is-active path{stroke:#E8641F;stroke-width:5}
+#guide-tailles svg.flat-real .dim.is-active circle{fill:#E8641F}
+
+#guide-tailles svg.flat-real[data-product="gilet-photo"]{width:auto;height:min(560px,140vw);max-width:100%}
+
+/* Onglets de confiance : textes en noir */
+#pd-trust-panel,#pd-trust-panel p,#pd-trust-panel [data-content],#pd-trust-panel a{color:#0A0A0A !important}
+
+/* Guide des tailles : cadre transparent, contour blanc */
+#guide-tailles .patron{background:transparent !important;box-shadow:none !important;border:1px solid #FFFFFF !important}
+
+/* Complétez votre tenue : une ligne de 4 cartes plus petites qui défile */
+.pd-cross .pd-cross-grid{display:block !important;max-width:1100px;margin:28px auto 0;overflow:hidden;position:relative}
+.pd-cross .pd-cross-track{display:flex;gap:20px;will-change:transform}
+.pd-cross .pd-cross-track > a[data-handle]{flex:0 0 calc((100% - 60px) / 4) !important;min-width:0}
+.pd-cross a[data-handle] > div:last-child{padding:14px 10px 18px !important;gap:8px !important}
+.pd-cross a[data-handle] h3{font-size:clamp(16px,1.35vw,19px) !important}
+.pd-cross a[data-handle] .pc-cta{min-height:42px !important;font-size:14px !important;max-width:200px !important}
+.pd-cross .pc-feats{display:none !important}
+@media (max-width:900px){.pd-cross .pd-cross-track > a[data-handle]{flex-basis:calc((100% - 40px) / 3) !important}}
+@media (max-width:560px){.pd-cross .pd-cross-track{gap:14px}.pd-cross .pd-cross-track > a[data-handle]{flex-basis:calc((100% - 14px) / 2) !important}}
+/* Bouton Découvrir tout : même style que « Découvrir l’histoire complète » */
+.pd-cross .pd-cross-more{display:flex;justify-content:center;margin:40px 0 0}
+.pd-cross a.pd-all{display:inline-flex !important;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 32px !important;border:1px solid #14212B !important;border-radius:0 !important;background:transparent !important;color:#14212B !important;font:300 clamp(15px,1.4vw,18px)/1 Manrope,sans-serif !important;letter-spacing:.01em;text-transform:uppercase;text-decoration:none !important;box-shadow:none !important;transition:background .2s,color .2s}
+.pd-cross a.pd-all:hover,.pd-cross a.pd-all:focus-visible{background:#14212B !important;color:#FFFFFF !important}
+.pd-cross a.pd-all svg{display:none !important}
+.f-paym li{background:transparent !important;border-color:transparent !important;padding:0 8px !important}.f-pay-visa img{height:13px;width:auto;display:block}.f-pay-mc img{height:22px;width:auto;display:block}.f-pay-pp img{height:15px;width:auto;display:block}.f-pay-ap img{height:19px;width:auto;display:block}.f-selects + .f-paym{flex-direction:column !important;justify-content:flex-start !important;align-items:flex-start !important;margin-top:22px !important}.f-selects + .f-paym ul{justify-content:flex-start !important;gap:6px 14px}.f-selects + .f-paym li:first-child{padding-left:0 !important}footer.site-footer{background:#001229 url(assets/footer-montagnes.webp) center top / max(100%, 1500px) auto no-repeat !important}footer.site-footer .f-mont-stage{display:none !important}@media (min-width:901px){footer.site-footer .f-top{grid-template-columns:minmax(270px,27%) minmax(0,1fr) !important}footer.site-footer .f-cols .f-col{flex:1 1 auto !important;padding:0 clamp(8px,1.2vw,28px) !important}footer.site-footer .f-cols .f-col a{white-space:nowrap;font-size:clamp(12px,.95vw,16px) !important}footer.site-footer .f-cols .f-col h3{font-size:clamp(12px,.95vw,17px) !important}}
+footer.site-footer .f-mont-t{display:none !important}
+footer.site-footer .f-mont-stage::after{background:linear-gradient(180deg,rgba(6,24,58,0) 0%,rgba(6,24,58,0) 40%,rgba(6,24,58,.5) 60%,rgba(6,24,58,.85) 76%,#06183A 90%) !important}
+footer.site-footer .f-col h3{position:relative;font-size:17px !important;letter-spacing:.03em !important;padding-bottom:14px;margin-bottom:20px !important;color:#FFFFFF !important}
+footer.site-footer .f-col h3::after{content:"";position:absolute;left:0;bottom:0;width:40px;height:3px;border-radius:2px;background:#F5A623}
+footer.site-footer .f-col a{text-decoration:none !important;color:rgba(255,255,255,.92) !important;font-size:16px !important;transition:color .2s}
+footer.site-footer .f-col a:hover{color:#F5A623 !important}
+footer.site-footer .f-col ul{gap:13px !important}
+footer.site-footer .f-social{gap:14px !important}
+footer.site-footer .f-social a{width:44px !important;height:44px !important;margin-left:0 !important;border-radius:10px;background:rgba(255,255,255,.1);color:#FFFFFF !important;transition:background .2s}
+footer.site-footer .f-social a:hover{background:rgba(255,255,255,.2)}
+footer.site-footer .f-bottom{display:flex !important;justify-content:center;align-items:center;border-top:1px solid rgba(255,255,255,.18) !important;margin-top:44px !important;padding-top:28px !important}
+footer.site-footer .f-bottom .f-paym{flex-direction:row !important;align-items:center !important;justify-content:center !important;gap:12px 30px !important}
+footer.site-footer .f-bottom .f-paym-t{font-size:13px !important;letter-spacing:.08em}
+footer.site-footer .f-bottom .f-paym ul{gap:10px 26px !important;justify-content:center !important}
+footer.site-footer .f-bottom .f-paym li{padding:0 !important}
+@media (min-width:901px){
+footer.site-footer .f-wrap{max-width:1640px !important}footer.site-footer .f-brand,footer.site-footer .f-cols,footer.site-footer .f-col{top:0 !important}
+footer.site-footer .f-top{grid-template-columns:minmax(320px,30%) minmax(0,1fr) !important;gap:0 !important;align-items:stretch !important}
+footer.site-footer .f-brand{margin-left:0 !important;max-width:none !important;padding-right:clamp(24px,2.6vw,44px);border-right:1px solid rgba(255,255,255,.14)}
+footer.site-footer .f-cols{gap:0 !important}
+footer.site-footer .f-col{flex:1 1 0 !important;padding:0 clamp(14px,1.8vw,30px);text-align:left !important}
+footer.site-footer .f-col + .f-col{border-left:1px solid rgba(255,255,255,.12)}
+footer.site-footer .f-col ul{align-items:flex-start !important}
+footer.site-footer .f-col li{justify-content:flex-start !important}
+}
+@media (max-width:900px){
+footer.site-footer .f-col h3::after{left:50%;transform:translateX(-50%)}
+}
+footer.site-footer{-webkit-mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !important;-webkit-mask-position:0 0,0 calc(5vw - 2px) !important;mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !important;mask-position:0 0,0 calc(5vw - 2px) !important}footer.site-footer .f-wave{display:none !important}@media (min-width:901px) and (max-width:1000px){footer.site-footer .f-cols .f-col.f-col a{font-size:13px !important}footer.site-footer .f-cols .f-col.f-col{padding:0 8px !important}}@media (min-width:901px) and (max-width:1300px){footer.site-footer .f-top{grid-template-columns:minmax(0,1fr) !important;row-gap:40px !important}footer.site-footer .f-brand{border-right:0 !important;padding-right:0 !important}footer.site-footer .f-cols .f-col:first-child{padding-left:0 !important}footer.site-footer .f-cols .f-col a{font-size:14px !important}footer.site-footer .f-cols .f-col h3{font-size:14px !important}}@media (min-width:901px){footer.site-footer .f-cols{align-items:flex-start !important}footer.site-footer .f-brand{border-right:0 !important}footer.site-footer .f-cols .f-col{align-self:flex-start !important;border-left:1px solid rgba(255,255,255,.14)}footer.site-footer .f-cols{margin-left:0 !important}}@media (min-width:901px) and (max-width:1300px){footer.site-footer .f-cols .f-col:first-child{border-left:0 !important}}@media (min-width:901px){footer.site-footer{background-attachment:fixed !important;background-position:center var(--fbg-y,0px) !important}}footer.site-footer .f-bottom .f-paym .f-paym-t{font-weight:400 !important}#mobile-menu .mg-tile .mg-ill{position:absolute;inset:6% 6% 18%;width:88%;height:76%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));transition:transform .5s ease}#mobile-menu .mg-tile:hover .mg-ill{transform:scale(1.04)}/* Article en 2 colonnes : les paragraphes peuvent passer d'une colonne à l'autre, pour que les deux colonnes finissent à la même hauteur */.pd-details .pd-mag .pd-flow p{break-inside:auto !important}.pd-details .pd-mag .pd-flow .pd-intro > p:first-child{break-inside:avoid !important}.pd-details .pd-mag .pd-flow .pd-ent{margin-top:14px !important}footer.site-footer .f-col h3::after{display:none !important}.pd-cross > .pd-h2{margin-bottom:52px !important}@media (max-width:700px){.pd-cross > .pd-h2{margin-bottom:40px !important}}/* Footer : les bois sont noirs et s'éclairent en montant vers les crêtes et le ciel */footer.site-footer{--fo:0px;--fih:calc(max(100vw, 1500px) / 3);background:linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) calc(var(--fo) + var(--fih) * .12),rgba(0,0,0,.55) calc(var(--fo) + var(--fih) * .3),rgba(0,0,0,.9) calc(var(--fo) + var(--fih) * .55),rgba(0,0,0,.97) calc(var(--fo) + var(--fih) * .9)),url(assets/footer-montagnes.webp) center top / max(100%, 1500px) auto no-repeat #001229 !important}@media (min-width:901px){footer.site-footer{--fo:var(--fbg-y,0px);background-attachment:fixed,fixed !important;background-position:0 0,center var(--fbg-y,0px) !important;background-size:100% 100%,max(100%, 1500px) auto !important}}/* Rectangle du milieu : caractéristiques en lignes, qui s'étirent pour occuper la hauteur */
+.pd-details .pd-mag .pd-heat{justify-content:flex-start !important;gap:20px !important;padding-top:30px !important;padding-bottom:26px !important}
+.pd-details .pd-mag .pd-heat .pd-heat-sep{margin:8px auto !important}
+.pd-details .pd-mag .pd-heat .pd-props{display:flex !important;flex-direction:column !important;flex-wrap:nowrap !important;flex:1 1 auto;justify-content:stretch;gap:0 !important;width:100%;margin-top:2px !important}
+.pd-details .pd-mag .pd-heat .pd-props .pd-row{flex:1 1 auto !important;width:auto !important;min-height:42px;flex-direction:row !important;align-items:center !important;justify-content:space-between !important;gap:18px !important;padding:8px 2px !important;border:0 !important;border-top:1px solid rgba(20,33,43,.12) !important;text-align:left !important}
+.pd-details .pd-mag .pd-heat .pd-props .pd-row:last-child{border-bottom:1px solid rgba(20,33,43,.12) !important}
+.pd-details .pd-mag .pd-heat .pd-props .pd-row span{flex:none;font-size:10.5px !important;letter-spacing:.1em !important;text-transform:uppercase;color:#55616B}
+.pd-details .pd-mag .pd-heat .pd-props .pd-row strong{font-size:13px !important;line-height:1.35 !important;text-align:right !important;color:#14212B}/* Gilet : les blocs du rectangle s'espacent pour occuper toute sa hauteur, sans étirer les lignes */.pd-details .pd-mag .pd-heat{justify-content:space-between !important;gap:14px !important}.pd-details .pd-mag .pd-heat .pd-props{flex:0 0 auto !important}.pd-details .pd-mag .pd-heat .pd-props .pd-row{flex:0 0 auto !important;min-height:50px}</style>
 </head>
 <body>
 <div class="pg-bg" aria-hidden="true"><video src="assets/hero-video-4.mp4" poster="assets/hero-video-4-poster.jpg" muted loop playsinline autoplay preload="auto"></video></div>
@@ -1139,7 +1263,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <a class="mg-tile" href="veste-otreau.html" data-shop-handle="veste-otreau"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_d_hiver_noire_isolee.png?v=1792739125&width=480" alt="" loading="lazy"><span class="mg-lbl">Vestes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="doudoune-otreau.html" data-shop-handle="doudoune"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Doudoune_noire_matelassee_a_capuche.png?v=1792740172&width=480" alt="" loading="lazy"><span class="mg-lbl">Doudounes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="gilet-otreau.html" data-shop-handle="gilet"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_chauffant_noir_matelasse.png?v=1792739891&width=480" alt="" loading="lazy"><span class="mg-lbl">Gilets<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
-<a class="mg-tile" href="produit.html?p=parka" data-shop-handle="parka"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_parka_noire_impermeable_isolee.png?v=1792743656&width=480" alt="" loading="lazy"><span class="mg-lbl">Parkas<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
+<a class="mg-tile mg-tile-acc" href="collection.html#accessoires"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Ceinturechauffanteenpeluchegrise.png?v=1794240586&width=480" alt="" loading="lazy"><span class="mg-lbl">Accessoires<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="produit.html?p=chaussettes-chauffantes" data-shop-handle="chaussettes-chauffantes"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Chaussettes_chauffantes_grises_en_tricot.png?v=1792746477&width=480" alt="" loading="lazy"><span class="mg-lbl">Chaussettes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="produit.html?p=gants-chauffants" data-shop-handle="gants-chauffants"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gants_chauffants_noirs_assortis.png?v=1792746050&width=480" alt="" loading="lazy"><span class="mg-lbl">Gants<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 </div>
@@ -1229,8 +1353,70 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 
 <section class="pd-details" aria-labelledby="pd-details-title">
 <h2 class="sr-only" id="pd-details-title">Détails du produit</h2>
-<div class="pd-mag"><div class="pd-flow"><div class="pd-intro" data-pd-desc><p>Dans la <a href="collection.html">Collection Hiver ’26</a>, le <strong>gilet</strong> garde le buste au chaud tout en laissant les bras libres. Sans manches et léger, c’est la pièce la plus agile de la collection.</p><p>Unisexe, garni de duvet de canard, coupe-vent et déperlant, il offre une chaleur <a href="#mode-emploi">réglable d’un simple bouton</a>.</p><p>Ce modèle a déjà fait ses preuves au fil des hivers précédents : c’est pour cela que nous l’avons retenu. Et vos retours sur cette saison seront intégrés à sa <a href="a-propos.html">version 2027</a>.</p></div><div class="pd-ent"><p>Retirez toujours la batterie avant le lavage et refermez la poche. Lavage à la main ou en machine en programme délicat (30 °C max.), dans un filet de lavage, avec une lessive douce. Séchage à l’air libre. Ni essorage, ni repassage, ni javel, ni nettoyage à sec.</p><p>Il vous accompagne au quotidien en hiver comme en randonnée, au ski, en camping, à la pêche, à la chasse ou à moto. Pour trouver la bonne taille, consultez notre <a href="#guide-tailles">guide des tailles</a>&nbsp;: nos modèles taillent petit.</p><p>Proposée en option, la batterie 20&nbsp;000&nbsp;mAh est compatible charge rapide PD 22,5&nbsp;W, intègre ses câbles USB-C, Lightning et USB-A, et pèse 190&nbsp;g. <a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p><p>Livraison suivie en France métropolitaine. Retrouvez nos conditions de <a href="livraison.html">livraison</a> et de <a href="politique-de-retour.html">retour</a>.</p></div></div><div class="pd-heat"><h3 class="pd-heat-t">Niveaux de chaleur</h3><p class="pd-heat-n">Jusqu’à 10&nbsp;h d’autonomie avec la batterie 20&nbsp;000&nbsp;mAh.</p><div class="lvls"><div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Doux</strong> (voyant bleu) : 30 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Moyen</strong> (voyant blanc) : 40 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Élevé</strong> (voyant rouge) : 50 °C</p></div></div><div class="pd-heat-sep" aria-hidden="true"></div><div class="pd-props"><div class="pd-row"><span>Genre</span><strong>Mixte</strong></div><div class="pd-row"><span>Matière</span><strong>Nylon et élasthanne</strong></div><div class="pd-row"><span>Doublure</span><strong>Laine</strong></div><div class="pd-row"><span>Garnissage</span><strong>Duvet de canard blanc (plus de 300 g)</strong></div><div class="pd-row"><span>Protection</span><strong>Coupe-vent et déperlant</strong></div><div class="pd-row"><span>Manches</span><strong>Sans manches</strong></div><div class="pd-row"><span>Capuche</span><strong>Non</strong></div><div class="pd-row"><span>Fermeture</span><strong>Fermeture éclair (zip)</strong></div><div class="pd-row"><span>Coupe</span><strong>Regular, style décontracté</strong></div></div></div></div>
+<div class="pd-mag"><div class="pd-flow"><div class="pd-intro" data-pd-desc><p>Dans la <a href="collection.html">Collection Hiver ’26</a>, le <strong>gilet</strong> garde le buste au chaud tout en laissant les bras libres. Sans manches et léger, c’est la pièce la plus agile de la collection.</p><p>Unisexe, garni de duvet de canard, coupe-vent et déperlant, il offre une chaleur <a href="#mode-emploi">réglable d’un simple bouton</a>.</p><p>Ce modèle a déjà fait ses preuves au fil des hivers précédents : c’est pour cela que nous l’avons retenu. Et vos retours sur cette saison seront intégrés à sa <a href="a-propos.html">version 2027</a>.</p></div><div class="pd-ent"><p>Retirez toujours la batterie avant le lavage et refermez la poche. Lavage à la main ou en machine en programme délicat (30 °C max.), dans un filet de lavage, avec une lessive douce. Séchage à l’air libre. Ni essorage, ni repassage, ni javel, ni nettoyage à sec.</p><p id="mode-emploi">Pour l’allumer, branchez la batterie chargée et glissez-la dans sa poche intérieure, puis maintenez le bouton appuyé jusqu’à ce que le voyant s’allume&nbsp;: un appui court ne suffit pas. Des appuis courts font ensuite passer d’un niveau de chaleur à l’autre, et la chaleur est optimale après quelques minutes. Un nouvel appui long l’éteint.</p><p>Il vous accompagne au quotidien en hiver comme en randonnée, au ski, en camping, à la pêche, à la chasse ou à moto. Pour trouver la bonne taille, consultez notre <a href="#guide-tailles">guide des tailles</a>&nbsp;: nos modèles taillent petit.</p><p>Proposée en option, la batterie 20&nbsp;000&nbsp;mAh est compatible charge rapide PD 22,5&nbsp;W, intègre ses câbles USB-C, Lightning et USB-A, et pèse 190&nbsp;g. <a class="pd-link" href="index.html#batterie">Tout savoir sur la batterie</a></p></div></div><div class="pd-heat"><h3 class="pd-heat-t">Batterie</h3><figure class="pd-batt"><img src="assets/batterie-duo.webp" width="900" height="616" alt="Batterie externe 20 000 mAh Otreau, écran de charge allumé et câbles Lightning et USB-C intégrés" loading="lazy"></figure><div class="pd-batt-stats"><div><b>22,5<small>W</small></b><span>Charge rapide</span></div><div><b>20&nbsp;000<small>mAh</small></b><span>Capacité</span></div><div><b>10<small>h</small></b><span>Autonomie max</span></div></div><div class="pd-heat-sep" aria-hidden="true"></div><h3 class="pd-heat-t">3 niveaux de chaleur</h3><p class="pd-heat-n">Jusqu’à 10&nbsp;h d’autonomie avec la batterie 20&nbsp;000&nbsp;mAh.</p><div class="lvls"><div class="lvl"><div class="lvl-bar"><span style="width:30%;background-size:333% 100%"></span></div><p><strong>Doux</strong> (voyant bleu) : 30 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:60%;background-size:167% 100%"></span></div><p><strong>Moyen</strong> (voyant blanc) : 40 °C</p></div><div class="lvl"><div class="lvl-bar"><span style="width:100%;background-size:100% 100%"></span></div><p><strong>Élevé</strong> (voyant rouge) : 50 °C</p></div></div><div class="pd-heat-sep" aria-hidden="true"></div><div class="pd-props"><div class="pd-row"><span>Genre</span><strong>Mixte</strong></div><div class="pd-row"><span>Matière</span><strong>Nylon</strong></div><div class="pd-row"><span>Zones</span><strong>21</strong></div><div class="pd-row"><span>Garnissage</span><strong>Duvet</strong></div></div></div></div>
 </section>
+<script>/* Gilet : quand la description Shopify remplace le texte, les paragraphes fixes du site (entretien, allumage, batterie) feraient doublon : on les masque */
+(function(){var mag=document.querySelector('.pd-details .pd-mag'),it=mag&&mag.querySelector('[data-pd-desc]'),ent=mag&&mag.querySelector('.pd-ent');if(!it||!ent)return;var orig=it.innerHTML;
+function chk(){var shop=it.innerHTML!==orig&&it.textContent.length>1200;if(shop)ent.style.setProperty('display','none','important');else ent.style.removeProperty('display')}new MutationObserver(chk).observe(it,{childList:true,subtree:true,characterData:true});})();</script>
+<script>/* Article du produit : seules les deux premières lignes sont visibles, « Afficher la suite » déplie l'article et le rectangle, « Afficher moins » le replie */
+(function(){var det=document.querySelector('.pd-details'),mag=det&&det.querySelector('.pd-mag');if(!mag||mag.parentNode.classList.contains('pd-rv'))return;
+var E='cubic-bezier(.65,0,.35,1)',O='cubic-bezier(.22,1,.36,1)';
+var st=document.createElement('style');st.textContent=
+'.pd-rv-pre{position:relative;width:min(1240px,calc(100vw - 64px));margin:0 0 0 calc(50% - min(620px,50vw - 32px));text-align:center;overflow:hidden;transition:height .9s '+E+'}'+
+'@media (max-width:900px){.pd-rv-pre{width:calc(100vw - 40px);margin-left:calc(50% - 50vw + 20px)}}'+
+'.pd-rv-txt{margin:0;font-family:Manrope,sans-serif;font-size:16.5px;line-height:1.75;color:#3D4A54;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,#000 52%,rgba(0,0,0,.28));mask-image:linear-gradient(180deg,#000 52%,rgba(0,0,0,.28))}'+
+'.pd-rv-txt strong,.pd-rv-txt a{font-weight:600;color:#14212B;text-decoration:none}.pd-rv-txt a:hover{color:#E8641F}'+
+'.pd-rv-btn{display:inline-flex;align-items:center;gap:12px;margin:20px 0 2px;padding:10px 6px;border:0;border-radius:0;background:transparent;color:#14212B;cursor:pointer;font:700 12.5px/1 Manrope,sans-serif;letter-spacing:.14em;text-transform:uppercase;transition:color .25s ease}'+
+'.pd-rv-btn:hover{color:#E8641F}.pd-rv-btn:focus-visible{outline:2px solid #F5A623;outline-offset:3px}'+
+'.pd-rv-btn i{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .3s ease}.pd-rv-btn:hover i{transform:translateY(1px) rotate(45deg)}'+
+'.pd-rv-less .pd-rv-btn{margin:0}.pd-rv-less .pd-rv-btn i{transform:translateY(2px) rotate(-135deg)}.pd-rv-less .pd-rv-btn:hover i{transform:translateY(-1px) rotate(-135deg)}'+
+'.pd-rv-less{text-align:center;transition:opacity .5s ease,translate .6s '+O+'}.pd-rv-less.is-off{opacity:0;translate:0 10px;pointer-events:none}'+
+'.pd-rv-pre > *{transition:opacity .35s ease,translate .45s ease}.pd-rv-pre.is-leaving > *{opacity:0;translate:0 -10px}.pd-rv-pre.is-back > *{transition-delay:.45s}'+
+'.pd-rv{display:flow-root;transition:height .95s '+E+'}.pd-rv:not(.is-open){clip-path:inset(0 -100vw)}.pd-rv.is-closed{height:0}'+
+'.pd-rv .pd-flow{transition:opacity .9s ease .3s,translate 1.1s '+O+' .3s}.pd-rv.is-closed .pd-flow{opacity:0;translate:0 26px}'+
+'.pd-rv .pd-heat{transition:opacity .9s ease .5s,translate 1.2s '+O+' .5s,scale 1.2s '+O+' .5s}.pd-rv.is-closed .pd-heat{opacity:0;translate:0 36px;scale:.98}'+
+'.pd-rv.is-shut .pd-flow,.pd-rv.is-shut .pd-heat{transition:opacity .4s ease,translate .5s ease,scale .5s ease}'+
+'.pd-rv.is-open .pd-flow,.pd-rv.is-open .pd-heat{transition:none}'+
+'.pd-mag:focus{outline:none}'+
+'@media (prefers-reduced-motion:reduce){.pd-rv,.pd-rv-pre,.pd-rv-pre > *,.pd-rv .pd-flow,.pd-rv .pd-heat,.pd-rv-less{transition:none !important}}';
+document.head.appendChild(st);
+var pre=document.createElement('div');pre.className='pd-rv-pre';
+pre.innerHTML='<p class="pd-rv-txt"></p><button type="button" class="pd-rv-btn" aria-expanded="false" aria-controls="pd-rv-body"><span>Afficher la suite</span><i aria-hidden="true"></i></button>';
+var txt=pre.firstChild,btn=pre.lastChild,wrap=document.createElement('div');wrap.className='pd-rv is-closed';wrap.id='pd-rv-body';wrap.inert=true;
+var less=document.createElement('div');less.className='pd-rv-less is-off';less.hidden=true;
+less.innerHTML='<button type="button" class="pd-rv-btn" aria-expanded="true" aria-controls="pd-rv-body"><span>Afficher moins</span><i aria-hidden="true"></i></button>';
+var lbtn=less.firstChild;
+mag.parentNode.insertBefore(pre,mag);mag.parentNode.insertBefore(wrap,mag);wrap.appendChild(mag);wrap.after(less);mag.tabIndex=-1;
+var intro=mag.querySelector('.pd-intro');
+function sync(){var p=intro&&intro.querySelector('p');txt.innerHTML=p?p.innerHTML:'';[].forEach.call(txt.querySelectorAll('[id]'),function(e){e.removeAttribute('id')})}
+sync();if(intro)new MutationObserver(sync).observe(intro,{childList:true,subtree:true,characterData:true});
+var open_=false,T=[];function later(f,ms){T.push(setTimeout(f,ms))}function stop(){T.forEach(clearTimeout);T=[]}
+function rm(){return matchMedia('(prefers-reduced-motion: reduce)').matches}
+function full(){return mag.offsetHeight+(parseFloat(getComputedStyle(mag).marginBottom)||0)}
+function showLess(){less.hidden=false;less.offsetHeight;less.classList.remove('is-off')}
+function open(now){if(open_)return;open_=true;stop();btn.setAttribute('aria-expanded','true');wrap.inert=false;wrap.classList.remove('is-shut');pre.classList.remove('is-back');
+if(now||rm()){wrap.classList.remove('is-closed');wrap.style.height='';wrap.classList.add('is-open');pre.hidden=true;pre.style.height='';showLess();return}
+var H=full();pre.hidden=false;pre.style.height=pre.offsetHeight+'px';pre.classList.add('is-leaving');wrap.style.height='0px';wrap.offsetHeight;
+later(function(){wrap.classList.remove('is-closed');wrap.style.height=H+'px';pre.style.height='0px'},140);
+later(function(){wrap.style.height='';wrap.classList.add('is-open');pre.hidden=true;showLess();mag.focus({preventScroll:true})},1750)}
+function close(){if(!open_)return;open_=false;stop();wrap.inert=true;less.classList.add('is-off');
+var go=function(){var H=wrap.offsetHeight;wrap.style.height=H+'px';wrap.classList.remove('is-open');wrap.classList.add('is-shut');
+pre.hidden=false;pre.style.height='';var ph=pre.offsetHeight;
+if(rm()){wrap.classList.add('is-closed');wrap.style.height='';pre.classList.remove('is-leaving');less.hidden=true;btn.setAttribute('aria-expanded','false');btn.focus({preventScroll:true});return}
+pre.style.height='0px';pre.classList.add('is-back');wrap.offsetHeight;
+wrap.classList.add('is-closed');wrap.style.height='0px';pre.style.height=ph+'px';pre.classList.remove('is-leaving');
+later(function(){wrap.style.height='';pre.style.height='';less.hidden=true;btn.setAttribute('aria-expanded','false');btn.focus({preventScroll:true})},1300)};
+/* pendant qu'il se replie, la page remonte en douceur jusqu'au début de l'article */
+var de=document.documentElement,top=Math.max(0,wrap.getBoundingClientRect().top+scrollY-160),y0=scrollY;de.style.overflowAnchor='none';go();
+if(y0>top+4&&!rm()){var t0=performance.now(),D=950,ez=function(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+(function step(n){var k=Math.min(1,(n-t0)/D);scrollTo({top:y0+(top-y0)*ez(k),behavior:'instant'});if(k<1&&!open_)requestAnimationFrame(step)})(t0)}
+later(function(){de.style.overflowAnchor=''},1400)}
+btn.addEventListener('click',function(){open(false)});lbtn.addEventListener('click',close);
+/* un lien vers un passage de l'article (ex. « réglable d'un simple bouton ») l'ouvre d'abord */
+function inside(h){try{var t=h&&h.length>1&&document.getElementById(decodeURIComponent(h.slice(1)));return t&&wrap.contains(t)}catch(e){return false}}
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a&&inside(a.getAttribute('href')))open(true)},true);
+if(inside(location.hash))open(true);addEventListener('hashchange',function(){if(inside(location.hash)){open(true);var t=document.getElementById(location.hash.slice(1));t&&t.scrollIntoView()}});
+})();</script>
 
 <section class="pd-size" id="guide-tailles" aria-labelledby="pd-size-title">
 <h2 class="pd-h2 pd-center" id="pd-size-title">Guide des tailles</h2>
@@ -1238,7 +1424,10 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div class="pd-size-ban" role="note"><ul class="pd-size-ban-row"><li><b>Nos tailles taillent petit</b>Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</li><li aria-hidden="true"><b>Nos tailles taillent petit</b>Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</li><li aria-hidden="true"><b>Nos tailles taillent petit</b>Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</li><li aria-hidden="true"><b>Nos tailles taillent petit</b>Nous vous recommandons de bien suivre le tableau pour être sûr de votre taille.</li></ul></div>
 <div style="position: relative; z-index: 1; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
 <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
-<img class="flat flat-photo" data-product="gilet-photo" src="assets/patron-gilet-v3.webp" alt="Gilet avec les mesures A (largeur poitrine), B (longueur dos) et C (largeur épaules)" width="477" height="820" loading="lazy">
+<svg class="flat flat-real" data-product="gilet-photo" viewBox="0 0 910 1524" role="img" aria-label="Gilet doudoune avec les mesures A (largeur poitrine), B (longueur du corps), C (largeur épaules)">
+<image href="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_chauffant_noir_matelasse.png?v=1792739891&amp;width=900" x="45" y="60" width="820" height="1391"/>
+<g class="dim" data-k="C"><line class="ext" x1="76" y1="324" x2="76" y2="28"/><line class="ext" x1="833" y1="324" x2="833" y2="28"/><line x1="76" y1="36" x2="833" y2="36"/><path d="M90 27 L76 36 L90 45 M819 45 L833 36 L819 27"/><circle cx="454" cy="36" r="20"/><text x="454" y="36">C</text></g><g class="dim" data-k="B"><line class="ext" x1="76" y1="324" x2="12" y2="324"/><line class="ext" x1="101" y1="1440" x2="12" y2="1440"/><line x1="24" y1="324" x2="24" y2="1440"/><path d="M33 338 L24 324 L15 338 M15 1426 L24 1440 L33 1426"/><circle cx="24" cy="882" r="20"/><text x="24" y="882">B</text></g><g class="dim" data-k="A"><line class="ext" x1="101" y1="1444" x2="101" y2="1510"/><line class="ext" x1="807" y1="1444" x2="807" y2="1510"/><line x1="101" y1="1500" x2="807" y2="1500"/><path d="M115 1491 L101 1500 L115 1509 M793 1509 L807 1500 L793 1491"/><circle cx="454" cy="1500" r="20"/><text x="454" y="1500">A</text></g>
+</svg>
 </div>
 <div style="flex: 1 1 420px; min-width: 0" class="table-scroll">
 <table class="size-table" id="pd-size-table">
@@ -1253,23 +1442,23 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 
 </section>
 
-<section class="pd-how" id="mode-emploi">
-<h2 class="pd-h2 pd-center">Comment ça marche ?</h2>
-
-<div class="pd-steps hw-steps">
-<div class="pd-step"><img class="hw-pic" src="assets/how-step-1.webp" alt="Batterie Otreau branchée et glissée dans la poche intérieure" width="560" height="560" loading="lazy"><span class="pd-num">1</span><h3>Branchez la batterie</h3><p>Reliez le câble USB à la batterie chargée, puis glissez-la dans sa poche intérieure.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/how-step-2.webp" alt="Bouton de chauffe allumé en rouge sur la poitrine" width="560" height="560" loading="lazy"><span class="pd-num">2</span><h3>Allumez le chauffage</h3><p>Un appui long, jusqu’à ce que le voyant s’allume. Un appui court ne suffit pas.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/how-step-3.webp" alt="Les trois couleurs du voyant : rouge élevé, blanc moyen, bleu faible" width="560" height="560" loading="lazy"><span class="pd-num">3</span><h3>Choisissez le niveau</h3><p>Appuis courts pour passer d’un niveau à l’autre. Comptez quelques minutes pour une chaleur optimale.</p></div>
-<div class="pd-step"><img class="hw-pic" src="assets/how-step-4.webp" alt="Bouton de chauffe éteint" width="560" height="560" loading="lazy"><span class="pd-num">4</span><h3>Éteignez le chauffage</h3><p>Un appui long, jusqu’à ce que le voyant s’éteigne.</p></div>
-</div>
-
-</section>
-
-
-
 <section class="pd-cross">
 <h2 class="pd-h2 pd-center">Complétez votre tenue</h2>
-<div class="pd-cross-grid">
+<div class="pd-cross-grid"><div class="pd-cross-track">
+<a data-handle="gants-chauffants" href="produit.html?p=gants-chauffants" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GANTS</span></h3>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+</div>
+</a>
+<a data-handle="chaussettes-chauffantes" href="produit.html?p=chaussettes-chauffantes" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">CHAUSSETTES</span></h3>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+</div>
+</a>
 <a data-handle="veste-otreau" href="veste-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
@@ -1306,7 +1495,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 </ul>
 </div>
 </a>
-</div>
+</div></div>
 <p class="pd-cross-more"><a class="pd-all" href="collection.html">Découvrir tout<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
 </section>
 
@@ -1347,7 +1536,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul></div><div class="f-col"><h3>Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div><div class="f-col"><h3>Informations légales</h3><ul><li><a href="politique-de-retour.html">Politique de retour</a></li><li><a href="politique-de-confidentialite.html">Politique de confidentialité</a></li><li><a href="politique-de-paiement.html">Politique de paiement</a></li><li><a href="politique-de-cookies.html">Politique de cookies</a></li><li><a href="conditions-generales.html">Conditions générales</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="mentions-legales.html">Mentions légales</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
-<div class="f-paym" aria-label="Moyens de paiement acceptés"><span class="f-paym-t">Paiement sécurisé</span><ul><li>Visa</li><li>Mastercard</li><li>PayPal</li><li>Apple Pay</li></ul></div>
+<div class="f-paym" aria-label="Moyens de paiement acceptés"><span class="f-paym-t">Mode de paiement</span><ul><li class="f-pay-visa"><img src="assets/visa.webp" alt="Visa" width="240" height="78" loading="lazy"></li><li class="f-pay-mc"><img src="assets/mastercard.webp" alt="Mastercard" width="133" height="80" loading="lazy"></li><li class="f-pay-pp"><img src="assets/paypal.webp" alt="PayPal" width="226" height="60" loading="lazy"></li><li class="f-pay-ap"><img src="assets/applepay.webp" alt="Apple Pay" width="146" height="60" loading="lazy"></li></ul></div>
 </div>
 </div>
 </footer>
@@ -1529,12 +1718,35 @@ new MutationObserver(link).observe(d,{childList:true,subtree:true});})();</scrip
 <script>/* Article du produit : largeur du rectangle ajustée pour que l'article (2 colonnes) ait la hauteur du rectangle */
 (function(){var mag=document.querySelector('.pd-details .pd-mag');if(!mag)return;var box=mag.querySelector('.pd-heat'),fl=mag.querySelector('.pd-flow');if(!box||!fl)return;var t=0;
 function d(sq){mag.style.setProperty('--sq',sq+'px');box.style.height='';return fl.offsetHeight-box.offsetHeight}
-function fit(){mag.style.removeProperty('--sq');box.style.height='';mag.style.minHeight='';if(innerWidth<900)return;
-var W=mag.clientWidth,lo=Math.min(380,W*.3),hi=Math.max(lo,W-2*230-56);
+function unq(){fl.style.height='';fl.style.columnFill='';[].forEach.call(fl.querySelectorAll('[data-eq]'),function(e){e.style.removeProperty('padding-top');e.removeAttribute('data-eq')})}
+function eq(H){/* les deux colonnes de texte finissent à la même hauteur que le rectangle : l'espace restant est réparti entre les paragraphes de chaque colonne */
+var ps=[].slice.call(fl.querySelectorAll('p')).filter(function(e){return e.getClientRects().length});if(!ps.length)return;fl.style.columnFill='auto';
+function fr(){return fl.getBoundingClientRect()}
+function over(x){fl.style.height=x+'px';var R=fr().right+2;return ps.some(function(e){return [].some.call(e.getClientRects(),function(r){return r.right>R})})}
+function bot(c){var f=fr(),mid=f.left+f.width/2,b=0;ps.forEach(function(e){[].forEach.call(e.getClientRects(),function(r){if((r.left<mid)===(c===0))b=Math.max(b,r.bottom-f.top)})});return b}
+function gaps(c){var f=fr(),mid=f.left+f.width/2;return ps.filter(function(e){var r=e.getClientRects()[0];return (r.left<mid)===(c===0)&&r.top-f.top>4})}
+function pad(list,free){if(!list.length||free<=1)return;var add=free/list.length;list.forEach(function(e){var m=parseFloat(getComputedStyle(e).paddingTop)||0;e.setAttribute('data-eq','');e.style.setProperty('padding-top',(m+add)+'px','important')})}
+if(over(H)){/* le texte ne tient pas en 2 colonnes à cette hauteur : on agrandit le tout juste ce qu'il faut */var a2=H,b2=H*1.5;if(over(b2)){unq();return}for(var k2=0;k2<14;k2++){var m2=(a2+b2)/2;if(over(m2))a2=m2;else b2=m2}H=Math.ceil(b2);box.style.height=H+'px';mag.style.minHeight=H+'px'}var lo=H*.4,hi=H;for(var k=0;k<14;k++){var m=(lo+hi)/2;if(over(m))lo=m;else hi=m}
+over(Math.ceil(hi));var g0=gaps(0),f0=H-bot(0);fl.style.height=H+'px';pad(g0,f0-1);
+if(over(H)){unq();fl.style.height=H+'px';fl.style.columnFill='auto';}pad(gaps(1),H-bot(1)-1);if(over(H)){unq();}else fl.style.height=H+'px';}
+function fit(){unq();mag.style.removeProperty('--sq');box.style.height='';mag.style.minHeight='';if(innerWidth<900)return;
+var W=mag.clientWidth,pr=box.querySelector('.pd-props'),nr=0,minW=380,lo=Math.min(Math.max(380,minW),W*.5),hi=Math.max(lo,Math.min(W-2*230-56,560));
 if(d(lo)>=0){d(Math.round(lo))}else if(d(hi)<=0){d(Math.round(hi))}else{for(var k=0;k<10;k++){var m=(lo+hi)/2;if(d(m)<0)lo=m;else hi=m;}d(Math.round(hi));}
-var h=Math.max(fl.offsetHeight,box.offsetHeight);box.style.height=h+'px';mag.style.minHeight=h+'px';}
+var h=Math.max(fl.offsetHeight,box.offsetHeight);box.style.height=h+'px';mag.style.minHeight=h+'px';eq(h);}
 function req(){clearTimeout(t);t=setTimeout(fit,80)}
 addEventListener('resize',req);addEventListener('load',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 new MutationObserver(req).observe(fl,{childList:true,subtree:true,characterData:true});fit();})();</script>
+<script>/* Complétez votre tenue : les cartes défilent sur une ligne */
+(function(){var g=document.querySelector('.pd-cross .pd-cross-grid'),tr=g&&g.querySelector('.pd-cross-track');if(!tr)return;
+var cur=(new URLSearchParams(location.search).get('p')||'');if(cur)[].forEach.call(tr.querySelectorAll('a[data-handle="'+cur+'"]'),function(a){a.remove()});
+var busy=false,T=0;function per(){return innerWidth<=560?2:innerWidth<=900?3:4}
+function step(){if(busy||document.hidden)return;var cards=tr.querySelectorAll(':scope > a');if(cards.length<=per())return;var c=cards[0],w=c.getBoundingClientRect().width+parseFloat(getComputedStyle(tr).columnGap||getComputedStyle(tr).gap||20);
+tr.style.transition='transform .7s cubic-bezier(.65,0,.35,1)';tr.style.transform='translateX('+(-w)+'px)';
+setTimeout(function(){tr.style.transition='none';tr.appendChild(c);tr.style.transform='none';},720);}
+g.addEventListener('mouseenter',function(){busy=true});g.addEventListener('mouseleave',function(){busy=false});
+g.addEventListener('focusin',function(){busy=true});g.addEventListener('focusout',function(){busy=false});
+g.addEventListener('touchstart',function(){busy=true;clearTimeout(T);T=setTimeout(function(){busy=false},5000)},{passive:true});
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(step,3500);})();</script>
+<script>/* footer : la photo reste fixe, le texte défile par-dessus */(function(){var f=document.querySelector('footer.site-footer');if(!f)return;function top(){var m=0;[].forEach.call(document.querySelectorAll('header,.site-header,.bandeau-curtain,[class*=announce]'),function(e){var c=getComputedStyle(e),r=e.getBoundingClientRect();if((c.position==='fixed'||c.position==='sticky')&&r.top<80&&r.bottom<200&&r.bottom>0)m=Math.max(m,r.bottom)});return m}function u(){f.style.setProperty('--fbg-y',Math.max(top(),innerHeight-f.offsetHeight)+'px')}u();var rq=0;addEventListener('scroll',function(){if(rq)return;rq=requestAnimationFrame(function(){rq=0;u()})},{passive:true});addEventListener('resize',u);addEventListener('load',u);if(window.ResizeObserver)new ResizeObserver(u).observe(f)})();</script>
 </body>
 </html>

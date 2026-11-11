@@ -30,7 +30,7 @@
   function link(a) { return 'article.html?a=' + encodeURIComponent(a.handle); }
   function excerpt(a) {
     var t = a.excerpt || String(a.content || '').replace(/\s+/g, ' ').trim();
-    return t.length > 180 ? t.slice(0, 177).replace(/\s+\S*$/, '') + '…' : t;
+    return t.length > 180 ? t.slice(0, 177).replace(/\s+\S*$/, '').replace(/[\s.,;:!?…]+$/, '') + '…' : t;
   }
 
   var ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h11a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3z"/><path d="M18 8h2v9a2 2 0 0 1-2 2"/><path d="M8 9h6M8 12.5h6M8 16h4"/></svg>';
@@ -102,16 +102,95 @@
       document.title = ((a.seo && a.seo.title) || a.title) + ' · Blog Otreau';
       var desc = (a.seo && a.seo.description) || a.excerpt;
       if (desc) { var m = document.querySelector('meta[name="description"]'); if (!m) { m = document.createElement('meta'); m.name = 'description'; document.head.appendChild(m); } m.content = desc; }
+      // partage (réseaux sociaux) + données structurées pour Google
+      function meta(attr, key, val) { if (!val) return; var m = document.querySelector('meta[' + attr + '="' + key + '"]'); if (!m) { m = document.createElement('meta'); m.setAttribute(attr, key); document.head.appendChild(m); } m.content = val; }
+      var url = location.origin + location.pathname + '?a=' + encodeURIComponent(handle);
+      meta('property', 'og:type', 'article'); meta('property', 'og:title', a.title); meta('property', 'og:description', desc);
+      meta('property', 'og:url', url); if (a.image) meta('property', 'og:image', img(a.image.url, 1200));
+      meta('name', 'twitter:card', a.image ? 'summary_large_image' : 'summary');
+      var can = document.querySelector('link[rel="canonical"]'); if (!can) { can = document.createElement('link'); can.rel = 'canonical'; document.head.appendChild(can); } can.href = url;
+      var ld = document.createElement('script'); ld.type = 'application/ld+json';
+      ld.textContent = JSON.stringify({ '@context': 'https://schema.org', '@type': 'BlogPosting', headline: a.title, description: desc || undefined,
+        image: a.image ? [img(a.image.url, 1600)] : undefined, datePublished: a.publishedAt, mainEntityOfPage: url,
+        author: { '@type': 'Organization', name: (a.authorV2 && a.authorV2.name) || 'Otreau' }, publisher: { '@type': 'Organization', name: 'Otreau' } });
+      document.head.appendChild(ld);
       var crumb = document.getElementById('article-crumb'); if (crumb) crumb.textContent = a.title;
+      // ---- mise en page magazine ----
+      var tmp = document.createElement('div'); tmp.innerHTML = a.contentHtml || '';
+      // nettoyage de l'éditeur Shopify : titres/paragraphes vides, <span> inutiles
+      [].slice.call(tmp.querySelectorAll('h1,h2,h3,h4,p,li')).forEach(function (e) { if (!e.textContent.trim() && !e.querySelector('img,iframe,video')) e.remove(); });
+      [].slice.call(tmp.querySelectorAll('span')).forEach(function (sp) { if (!sp.attributes.length) sp.replaceWith.apply(sp, [].slice.call(sp.childNodes)); });
+      [].slice.call(tmp.querySelectorAll('h1')).forEach(function (h) { var h2 = document.createElement('h2'); h2.innerHTML = h.innerHTML; h.replaceWith(h2); });
+      [].slice.call(tmp.querySelectorAll('li > p:only-child')).forEach(function (pp) { pp.replaceWith.apply(pp, [].slice.call(pp.childNodes)); });
+      // chapô : l'extrait Shopify, sinon le premier paragraphe du texte
+      var lead = a.excerpt ? esc(a.excerpt) : '';
+      if (!lead) { var p1 = tmp.querySelector(':scope > p'); if (p1 && p1 === tmp.firstElementChild) { lead = p1.innerHTML; p1.remove(); } }
+      // intertitres : numéro mis en valeur, ancre pour le sommaire ; bloc « Sources » à part
+      var toc = [], n = 0;
+      [].slice.call(tmp.querySelectorAll(':scope > h2')).forEach(function (h) {
+        var t = h.textContent.trim();
+        if (/^sources?\s*:?$/i.test(t)) {
+          var box = document.createElement('section'); box.className = 'ar-sources'; h.parentNode.insertBefore(box, h);
+          var nx = h; while (nx && (nx === h || nx.tagName !== 'H2')) { var nn = nx.nextElementSibling; box.appendChild(nx); nx = nn; }
+          return;
+        }
+        n++; h.id = 'partie-' + n;
+        var m = /^(\d{1,2})[.)]\s*(.+)$/.exec(t), label = m ? m[2] : t;
+        if (m) h.innerHTML = '<span class="ar-num">' + ('0' + m[1]).slice(-2) + '</span><span class="ar-h2t">' + esc(m[2]) + '</span>';
+        else h.innerHTML = '<span class="ar-h2t">' + h.innerHTML + '</span>';
+        toc.push({ id: h.id, num: m ? ('0' + m[1]).slice(-2) : '', t: label.replace(/\s*:.*$/, '') });
+      });
+      // lettrine sur le premier paragraphe du texte
+      var first = tmp.querySelector(':scope > p'); if (first) first.classList.add('ar-drop');
+      // photos du texte : en grand format, légende = texte alternatif
+      [].slice.call(tmp.querySelectorAll('img')).forEach(function (im) {
+        var host = im.closest('p') || im; if (host.closest('figure')) return;
+        var fg = document.createElement('figure'); fg.className = 'ar-fig'; host.parentNode.insertBefore(fg, host); fg.appendChild(im);
+        if (host !== im && !host.textContent.trim()) host.remove();
+        if (im.alt) { var fc = document.createElement('figcaption'); fc.textContent = im.alt; fg.appendChild(fc); }
+        im.loading = 'lazy';
+      });
+      [].slice.call(tmp.querySelectorAll('a[href]')).forEach(function (l) {
+        var m = /^https?:\/\/(?:www\.)?(?:claudeusercontent\.com|otreau\.com)\/(.*)$/i.exec(l.getAttribute('href'));
+        if (m) { l.setAttribute('href', m[1] || 'index.html'); return; }
+        if (/^https?:/.test(l.getAttribute('href')) && l.hostname !== location.hostname) { l.target = '_blank'; l.rel = 'noopener'; }
+      });
+      // typographie française : espace insécable avant : ; ! ? et à l'intérieur des guillemets
+      function frTypo(root) {
+        var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), t;
+        while ((t = w.nextNode())) t.nodeValue = t.nodeValue.replace(/ ([:;!?»])/g, '\u00A0$1').replace(/« /g, '«\u00A0');
+      }
+      frTypo(tmp);
+      function frStr(x) { return String(x).replace(/ ([:;!?»])/g, '\u00A0$1').replace(/« /g, '«\u00A0'); }
+      a.title = frStr(a.title); lead = frStr(lead); toc.forEach(function (x) { x.t = frStr(x.t); });
+      var kicker = a.tags.length ? a.tags.map(esc).join(' · ') : 'Le journal Otreau';
+      art.classList.add('is-mag');
       art.innerHTML =
+        '<div class="ar-progress" aria-hidden="true"><i></i></div>' +
         '<header class="ar-head">' +
-          (a.tags.length ? '<p class="ar-tags">' + a.tags.map(esc).join(' · ') + '</p>' : '') +
+          '<p class="ar-tags">' + kicker + '</p>' +
           '<h1>' + esc(a.title) + '</h1>' +
-          '<p class="ar-meta">' + esc(date(a.publishedAt)) + ' · ' + minutes(a.contentHtml) + ' min de lecture' + (a.authorV2 && a.authorV2.name ? ' · ' + esc(a.authorV2.name) : '') + '</p>' +
+          (lead ? '<p class="ar-lead">' + lead + '</p>' : '') +
+          '<p class="ar-meta"><span>Par ' + esc((a.authorV2 && a.authorV2.name) || 'Otreau') + '</span><span>' + esc(date(a.publishedAt)) + '</span><span>' + minutes(a.contentHtml) + ' min de lecture</span></p>' +
         '</header>' +
-        (a.image ? '<figure class="ar-cover"><img src="' + esc(img(a.image.url, 1600)) + '" alt="' + esc(a.image.altText || a.title) + '"></figure>' : '') +
-        '<div class="ar-body">' + a.contentHtml + '</div>' +
+        (a.image ? '<figure class="ar-cover"><img src="' + esc(img(a.image.url, 2000)) + '" alt="' + esc(a.image.altText || a.title) + '">' + (a.image.altText ? '<figcaption>' + esc(a.image.altText) + '</figcaption>' : '') + '</figure>' : '') +
+        '<div class="ar-layout">' +
+          (toc.length > 2 ? '<nav class="ar-toc" aria-label="Sommaire"><p>Au sommaire</p><ol>' + toc.map(function (x) { return '<li><a href="#' + x.id + '">' + (x.num ? '<span>' + x.num + '</span>' : '') + esc(x.t) + '</a></li>'; }).join('') + '</ol></nav>' : '') +
+          '<div class="ar-body">' + tmp.innerHTML + '</div>' +
+        '</div>' +
+        '<aside class="ar-cta"><p>Envie de garder la chaleur pendant vos sorties d’hiver ? Découvrez nos vêtements chauffants.</p><a href="collection.html">Voir la collection</a></aside>' +
         '<p class="ar-back"><a class="bl-btn line" href="blog.html"><span aria-hidden="true">←</span>Tous les articles</a></p>';
+      // barre de progression de lecture + rubrique active dans le sommaire
+      (function () {
+        var bar = art.querySelector('.ar-progress i'), body = art.querySelector('.ar-body'), links = [].slice.call(art.querySelectorAll('.ar-toc a')), rq = 0;
+        function upd() {
+          rq = 0; var r = body.getBoundingClientRect(), h = r.height - innerHeight * .6;
+          if (bar) bar.style.transform = 'scaleX(' + Math.max(0, Math.min(1, (-r.top + innerHeight * .2) / Math.max(1, h))) + ')';
+          var cur = null; links.forEach(function (l) { var t = document.getElementById(l.hash.slice(1)); if (t && t.getBoundingClientRect().top < innerHeight * .35) cur = l; });
+          links.forEach(function (l) { l.classList.toggle('is-on', l === cur); });
+        }
+        addEventListener('scroll', function () { if (!rq) rq = requestAnimationFrame(upd); }, { passive: true }); addEventListener('resize', upd); upd();
+      })();
       var others = d.articles.nodes.filter(function (x) { return x.handle !== handle; }).slice(0, 3);
       var more = document.getElementById('article-more');
       if (more && others.length) {

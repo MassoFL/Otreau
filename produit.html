@@ -546,7 +546,7 @@ body{background:#F8F6F1}
 body{background:#F8F6F1}
 .pg-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 .pg-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 55%;filter:blur(26px) saturate(1.1) brightness(1.15);transform:scale(1.12)}
-.pg-bg::after{content:"";position:absolute;inset:0;background:#F8F6F1 url(assets/collection-bg.jpg) center / cover no-repeat;opacity:.86}
+.pg-bg::after{content:"";position:absolute;inset:0;background:#F8F6F1 url(assets/collection-bg.jpg) center / cover no-repeat;opacity:.93}
 .pg-bg + div{background:transparent !important}
 .pg-rain{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 .pd-trust-tab,.pd-trust-tab::before,.pd-trust-tab::after,.pd-trust-panel{border-radius:0 !important}
@@ -909,7 +909,87 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 .pd-details .pd-intro > p:first-child::first-letter{float:left;font-family:Manrope,sans-serif;font-weight:300;font-size:4.7em;line-height:.82;margin:.08em .12em 0 0;color:#14212B}
 .pd-details .pd-intro:has(> p:only-child){columns:auto;width:min(760px,calc(100vw - 64px));margin-left:calc(50% - min(380px,50vw - 32px))}
 @media (max-width:640px){.pd-details .pd-intro{width:calc(100vw - 40px);margin-left:calc(50% - 50vw + 20px);columns:1;font-size:15.5px;margin-bottom:36px}.pd-details .pd-intro > p:first-child::first-letter{font-size:4.2em}}
-</style>
+
+/* Options du produit : traits et cercle orange plus fins */
+.pd-info .pd-size-row > [aria-pressed="true"],.pd-size-field .pd-opt[aria-pressed="true"],.pd-batt-field .pd-opt[aria-pressed="true"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="Sans"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="sans"],.pd-batt-field .pd-opt[aria-pressed="true"]:nth-child(2):not([data-value]),.pd-info .pd-opt[data-group][aria-pressed="true"]{box-shadow:inset 0 -2px 0 #F5A623 !important}
+.pd-swatch[aria-pressed="true"]{box-shadow:0 0 0 3px #FFFFFF,0 0 0 4.5px #F5A623,0 6px 14px rgba(20,33,43,.25) !important}
+
+/* Taille sélectionnée : trait orange en haut, point vert en bas */
+.pd-info .pd-size-row > [aria-pressed="true"],.pd-size-field .pd-opt[aria-pressed="true"]{box-shadow:inset 0 2px 0 #F5A623 !important}
+.pd-size-field .pd-opt[aria-pressed="true"] .pd-sel-dot{top:auto !important;bottom:6px !important}
+
+/* Option batterie sélectionnée : trait orange en haut */
+.pd-batt-field .pd-opt[aria-pressed="true"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="Sans"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="sans"],.pd-batt-field .pd-opt[aria-pressed="true"]:nth-child(2):not([data-value]),.pd-info .pd-opt[data-group="batterie"][aria-pressed="true"]{box-shadow:inset 0 2px 0 #F5A623 !important}
+
+/* Taille sélectionnée : trait vert en bas (à la place du point) */
+.pd-size-field .pd-opt[aria-pressed="true"] .pd-sel-dot{top:auto !important;bottom:0 !important;left:0 !important;right:0 !important;margin:0 !important;width:auto !important;height:2px !important;border-radius:0 !important;background:#2FA05A !important;box-shadow:none !important;animation:pdSelBar 1.6s ease-in-out infinite !important}
+.pd-size-field .pd-opt[aria-pressed="true"] .pd-sel-dot.is-out{background:#8A949B !important;animation:none !important}
+@keyframes pdSelBar{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.pd-size-field .pd-opt[aria-pressed="true"] .pd-sel-dot{animation:none !important}}
+
+/* Taille sélectionnée : sans trait orange */
+.pd-info .pd-size-row > [aria-pressed="true"],.pd-size-field .pd-opt[aria-pressed="true"]{box-shadow:none !important}
+
+/* Option batterie sélectionnée : sans trait orange */
+.pd-batt-field .pd-opt[aria-pressed="true"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="Sans"],.pd-batt-field .pd-opt[aria-pressed="true"][data-value^="sans"],.pd-batt-field .pd-opt[aria-pressed="true"]:nth-child(2):not([data-value]),.pd-info .pd-opt[data-group="batterie"][aria-pressed="true"]{box-shadow:none !important}
+
+/* Couleur sélectionnée : cercle noir */
+.pd-swatch[aria-pressed="true"]{box-shadow:0 0 0 3px #FFFFFF,0 0 0 4.5px #14212B,0 6px 14px rgba(20,33,43,.25) !important}
+
+/* Ajouter au panier : lumière du contour en vert */
+.pd-add.cta-glow-green::after{background:conic-gradient(from var(--glow-a),transparent 0 55%,#1E7A3C 65%,#2FA05A 75%,#8EE0AE 84%,#D8F5E3 89%,#5CC487 95%,transparent 100%) !important;filter:drop-shadow(0 0 4px rgba(47,160,90,.8)) drop-shadow(0 0 10px rgba(30,122,60,.45)) !important}
+
+/* Ajouter au panier : sans lumière autour du contour */
+.pd-add.cta-glow-green::after{content:none !important;display:none !important;animation:none !important}
+
+/* Onglets de confiance : textes en noir */
+#pd-trust-panel,#pd-trust-panel p,#pd-trust-panel [data-content],#pd-trust-panel a{color:#0A0A0A !important}
+
+/* Complétez votre tenue : une ligne de 4 cartes plus petites qui défile */
+.pd-cross .pd-cross-grid{display:block !important;max-width:1100px;margin:28px auto 0;overflow:hidden;position:relative}
+.pd-cross .pd-cross-track{display:flex;gap:20px;will-change:transform}
+.pd-cross .pd-cross-track > a[data-handle]{flex:0 0 calc((100% - 60px) / 4) !important;min-width:0}
+.pd-cross a[data-handle] > div:last-child{padding:14px 10px 18px !important;gap:8px !important}
+.pd-cross a[data-handle] h3{font-size:clamp(16px,1.35vw,19px) !important}
+.pd-cross a[data-handle] .pc-cta{min-height:42px !important;font-size:14px !important;max-width:200px !important}
+.pd-cross .pc-feats{display:none !important}
+@media (max-width:900px){.pd-cross .pd-cross-track > a[data-handle]{flex-basis:calc((100% - 40px) / 3) !important}}
+@media (max-width:560px){.pd-cross .pd-cross-track{gap:14px}.pd-cross .pd-cross-track > a[data-handle]{flex-basis:calc((100% - 14px) / 2) !important}}
+/* Bouton Découvrir tout : même style que « Découvrir l’histoire complète » */
+.pd-cross .pd-cross-more{display:flex;justify-content:center;margin:40px 0 0}
+.pd-cross a.pd-all{display:inline-flex !important;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 32px !important;border:1px solid #14212B !important;border-radius:0 !important;background:transparent !important;color:#14212B !important;font:300 clamp(15px,1.4vw,18px)/1 Manrope,sans-serif !important;letter-spacing:.01em;text-transform:uppercase;text-decoration:none !important;box-shadow:none !important;transition:background .2s,color .2s}
+.pd-cross a.pd-all:hover,.pd-cross a.pd-all:focus-visible{background:#14212B !important;color:#FFFFFF !important}
+.pd-cross a.pd-all svg{display:none !important}
+.f-paym li{background:transparent !important;border-color:transparent !important;padding:0 8px !important}.f-pay-visa img{height:13px;width:auto;display:block}.f-pay-mc img{height:22px;width:auto;display:block}.f-pay-pp img{height:15px;width:auto;display:block}.f-pay-ap img{height:19px;width:auto;display:block}.f-selects + .f-paym{flex-direction:column !important;justify-content:flex-start !important;align-items:flex-start !important;margin-top:22px !important}.f-selects + .f-paym ul{justify-content:flex-start !important;gap:6px 14px}.f-selects + .f-paym li:first-child{padding-left:0 !important}footer.site-footer{background:#001229 url(assets/footer-montagnes.webp) center top / max(100%, 1500px) auto no-repeat !important}footer.site-footer .f-mont-stage{display:none !important}@media (min-width:901px){footer.site-footer .f-top{grid-template-columns:minmax(270px,27%) minmax(0,1fr) !important}footer.site-footer .f-cols .f-col{flex:1 1 auto !important;padding:0 clamp(8px,1.2vw,28px) !important}footer.site-footer .f-cols .f-col a{white-space:nowrap;font-size:clamp(12px,.95vw,16px) !important}footer.site-footer .f-cols .f-col h3{font-size:clamp(12px,.95vw,17px) !important}}
+footer.site-footer .f-mont-t{display:none !important}
+footer.site-footer .f-mont-stage::after{background:linear-gradient(180deg,rgba(6,24,58,0) 0%,rgba(6,24,58,0) 40%,rgba(6,24,58,.5) 60%,rgba(6,24,58,.85) 76%,#06183A 90%) !important}
+footer.site-footer .f-col h3{position:relative;font-size:17px !important;letter-spacing:.03em !important;padding-bottom:14px;margin-bottom:20px !important;color:#FFFFFF !important}
+footer.site-footer .f-col h3::after{content:"";position:absolute;left:0;bottom:0;width:40px;height:3px;border-radius:2px;background:#F5A623}
+footer.site-footer .f-col a{text-decoration:none !important;color:rgba(255,255,255,.92) !important;font-size:16px !important;transition:color .2s}
+footer.site-footer .f-col a:hover{color:#F5A623 !important}
+footer.site-footer .f-col ul{gap:13px !important}
+footer.site-footer .f-social{gap:14px !important}
+footer.site-footer .f-social a{width:44px !important;height:44px !important;margin-left:0 !important;border-radius:10px;background:rgba(255,255,255,.1);color:#FFFFFF !important;transition:background .2s}
+footer.site-footer .f-social a:hover{background:rgba(255,255,255,.2)}
+footer.site-footer .f-bottom{display:flex !important;justify-content:center;align-items:center;border-top:1px solid rgba(255,255,255,.18) !important;margin-top:44px !important;padding-top:28px !important}
+footer.site-footer .f-bottom .f-paym{flex-direction:row !important;align-items:center !important;justify-content:center !important;gap:12px 30px !important}
+footer.site-footer .f-bottom .f-paym-t{font-size:13px !important;letter-spacing:.08em}
+footer.site-footer .f-bottom .f-paym ul{gap:10px 26px !important;justify-content:center !important}
+footer.site-footer .f-bottom .f-paym li{padding:0 !important}
+@media (min-width:901px){
+footer.site-footer .f-wrap{max-width:1640px !important}footer.site-footer .f-brand,footer.site-footer .f-cols,footer.site-footer .f-col{top:0 !important}
+footer.site-footer .f-top{grid-template-columns:minmax(320px,30%) minmax(0,1fr) !important;gap:0 !important;align-items:stretch !important}
+footer.site-footer .f-brand{margin-left:0 !important;max-width:none !important;padding-right:clamp(24px,2.6vw,44px);border-right:1px solid rgba(255,255,255,.14)}
+footer.site-footer .f-cols{gap:0 !important}
+footer.site-footer .f-col{flex:1 1 0 !important;padding:0 clamp(14px,1.8vw,30px);text-align:left !important}
+footer.site-footer .f-col + .f-col{border-left:1px solid rgba(255,255,255,.12)}
+footer.site-footer .f-col ul{align-items:flex-start !important}
+footer.site-footer .f-col li{justify-content:flex-start !important}
+}
+@media (max-width:900px){
+footer.site-footer .f-col h3::after{left:50%;transform:translateX(-50%)}
+}
+footer.site-footer{-webkit-mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !important;-webkit-mask-position:0 0,0 calc(5vw - 2px) !important;mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !important;mask-position:0 0,0 calc(5vw - 2px) !important}footer.site-footer .f-wave{display:none !important}@media (min-width:901px) and (max-width:1000px){footer.site-footer .f-cols .f-col.f-col a{font-size:13px !important}footer.site-footer .f-cols .f-col.f-col{padding:0 8px !important}}@media (min-width:901px) and (max-width:1300px){footer.site-footer .f-top{grid-template-columns:minmax(0,1fr) !important;row-gap:40px !important}footer.site-footer .f-brand{border-right:0 !important;padding-right:0 !important}footer.site-footer .f-cols .f-col:first-child{padding-left:0 !important}footer.site-footer .f-cols .f-col a{font-size:14px !important}footer.site-footer .f-cols .f-col h3{font-size:14px !important}}@media (min-width:901px){footer.site-footer .f-cols{align-items:flex-start !important}footer.site-footer .f-brand{border-right:0 !important}footer.site-footer .f-cols .f-col{align-self:flex-start !important;border-left:1px solid rgba(255,255,255,.14)}footer.site-footer .f-cols{margin-left:0 !important}}@media (min-width:901px) and (max-width:1300px){footer.site-footer .f-cols .f-col:first-child{border-left:0 !important}}@media (min-width:901px){footer.site-footer{background-attachment:fixed !important;background-position:center var(--fbg-y,0px) !important}}footer.site-footer .f-bottom .f-paym .f-paym-t{font-weight:400 !important}#mobile-menu .mg-tile .mg-ill{position:absolute;inset:6% 6% 18%;width:88%;height:76%;filter:drop-shadow(0 18px 24px rgba(0,0,0,.55));transition:transform .5s ease}#mobile-menu .mg-tile:hover .mg-ill{transform:scale(1.04)}footer.site-footer .f-col h3::after{display:none !important}.pd-cross > .pd-h2{margin-bottom:52px !important}@media (max-width:700px){.pd-cross > .pd-h2{margin-bottom:40px !important}}/* Footer : les bois sont noirs et s'éclairent en montant vers les crêtes et le ciel */footer.site-footer{--fo:0px;--fih:calc(max(100vw, 1500px) / 3);background:linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) calc(var(--fo) + var(--fih) * .12),rgba(0,0,0,.55) calc(var(--fo) + var(--fih) * .3),rgba(0,0,0,.9) calc(var(--fo) + var(--fih) * .55),rgba(0,0,0,.97) calc(var(--fo) + var(--fih) * .9)),url(assets/footer-montagnes.webp) center top / max(100%, 1500px) auto no-repeat #001229 !important}@media (min-width:901px){footer.site-footer{--fo:var(--fbg-y,0px);background-attachment:fixed,fixed !important;background-position:0 0,center var(--fbg-y,0px) !important;background-size:100% 100%,max(100%, 1500px) auto !important}}</style>
 </head>
 <body>
 <div class="pg-bg" aria-hidden="true"><video src="assets/hero-video-4.mp4" poster="assets/hero-video-4-poster.jpg" muted loop playsinline autoplay preload="auto"></video></div>
@@ -950,7 +1030,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <a class="mg-tile" href="veste-otreau.html" data-shop-handle="veste-otreau"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_d_hiver_noire_isolee.png?v=1792739125&width=480" alt="" loading="lazy"><span class="mg-lbl">Vestes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="doudoune-otreau.html" data-shop-handle="doudoune"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Doudoune_noire_matelassee_a_capuche.png?v=1792740172&width=480" alt="" loading="lazy"><span class="mg-lbl">Doudounes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="gilet-otreau.html" data-shop-handle="gilet"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gilet_chauffant_noir_matelasse.png?v=1792739891&width=480" alt="" loading="lazy"><span class="mg-lbl">Gilets<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
-<a class="mg-tile" href="produit.html?p=parka" data-shop-handle="parka"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Veste_parka_noire_impermeable_isolee.png?v=1792743656&width=480" alt="" loading="lazy"><span class="mg-lbl">Parkas<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
+<a class="mg-tile mg-tile-acc" href="collection.html#accessoires"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Ceinturechauffanteenpeluchegrise.png?v=1794240586&width=480" alt="" loading="lazy"><span class="mg-lbl">Accessoires<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="produit.html?p=chaussettes-chauffantes" data-shop-handle="chaussettes-chauffantes"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Chaussettes_chauffantes_grises_en_tricot.png?v=1792746477&width=480" alt="" loading="lazy"><span class="mg-lbl">Chaussettes<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 <a class="mg-tile" href="produit.html?p=gants-chauffants" data-shop-handle="gants-chauffants"><img src="https://cdn.shopify.com/s/files/1/1089/3200/6229/files/Gants_chauffants_noirs_assortis.png?v=1792746050&width=480" alt="" loading="lazy"><span class="mg-lbl">Gants<svg class="mg-arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span></a>
 </div>
@@ -1044,7 +1124,21 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 
 <section class="pd-cross">
 <h2 class="pd-h2 pd-center">Complétez votre tenue</h2>
-<div class="pd-cross-grid">
+<div class="pd-cross-grid"><div class="pd-cross-track">
+<a data-handle="gants-chauffants" href="produit.html?p=gants-chauffants" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">GANTS</span></h3>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+</div>
+</a>
+<a data-handle="chaussettes-chauffantes" href="produit.html?p=chaussettes-chauffantes" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
+<div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
+<div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
+<h3 style="margin: 0; font-family: Manrope, sans-serif; font-weight: 300; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.01em; "><span style="font-weight: 600">CHAUSSETTES</span></h3>
+<span style="margin-top: auto; padding-top: 14px; width: 100%; display: flex; justify-content: center"><span class="pc-cta" style="width: 100%; max-width: 260px; min-height: 50px; border-radius: 0; background: #14212B; color: #FFFFFF; font-family: Manrope, sans-serif; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center">Découvrir</span></span>
+</div>
+</a>
 <a data-handle="veste-otreau" href="veste-otreau.html" style="text-decoration: none; color: #14212B; background: transparent; border: 0; border-radius: 0; overflow: hidden; display: flex; flex-direction: column">
 <div class="pc-ph" style="width: 100%; aspect-ratio: 1 / 1; background: transparent"></div>
 <div style="padding: 26px 24px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; flex: 1; background: transparent; border: 0">
@@ -1093,7 +1187,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 </ul>
 </div>
 </a>
-</div>
+</div></div>
 <p class="pd-cross-more"><a class="pd-all" href="collection.html">Découvrir tout<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
 </section>
 
@@ -1134,7 +1228,7 @@ html{touch-action:manipulation;-webkit-text-size-adjust:100%;text-size-adjust:10
 <div class="f-cols"><div class="f-col"><h3>Vêtements chauffants</h3><ul><li><a href="index.html#collection">Gilets chauffants</a></li><li><a href="index.html#collection">Doudounes chauffantes</a></li><li><a href="index.html#collection">Vestes parka chauffantes</a></li><li><a href="index.html#collection">Gants chauffants</a></li><li><a href="index.html#collection">Chaussettes chauffantes</a></li><li><a href="index.html#collection">Accessoires chauffants</a></li></ul></div><div class="f-col"><h3>Commandes</h3><ul><li><a href="suivi-commande.html">Suivre ma commande</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="politique-de-retour.html">Retours et échanges</a></li></ul></div><div class="f-col"><h3>Besoin d’aide ?</h3><ul><li><a href="contact.html">Nous contacter</a></li><li><a href="politique-de-retour.html#retractation">Droit de rétractation</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="index.html#tailles">Guide des tailles</a></li><li><a href="index.html#batterie">Batterie &amp; autonomie</a></li><li><a href="index.html#faq">Entretien des produits</a></li></ul></div><div class="f-col"><h3>À propos</h3><ul><li><a href="a-propos.html">Notre marque</a></li><li><a href="blog.html">Le blog</a></li></ul></div><div class="f-col"><h3>Informations légales</h3><ul><li><a href="politique-de-retour.html">Politique de retour</a></li><li><a href="politique-de-confidentialite.html">Politique de confidentialité</a></li><li><a href="politique-de-paiement.html">Politique de paiement</a></li><li><a href="politique-de-cookies.html">Politique de cookies</a></li><li><a href="conditions-generales.html">Conditions générales</a></li><li><a href="livraison.html">Livraison</a></li><li><a href="mentions-legales.html">Mentions légales</a></li></ul></div></div>
 </div>
 <div class="f-bottom">
-<div class="f-paym" aria-label="Moyens de paiement acceptés"><span class="f-paym-t">Paiement sécurisé</span><ul><li>Visa</li><li>Mastercard</li><li>PayPal</li><li>Apple Pay</li></ul></div>
+<div class="f-paym" aria-label="Moyens de paiement acceptés"><span class="f-paym-t">Mode de paiement</span><ul><li class="f-pay-visa"><img src="assets/visa.webp" alt="Visa" width="240" height="78" loading="lazy"></li><li class="f-pay-mc"><img src="assets/mastercard.webp" alt="Mastercard" width="133" height="80" loading="lazy"></li><li class="f-pay-pp"><img src="assets/paypal.webp" alt="PayPal" width="226" height="60" loading="lazy"></li><li class="f-pay-ap"><img src="assets/applepay.webp" alt="Apple Pay" width="146" height="60" loading="lazy"></li></ul></div>
 </div>
 </div>
 </footer>
@@ -1398,7 +1492,6 @@ var PRODUCT_CONTENT = {
 /* Menu ordinateur : la liste des collections est toujours dépliée */
 (function(){var g=document.querySelector('#mobile-menu .menu-group'),mq=window.matchMedia('(min-width:861px)');if(!g)return;function s(){g.open=true}s();(mq.addEventListener?mq.addEventListener('change',s):mq.addListener(s));var b=document.querySelector('.menu-btn');if(b)b.addEventListener('click',s)})();
 </script>
-<script>/* pd-cross-dedup : retire le produit affiché et garde 3 cartes */(function(){var h=new URLSearchParams(location.search).get("p")||"";var g=document.querySelector(".pd-cross-grid");if(!g)return;var c=g.querySelector('[data-handle="'+h+'"]');if(c)c.remove();var a=g.querySelectorAll("a[data-handle]");for(var i=3;i<a.length;i++)a[i].remove();})();</script>
 <script>/* faces du prisme sous les cartes « Complétez votre tenue » */(function(){document.querySelectorAll(".pd-cross a[data-handle] > div:last-child").forEach(function(d){if(d.querySelector(":scope > .pc-side"))return;var e=document.createElement("i");e.className="pc-side pc-side-t";e.setAttribute("aria-hidden","true");d.appendChild(e);});})();</script>
 <script>/* Pied de page : les blocs remontent un à un à l’apparition */(function(){var f=document.querySelector('.site-footer');if(!f)return;var els=[].slice.call(f.querySelectorAll('.f-brand,.f-col,.f-bottom,.f-legal'));if(!els.length)els=[].slice.call(f.querySelectorAll(':scope > :not(.f-mont)'));els.forEach(function(e,i){e.classList.add('f-rise');e.style.transitionDelay=(i*0.12)+'s'});if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('is-in')});return;}var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){els.forEach(function(e){e.classList.add('is-in')});io.disconnect()}},{threshold:0,rootMargin:'0px 0px -15% 0px'});io.observe(f);})();</script>
 <script>/* Pied de page : hauteur ajustée à l’écran, la FAQ réapparaît dès qu’on remonte */(function(){var f=document.querySelector('.site-footer'),m=document.querySelector('.f-mont');if(!f||!m)return;function fit(){if(innerWidth<=640){m.style.removeProperty('height');m.style.removeProperty('margin-bottom');return;}m.style.setProperty('margin-bottom','0px','important');m.style.setProperty('height','0px','important');var rest=f.offsetHeight;m.style.setProperty('height',Math.max(0,innerHeight-rest)+'px','important');window.dispatchEvent(new Event('otreau:footerfit'));}fit();addEventListener('resize',fit);addEventListener('load',fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);})();</script>
@@ -1413,5 +1506,17 @@ var clear=br.getBoundingClientRect().right+gap<=g.left;var target=clear?minTop:g
 var d=Math.max(0,top-target);br.style.position='relative';br.style.top=(-d)+'px';if(cols&&fb){var free=fb.getBoundingClientRect().top-cols.getBoundingClientRect().bottom-28;var dn=Math.max(0,Math.min(free,110));cols.style.position='relative';cols.style.top=dn+'px';}
 if(cols){var cs=[].slice.call(cols.children),bt=br.getBoundingClientRect().top,ct=cols.getBoundingClientRect().top,diff=Math.max(0,ct-bt),n=cs.length-1;if(n>0&&cs[0].getBoundingClientRect().top!==cs[n].getBoundingClientRect().top)return;cs.forEach(function(c,i){c.style.position='relative';var b0=Math.min(22,diff);c.style.top=(-Math.round(b0+(diff-b0)*i/n))+'px';});}}
 place();addEventListener('resize',place);addEventListener('load',place);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(place);})();</script>
+<script>/* Complétez votre tenue : les cartes défilent sur une ligne */
+(function(){var g=document.querySelector('.pd-cross .pd-cross-grid'),tr=g&&g.querySelector('.pd-cross-track');if(!tr)return;
+var cur=(new URLSearchParams(location.search).get('p')||'');if(cur)[].forEach.call(tr.querySelectorAll('a[data-handle="'+cur+'"]'),function(a){a.remove()});
+var busy=false,T=0;function per(){return innerWidth<=560?2:innerWidth<=900?3:4}
+function step(){if(busy||document.hidden)return;var cards=tr.querySelectorAll(':scope > a');if(cards.length<=per())return;var c=cards[0],w=c.getBoundingClientRect().width+parseFloat(getComputedStyle(tr).columnGap||getComputedStyle(tr).gap||20);
+tr.style.transition='transform .7s cubic-bezier(.65,0,.35,1)';tr.style.transform='translateX('+(-w)+'px)';
+setTimeout(function(){tr.style.transition='none';tr.appendChild(c);tr.style.transform='none';},720);}
+g.addEventListener('mouseenter',function(){busy=true});g.addEventListener('mouseleave',function(){busy=false});
+g.addEventListener('focusin',function(){busy=true});g.addEventListener('focusout',function(){busy=false});
+g.addEventListener('touchstart',function(){busy=true;clearTimeout(T);T=setTimeout(function(){busy=false},5000)},{passive:true});
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(step,3500);})();</script>
+<script>/* footer : la photo reste fixe, le texte défile par-dessus */(function(){var f=document.querySelector('footer.site-footer');if(!f)return;function top(){var m=0;[].forEach.call(document.querySelectorAll('header,.site-header,.bandeau-curtain,[class*=announce]'),function(e){var c=getComputedStyle(e),r=e.getBoundingClientRect();if((c.position==='fixed'||c.position==='sticky')&&r.top<80&&r.bottom<200&&r.bottom>0)m=Math.max(m,r.bottom)});return m}function u(){f.style.setProperty('--fbg-y',Math.max(top(),innerHeight-f.offsetHeight)+'px')}u();var rq=0;addEventListener('scroll',function(){if(rq)return;rq=requestAnimationFrame(function(){rq=0;u()})},{passive:true});addEventListener('resize',u);addEventListener('load',u);if(window.ResizeObserver)new ResizeObserver(u).observe(f)})();</script>
 </body>
 </html>
