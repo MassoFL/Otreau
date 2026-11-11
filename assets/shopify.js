@@ -1008,7 +1008,9 @@
       var dx = document.createElement('div'); dx.innerHTML = p.descriptionHtml.replace(/<br\s*\/?>/gi, '\n');
       p.descriptionHtml = dx.textContent.trim();
     }
-    if (p.descriptionHtml && p.descriptionHtml.trim()) {
+    /* une description Shopify trop courte (ex. juste le nom du produit) ne remplace pas le texte de la page */
+    var descTxt = String(p.descriptionHtml || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (p.descriptionHtml && descTxt.length >= 150) {
       [].slice.call(document.querySelectorAll('.pd-acc')).forEach(function (d) {
         var s = d.querySelector('summary span');
         if (s && norm(s.textContent) === 'description') d.querySelector('.pd-acc-body').innerHTML = p.descriptionHtml;
@@ -1614,7 +1616,7 @@
 
   /* ---------- recherche (bouton loupe du menu) ---------- */
   // page dédiée de chaque produit (les autres renvoient vers la sélection de l'accueil)
-  var PRODUCT_PAGES = { 'veste-otreau': 'veste-otreau.html', 'veste': 'veste-otreau.html', 'doudoune-otreau': 'doudoune-otreau.html', 'doudoune': 'doudoune-otreau.html', 'gilet-otreau': 'gilet-otreau.html', 'gilet': 'gilet-otreau.html', 'gilet-ultra-fin': 'gilet-ultra-fin-otreau.html', 'gilet-avec-capuche': 'gilet-avec-capuche-otreau.html', 'gilet-camouflage': 'gilet-camouflage-otreau.html', 'softshell': 'softshell-otreau.html', 'sweet': 'sweat-otreau.html', 'sweat': 'sweat-otreau.html', 'sweat-fin': 'sweat-fin-otreau.html', 'parka': 'parka-homme-otreau.html', 'parka-femme': 'parka-femme-otreau.html', 'veste-polaire': 'parka-polaire-otreau.html', 'gants-chauffants': 'gants-chauffants-otreau.html', 'chaussettes-chauffantes': 'chaussettes-chauffantes-otreau.html' };
+  var PRODUCT_PAGES = { 'veste-otreau': 'veste-otreau.html', 'veste': 'veste-otreau.html', 'doudoune-otreau': 'doudoune-otreau.html', 'doudoune': 'doudoune-otreau.html', 'gilet-otreau': 'gilet-otreau.html', 'gilet': 'gilet-otreau.html', 'gilet-ultra-fin': 'gilet-ultra-fin-otreau.html', 'gilet-avec-capuche': 'gilet-avec-capuche-otreau.html', 'gilet-camouflage': 'gilet-camouflage-otreau.html', 'softshell': 'softshell-otreau.html', 'sweet': 'sweat-otreau.html', 'sweat': 'sweat-otreau.html', 'sweat-fin': 'sweat-fin-otreau.html', 'parka': 'parka-homme-otreau.html', 'parka-femme': 'parka-femme-otreau.html', 'veste-polaire': 'parka-polaire-otreau.html', 'gants-chauffants': 'gants-chauffants-otreau.html', 'chaussettes-chauffantes': 'chaussettes-chauffantes-otreau.html', 'chauffe-mains': 'chauffe-mains-otreau.html' };
   var SEARCH_Q = 'query S($q: String!) { predictiveSearch(query: $q, limit: 10, types: [PRODUCT], ' +
     'searchableFields: [TITLE, BODY, PRODUCT_TYPE, TAG, VARIANTS_TITLE, VENDOR], unavailableProducts: LAST) { products { ' +
     'handle title availableForSale featuredImage { url altText } priceRange { minVariantPrice { amount currencyCode } } ' +
