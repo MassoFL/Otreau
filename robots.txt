@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /panier.html
+Disallow: /_to_delete/
+
+Sitemap: https://www.otreau.com/sitemap.xml

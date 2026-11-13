@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
+<meta name="robots" content="noindex, follow">
 <script>/* Produits qui ont leur propre page : l'ancienne adresse produit.html?p=… y renvoie directement */
 (function(){var P={'veste':'veste-otreau.html','veste-otreau':'veste-otreau.html','doudoune':'doudoune-otreau.html','doudoune-otreau':'doudoune-otreau.html','gilet':'gilet-otreau.html','gilet-otreau':'gilet-otreau.html','gilet-ultra-fin':'gilet-ultra-fin-otreau.html','gilet-avec-capuche':'gilet-avec-capuche-otreau.html','gilet-camouflage':'gilet-camouflage-otreau.html','softshell':'softshell-otreau.html','sweet':'sweat-otreau.html','sweat':'sweat-otreau.html','sweat-fin':'sweat-fin-otreau.html','parka':'parka-homme-otreau.html','parka-femme':'parka-femme-otreau.html','veste-polaire':'parka-polaire-otreau.html','gants-chauffants':'gants-chauffants-otreau.html','chaussettes-chauffantes':'chaussettes-chauffantes-otreau.html','chauffe-mains':'chauffe-mains-otreau.html'};var h=new URLSearchParams(location.search).get('p');if(h&&P[h])location.replace(P[h]+location.hash)})();</script>
 
@@ -1063,7 +1064,7 @@ footer.site-footer{-webkit-mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !impor
 
 <div class="pd-info" data-shopify-handle="">
 <h1 class="pd-title">&nbsp;</h1>
-<p class="pd-price" id="pd-price">[XXX,XX] €</p>
+<p class="pd-price" id="pd-price">&nbsp;</p>
 <div class="pd-field pd-batt-field">
 <p class="pd-batt-q">Avec ou sans batterie ?</p>
 <div class="pd-opts" role="group" aria-label="Batterie"><button type="button" class="pd-opt" data-group="batterie" aria-pressed="true">Avec batterie</button><button type="button" class="pd-opt" data-group="batterie" aria-pressed="false">Sans batterie</button></div>
@@ -1105,7 +1106,7 @@ footer.site-footer{-webkit-mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !impor
 </div>
 <div class="pd-trust-panel" id="pd-trust-panel" role="tabpanel">
 <div data-content="service" hidden><p><strong>Une question ? Notre service client vous répond du lundi au vendredi, de 10h00 à 18h00 (GMT+1).</strong></p><p>Écrivez-nous depuis la <a href="contact.html">page Contact</a> ou appelez le <a href="tel:+33753862668">+33 7 53 86 26 68</a> : nous nous efforçons de répondre sous 24 heures.</p></div>
-<div data-content="livraison"><p><strong>Livraison en France en 7 à 10 jours ouvrés</strong> (du lundi au vendredi) : 1 à 2 jours de traitement, puis 6 à 8 jours d’acheminement. <strong>Frais de livraison : 3,20 € TTC.</strong></p><p>Vous recevez un e-mail de suivi dès l’expédition et pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. <a href="livraison.html">Voir la politique d’expédition</a></p></div>
+<div data-content="livraison"><p><strong>Livraison suivie en France métropolitaine en 7 à 10 jours (du lundi au vendredi)</strong> : 1 à 2 jours de traitement, puis 6 à 8 jours de livraison. <strong>Frais de livraison : 3,20 € TTC.</strong></p><p>Vous recevez un e-mail de suivi dès l’expédition et pouvez <a href="suivi-commande.html">suivre votre commande</a> à tout moment. <a href="livraison.html">Voir la politique d’expédition</a></p></div>
 <div data-content="retour" hidden><p><strong>Vous disposez de 30 jours</strong> après réception pour retourner ou échanger votre article.</p><p>Contactez-nous pour lancer votre retour ; les frais d’expédition du retour sont à la charge du client. <a href="politique-de-retour.html">Voir la politique de retour</a></p></div>
 <div data-content="paiement" hidden><p><strong>Paiement sécurisé.</strong></p><p>Le paiement est traité par la plateforme sécurisée de <a href="https://www.shopify.com/security" target="_blank" rel="noopener">Shopify</a>, sur une connexion chiffrée (HTTPS). Vos coordonnées bancaires ne nous sont jamais communiquées.</p></div>
 </div>
@@ -1413,8 +1414,7 @@ var PRODUCT_CONTENT = {
     meta: 'Le gilet chauffant camouflage Otreau : sans manches, garni de duvet de canard, coupe-vent et déperlant, 3 niveaux de chaleur et jusqu’à 10 h d’autonomie avec la batterie 20 000 mAh. Tailles S à 6XL. Livraison suivie en France, retours sous 30 jours.',
     desc: [
       'Dans la Collection Hiver ’26, le gilet camouflage garde le buste au chaud tout en laissant les bras libres. Sans manches et léger, il reprend tout ce qui fait notre gilet doudoune, avec un motif camouflage gris.',
-      'Unisexe, garni de duvet de canard, coupe-vent et déperlant, il offre une chaleur réglable d’un simple bouton.',
-      'Ce modèle a déjà fait ses preuves au fil des hivers précédents : c’est pour cela que nous l’avons retenu. Et vos retours sur cette saison seront intégrés à sa version 2027.'
+      'Unisexe, garni de duvet de canard, coupe-vent et déperlant, il offre une chaleur réglable d’un simple bouton.'
     ],
     props: [['Genre','Mixte'],['Motif','Camouflage gris'],['Matière','Nylon et élasthanne'],['Doublure','Laine'],['Garnissage','Duvet de canard blanc (plus de 300 g)'],['Protection','Coupe-vent et déperlant'],['Manches','Sans manches'],['Capuche','Non'],['Fermeture','Fermeture éclair (zip)'],['Coupe','Regular, style décontracté']],
     levels: { autonomy: 'Jusqu’à 10 h d’autonomie avec la batterie 20 000 mAh.', list: [['Doux','voyant bleu','30 °C'],['Moyen','voyant blanc','40 °C'],['Élevé','voyant rouge','50 °C']] },

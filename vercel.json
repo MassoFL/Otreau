@@ -1,0 +1,89 @@
+{
+  "redirects": [
+    {
+      "source": "/products/veste-otreau",
+      "destination": "/veste-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/doudoune",
+      "destination": "/doudoune-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/gilet",
+      "destination": "/gilet-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/gilet-ultra-fin",
+      "destination": "/gilet-ultra-fin-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/gilet-avec-capuche",
+      "destination": "/gilet-avec-capuche-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/gilet-camouflage",
+      "destination": "/gilet-camouflage-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/softshell",
+      "destination": "/softshell-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/sweet",
+      "destination": "/sweat-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/sweat-fin",
+      "destination": "/sweat-fin-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/parka",
+      "destination": "/parka-homme-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/parka-femme",
+      "destination": "/parka-femme-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/veste-polaire",
+      "destination": "/parka-polaire-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/gants-chauffants",
+      "destination": "/gants-chauffants-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/chaussettes-chauffantes",
+      "destination": "/chaussettes-chauffantes-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/products/chauffe-mains",
+      "destination": "/chauffe-mains-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/collections/:path*",
+      "destination": "/collection.html",
+      "permanent": true
+    },
+    {
+      "source": "/collections",
+      "destination": "/collection.html",
+      "permanent": true
+    }
+  ]
+}

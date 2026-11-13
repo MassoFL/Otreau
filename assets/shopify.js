@@ -224,7 +224,7 @@
   function getCart() {
     var id = load(CART_KEY);
     if (!id) return Promise.resolve(null);
-    return gql('query C($id: ID!) { cart(id: $id) { ' + CART_FIELDS + ' } }', { id: id }).then(function (d) {
+    return gql('query C($id: ID!) @inContext(country: FR, language: FR) { cart(id: $id) { ' + CART_FIELDS + ' } }', { id: id }).then(function (d) {
       if (!d.cart) { store(CART_KEY, null); return null; }
       return d.cart;
     });
@@ -234,13 +234,13 @@
     return res.cart;
   }
   function createCart(lines) {
-    return gql('mutation M($input: CartInput!) { cartCreate(input: $input) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
+    return gql('mutation M($input: CartInput!) @inContext(country: FR, language: FR) { cartCreate(input: $input) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
       { input: { lines: lines } }).then(function (d) { var c = checkErrors(d.cartCreate); store(CART_KEY, c.id); return c; });
   }
   function addLines(lines) {
     var id = load(CART_KEY);
     if (!id) return createCart(lines);
-    return gql('mutation M($id: ID!, $lines: [CartLineInput!]!) { cartLinesAdd(cartId: $id, lines: $lines) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
+    return gql('mutation M($id: ID!, $lines: [CartLineInput!]!) @inContext(country: FR, language: FR) { cartLinesAdd(cartId: $id, lines: $lines) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
       { id: id, lines: lines }).then(function (d) {
         if (!d.cartLinesAdd.cart) { store(CART_KEY, null); return createCart(lines); }
         return checkErrors(d.cartLinesAdd);
@@ -249,10 +249,10 @@
   function updateLine(lineId, qty) {
     var id = load(CART_KEY);
     if (qty <= 0) {
-      return gql('mutation M($id: ID!, $ids: [ID!]!) { cartLinesRemove(cartId: $id, lineIds: $ids) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
+      return gql('mutation M($id: ID!, $ids: [ID!]!) @inContext(country: FR, language: FR) { cartLinesRemove(cartId: $id, lineIds: $ids) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
         { id: id, ids: [lineId] }).then(function (d) { return checkErrors(d.cartLinesRemove); });
     }
-    return gql('mutation M($id: ID!, $lines: [CartLineUpdateInput!]!) { cartLinesUpdate(cartId: $id, lines: $lines) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
+    return gql('mutation M($id: ID!, $lines: [CartLineUpdateInput!]!) @inContext(country: FR, language: FR) { cartLinesUpdate(cartId: $id, lines: $lines) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
       { id: id, lines: [{ id: lineId, quantity: qty }] }).then(function (d) { return checkErrors(d.cartLinesUpdate); });
   }
 

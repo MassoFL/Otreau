@@ -164,32 +164,83 @@
       function frStr(x) { return String(x).replace(/ ([:;!?»])/g, '\u00A0$1').replace(/« /g, '«\u00A0'); }
       a.title = frStr(a.title); lead = frStr(lead); toc.forEach(function (x) { x.t = frStr(x.t); });
       var kicker = a.tags.length ? a.tags.map(esc).join(' · ') : 'Le journal Otreau';
-      art.classList.add('is-mag');
+      art.classList.add('is-mag'); art.classList.add('is-hz');
+      // ---- lecture horizontale continue : le texte coule en colonnes de la hauteur de l'écran ----
+      var tocHtml = toc.length > 1 ? '<nav class="ah-toc" aria-label="Sommaire"><p>Au sommaire</p><ol>' + toc.map(function (x) {
+        return '<li><a href="#' + x.id + '">' + (x.num ? '<span>' + x.num + '</span>' : '') + esc(x.t) + '</a></li>'; }).join('') + '</ol></nav>' : '';
       art.innerHTML =
         '<div class="ar-progress" aria-hidden="true"><i></i></div>' +
-        '<header class="ar-head">' +
-          '<p class="ar-tags">' + kicker + '</p>' +
-          '<h1>' + esc(a.title) + '</h1>' +
-          (lead ? '<p class="ar-lead">' + lead + '</p>' : '') +
-          '<p class="ar-meta"><span>Par ' + esc((a.authorV2 && a.authorV2.name) || 'Otreau') + '</span><span>' + esc(date(a.publishedAt)) + '</span><span>' + minutes(a.contentHtml) + ' min de lecture</span></p>' +
-        '</header>' +
-        (a.image ? '<figure class="ar-cover"><img src="' + esc(img(a.image.url, 2000)) + '" alt="' + esc(a.image.altText || a.title) + '">' + (a.image.altText ? '<figcaption>' + esc(a.image.altText) + '</figcaption>' : '') + '</figure>' : '') +
-        '<div class="ar-layout">' +
-          (toc.length > 2 ? '<nav class="ar-toc" aria-label="Sommaire"><p>Au sommaire</p><ol>' + toc.map(function (x) { return '<li><a href="#' + x.id + '">' + (x.num ? '<span>' + x.num + '</span>' : '') + esc(x.t) + '</a></li>'; }).join('') + '</ol></nav>' : '') +
-          '<div class="ar-body">' + tmp.innerHTML + '</div>' +
+        '<div class="ah-flow ar-body" tabindex="0" aria-label="Article, défilement horizontal">' +
+          '<div class="ah-cover">' +
+            '<header class="ar-head">' +
+              '<p class="ar-tags">' + kicker + '</p>' +
+              '<h1>' + esc(a.title) + '</h1>' +
+              '<p class="ar-meta"><span>Par ' + esc((a.authorV2 && a.authorV2.name) || 'Otreau') + '</span><span>' + esc(date(a.publishedAt)) + '</span><span>' + minutes(a.contentHtml) + ' min de lecture</span></p>' +
+            '</header>' +
+          '</div>' +
+          (a.image ? '<figure class="ah-photo"><img src="' + esc(img(a.image.url, 1400)) + '" alt="' + esc(a.image.altText || a.title) + '"></figure>' : '') +
+          '<div class="ah-open">' + (lead ? '<p class="ar-lead">' + lead + '</p>' : '') + tocHtml + '</div>' +
+          tmp.innerHTML +
+          '<aside class="ar-cta"><p>Envie de garder la chaleur pendant vos sorties d’hiver ? Découvrez nos vêtements chauffants.</p><a href="collection.html">Voir la collection</a></aside>' +
+          '<p class="ar-back"><a class="bl-btn line" href="blog.html"><span aria-hidden="true">←</span>Tous les articles</a></p>' +
         '</div>' +
-        '<aside class="ar-cta"><p>Envie de garder la chaleur pendant vos sorties d’hiver ? Découvrez nos vêtements chauffants.</p><a href="collection.html">Voir la collection</a></aside>' +
-        '<p class="ar-back"><a class="bl-btn line" href="blog.html"><span aria-hidden="true">←</span>Tous les articles</a></p>';
-      // barre de progression de lecture + rubrique active dans le sommaire
+        '<nav class="ah-nav" aria-label="Défilement de l’article">' +
+          '<button type="button" class="ah-prev" aria-label="Reculer"><span aria-hidden="true">←</span></button>' +
+          '<span class="ah-where" aria-live="polite"></span>' +
+          '<button type="button" class="ah-next" aria-label="Avancer"><span aria-hidden="true">→</span></button>' +
+        '</nav>';
       (function () {
-        var bar = art.querySelector('.ar-progress i'), body = art.querySelector('.ar-body'), links = [].slice.call(art.querySelectorAll('.ar-toc a')), rq = 0;
-        function upd() {
-          rq = 0; var r = body.getBoundingClientRect(), h = r.height - innerHeight * .6;
-          if (bar) bar.style.transform = 'scaleX(' + Math.max(0, Math.min(1, (-r.top + innerHeight * .2) / Math.max(1, h))) + ')';
-          var cur = null; links.forEach(function (l) { var t = document.getElementById(l.hash.slice(1)); if (t && t.getBoundingClientRect().top < innerHeight * .35) cur = l; });
-          links.forEach(function (l) { l.classList.toggle('is-on', l === cur); });
+        var flow = art.querySelector('.ah-flow'), bar = art.querySelector('.ar-progress i'), where = art.querySelector('.ah-where'),
+            prev = art.querySelector('.ah-prev'), next = art.querySelector('.ah-next'), nav = art.querySelector('.ah-nav'),
+            heads = [].slice.call(flow.querySelectorAll('h2[id]')), rq = 0;
+        // hauteur : tout l'espace visible sous l'en-tête du site, moins la barre de navigation
+        // colonnes calculées pour qu'un nombre entier tienne exactement dans la largeur visible
+        var colStep = 0;
+        function size() {
+          var top = flow.getBoundingClientRect().top + scrollY;
+          var h = innerHeight - top - nav.offsetHeight - 30;
+          art.style.setProperty('--ah-h', Math.max(380, Math.round(h)) + 'px');
+          var W = flow.clientWidth, gap = W < 700 ? 40 : 64, n = Math.max(1, Math.floor((W + gap) / (400 + gap))), cw = (W - (n - 1) * gap) / n - .5;
+          flow.style.columnWidth = cw + 'px'; flow.style.columnGap = gap + 'px'; colStep = cw + .5 + gap;
+          upd();
         }
-        addEventListener('scroll', function () { if (!rq) rq = requestAnimationFrame(upd); }, { passive: true }); addEventListener('resize', upd); upd();
+        function step() { return colStep || flow.clientWidth; }
+        // à la fin d'un défilement, on se cale sur le début d'une colonne
+        var snapT = 0;
+        function snap() { var k = Math.round(flow.scrollLeft / step()), x = Math.min(flow.scrollWidth - flow.clientWidth, Math.round(k * step())); if (Math.abs(x - flow.scrollLeft) > 1) flow.scrollTo({ left: x, behavior: 'smooth' }); }
+        flow.addEventListener('scroll', function () { clearTimeout(snapT); snapT = setTimeout(snap, 160); }, { passive: true });
+        function upd() {
+          rq = 0; var max = flow.scrollWidth - flow.clientWidth, x = flow.scrollLeft;
+          if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? x / max : 1) + ')';
+          prev.disabled = x <= 2; next.disabled = x >= max - 2;
+          var fr = flow.getBoundingClientRect(), cur = x > step() * 1.5 ? 'Introduction' : 'Couverture';
+          heads.forEach(function (h) { if (h.getBoundingClientRect().left < fr.left + fr.width * .5) cur = (h.querySelector('.ar-h2t') || h).textContent.replace(/\s*:.*$/, ''); });
+          where.textContent = cur;
+        }
+        flow.addEventListener('scroll', function () { if (!rq) rq = requestAnimationFrame(upd); }, { passive: true });
+        prev.addEventListener('click', function () { flow.scrollBy({ left: -step(), behavior: 'smooth' }); });
+        next.addEventListener('click', function () { flow.scrollBy({ left: step(), behavior: 'smooth' }); });
+        // la molette fait avancer le texte à l'horizontale ; aux deux bouts, la page reprend son défilement normal
+        flow.addEventListener('wheel', function (e) {
+          if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+          var max = flow.scrollWidth - flow.clientWidth, x = flow.scrollLeft, d = e.deltaY * (e.deltaMode === 1 ? 32 : 1);
+          if ((d > 0 && x < max - 1) || (d < 0 && x > 1)) { e.preventDefault(); flow.scrollLeft = x + d; }
+        }, { passive: false });
+        flow.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); flow.scrollBy({ left: step(), behavior: 'smooth' }); }
+          else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); flow.scrollBy({ left: -step(), behavior: 'smooth' }); }
+        });
+        // liens du sommaire et liens internes : on glisse jusqu'à la partie
+        function goTo(el, smooth) { var fr = flow.getBoundingClientRect(), r = el.getBoundingClientRect(); flow.scrollTo({ left: flow.scrollLeft + r.left - fr.left - (parseFloat(getComputedStyle(flow).paddingLeft) || 0), behavior: smooth ? 'smooth' : 'auto' }); }
+        art.addEventListener('click', function (e) {
+          var l = e.target.closest('a[href^="#"]'); if (!l) return;
+          var t = document.getElementById(l.getAttribute('href').slice(1)); if (!t || !flow.contains(t)) return;
+          e.preventDefault(); goTo(t, true); history.replaceState(null, '', location.pathname + location.search + l.getAttribute('href'));
+        });
+        addEventListener('resize', size); addEventListener('load', size);
+        [].forEach.call(flow.querySelectorAll('img'), function (im) { im.addEventListener('load', upd); });
+        size();
+        if (location.hash) { var t0 = document.getElementById(location.hash.slice(1)); if (t0 && flow.contains(t0)) setTimeout(function () { goTo(t0, false); }, 60); }
       })();
       var others = d.articles.nodes.filter(function (x) { return x.handle !== handle; }).slice(0, 3);
       var more = document.getElementById('article-more');
