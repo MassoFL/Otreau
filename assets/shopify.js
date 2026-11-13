@@ -732,6 +732,13 @@
         }).join('');
       }
     });
+    // Produit en brouillon, archivé ou supprimé dans Shopify : la page n'est plus indexée et renvoie vers la collection
+    if (pdInfo && !map[pdInfo.dataset.shopifyHandle]) {
+      var nr = document.createElement('meta'); nr.name = 'robots'; nr.content = 'noindex'; document.head.appendChild(nr);
+      document.querySelectorAll('script[type="application/ld+json"]').forEach(function (x) { x.remove(); });
+      location.replace('collection.html');
+      return;
+    }
     if (pdInfo) { try { initProductPage(map[pdInfo.dataset.shopifyHandle]); } finally { pdReady(); } }
   }).catch(function (e) {
     shopDone();

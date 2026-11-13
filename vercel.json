@@ -90,6 +90,10 @@
     {
       "source": "/merchant-feed.tsv",
       "destination": "/api/feed"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
     }
   ]
 }
