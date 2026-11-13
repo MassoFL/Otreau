@@ -85,5 +85,11 @@
       "destination": "/collection.html",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/merchant-feed.tsv",
+      "destination": "/api/feed"
+    }
   ]
 }

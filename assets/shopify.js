@@ -1176,6 +1176,12 @@
       if (wanted && norm(g.name) === 'couleur') { var w = cands.filter(function (b) { return norm(b.dataset.value) === norm(wanted); })[0]; if (w) first = w; }
       if (first) { g.selected = first.dataset.value; }
     });
+    // ?variant=<id Shopify> (liens du flux Google Merchant Center) : présélectionne exactement cette variante
+    var wantedV = new URLSearchParams(location.search).get('variant');
+    if (wantedV) {
+      var vv = p.variants.nodes.filter(function (v) { return v.id.split('/').pop() === wantedV; })[0];
+      if (vv) groups.forEach(function (g) { vv.selectedOptions.forEach(function (o) { if (norm(o.name) === norm(g.name)) g.selected = o.value; }); });
+    }
     groups.forEach(function (g) { if (g.selected) pick(g, g.selected); });
     // Tailles : rangée centrée sur la taille du milieu (ou la taille choisie), les autres dépassent sur les côtés
     groups.forEach(function (g) {
