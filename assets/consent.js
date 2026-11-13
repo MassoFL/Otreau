@@ -3,12 +3,24 @@
    on le charge seulement si window.otreauConsent.analytics (ou .ads) vaut true,
    ou à l'événement « otreau:consent ». */
 (function () {
-  var KEY = 'otreau_consent', MAX = 182 * 24 * 3600 * 1000;
-  function read() { try { var c = JSON.parse(localStorage.getItem(KEY)); if (c && Date.now() - c.date < MAX) return c; } catch (e) {} return null; }
+  var KEY = 'otreau_consent', MAX = 182 * 24 * 3600 * 1000, VER = 2, CLARITY_ID = 'zcytttyiac';
+  /* Microsoft Clarity (mesure d'audience) : chargé uniquement après accord, puis signal consentv2 */
+  var clarityOn = false;
+  function clarity(c) {
+    if (c.analytics && !clarityOn) {
+      clarityOn = true;
+      (function (c2, l, a, r, i, t, y) { c2[a] = c2[a] || function () { (c2[a].q = c2[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y); })(window, document, 'clarity', 'script', CLARITY_ID);
+    }
+    if (window.clarity) window.clarity('consentv2', { ad_Storage: c.ads ? 'granted' : 'denied', analytics_Storage: c.analytics ? 'granted' : 'denied' });
+  }
+  function read() { try { var c = JSON.parse(localStorage.getItem(KEY)); if (c && c.v === VER && Date.now() - c.date < MAX) return c; } catch (e) {} return null; }
   function save(a, ads) {
-    var c = { analytics: !!a, ads: !!ads, date: Date.now() };
+    var c = { v: VER, analytics: !!a, ads: !!ads, date: Date.now() };
     try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
     window.otreauConsent = c;
+    clarity(c);
     try { document.dispatchEvent(new CustomEvent('otreau:consent', { detail: c })); } catch (e) {}
     close();
   }
@@ -29,10 +41,10 @@
     box = document.createElement('div'); box.id = 'ck'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-labelledby', 'ck-t'); box.setAttribute('aria-live', 'polite');
     box.innerHTML = '<h2 id="ck-t">Vos choix concernant les cookies</h2>' +
       '<p>Aujourd’hui, otreau.com utilise uniquement ce qui est nécessaire au fonctionnement de la boutique, comme votre panier.</p>' +
-      '<p>Nous pourrons prochainement utiliser des outils de <strong>mesure d’audience</strong> (comme Google Analytics) et de <strong>publicité</strong> (comme Google Ads ou Meta). Ils ne seront activés qu’avec votre accord, que vous pouvez modifier à tout moment via « Gérer les cookies » en bas de page. <a href="politique-de-cookies.html">En savoir plus</a></p>' +
+      '<p>Avec votre accord, nous utilisons <strong>Microsoft Clarity</strong> pour mesurer l’audience et comprendre comment le site est utilisé, afin de l’améliorer. Nous pourrons aussi utiliser d’autres outils de mesure (comme Google Analytics) et de <strong>publicité</strong> (comme Google Ads ou Meta). Rien n’est activé sans votre accord, que vous pouvez modifier à tout moment via « Gérer les cookies » en bas de page. <a href="politique-de-cookies.html">En savoir plus</a></p>' +
       '<div class="ck-opts">' +
       '<label class="ck-opt"><input type="checkbox" checked disabled><span><strong>Nécessaires</strong><small>Panier et fonctionnement du site. Toujours actifs.</small></span></label>' +
-      '<label class="ck-opt"><input type="checkbox" id="ck-a"' + (c.analytics ? ' checked' : '') + '><span><strong>Mesure d’audience</strong><small>Par exemple Google Analytics : comprendre comment le site est utilisé.</small></span></label>' +
+      '<label class="ck-opt"><input type="checkbox" id="ck-a"' + (c.analytics ? ' checked' : '') + '><span><strong>Mesure d’audience</strong><small>Microsoft Clarity (cartes de chaleur, enregistrement des parcours, champs de saisie masqués) et, à l’avenir, Google Analytics.</small></span></label>' +
       '<label class="ck-opt"><input type="checkbox" id="ck-ads"' + (c.ads ? ' checked' : '') + '><span><strong>Publicité</strong><small>Par exemple Google Ads ou Meta : mesurer nos campagnes et vous montrer des publicités adaptées.</small></span></label>' +
       '</div>' +
       '<div class="ck-b"><button type="button" class="ck-no">Tout refuser</button><button type="button" class="ck-perso">Personnaliser</button><button type="button" class="ck-save">Enregistrer mes choix</button><button type="button" class="ck-main ck-yes">Tout accepter</button></div>';
@@ -49,6 +61,6 @@
     var a = e.target.closest && e.target.closest('[data-consent-open]');
     if (a) { e.preventDefault(); close(); setTimeout(open, box ? 360 : 0); }
   });
-  function init() { if (!read()) open(); }
+  function init() { var c = read(); if (c) clarity(c); else open(); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
