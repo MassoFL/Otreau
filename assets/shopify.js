@@ -545,7 +545,7 @@
     if (cartPage) a.setAttribute('aria-current', 'page');
   });
 
-  function cartProductUrl(h) { var pp = (typeof PRODUCT_PAGES === 'object' && PRODUCT_PAGES) || {}; return pp[h] || ('produit.html?p=' + encodeURIComponent(h)); }
+  function cartProductUrl(h) { var pp = (typeof PRODUCT_PAGES === 'object' && PRODUCT_PAGES) || {}; return pp[h] || 'collection.html'; }
   function renderCart(err) {
     if (cartPage) cartPage.classList.toggle('is-empty', !cart || !cart.lines.nodes.length);
     var n = cart ? cart.totalQuantity : 0;
@@ -640,7 +640,7 @@
     if (/sock|chaussette/i.test(c)) return 'chaussettes';
     return 'veste';
   }
-  function pageOf(h) { return PRODUCT_PAGES[h] || ('produit.html?p=' + encodeURIComponent(h)); }
+  function pageOf(h) { return PRODUCT_PAGES[h] || 'collection.html'; }
   function buildCollection() {
     var grid = document.querySelector('.product-grid');
     if (!grid) return Promise.resolve();
@@ -1702,7 +1702,7 @@
       sOut.innerHTML = '<div class="os-results">' + list.map(function (p) {
         var pv = withBattery(p), lo = pv.length ? pv.reduce(function (a, b) { return parseFloat(b.price.amount) < parseFloat(a.price.amount) ? b : a; }).price : p.priceRange.minVariantPrice;
         var img = p.featuredImage && p.featuredImage.url;
-        return '<a class="os-item" href="' + esc(PRODUCT_PAGES[p.handle] || ('produit.html?p=' + encodeURIComponent(p.handle))) + '">' +
+        return '<a class="os-item" href="' + esc(PRODUCT_PAGES[p.handle] || 'collection.html') + '">' +
           '<div class="os-img">' + (img ? '<img src="' + esc(sized(img, 500)) + '" alt="' + esc((p.featuredImage.altText) || plainTitle(p.title)) + '" loading="lazy">' : '') + '</div>' +
           '<div class="os-t">' + titleHtml(p.title) + '</div><div class="os-p">' + ttc(lo) + (p.availableForSale ? '' : ' · Épuisé') + '</div></a>';
       }).join('') + '</div>';

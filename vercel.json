@@ -1,6 +1,244 @@
 {
   "redirects": [
     {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "veste"
+        }
+      ],
+      "destination": "/veste-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "veste-otreau"
+        }
+      ],
+      "destination": "/veste-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "doudoune"
+        }
+      ],
+      "destination": "/doudoune-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "doudoune-otreau"
+        }
+      ],
+      "destination": "/doudoune-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "gilet"
+        }
+      ],
+      "destination": "/gilet-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "gilet-otreau"
+        }
+      ],
+      "destination": "/gilet-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "gilet-ultra-fin"
+        }
+      ],
+      "destination": "/gilet-ultra-fin-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "gilet-avec-capuche"
+        }
+      ],
+      "destination": "/gilet-avec-capuche-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "gilet-camouflage"
+        }
+      ],
+      "destination": "/gilet-camouflage-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "softshell"
+        }
+      ],
+      "destination": "/softshell-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "sweet"
+        }
+      ],
+      "destination": "/sweat-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "sweat"
+        }
+      ],
+      "destination": "/sweat-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "sweat-fin"
+        }
+      ],
+      "destination": "/sweat-fin-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "parka"
+        }
+      ],
+      "destination": "/parka-homme-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "parka-femme"
+        }
+      ],
+      "destination": "/parka-femme-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "veste-polaire"
+        }
+      ],
+      "destination": "/parka-polaire-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "gants-chauffants"
+        }
+      ],
+      "destination": "/gants-chauffants-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "chaussettes-chauffantes"
+        }
+      ],
+      "destination": "/chaussettes-chauffantes-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "chauffe-mains"
+        }
+      ],
+      "destination": "/chauffe-mains-otreau.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit.html",
+      "destination": "/collection.html",
+      "permanent": true
+    },
+    {
+      "source": "/produit",
+      "destination": "/collection.html",
+      "permanent": true
+    },
+    {
       "source": "/products/veste-otreau",
       "destination": "/veste-otreau.html",
       "permanent": true
