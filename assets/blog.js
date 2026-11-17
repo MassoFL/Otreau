@@ -166,6 +166,8 @@
       var kicker = a.tags.length ? a.tags.map(esc).join(' · ') : 'Le journal Otreau';
       art.classList.add('is-mag'); art.classList.add('is-hz');
       // ---- lecture horizontale continue : le texte coule en colonnes de la hauteur de l'écran ----
+      // sommaire de la couverture : les parties principales (la conclusion n'y figure pas)
+      toc = toc.filter(function (x) { return !/^conclusion\b/i.test(x.t); });
       var tocHtml = toc.length > 1 ? '<nav class="ah-toc" aria-label="Sommaire"><p>Au sommaire</p><ol>' + toc.map(function (x) {
         return '<li><a href="#' + x.id + '">' + (x.num ? '<span>' + x.num + '</span>' : '') + esc(x.t) + '</a></li>'; }).join('') + '</ol></nav>' : '';
       art.innerHTML =
@@ -175,11 +177,12 @@
             '<header class="ar-head">' +
               '<p class="ar-tags">' + kicker + '</p>' +
               '<h1>' + esc(a.title) + '</h1>' +
-              '<p class="ar-meta"><span>Par ' + esc((a.authorV2 && a.authorV2.name) || 'Otreau') + '</span><span>' + esc(date(a.publishedAt)) + '</span><span>' + minutes(a.contentHtml) + ' min de lecture</span></p>' +
+              '<p class="ar-meta"><span>' + esc(date(a.publishedAt)) + '</span><span>' + minutes(a.contentHtml) + ' min de lecture</span></p>' +
             '</header>' +
+            tocHtml +
           '</div>' +
           (a.image ? '<figure class="ah-photo"><img src="' + esc(img(a.image.url, 1400)) + '" alt="' + esc(a.image.altText || a.title) + '"></figure>' : '') +
-          '<div class="ah-open">' + (lead ? '<p class="ar-lead">' + lead + '</p>' : '') + tocHtml + '</div>' +
+          (lead ? '<div class="ah-open"><p class="ar-lead">' + lead + '</p></div>' : '') +
           tmp.innerHTML +
           '<aside class="ar-cta"><p>Envie de garder la chaleur pendant vos sorties d’hiver ? Découvrez nos vêtements chauffants.</p><a href="collection.html">Voir la collection</a></aside>' +
           '<p class="ar-back"><a class="bl-btn line" href="blog.html"><span aria-hidden="true">←</span>Tous les articles</a></p>' +
@@ -202,7 +205,14 @@
           art.style.setProperty('--ah-h', Math.max(380, Math.round(h)) + 'px');
           var W = flow.clientWidth, gap = W < 700 ? 40 : 64, n = Math.max(1, Math.floor((W + gap) / (400 + gap))), cw = (W - (n - 1) * gap) / n - .5;
           flow.style.columnWidth = cw + 'px'; flow.style.columnGap = gap + 'px'; colStep = cw + .5 + gap;
-          upd();
+          fitCover(); upd();
+        }
+        // couverture : titre + sommaire doivent tenir dans la première colonne ; sinon on resserre par étapes
+        function fitCover() {
+          var c = flow.querySelector('.ah-cover'), FIT = ['is-fit1', 'is-fit2', 'is-fit3'];
+          if (!c) return; FIT.forEach(function (k) { c.classList.remove(k); });
+          function ok() { var li = c.querySelector('.ah-toc li:last-child'), first = c.getClientRects()[0]; if (!li || !first) return true; var r = li.getBoundingClientRect(); return c.getClientRects().length < 2 && r.left >= first.left - 1 && r.right <= first.right + 1; }
+          for (var i = 0; i < FIT.length && !ok(); i++) c.classList.add(FIT[i]);
         }
         function step() { return colStep || flow.clientWidth; }
         // à la fin d'un défilement, on se cale sur le début d'une colonne
