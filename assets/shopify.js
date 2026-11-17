@@ -401,7 +401,7 @@
     '.pd-story-m{display:none}' +
     '.pd-main{touch-action:pan-y}.pd-main .pd-peek{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;display:block;z-index:1;pointer-events:none;will-change:transform}.pd-main > img{will-change:transform}.pd-main > .pd-leave{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1;pointer-events:none}' +
     '@media (max-width:900px){' +
-      'main.pd .pd-top:has(> .pd-gallery.has-story){display:flex !important;flex-direction:column;position:relative;text-align:center;gap:0 !important}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > *,main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > :not(.pd-arrow){width:100%;box-sizing:border-box}main.pd .pd-top:has(> .pd-gallery.has-story) .pd-opts,main.pd .pd-top:has(> .pd-gallery.has-story) .pd-color-field,main.pd .pd-top:has(> .pd-gallery.has-story) .pd-size-field{justify-content:center !important}' +
+      'main.pd .pd-top:has(> .pd-gallery.has-story){display:flex !important;flex-direction:column;position:relative;text-align:center;gap:0 !important}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > *,main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > :not(.pd-arrow){width:100%;box-sizing:border-box}main.pd .pd-top:has(> .pd-gallery.has-story) .pd-opts:not(.pd-size-row),main.pd .pd-top:has(> .pd-gallery.has-story) .pd-color-field,main.pd .pd-top:has(> .pd-gallery.has-story) .pd-size-field{justify-content:center !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery,main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info{display:contents !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-info > .pd-title{order:0;margin:0 0 6px !important}main.pd:has(.pd-gallery.has-story){padding-top:12px !important}' +
       'main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > .pd-story{order:1}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > .pd-main{order:2}main.pd .pd-top:has(> .pd-gallery.has-story) > .pd-gallery > .pd-cap{order:3;margin:10px 0 0 !important}' +
@@ -440,6 +440,10 @@
     '.pc-snap .pc-arrow{display:none !important}' +
     '.pc-snap .pc-cell > img{position:absolute !important;inset:0 !important;width:100% !important;height:100% !important;opacity:1 !important;visibility:visible !important;object-fit:contain;transition:none !important}' +
     '.pc-snap > .pc-wash,.pc-snap > .pc-thermal,.pc-snap > .pc-view{display:none !important}' +
+    // l'effet orange d'un badge reste dans sa photo (ne déborde pas sur la photo voisine)
+    '.pc-snap .pc-cell{overflow:hidden}' +
+    // Complétez votre tenue : pas de signature 'Otreau en haut à droite des photos
+    '.pd-cross .pc-car::after{content:none !important}' +
     '.pc-dots{display:none !important}' +
     '.pc-arrow{background:transparent !important;box-shadow:none !important;border:0 !important;border-radius:0 !important;width:28px !important}.pc-arrow:hover{background:transparent !important}.pc-arrow svg{width:18px !important;height:18px !important;stroke:#000000 !important;stroke-width:2.2 !important;filter:drop-shadow(0 0 1px #FFFFFF) drop-shadow(0 0 3px #FFFFFF) drop-shadow(0 0 8px rgba(255,255,255,.95)) drop-shadow(0 0 16px rgba(255,255,255,.8))}.pc-arrow-prev{left:2px !important}.pc-arrow-next{right:2px !important}' +
     '.pc-car::after{content:"\\2019Otreau";position:absolute;top:10px;right:12px;z-index:3;font:300 13px/1 Manrope,sans-serif;letter-spacing:.01em;color:#8A949B;pointer-events:none}' +
@@ -502,6 +506,8 @@
     'main.pd .pd-info .pd-size-field .pd-opt{position:relative}' +
     '.pd-sel-dot{position:absolute;top:6px;left:50%;margin-left:-2.5px;width:5px;height:5px;border-radius:50%;background:#2FA05A;animation:pdStockBlink 1.6s ease-in-out infinite;pointer-events:none}' +
     '.pd-sel-dot.is-out{background:#8A949B;animation:none}' +
+    // le repère vert n'apparaît que sous la taille sélectionnée (jamais en point sur l'ancienne taille pendant le changement)
+    ':not([aria-pressed="true"]) > .pd-sel-dot{display:none !important}' +
     '@media (prefers-reduced-motion:reduce){.pd-sel-dot{animation:none}}' +
     'main.pd .pd-info .pd-size-row > [aria-pressed="true"]{transform:scale(var(--pd-sel-k,1.22)) !important}' +
     '.pd-stock-dot{width:8px;height:8px;border-radius:50%;background:#1E7A3C;box-shadow:0 0 0 0 rgba(30,122,60,.45);animation:pdStockBlink 1.6s ease-in-out infinite}' +
