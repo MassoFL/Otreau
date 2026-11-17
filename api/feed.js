@@ -1,6 +1,6 @@
 // Flux produits Google Merchant Center (une ligne par variante), généré en direct depuis Shopify.
 // Adresse du flux : https://www.otreau.com/merchant-feed.tsv
-// Délais (à garder identiques partout) : traitement 1–2 j, livraison 7–10 j, total 8–12 j (lun–ven), 3,20 € France
+// Délais (à garder identiques partout) : traitement 1–2 j, livraison 6–8 j, total 7–10 j (lun–ven), 3,20 € France
 const SHOP = 'https://pcbvi7-ea.myshopify.com/api/2026-10/graphql.json';
 const TOKEN = '454c67e9623c56f1a73831ea0a3e76bf'; // jeton Storefront public (déjà présent dans assets/shopify.js)
 const SITE = 'https://www.otreau.com/';
