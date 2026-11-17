@@ -1,5 +1,6 @@
 // Flux produits Google Merchant Center (une ligne par variante), généré en direct depuis Shopify.
 // Adresse du flux : https://www.otreau.com/merchant-feed.tsv
+// Délais (à garder identiques partout) : traitement 1–2 j, livraison 7–10 j, total 8–12 j (lun–ven), 3,20 € France
 const SHOP = 'https://pcbvi7-ea.myshopify.com/api/2026-10/graphql.json';
 const TOKEN = '454c67e9623c56f1a73831ea0a3e76bf'; // jeton Storefront public (déjà présent dans assets/shopify.js)
 const SITE = 'https://www.otreau.com/';
@@ -45,7 +46,7 @@ module.exports = async function handler(req, res) {
     const j = await r.json();
     if (!j.data) throw new Error(JSON.stringify(j.errors || j).slice(0, 300));
     const cols = ['id', 'item_group_id', 'title', 'description', 'link', 'image_link', 'additional_image_link', 'availability', 'price',
-      'brand', 'condition', 'identifier_exists', 'gender', 'age_group', 'color', 'size', 'shipping', 'shipping_label'];
+      'brand', 'condition', 'identifier_exists', 'gender', 'age_group', 'color', 'size', 'shipping', 'shipping_label', 'min_handling_time', 'max_handling_time'];
     const rows = [cols.join('\t')];
     for (const p of j.data.products.nodes) {
       const page = PAGES[p.handle]; if (!page) continue;
@@ -61,7 +62,7 @@ module.exports = async function handler(req, res) {
           vid, p.handle, (TITLES[p.handle] || p.title) + (extra ? ' – ' + extra : ''), (p.description || TITLES[p.handle] || p.title).slice(0, 4900),
           SITE + page + '.html?variant=' + vid, img, imgs.filter((u) => u !== img).slice(0, 5).join(','),
           v.availableForSale ? 'in_stock' : 'out_of_stock', Number(v.price.amount).toFixed(2) + ' ' + v.price.currencyCode,
-          'Otreau', 'new', 'no', GENDER[p.handle] || 'unisex', 'adult', color, size, 'FR:::3.20 EUR', ''
+          'Otreau', 'new', 'no', GENDER[p.handle] || 'unisex', 'adult', color, size, 'FR:::3.20 EUR', '', '1', '2'
         ].map(cell).join('\t'));
       }
     }
