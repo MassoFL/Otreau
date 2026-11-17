@@ -1385,6 +1385,9 @@ a.hero-cta{letter-spacing:.08em !important}
 #batterie .bv-stat{position:relative;flex:none;border-left:0 !important;padding:16px min(5vw,64px) !important}
 #batterie .bv-stat + .bv-stat::before{content:"";position:absolute;left:0;top:50%;height:46px;margin-top:-23px;width:1px;background:rgba(245,166,35,.6)}
 @media (max-width:640px){#batterie .bv-stat + .bv-stat::before{height:34px;margin-top:-17px}}
+/* Batterie mobile : les trois chiffres tiennent dans la largeur et restent centrés */
+@media (max-width:640px){#batterie .bv-stats{width:100%}#batterie .bv-stat{flex:1 1 auto !important;min-width:0;padding:14px 8px !important}#batterie .bv-num{font-size:22px !important}#batterie .bv-num small{font-size:11px !important}#batterie .bv-lab{font-size:11px !important;letter-spacing:.04em !important;white-space:nowrap}}
+@media (max-width:360px){#batterie .bv-stat{padding:12px 5px !important}#batterie .bv-num{font-size:19px !important}#batterie .bv-lab{font-size:10px !important;letter-spacing:.02em !important}}
 /* Batterie : pas de trait au-dessus de « Pensée pour vos journées dehors », titres des cartes en majuscules */
 #batterie .bt-more{border-top:0 !important}
 #batterie .bt-crit li .bt-name{text-transform:uppercase;letter-spacing:.05em;font-size:15.5px;font-weight:600}
@@ -2650,9 +2653,9 @@ fit();addEventListener('resize',fit);if(document.fonts&&document.fonts.ready)doc
 <script>/* « Pensée pour vos journées dehors » : la suite du texte s'affiche au clic */
 (function(){[].forEach.call(document.querySelectorAll('.bt-crit li'),function(li){var sm=li.querySelector('small');if(!sm)return;
 var n=[].slice.call(li.childNodes).filter(function(x){return x.nodeType===3&&x.textContent.trim()})[0];if(n){var t=document.createElement('b');t.className='bt-name';t.textContent=n.textContent.trim();li.replaceChild(t,n);}
-var b=document.createElement('button');b.type='button';b.className='bt-more-btn';b.setAttribute('aria-expanded','false');b.innerHTML='<span class="bt-u">Suite</span> ...';li.appendChild(b);
+var b=document.createElement('button');b.type='button';b.className='bt-more-btn';b.setAttribute('aria-expanded','false');b.innerHTML='<span class="bt-u">Suite</span>';li.appendChild(b);
 function need(){if(li.classList.contains('is-open'))return;b.hidden=sm.scrollHeight<=sm.clientHeight+2;}
-b.addEventListener('click',function(){var o=li.classList.toggle('is-open');b.setAttribute('aria-expanded',o?'true':'false');b.innerHTML=o?'<span class="bt-u">Réduire</span>':'<span class="bt-u">Suite</span> ...';});
+b.addEventListener('click',function(){var o=li.classList.toggle('is-open');b.setAttribute('aria-expanded',o?'true':'false');b.innerHTML=o?'<span class="bt-u">Réduire</span>':'<span class="bt-u">Suite</span>';});
 need();addEventListener('resize',need);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(need);});})();</script>
 <script>/* Mobile : « Batterie & autonomie » et « Tailles & mesures » sur une ligne, à la largeur de l'écran */
 (function(){var ts=[].slice.call(document.querySelectorAll('#batterie h2.sec-title,#tailles-titre'));if(!ts.length)return;
