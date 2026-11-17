@@ -506,6 +506,8 @@
     'main.pd .pd-info .pd-size-field .pd-opt{position:relative}' +
     '.pd-sel-dot{position:absolute;top:6px;left:50%;margin-left:-2.5px;width:5px;height:5px;border-radius:50%;background:#2FA05A;animation:pdStockBlink 1.6s ease-in-out infinite;pointer-events:none}' +
     '.pd-sel-dot.is-out{background:#8A949B;animation:none}' +
+    // Description (mobile) : lignes Genre / Matière / Zones… serrées, sans le format carré des tuiles
+    '@media (max-width:640px){main.pd .pd-details .pd-props .pd-row{aspect-ratio:auto !important;height:auto !important;min-height:0 !important;padding-top:14px !important;padding-bottom:14px !important}}' +
     // le repère vert n'apparaît que sous la taille sélectionnée (jamais en point sur l'ancienne taille pendant le changement)
     ':not([aria-pressed="true"]) > .pd-sel-dot{display:none !important}' +
     '@media (prefers-reduced-motion:reduce){.pd-sel-dot{animation:none}}' +
