@@ -1,6 +1,32 @@
 {
   "redirects": [
     {
+      "source": "/article.html",
+      "missing": [
+        {
+          "type": "query",
+          "key": "a"
+        }
+      ],
+      "destination": "/blog.html",
+      "permanent": false
+    },
+    {
+      "source": "/index-diaporama.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/retractation.html",
+      "destination": "/politique-de-retour.html#retractation-en-ligne",
+      "permanent": false
+    },
+    {
+      "source": "/retractation",
+      "destination": "/politique-de-retour.html#retractation-en-ligne",
+      "permanent": false
+    },
+    {
       "source": "/produit.html",
       "has": [
         {

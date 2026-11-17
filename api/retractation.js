@@ -40,7 +40,7 @@ module.exports = async function handler(req, res) {
   }
 
   const now = new Date();
-  const quand = now.toLocaleString('fr-FR', { timeZone: 'Etc/GMT-1', dateStyle: 'long', timeStyle: 'short' }) + ' (GMT+1)';
+  const quand = now.toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'long', timeStyle: 'short' }) + ' (heure de Paris)';
   const ref = 'R-' + now.getTime().toString(36).toUpperCase();
   const lignes = [
     ['Référence de la demande', ref], ['Reçue le', quand], ['Nom', d.nom], ['E-mail', d.email],
@@ -69,7 +69,7 @@ module.exports = async function handler(req, res) {
         '<p>Glissez votre numéro de commande dans le colis. Les frais de retour sont à votre charge, sauf produit défectueux ou non conforme. ' +
         'Nous vous remboursons au plus tard 14 jours après votre demande, par le moyen de paiement utilisé lors de la commande ; ' +
         'nous pouvons attendre la réception du colis ou une preuve de son expédition.</p>' +
-        '<p>Notre service client en français reste à votre disposition à contact@otreau.com ou au +33 7 53 86 26 68, du lundi au vendredi, de 10h00 à 18h00 (GMT+1).</p>' +
+        '<p>Notre service client en français reste à votre disposition à contact@otreau.com ou au +33 7 53 86 26 68, du lundi au vendredi, de 10h00 à 18h00 (heure de Paris).</p>' +
         '<p>L’équipe Otreau<br><span style="color:#666">Otreau est une marque de Massoali OÜ, Ahtri tn 12, 15551 Tallinn, Estonie.</span></p></div>',
       text: 'Bonjour ' + d.nom + ',\n\nNous accusons réception de votre demande de rétractation, reçue le ' + quand + '.\n\n' + texte +
         '\n\nRenvoyez le ou les produits au plus tard 14 jours après cette demande à : Otreau – Service retours, 2 allée des Grandes Maisons, 94110 Arcueil, France.' +
