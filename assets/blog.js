@@ -122,9 +122,10 @@
       [].slice.call(tmp.querySelectorAll('span')).forEach(function (sp) { if (!sp.attributes.length) sp.replaceWith.apply(sp, [].slice.call(sp.childNodes)); });
       [].slice.call(tmp.querySelectorAll('h1')).forEach(function (h) { var h2 = document.createElement('h2'); h2.innerHTML = h.innerHTML; h.replaceWith(h2); });
       [].slice.call(tmp.querySelectorAll('li > p:only-child')).forEach(function (pp) { pp.replaceWith.apply(pp, [].slice.call(pp.childNodes)); });
-      // chapô : l'extrait Shopify, sinon le premier paragraphe du texte
-      var lead = a.excerpt ? esc(a.excerpt) : '';
-      if (!lead) { var p1 = tmp.querySelector(':scope > p'); if (p1 && p1 === tmp.firstElementChild) { lead = p1.innerHTML; p1.remove(); } }
+      // chapô : toujours le premier paragraphe de l'article (l'extrait Shopify sert aux cartes du blog et à Google)
+      var lead = '';
+      var p1 = tmp.querySelector(':scope > p'); if (p1 && p1 === tmp.firstElementChild) { lead = p1.innerHTML; p1.remove(); }
+      if (!lead && a.excerpt) lead = esc(a.excerpt);
       // intertitres : numéro mis en valeur, ancre pour le sommaire ; bloc « Sources » à part
       var toc = [], n = 0;
       [].slice.call(tmp.querySelectorAll(':scope > h2')).forEach(function (h) {
