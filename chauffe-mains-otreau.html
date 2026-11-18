@@ -1404,7 +1404,7 @@ btn.addEventListener('click',function(){open(false)});lbtn.addEventListener('cli
 /* un lien vers un passage de l'article (ex. « réglable d'un simple bouton ») l'ouvre d'abord */
 function inside(h){try{var t=h&&h.length>1&&document.getElementById(decodeURIComponent(h.slice(1)));return t&&wrap.contains(t)}catch(e){return false}}
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a&&inside(a.getAttribute('href')))open(true)},true);
-if(inside(location.hash))open(true);addEventListener('hashchange',function(){if(inside(location.hash)){open(true);var t=document.getElementById(location.hash.slice(1));t&&t.scrollIntoView()}});
+/* l'article est ouvert par défaut */open(true);addEventListener('hashchange',function(){if(inside(location.hash)){open(true);var t=document.getElementById(location.hash.slice(1));t&&t.scrollIntoView()}});
 })();</script>
 
 

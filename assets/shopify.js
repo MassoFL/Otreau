@@ -506,6 +506,11 @@
     'main.pd .pd-info .pd-size-field .pd-opt{position:relative}' +
     '.pd-sel-dot{position:absolute;top:6px;left:50%;margin-left:-2.5px;width:5px;height:5px;border-radius:50%;background:#2FA05A;animation:pdStockBlink 1.6s ease-in-out infinite;pointer-events:none}' +
     '.pd-sel-dot.is-out{background:#8A949B;animation:none}' +
+    // Avec ou sans batterie : petite photo de la batterie à gauche des deux choix, estompée si « Sans batterie »
+    '.pd-batt-field:has(> .pd-batt-side){display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;column-gap:0}.pd-batt-field > .pd-batt-side{justify-self:end;margin-right:14px}@media (min-width:901px){.pd-batt-field > .pd-batt-side{height:128px !important}}@media (max-width:640px){.pd-batt-field > .pd-batt-side{margin-right:8px}}.pd-batt-field > .pd-batt-side{align-self:center;margin-top:-44px;margin-bottom:-44px}@media (min-width:901px){.pd-batt-field > .pd-batt-side{margin-top:-64px;margin-bottom:-64px}}' +
+    '.pd-batt-field:has(> .pd-batt-side) > .pd-batt-q{grid-column:1 / -1}' +
+    '.pd-batt-field > .pd-batt-side{display:block;height:88px;width:auto;filter:drop-shadow(0 6px 8px rgba(20,33,43,.25));transition:opacity .3s ease,filter .3s ease}' +
+    '.pd-batt-field:has(.pd-opt[aria-pressed="true"][data-value^="Sans"]) > .pd-batt-side,.pd-batt-field:has(.pd-opt[aria-pressed="true"][data-value^="sans"]) > .pd-batt-side{opacity:.35;filter:grayscale(1)}' +
     // Description (mobile) : lignes Genre / Matière / Zones… serrées, sans le format carré des tuiles
     '@media (max-width:640px){main.pd .pd-details .pd-props .pd-row{aspect-ratio:auto !important;height:auto !important;min-height:0 !important;padding-top:14px !important;padding-bottom:14px !important}}' +
     // le repère vert n'apparaît que sous la taille sélectionnée (jamais en point sur l'ancienne taille pendant le changement)
@@ -1782,4 +1787,27 @@
   window.addEventListener('resize', req);
   window.addEventListener('load', req);
   var tries = 0, iv = setInterval(function () { req(); if (++tries > 20) clearInterval(iv); }, 250);
+})();
+
+/* Photo de la batterie : quand la photo produit est à côté de la colonne d’achat, on la place au milieu
+   de l’espace entre le bord de la photo produit et les boutons « Avec / Sans batterie » */
+(function () {
+  var raf = 0;
+  function place() {
+    raf = 0;
+    var img = document.querySelector('.pd-batt-field > .pd-batt-side'), main = document.querySelector('.pd-main');
+    if (!img || !main) return;
+    var opts = img.parentNode.querySelector('.pd-opts'); if (!opts) return;
+    img.style.transform = '';
+    var m = main.getBoundingClientRect(), o = opts.getBoundingClientRect(), i = img.getBoundingClientRect();
+    var side = m.right <= i.left && m.bottom > i.top && m.top < i.bottom;
+    if (!side) return;
+    var dx = Math.round((m.right + o.left) / 2 - (i.left + i.width / 2));
+    if (dx < 0) img.style.transform = 'translateX(' + dx + 'px)';
+  }
+  function soon() { if (!raf) raf = requestAnimationFrame(place); }
+  window.addEventListener('resize', soon); window.addEventListener('load', soon); soon();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(soon);
+  document.addEventListener('otreau:product', soon);
+  if (window.ResizeObserver) { var ro = new ResizeObserver(soon); var mm = document.querySelector('.pd-main'); if (mm) ro.observe(mm); var ff = document.querySelector('.pd-batt-field'); if (ff) ro.observe(ff); }
 })();

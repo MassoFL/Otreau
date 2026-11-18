@@ -1299,9 +1299,9 @@ footer.site-footer{-webkit-mask-size:100% 5vw,100% calc(100% - 5vw + 2px) !impor
 <p class="pd-price" id="pd-price">119&nbsp;€</p>
 <div class="pd-field pd-batt-field">
 <p class="pd-batt-q">Avec ou sans batterie ?</p>
+<img class="pd-batt-side" src="assets/batterie-option.webp" alt="" aria-hidden="true" width="161" height="360" decoding="async">
 <div class="pd-opts" role="group" aria-label="Batterie"><button type="button" class="pd-opt" data-group="batterie" aria-pressed="true">Avec batterie</button><button type="button" class="pd-opt" data-group="batterie" aria-pressed="false">Sans batterie</button></div>
 </div>
-
 <div class="pd-field pd-color-field">
 <div class="pd-label">Couleur : <span id="pd-color">Gris clair</span></div>
 <div class="pd-opts" role="group" aria-label="Couleur"><button type="button" class="pd-swatch" data-group="couleur" data-name="Gris clair" aria-label="Gris clair" aria-pressed="true" style="background:#C9CDD1"></button><button type="button" class="pd-swatch" data-group="couleur" data-name="Noir" aria-label="Noir" aria-pressed="false" style="background:#14161A"></button></div>
@@ -1414,7 +1414,7 @@ btn.addEventListener('click',function(){open(false)});lbtn.addEventListener('cli
 /* un lien vers un passage de l'article (ex. « réglable d'un simple bouton ») l'ouvre d'abord */
 function inside(h){try{var t=h&&h.length>1&&document.getElementById(decodeURIComponent(h.slice(1)));return t&&wrap.contains(t)}catch(e){return false}}
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a&&inside(a.getAttribute('href')))open(true)},true);
-if(inside(location.hash))open(true);addEventListener('hashchange',function(){if(inside(location.hash)){open(true);var t=document.getElementById(location.hash.slice(1));t&&t.scrollIntoView()}});
+/* l'article est ouvert par défaut */open(true);addEventListener('hashchange',function(){if(inside(location.hash)){open(true);var t=document.getElementById(location.hash.slice(1));t&&t.scrollIntoView()}});
 })();</script>
 
 <section class="pd-size" id="guide-tailles" aria-labelledby="pd-size-title">
