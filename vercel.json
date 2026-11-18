@@ -348,6 +348,36 @@
       "source": "/collections",
       "destination": "/collection.html",
       "permanent": true
+    },
+    {
+      "source": "/cgv.html",
+      "destination": "/conditions-generales.html",
+      "permanent": true
+    },
+    {
+      "source": "/cgv",
+      "destination": "/conditions-generales.html",
+      "permanent": true
+    },
+    {
+      "source": "/confidentialite.html",
+      "destination": "/politique-de-confidentialite.html",
+      "permanent": true
+    },
+    {
+      "source": "/confidentialite",
+      "destination": "/politique-de-confidentialite.html",
+      "permanent": true
+    },
+    {
+      "source": "/retours.html",
+      "destination": "/politique-de-retour.html",
+      "permanent": true
+    },
+    {
+      "source": "/retours",
+      "destination": "/politique-de-retour.html",
+      "permanent": true
     }
   ],
   "rewrites": [
