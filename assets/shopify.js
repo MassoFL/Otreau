@@ -233,9 +233,12 @@
     if (res.userErrors && res.userErrors.length) throw new Error(res.userErrors.map(function (e) { return e.message; }).join(' / '));
     return res.cart;
   }
+  // suivi (assets/tracking.js) : identifiant Google Analytics, gclid et choix cookies transmis au pixel Shopify du paiement
+  function trackAttrs() { try { return (window.otreauTracking && window.otreauTracking.cartAttributes()) || []; } catch (e) { return []; } }
+  function syncTrackAttrs(id) { var a = trackAttrs(); if (!a.length || !id) return; gql('mutation M($id: ID!, $a: [AttributeInput!]!) { cartAttributesUpdate(cartId: $id, attributes: $a) { userErrors { message } } }', { id: id, a: a }).catch(function () {}); }
   function createCart(lines) {
     return gql('mutation M($input: CartInput!) @inContext(country: FR, language: FR) { cartCreate(input: $input) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
-      { input: { lines: lines } }).then(function (d) { var c = checkErrors(d.cartCreate); store(CART_KEY, c.id); return c; });
+      { input: { lines: lines, attributes: trackAttrs() } }).then(function (d) { var c = checkErrors(d.cartCreate); store(CART_KEY, c.id); return c; });
   }
   function addLines(lines) {
     var id = load(CART_KEY);
@@ -243,7 +246,7 @@
     return gql('mutation M($id: ID!, $lines: [CartLineInput!]!) @inContext(country: FR, language: FR) { cartLinesAdd(cartId: $id, lines: $lines) { cart { ' + CART_FIELDS + ' } userErrors { message } } }',
       { id: id, lines: lines }).then(function (d) {
         if (!d.cartLinesAdd.cart) { store(CART_KEY, null); return createCart(lines); }
-        return checkErrors(d.cartLinesAdd);
+        var c = checkErrors(d.cartLinesAdd); syncTrackAttrs(c.id); return c;
       });
   }
   function updateLine(lineId, qty) {
@@ -599,7 +602,7 @@
     });
   }
 
-  getCart().then(function (c) { cart = c; renderCart(); }).catch(function () { renderCart(); });
+  getCart().then(function (c) { cart = c; renderCart(); if (c && cartPage) { syncTrackAttrs(c.id); document.dispatchEvent(new CustomEvent('otreau:cart', { detail: c })); } }).catch(function () { renderCart(); });
 
   /* ---------- cartes produit (accueil) ---------- */
   var cardEls = document.querySelectorAll('[data-handle],[data-shop-handle]');
@@ -752,7 +755,7 @@
       location.replace('collection.html');
       return;
     }
-    if (pdInfo) { try { initProductPage(map[pdInfo.dataset.shopifyHandle]); } finally { pdReady(); } }
+    if (pdInfo) { try { initProductPage(map[pdInfo.dataset.shopifyHandle]); } finally { pdReady(); } try { document.dispatchEvent(new CustomEvent('otreau:view_item', { detail: map[pdInfo.dataset.shopifyHandle] })); } catch (e) {} }
   }).catch(function (e) {
     shopDone();
     if (window.console) console.warn('[Otreau] Shopify indisponible :', e.message);
@@ -1240,6 +1243,7 @@
       var q = Math.max(1, parseInt(qtyEl && qtyEl.value, 10) || 1);
       addBtn.classList.add('oc-busy');
       addLines([{ merchandiseId: v.id, quantity: q }]).then(function (c) {
+        try { document.dispatchEvent(new CustomEvent('otreau:add_to_cart', { detail: { product: p, variant: v, quantity: q } })); } catch (e) {}
         cart = c; window.location.href = CART_URL;
       }).catch(function (e) { say('Impossible d’ajouter au panier pour le moment. ' + e.message); })
         .then(function () { addBtn.classList.remove('oc-busy'); });
