@@ -54,6 +54,7 @@
     keepGclid();
     if (loaded) { setConsent('update'); if (GA4_ID && consent().analytics && !gaOn) { gaOn = true; gtag('config', GA4_ID, { cookie_domain: 'otreau.com' }); } if (ADS_ID && consent().ads && !adsOn) { adsOn = true; gtag('config', ADS_ID, { cookie_domain: 'otreau.com' }); } }
     load();
+    var p = pending; pending = []; if (wanted()) p.forEach(function (e) { send(e[0], e[1]); });
   });
 
   /* ---------- événements ---------- */
@@ -66,8 +67,9 @@
       price: num(v && v.price && v.price.amount), quantity: q || 1
     };
   }
+  var pending = []; // événements de la page vue avant le choix du bandeau
   function send(name, params) {
-    if (!wanted()) return;
+    if (!wanted()) { if (!consent().date) pending.push([name, params]); return; }
     if (!loaded) { queue(name, params); load(); return; }
     gtag('event', name, params);
   }
