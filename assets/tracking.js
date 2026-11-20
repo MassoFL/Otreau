@@ -3,7 +3,7 @@
    2. Le paiement et l'achat sont suivis par le pixel personnalisé Shopify (Paramètres › Événements client),
       qui reçoit d'ici, par les attributs du panier, l'identifiant Google Analytics, le gclid et le choix cookies. */
 (function () {
-  var GA4_ID = '';          // ex. 'G-XXXXXXXXXX'
+  var GA4_ID = 'G-BR4ENVJXN8'; // Google Analytics 4 (propriété otreau.com)
   var ADS_ID = 'AW-18586045570'; // Google Ads (conversion « Achat Otreau » : libellé dans le pixel Shopify)
   var ADS_ADD_TO_CART = ''; // facultatif : libellé de conversion « Ajout au panier », ex. 'AbCdEfGhIj'
 
@@ -45,14 +45,14 @@
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA4_ID || ADS_ID);
     document.head.appendChild(s);
     gtag('js', new Date());
-    if (GA4_ID) gtag('config', GA4_ID, { cookie_domain: 'otreau.com' });
+    if (GA4_ID && consent().analytics) { gaOn = true; gtag('config', GA4_ID, { cookie_domain: 'otreau.com' }); }
     if (ADS_ID && consent().ads) { adsOn = true; gtag('config', ADS_ID, { cookie_domain: 'otreau.com' }); }
     flush();
   }
-  var adsOn = false;
+  var adsOn = false, gaOn = false;
   document.addEventListener('otreau:consent', function () {
     keepGclid();
-    if (loaded) { setConsent('update'); if (ADS_ID && consent().ads && !adsOn) { adsOn = true; gtag('config', ADS_ID, { cookie_domain: 'otreau.com' }); } }
+    if (loaded) { setConsent('update'); if (GA4_ID && consent().analytics && !gaOn) { gaOn = true; gtag('config', GA4_ID, { cookie_domain: 'otreau.com' }); } if (ADS_ID && consent().ads && !adsOn) { adsOn = true; gtag('config', ADS_ID, { cookie_domain: 'otreau.com' }); } }
     load();
   });
 
